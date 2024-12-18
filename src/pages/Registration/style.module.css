@@ -119,7 +119,7 @@ input::placeholder{
     font-weight: 400;
     line-height: normal;
 
-    transition: background-color     .3s ease-in-out;
+    transition: background-color .3s ease-in-out;
 }
 
 .nextBtn:hover{
