@@ -1,0 +1,209 @@
+.orderItem{
+    width: 100%;
+    height: fit-content;
+
+    background-color: #EAEAEA;
+
+    border-radius: 12px;
+
+    padding: 36px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: relative;
+
+    > .orderMenu{
+        position: absolute;
+        top: 17px;
+        right: 27px;
+
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+
+    > .orderDropdown{
+        width: 241px;
+        height: 132px;
+        overflow: hidden;
+
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        background-color: #fff;
+
+        border-radius: 12px;
+        box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.02);
+
+        position: absolute;
+        top: 47px;
+        right: 27px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        > a{
+            padding: 10px 28px;
+            box-sizing: border-box;
+
+            background-color: #fff;
+
+            width: 100%;
+
+            transition: background-color .3s ease-in-out;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            > h2{
+                text-wrap: nowrap;
+
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 100%;
+            }
+        }
+
+        > a:hover{
+            background-color: rgb(227, 227, 227);
+        }
+        
+        > :first-child{
+            border-radius: 12px 12px 0 0;
+        }
+
+        > :nth-child(2){
+            border-radius: 0;
+        }
+
+        > :last-child{
+            border-radius: 0 0 12px 12px;
+        }
+    }
+     
+    > .orderDropdown.visible {
+        height: 132px;
+        opacity: 1;
+        transform: scaleY(1);
+
+        z-index: 2;
+    }
+
+    > .orderTitleBlock{
+        width: 95%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > h2{
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 110%;
+
+            width: 75%;
+
+            text-align: left;
+        }
+
+        > h3{
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 110%;
+
+            opacity: 1;
+        }
+    }
+
+    > p{
+        margin-top: 16px;
+
+        width: 89%;
+
+        text-align: left;
+
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%;
+
+        opacity: 0.7;
+    }
+
+    > .orderInfo{
+        margin-top: 33px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+
+        > .orderInfoLeft, .orderInfoRight{
+            display: flex;
+            align-items: center;
+            gap: 24px;
+
+            > h2, h3, h4{
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 110%;
+            }
+
+            > h3{
+                opacity: 0.5;
+            }
+
+            > h4{
+                color: #6CCA6C;
+            }
+        }
+
+        > .orderInfoRight{
+            > div{
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 110%;
+
+                background-repeat: no-repeat;
+                background-position: left;
+                background-size: 20px;
+
+                padding-left: 25px;
+                box-sizing: border-box;
+            }
+
+            > :first-child{
+                background-image: url('../../assets/icons/eye.svg');
+            }
+
+            > :nth-child(2){
+                background-image: url('../../assets/icons/people.svg');
+            }
+
+            > :last-child{
+                background-image: url('../../assets/icons/chat.svg');
+
+                > a{
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 110%;
+                }
+            }
+        }
+    }
+}

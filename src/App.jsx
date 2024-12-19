@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Registration from './pages/Registration';
 import EmailConfirm from './pages/EmailConfirm';
 import Login from './pages/Login'
+import MyOrders from './pages/MyOrders';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path='/registration' element={<Registration />}/>
         <Route path='/email-confirm' element={<EmailConfirm />}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/my-orders' element={<MyOrders />}/>
     </Routes>
   )
 }

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-
-import styles from "./style.module.css";
-
-import hidePasswordImg from "../../assets/hidePassword.svg";
-import showPasswordImg from "../../assets/showPassword.svg";
-import hidePasswordImgRed from "../../assets/redHidePassword.svg";
-import showPasswordImgRed from "../../assets/redShowPassword.svg";
-import vkImg from '../../assets/vk.svg';
-import googleImg from '../../assets/google.svg';
 import { useDispatch } from "react-redux";
 import { authSignIn } from "../../redux/slices/authSlice";
 import { Link } from "react-router-dom";
+
+import styles from "./style.module.css";
+
+import hidePasswordImg from "../../assets/icons/hidePassword.svg";
+import showPasswordImg from "../../assets/icons/showPassword.svg";
+import hidePasswordImgRed from "../../assets/icons/redHidePassword.svg";
+import showPasswordImgRed from "../../assets/icons/redShowPassword.svg";
+import vkImg from '../../assets/icons/vk.svg';
+import googleImg from '../../assets/icons/google.svg';
 
 function Login() {
   const [hidePassword, setHidePassword] = useState(true);
