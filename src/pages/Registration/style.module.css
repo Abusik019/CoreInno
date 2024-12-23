@@ -262,7 +262,7 @@ input[type="checkbox"]:checked {
     font-weight: 400;
     line-height: normal;
 
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity .3s ease-in-out;
 
     color: #000;
