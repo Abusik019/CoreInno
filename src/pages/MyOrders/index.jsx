@@ -6,6 +6,7 @@ import questionImg from '../../assets/icons/question.svg';
 import letterImg from '../../assets/icons/letter.svg';
 import phoneImg from '../../assets/icons/phone.svg';
 import arrow from '../../assets/icons/arrow.svg';
+import FreelancersSlider from '../../components/FreelancersSlider';
 
 export default function MyOrders() {
   return (
@@ -112,6 +113,7 @@ export default function MyOrders() {
                 <h2>Рекомендуемые фрилансеры</h2>
                 <button>Обновить</button>
             </div>
+            <FreelancersSlider />
         </section>
     </div>
   )
