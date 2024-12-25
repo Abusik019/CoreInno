@@ -1,0 +1,151 @@
+.rod {
+    width: 1200px;
+    text-align: start;
+}
+
+header  { 
+    width: 1200px;
+    text-align: start;
+
+}
+
+.categor {
+    display: flex;
+    gap: 20px;
+    margin-top: 36px;
+}
+
+.categor li {
+    padding: 10px 30px;
+    border: 1px solid black;
+    border-radius: 14px;
+    font-size: 16px;
+}
+
+.info {
+    display: flex;
+    width: 290px;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name p:nth-child(2){
+    color: gray;
+}
+
+.name p:nth-child(1){
+    width: 200px;
+}
+
+.zagalovok1 {
+    margin-top: 80px;
+    margin-bottom: 36px;
+}
+
+.line{
+    border: 1px solid gray;
+    width: 290px;
+    margin-top: 24px;
+    margin-bottom: 9px;
+}
+
+.grade{
+    width: 290px;
+}
+
+.percent{
+    display: flex;
+    justify-content: space-between;
+    margin-top:15px;
+}
+
+.percent p{
+    color: gray;
+}
+
+.button button{
+    width: 228px;
+    height: 48px;
+    padding: 10px;
+    border-radius: 14px;
+    background-color: black;
+    color: white;
+}
+
+.button{
+    width: 288px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 36px;
+}
+
+.cart {
+    border: 1px solid gray;
+    width: 338px;
+    border-radius: 14px;
+    padding: 28px 24px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+.carts {
+    display: flex;
+    gap: 36px;
+}
+
+.reclama {
+    margin-top: 20px;
+    width: 256px;
+}
+
+.reclama h4{
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+
+.info1 img{
+ width: 48px;
+ height: 48px;
+}
+
+.info1 {
+    display: flex;
+    width: 284px;
+    height: 48px;
+    justify-content: space-between;
+    align-items: center;
+   
+    
+}
+
+.info1 p:nth-child(3) {
+    color: gray;
+}
+
+.info2 p:nth-child(2){
+    color: gray;
+}
+
+.rectange {
+    width: 284px;
+    height: 160px;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    margin-bottom: 60px;
+}
+
+
+
+
+
+
+
