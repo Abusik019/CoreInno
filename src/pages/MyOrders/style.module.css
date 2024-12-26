@@ -283,6 +283,13 @@
 
             position: relative;
 
+            > button {
+                background-color: transparent;
+
+                width: 134px;
+                height: 15px;
+            }
+
             > .guidePinnedTitle, .guideTitle{
                 display: flex;
                 align-items: center;
@@ -305,7 +312,7 @@
             > .guideTitle button{
                 position: absolute;
                 top: 20px;
-                right: 32px;
+                right: 20px;
             }
 
             > p{
@@ -445,6 +452,8 @@
                         line-height: 26px;
 
                         text-align: left;
+
+                        width: 75%;
                     }
                 }
             }

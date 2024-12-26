@@ -1,6 +1,7 @@
 import styles from "./style.module.css";
-import arrow from "../../assets/icons/hidePassword.svg";
-import brad from '../../assets/images/brad.png';
+import arrow from "../../assets/icons/sliderArrow.svg";
+import freelancer from '../../assets/images/freelancer.png';
+import toFavourite from '../../assets/icons/toFavourite.svg';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -8,7 +9,7 @@ const mockFreelancers = [
   ...Array(10).fill(null).map((_, index) => ({
     id: index + 1,
     name: "Жанна Кондратьева",
-    image: `${brad}`,
+    image: `${freelancer}`,
     region: "Регион",
     description: "Маркетолог-эксперт со стажем 14 лет практических работ",
     totalOrders: "17",
@@ -86,7 +87,7 @@ export default function FreelancersSlider() {
                     <Link to="#">Перейти в профиль</Link>
                   </button>
                   <button className={styles.addToFavourite}>
-                    <img src={arrow} width={30} height={24} alt="add to fav" />
+                    <img src={toFavourite} width={30} height={24} alt="add to fav" />
                   </button>
                 </div>
               </li>
@@ -95,7 +96,7 @@ export default function FreelancersSlider() {
         </ul>
       </div>
       <button className={styles.nextSlide} onClick={nextSlide}>
-        <img src={arrow} width={24} height={24} alt="next" />
+        <img src={arrow} width={24} height={24} alt="next" style={{transform: "rotate(180deg)"}}/>
       </button>
     </div>
   );

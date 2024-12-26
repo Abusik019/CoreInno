@@ -6,8 +6,11 @@ import questionImg from '../../assets/icons/question.svg';
 import letterImg from '../../assets/icons/letter.svg';
 import phoneImg from '../../assets/icons/phone.svg';
 import arrow from '../../assets/icons/arrow.svg';
+import whiteArrow from '../../assets/icons/w-longArrow.svg';
+import blackArrow from '../../assets/icons/b-longArrow.svg';
 import FreelancersSlider from '../../components/FreelancersSlider';
-import menu from '../../assets/icons/order-menu.svg';
+import close from '../../assets/icons/close.svg';
+import mockGuide from '../../assets/images/mockGuide.png';
 
 const mockGuides = [
   ...Array(3).fill(null).map((_, index) => ({
@@ -132,21 +135,13 @@ export default function MyOrders() {
                 <li>
                     <div className={styles.guidePinnedTitle}>
                         <h2>Название Гайда</h2>
-                        <button>
-                            <img 
-                                src={menu}
-                                width={18}
-                                height={4}
-                                alt='dropdown button'
-                            />
-                        </button>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur. At sodales sed adipiscing tempus est ac. Tempor elit blandittempus.</p>
                     <button>
                         <img 
-                            src={arrow}
+                            src={whiteArrow}
                             width={134}
-                            height={5}
+                            height={15}
                             alt='arrow'
                         />
                     </button>
@@ -157,19 +152,19 @@ export default function MyOrders() {
                             <h2>Название Гайда</h2>
                             <button>
                                 <img 
-                                    src={menu}
+                                    src={close}
                                     width={29}
                                     height={29}
-                                    alt='dropdown button'
+                                    alt='close button'
                                 />
                             </button>
                         </div>
                         <p>Lorem ipsum dolor sit amet consectetur. At sodales sed adipiscing tempus est ac. Tempor elit blandittempus.</p>
                         <button>
                             <img 
-                                src={arrow}
+                                src={blackArrow}
                                 width={134}
-                                height={5}
+                                height={15}
                                 alt='arrow'
                             />
                         </button>
@@ -195,7 +190,7 @@ export default function MyOrders() {
                         </button>
                     </div>
                     <img 
-                        src=''
+                        src={mockGuide}
                         width={166}
                         height={166}
                         alt='guide image'
@@ -209,7 +204,7 @@ export default function MyOrders() {
                             <p>Lorem ipsum dolo. Viverra cursus quam netus bibendum justo.</p>
                         </div>
                         <img 
-                            src=''
+                            src={mockGuide}
                             width={110}
                             height={110}
                             alt='guide image'
@@ -221,7 +216,7 @@ export default function MyOrders() {
                             <p>Lorem ipsum dolo. Viverra cursus quam netus bibendum justo.</p>
                         </div>
                         <img 
-                            src=''
+                            src={mockGuide}
                             width={110}
                             height={110}
                             alt='guide image'
