@@ -4,8 +4,8 @@ import Home from './pages/Home';
 import Registration from './pages/Registration';
 import EmailConfirm from './pages/EmailConfirm';
 import Login from './pages/Login'
+import Catalog from './pages/Catalog';
 import MyOrders from './pages/MyOrders';
-
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Route path='/registration' element={<Registration />}/>
         <Route path='/email-confirm' element={<EmailConfirm />}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/catalog' element={<Catalog/>}/>
         <Route path='/my-orders' element={<MyOrders />}/>
     </Routes>
   )
