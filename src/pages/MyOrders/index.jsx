@@ -7,6 +7,15 @@ import letterImg from '../../assets/icons/letter.svg';
 import phoneImg from '../../assets/icons/phone.svg';
 import arrow from '../../assets/icons/arrow.svg';
 import FreelancersSlider from '../../components/FreelancersSlider';
+import menu from '../../assets/icons/order-menu.svg';
+
+const mockGuides = [
+  ...Array(3).fill(null).map((_, index) => ({
+    id: index + 1,
+    title: "Название Гайда",
+    description: "Lorem ipsum dolor sit amet consectetur. At sodales sed adipiscing tempus est ac. Tempor elit blandittempus.",
+  })),
+];
 
 export default function MyOrders() {
   return (
@@ -114,7 +123,114 @@ export default function MyOrders() {
                 <button>Обновить</button>
             </div>
             <FreelancersSlider />
+            <button className={styles.searchFreelancer}>
+                <Link to='#'>Искать фрилансера</Link>
+            </button>
         </section>
+        <section className={styles.guidesContainer}>
+            <ul className={styles.guides}>
+                <li>
+                    <div className={styles.guidePinnedTitle}>
+                        <h2>Название Гайда</h2>
+                        <button>
+                            <img 
+                                src={menu}
+                                width={18}
+                                height={4}
+                                alt='dropdown button'
+                            />
+                        </button>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur. At sodales sed adipiscing tempus est ac. Tempor elit blandittempus.</p>
+                    <button>
+                        <img 
+                            src={arrow}
+                            width={134}
+                            height={5}
+                            alt='arrow'
+                        />
+                    </button>
+                </li>
+                {mockGuides.map((guide) => (
+                    <li key={guide.id}>
+                        <div className={styles.guideTitle}>
+                            <h2>Название Гайда</h2>
+                            <button>
+                                <img 
+                                    src={menu}
+                                    width={29}
+                                    height={29}
+                                    alt='dropdown button'
+                                />
+                            </button>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur. At sodales sed adipiscing tempus est ac. Tempor elit blandittempus.</p>
+                        <button>
+                            <img 
+                                src={arrow}
+                                width={134}
+                                height={5}
+                                alt='arrow'
+                            />
+                        </button>
+                    </li>
+                ))}
+            </ul>
+            <div className={styles.fullGuides}>
+                <div className={styles.bigGuide}>
+                    <div className={styles.guideContent}>
+                        <div className={styles.guideTitle}>
+                            <h2>Название Гайда</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur. Viverra cursus quam netus bibendum justo pretium est maecenas cursus. </p>
+                        </div>
+                        <button>
+                            <Link to='#'>
+                                <img 
+                                    src={arrow}
+                                    width={100}
+                                    height={15}
+                                    alt='arrow'
+                                />
+                            </Link>
+                        </button>
+                    </div>
+                    <img 
+                        src=''
+                        width={166}
+                        height={166}
+                        alt='guide image'
+                        style={{borderRadius: "24px"}}
+                    />
+                </div>
+                <div className={styles.smallGuides}>
+                    <div>
+                        <div className={styles.smallGuideContent}>
+                            <h2>НазваниеГайда</h2>
+                            <p>Lorem ipsum dolo. Viverra cursus quam netus bibendum justo.</p>
+                        </div>
+                        <img 
+                            src=''
+                            width={110}
+                            height={110}
+                            alt='guide image'
+                        />
+                    </div>
+                    <div>
+                        <div className={styles.smallGuideContent}>
+                            <h2>НазваниеГайда</h2>
+                            <p>Lorem ipsum dolo. Viverra cursus quam netus bibendum justo.</p>
+                        </div>
+                        <img 
+                            src=''
+                            width={110}
+                            height={110}
+                            alt='guide image'
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer className={styles.footer}></footer>
     </div>
   )
 }

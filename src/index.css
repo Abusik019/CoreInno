@@ -46,6 +46,7 @@ input, button{
 
 button{
   cursor: pointer;
+  padding: 0;
 }
 
 a{
