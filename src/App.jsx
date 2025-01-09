@@ -6,6 +6,7 @@ import EmailConfirm from './pages/EmailConfirm';
 import Login from './pages/Login'
 import Catalog from './pages/Catalog';
 import MyOrders from './pages/MyOrders';
+import SettingsAccount from './pages/SettingsAccount';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/catalog' element={<Catalog/>}/>
         <Route path='/my-orders' element={<MyOrders />}/>
+        <Route path='/setting-account' element={<SettingsAccount/>}/>
     </Routes>
   )
 }
