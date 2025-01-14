@@ -14,6 +14,7 @@ import CreateTaskPageFour from './pages/CreateTask/Page-4';
 import CreateTaskPageFive from './pages/CreateTask/Page-5';
 import CreateTaskPageSix from './pages/CreateTask/Page-6';
 import CreateTaskPageSeven from './pages/CreateTask/Page-7';
+import CreateTaskPageEight from './pages/CreateTask/Page-8';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path='/create-task-4' element={<CreateTaskPageFive />}/>
         <Route path='/create-task-5' element={<CreateTaskPageSix />}/>
         <Route path='/create-task-6' element={<CreateTaskPageSeven />}/>
+        <Route path='/create-task-7' element={<CreateTaskPageEight />}/>
     </Routes>
   )
 }
