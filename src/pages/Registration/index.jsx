@@ -197,10 +197,6 @@ export default function Registration() {
           <img src={vkImg} width={24} height={24} />
           Войти через аккаунт Вконтакте
         </button>
-        <button>
-          <img src={googleImg} width={24} height={24} />
-          Войти через аккаунт Google
-        </button>
       </div>
       <div className={styles.haveAccount}>
         <a href="#">Уже зарегистрированы?</a>
