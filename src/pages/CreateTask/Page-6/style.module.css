@@ -89,44 +89,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
-
-    >textarea{
-        width: 100%;
-        height: 257px;
-
-        background-color: transparent;
-
-        padding: 15px;
-        box-sizing: border-box;
-
-        border: 1px solid black;
-
-        border-radius: 14px;
-
-        color: #000;
-
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 22.4px;
-        text-align: left;
-
-        resize: none;
-
-        outline: none;
-    }
-
-    >p{
-        margin-top: -15px;
-
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 19.6px;
-
-        opacity: 0.5;
-
-        align-self: flex-end;
-    }
 }
 
 .taskWarning{
@@ -136,6 +98,8 @@
     gap: 15px;
 
     opacity: 0.6;
+
+    margin-top: 15px;
 
     >p{
         font-size: 14px;
@@ -152,6 +116,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    margin-top: 15px;
 
     >h2{
         font-size: 18px;
@@ -186,6 +152,8 @@
     align-items: flex-start;
 
     position: relative;
+
+    margin-top: 15px;
 
     >button{
         position: absolute;

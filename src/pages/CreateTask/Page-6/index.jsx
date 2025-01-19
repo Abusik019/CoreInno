@@ -1,15 +1,14 @@
 import styles from "./style.module.css";
 import CreateTaskLoad from '../../../components/CreateTaskLoad';
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 import greenArrowImg from '../../../assets/icons/greenArrow.svg';
 import warningImg from '../../../assets/icons/warning.svg';
 import editImg from '../../../assets/icons/pen.svg';
 import deleteImg from '../../../assets/icons/close.svg';
+import { Textarea } from "../../../components/Textarea";
 
 export default function CreateTaskPageSix() {
-    const [textareaValue, setTextareaValue] = useState(39);
     return (
         <div className={styles.createTask}>
             <div className={styles.createTaskContainer}>
@@ -45,8 +44,7 @@ export default function CreateTaskPageSix() {
                         <h2>Опишите задачу</h2>
                         <Link to='#'>Сгеренировать с помощью ИИ</Link>
                     </div>
-                    <textarea maxLength={5000} onInput={(e) => setTextareaValue(e.target.value.length)}>Lorem ipsum dolor sit amet consectetur.</textarea>
-                    <p>{textareaValue}/5000</p>
+                    <Textarea value="Lorem ipsum dolor sit amet consectetur."/>
                     <div className={styles.files}>
                         <button>
                             <img 
