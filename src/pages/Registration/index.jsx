@@ -27,10 +27,7 @@ export default function Registration() {
 
   function fetchSignUp() {
     dispatch(authSignUp({ email, password, firstName, lastName }));
-    setEmail("");
-    setPassword("");
-    setFirstname("");
-    setLastName("");
+    
   }
 
   function handleValidateName(e, changeState) {

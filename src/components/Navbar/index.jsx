@@ -1,6 +1,6 @@
 import styles from './style.module.css';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import listImg from '../../assets/icons/list.svg';
 import questionImg from '../../assets/icons/darkQuestion.svg';
@@ -22,6 +22,8 @@ export const Navbar = () => {
     const [isFreelancerDropdownVisible, setIsFreelancerDropdownVisible] = useState(false);
     const [profileDropdownVisible, setIsProfileDropdownVisible] = useState(false);
 
+    const navigate = useNavigate()
+
     const toggleDropdown = () => {
         setIsDropdownVisible((prev) => !prev);
     };
@@ -33,6 +35,10 @@ export const Navbar = () => {
     const toggleProfileDropdown = () => {
         setIsProfileDropdownVisible((prev) => !prev);
     };
+    const removeToken = () => {
+        localStorage.removeItem("token")
+        navigate("/login")
+    }
 
   return (
     <div className={styles.navbar}>
@@ -202,7 +208,7 @@ export const Navbar = () => {
                                 height={24}
                                 alt="exit" 
                             />
-                            <h2>Выход</h2>
+                            <h2 onClick={() => removeToken()}>Выход</h2>
                         </li>
                     </ul>
                 </div>
