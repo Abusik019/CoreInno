@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSignIn } from "../../redux/slices/authSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./style.module.css";
 
@@ -17,15 +17,22 @@ function Login() {
   const [emailVaildate, setEmailVaildate] = useState(true);
   const [passwordVaildate, setPasswordVaildate] = useState(true);
 
+  const token = useSelector((state) => state.authSlice.token)
+  console.log(token);
+  
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   function fetchSignIn (){
     dispatch(authSignIn({email, password}))
-    setPassword('')
-    setEmail('')
+    
+  }
+  if(token) {
+    navigate("/")
   }
 
   function handleValidateEmail(e, changeState){
@@ -116,20 +123,14 @@ function handleValidatePassword(e){
         <button type="button" onClick={fetchSignIn}  className={styles.nextBtn}>
           Продолжить
         </button>
-        <label>
-          <input type="checkbox" required />Я согласен с условиями политики
-          конфиденциальности
-        </label>
+        
       </form>
       <div className={styles.anotherRegistrations}>
         <button>
           <img src={vkImg} width={24} height={24} />
           Войти через аккаунт Вконтакте
         </button>
-        <button>
-          <img src={googleImg} width={24} height={24} />
-          Войти через аккаунт Google
-        </button>
+       
       </div>
       <div className={styles.haveAccount}>
         <a href="#">Нет аккаунта?</a>

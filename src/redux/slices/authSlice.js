@@ -17,6 +17,12 @@ export const authSignUp = createAsyncThunk(
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password, firstName, lastName }),
             });
+            if(!res.ok){
+                const error = await res.json()
+                return thunkAPI.rejectWithValue(error)
+            }
+            
+            
             const json = await res.json();
             if (json.error) {
                 return thunkAPI.rejectWithValue(json.error);
