@@ -16,6 +16,7 @@ import themeImg from '../../assets/icons/chooseTheme.svg';
 import inviteImg from '../../assets/icons/addEmployees.svg';
 import settingImg from '../../assets/icons/setting.svg';
 import exitImg from '../../assets/icons/exit.svg';
+import jobifyLogo from '../../assets/icons/logoJobify.svg';
 
 export const Navbar = () => {
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -43,7 +44,12 @@ export const Navbar = () => {
   return (
     <div className={styles.navbar}>
         <div className={styles.leftSide}>
-            <h1>Jobify</h1>
+            <img 
+                src={jobifyLogo}
+                width={119}
+                height={38}
+                alt='logo Jobify'
+            />
             <div className={styles.searchWrapper}>
                 <div className={styles.inputWrapper}>
                     <input type="search" placeholder='Поиск'/>

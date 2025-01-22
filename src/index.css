@@ -55,3 +55,14 @@ a{
   text-decoration: none;
   color: #000;
 }
+
+.ant-select-selector{
+  background-color: transparent !important;
+
+  border-color: #000 !important;
+  border-radius: 8px !important;
+}
+
+.ant-select-arrow{
+  color: #000 !important; 
+}
