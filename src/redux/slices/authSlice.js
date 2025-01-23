@@ -17,17 +17,14 @@ export const authSignUp = createAsyncThunk(
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password, firstName, lastName }),
             });
-            if(!res.ok){
-                const error = await res.json()
-                return thunkAPI.rejectWithValue(error)
+            const { token } = await res.json();
+            console.log("мой токен", token);
+
+            if (token.error) {
+                return thunkAPI.rejectWithValue(token.error);
             }
-            
-            
-            const json = await res.json();
-            if (json.error) {
-                return thunkAPI.rejectWithValue(json.error);
-            }
-            return json;
+            localStorage.setItem("token", token);
+            return token;
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }
@@ -63,6 +60,7 @@ export const authSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
         builder
+            // Auth
             .addCase(authSignUp.pending, (state) => {
                 state.loading = true;
             })
@@ -70,10 +68,12 @@ export const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-            .addCase(authSignUp.fulfilled, (state) => {
+            .addCase(authSignUp.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
+                state.token = action.payload;
             })
+            // Login
             .addCase(authSignIn.pending, (state) => {
                 state.loading = true;
             })

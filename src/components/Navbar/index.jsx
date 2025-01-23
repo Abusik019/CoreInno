@@ -17,25 +17,30 @@ import inviteImg from '../../assets/icons/addEmployees.svg';
 import settingImg from '../../assets/icons/setting.svg';
 import exitImg from '../../assets/icons/exit.svg';
 import jobifyLogo from '../../assets/icons/logoJobify.svg';
+import wallerImg from '../../assets/icons/wallet.svg';
+import connectImg from '../../assets/icons/connects.svg';
+import { TabsComponent } from '../TabsComponent';
 
 export const Navbar = () => {
+    const navigate = useNavigate();
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-    const [isFreelancerDropdownVisible, setIsFreelancerDropdownVisible] = useState(false);
-    const [profileDropdownVisible, setIsProfileDropdownVisible] = useState(false);
-
-    const navigate = useNavigate()
+    const [isNavbarDropdown, setIsNavbarDropdown] = useState({order: false, work: false, notifications: false, profile: false});
 
     const toggleDropdown = () => {
         setIsDropdownVisible((prev) => !prev);
     };
 
-    const toggleFreelancerDropdwon = () => {
-        setIsFreelancerDropdownVisible((prev) => !prev);
+    const toggleNavDropdown = (item) => {
+        setIsNavbarDropdown((prev) => {
+            const updatedState = Object.keys(prev).reduce((acc, key) => {
+                acc[key] = key === item ? !prev[key] : false;
+                return acc;
+            }, {});
+            return updatedState;
+        });
     };
-
-    const toggleProfileDropdown = () => {
-        setIsProfileDropdownVisible((prev) => !prev);
-    };
+    
+    
     const removeToken = () => {
         localStorage.removeItem("token")
         navigate("/login")
@@ -103,14 +108,20 @@ export const Navbar = () => {
         </div>
         <div className={styles.rightSide}>
             <ul className={styles.navPanel}>
-                <li><Link to="#">Заказы</Link></li>
                 <li>
-                    <Link to="#" onClick={toggleFreelancerDropdwon}>Фрилансеры</Link>
-                    <div className={`${styles.freelancersDropdown} ${isFreelancerDropdownVisible ? styles.visible : ''}`}>
-                        <Link>Каталог</Link>
-                        <Link>Мои исполнители</Link>
-                        <Link>Недавно просмотренные</Link>
-                        <Link>Сохраненные (избранное)</Link>
+                    <Link to="#" onClick={() => toggleNavDropdown('order')}>Найти заказ</Link>
+                    <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
+                        <Link>Биржа заказов</Link>
+                        <Link>Сохраненные заказы</Link>
+                        <Link>Мои отклики</Link>
+                    </div>
+                </li>
+                <li>
+                    <Link to="#" onClick={() => toggleNavDropdown('work')}>Работа</Link>
+                    <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
+                        <Link>Текущая работа</Link>
+                        <Link>История работы</Link>
+                        <Link>Предложения о работе</Link>
                     </div>
                 </li>
                 <li><Link to="#">Чат</Link></li>
@@ -124,7 +135,7 @@ export const Navbar = () => {
                         alt="heart" 
                     />
                 </Link>
-                <button>
+                <button onClick={() => toggleNavDropdown('notifications')}>
                     <img 
                         src={notificationImg}
                         width={24}
@@ -132,7 +143,14 @@ export const Navbar = () => {
                         alt="notification" 
                     />
                 </button>
-                <button onClick={toggleProfileDropdown}>
+                <div className={`${styles.notifictionsDropdown} ${isNavbarDropdown.notifications ? styles.visible : ''}`}>
+                    <div className={styles.notificationsTitleBlock}>
+                        <h2>Уведомления</h2>
+                        <button>Прочитать все</button>
+                    </div>
+                    <TabsComponent />
+                </div>
+                <button onClick={() => toggleNavDropdown('profile')}>
                     <img 
                         src={profileImg}
                         width={32}
@@ -140,7 +158,7 @@ export const Navbar = () => {
                         alt="profile" 
                     />
                 </button>
-                <div className={`${styles.profileDropdown} ${profileDropdownVisible ? styles.visible : ''}`}>
+                <div className={`${styles.profileDropdown} ${isNavbarDropdown.profile ? styles.visible : ''}`}>
                     <div className={styles.profileInfo}>
                         <div className={styles.profileName}>
                             <img 
@@ -180,41 +198,73 @@ export const Navbar = () => {
                     <div className={styles.profileLine}></div>
                     <ul className={styles.profileActions}>
                         <li>
-                            <img 
-                                src={themeImg} 
-                                width={24}
-                                height={24}
-                                alt="choose theme" 
-                            />
-                            <h2>Выбранная тема</h2>
+                            <div>
+                                <img 
+                                    src={themeImg} 
+                                    width={24}
+                                    height={24}
+                                    alt="choose theme" 
+                                />
+                                <h2>Выбранная тема</h2>
+                            </div>
                             <h3>Light</h3>
                         </li>
                         <li>
-                            <img 
-                                src={inviteImg} 
-                                width={24}
-                                height={24}
-                                alt="invite employees" 
-                            />
-                            <Link to='#'>Пригласить сотрудника</Link>
+                            <div>
+                                <img 
+                                    src={wallerImg} 
+                                    width={24}
+                                    height={24}
+                                    alt="choose theme" 
+                                />
+                                <h2>Ваш баланс</h2>
+                            </div>
+                            <h3>3200 ₽</h3>
                         </li>
                         <li>
-                            <img 
-                                src={settingImg}
-                                width={24}
-                                height={24}
-                                alt="setting"
-                            />
-                            <Link to='#'>Настройки</Link>
+                            <div>
+                                <img 
+                                    src={connectImg} 
+                                    width={24}
+                                    height={24}
+                                    alt="choose theme" 
+                                />
+                                <h2>Коннекты</h2>
+                            </div>
+                            <h3>12</h3>
                         </li>
                         <li>
+                            <div>
+                                <img 
+                                    src={inviteImg} 
+                                    width={24}
+                                    height={24}
+                                    alt="invite employees" 
+                                />
+                                <Link to='#'>Пригласить сотрудника</Link>
+                            </div>
+                        </li>
+                        <li>
+                           <div>
                             <img 
-                                src={exitImg} 
-                                width={24}
-                                height={24}
-                                alt="exit" 
-                            />
-                            <h2 onClick={() => removeToken()}>Выход</h2>
+                                    src={settingImg}
+                                    width={24}
+                                    height={24}
+                                    alt="setting"
+                                />
+                                <Link to='#'>Настройки</Link>
+                           </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img 
+                                    src={exitImg} 
+                                    width={24}
+                                    height={24}
+                                    alt="exit" 
+                                />
+                                <h2 onClick={() => removeToken()}>Выход</h2>
+                            </div>
                         </li>
                     </ul>
                 </div>

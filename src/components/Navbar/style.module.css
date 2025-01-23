@@ -189,7 +189,7 @@
     }
 }
 
-.freelancersDropdown{
+.freelancersDropdown, .orderDropdown{
     width: 247px;
     height: fit-content;
 
@@ -240,8 +240,8 @@
     }
 }
 
-.freelancersDropdown.visible {
-    height: 174px;
+.freelancersDropdown.visible, .orderDropdown.visible {
+    height: 130px;
     opacity: 1;
     transform: scaleY(1);
 
@@ -277,7 +277,7 @@
 }
 
 .profileDropdown.visible {
-    height: 371px;
+    height: 455px;
     opacity: 1;
     transform: scaleY(1);
 
@@ -390,10 +390,17 @@
 
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-        gap: 15px;
+        justify-content: space-between;
 
-        >h2, a{
+        >div{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        h2, a{
             font-size: 16px;
             font-weight: 400;
             line-height: 16px;
@@ -402,14 +409,81 @@
             cursor: pointer;
         }
 
-        >h3{
+        h3{
             font-size: 14px;
             font-weight: 400;
             line-height: 19px;
 
             opacity: 0.5;
+
+            text-wrap: nowrap;
         }
     }
+}
+
+.notifictionsDropdown{    
+    width: 334px;
+    height: fit-content;
+
+    background-color: #fff;
+    box-shadow: 0px 0px 12px 0px #0000000D;
+    border-radius: 4px;
+
+    position: absolute;
+    top: 56px;
+    right: -0;
+
+    overflow: hidden;
+
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .notificationsTitleBlock{
+        padding: 0px 25px;
+        box-sizing: border-box;
+
+        margin-top: 25px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+
+        >h2{
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: left;
+        }
+
+        >button{
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: center;
+
+            background-color: transparent;
+            color: #000;
+
+            opacity: 0.6;
+        }
+    }
+}
+
+.notifictionsDropdown.visible {
+    height: 349px;
+    opacity: 1;
+    transform: scaleY(1);
+
+    z-index: 2;
 }
 
 @media screen and (min-width: 1441px) {
