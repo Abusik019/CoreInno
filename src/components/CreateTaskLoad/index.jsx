@@ -1,20 +1,17 @@
 import styles from "./style.module.css";
-import progressImg from "../../assets/images/createTaskProgress.svg";
-import { Link } from "react-router-dom";
 
-export default function CreateTaskLoad({ prevLink, nextLink }) {
+export default function CreateTaskLoad({ prev, next, setPage }) {
+    const progress = prev * 16.6;
+
     return (
         <div className={styles.createTaskFooter}>
-            <img
-                src={progressImg}
-                width="100%"
-                height="100%"
-                alt="progress line"
-            />
+            <div className={styles.progressLine}>
+                <div style={{width: `${progress}%`}}></div>
+            </div>
             <div className={styles.buttonsContainer}>
-                <Link to={prevLink}>Назад</Link>
-                <h2>1 из 12</h2>
-                <Link to={nextLink}>Продолжить</Link>
+                <button onClick={() => setPage(prev)}>Назад</button>
+                <h2>{prev} из 6</h2>
+                <button onClick={() => setPage(next)}>Продолжить</button>
             </div>
         </div>
     );

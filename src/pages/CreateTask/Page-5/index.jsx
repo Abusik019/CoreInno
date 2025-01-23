@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import rubleImg from '../../../assets/icons/ruble.svg';
 import plusImg from '../../../assets/icons/plus.svg';
 
-export default function CreateTaskPageFive() {
+export default function CreateTaskPageFive({ setPage }) {
 
     const handleAddStage = () => {
         const li = document.createElement('li');
@@ -84,7 +84,7 @@ export default function CreateTaskPageFive() {
                    </div>
                 </div>
             </div>
-            <CreateTaskLoad prevLink="/create-task-3" nextLink="/create-task-5"/>
+            <CreateTaskLoad prev={4} next={6} setPage={setPage}/>
         </div>
     );
 }

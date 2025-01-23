@@ -30,7 +30,7 @@ const skills = [
     },
 ];
 
-export default function CreateTaskPageThree() {
+export default function CreateTaskPageThree({ setPage }) {
     return (
         <div className={styles.createTask}>
             <div className={styles.createTaskContainer}>
@@ -75,7 +75,7 @@ export default function CreateTaskPageThree() {
                     </ul>
                 </div>
             </div>
-            <CreateTaskLoad prevLink="/create-task-1" nextLink="/create-task-3"/>
+            <CreateTaskLoad prev={2} next={4} setPage={setPage}/>
         </div>
     );
 }

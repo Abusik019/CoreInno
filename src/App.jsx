@@ -8,17 +8,9 @@ import Catalog from './pages/Catalog';
 import MyOrders from './pages/MyOrders';
 import SettingsAccount from './pages/SettingsAccount';
 import ListFreelancer from './pages/ListFreelancer';
-
-import CreateTaskPageOne from './pages/CreateTask/Page-1';
-import CreateTaskPageTwo from './pages/CreateTask/Page-2';
-import CreateTaskPageThree from './pages/CreateTask/Page-3';
-import CreateTaskPageFour from './pages/CreateTask/Page-4';
-import CreateTaskPageFive from './pages/CreateTask/Page-5';
-import CreateTaskPageSix from './pages/CreateTask/Page-6';
-import CreateTaskPageSeven from './pages/CreateTask/Page-7';
-import CreateTaskPageEight from './pages/CreateTask/Page-8';
 import FreelancerProfile from './pages/FreelancerProfile';
 import Response from './pages/Response';
+import CreateTask from './pages/CreateTask';
 
 function App() {
   return (
@@ -31,14 +23,7 @@ function App() {
         <Route path='/my-orders' element={<MyOrders />}/>
         <Route path='/setting-account' element={<SettingsAccount/>}/>
         <Route path='/list-freelancer' element={<ListFreelancer/>} />
-        <Route path='/create-task-1' element={<CreateTaskPageOne />}/>
-        <Route path='/create-task-2' element={<CreateTaskPageTwo />}/>
-        <Route path='/create-task-3' element={<CreateTaskPageThree />}/>
-        <Route path='/create-task-4' element={<CreateTaskPageFour />}/>
-        <Route path='/create-task-5' element={<CreateTaskPageFive />}/>
-        <Route path='/create-task-6' element={<CreateTaskPageSix />}/>
-        <Route path='/create-task-7' element={<CreateTaskPageSeven />}/>
-        <Route path='/create-task-8' element={<CreateTaskPageEight />}/>
+        <Route path='/create-task-without-ai' element={<CreateTask />}/>
         <Route path='/profile' element={<FreelancerProfile />}/>
         <Route path='/response' element={<Response />}/>
     </Routes>

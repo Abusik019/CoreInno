@@ -1,7 +1,7 @@
 import CreateTaskLoad from '../../../components/CreateTaskLoad';
 import styles from './style.module.css';
 
-export default function CreateTaskPageTwo() {
+export default function CreateTaskPageTwo({ setPage }) {
   return (
     <div className={styles.createTask}>
         <div className={styles.createTaskTitleBlock}>
@@ -14,7 +14,7 @@ export default function CreateTaskPageTwo() {
                 <li>Doloem ipsum dolor sit amet consectetur sit amet consectetur</li>
             </ul>
         </div>
-        <CreateTaskLoad prevLink="/create-task" nextLink="/create-task-2"/>
+        <CreateTaskLoad prev={1} next={3} setPage={setPage}/>
     </div>
   )
 }

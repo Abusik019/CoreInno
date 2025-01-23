@@ -8,7 +8,7 @@ import editImg from '../../../assets/icons/pen.svg';
 import deleteImg from '../../../assets/icons/close.svg';
 import { Textarea } from "../../../components/Textarea";
 
-export default function CreateTaskPageSix() {
+export default function CreateTaskPageSix({ setPage }) {
     return (
         <div className={styles.createTask}>
             <div className={styles.createTaskContainer}>
@@ -97,7 +97,7 @@ export default function CreateTaskPageSix() {
                     </div>
                 </div>
             </div>
-            <CreateTaskLoad prevLink="/create-task-4" nextLink="/create-task-6"/>
+            <CreateTaskLoad prev={5} next={7} setPage={setPage}/>
         </div>
     );
 }

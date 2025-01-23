@@ -4,7 +4,7 @@ import questionImg from '../../../assets/icons/question.svg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function CreateTaskPageOne() {
+export default function CreateTaskPageOne({ setPage }) {
     const [questionVisible, setQuestionVisible] = useState(false);
 
     const toggleQuestionVisible = () => {
@@ -29,7 +29,7 @@ export default function CreateTaskPageOne() {
                     </button>
                     <div className={`${styles.question} ${questionVisible ? styles.visible : ''}`}>Lorem ipsum dolor sit amet dolor sit ame consectetur. <span>Подробнее</span></div>
                 </div>
-                <Link to='/create-task-1'>Продолжить без ИИ</Link>
+                <button onClick={() => setPage(2)}>Продолжить без ИИ</button>
             </div>
         </div>
         <img 

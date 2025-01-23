@@ -9,7 +9,7 @@ import humanImg from '../../../assets/icons/human.svg';
 import deleteImg from '../../../assets/icons/close.svg';
 import closeImg from '../../../assets/icons/close.svg';
 
-export default function CreateTaskPageSeven() {
+export default function CreateTaskPageSeven({ setPage }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
@@ -146,8 +146,8 @@ export default function CreateTaskPageSeven() {
                 </div>
             </div>
             <div className={styles.buttonsContainer}>
-                <Link to="/create-task-5">Вернуться</Link>
-                <h2>1 из 12</h2>
+                <button className={styles.return} onClick={() => setPage(6)}>Вернуться</button>
+                <h2>6 из 6</h2>
                 <button onClick={() => setIsModalOpen(true)}>Опубликовать заказ</button>
             </div>
             {isModalOpen && (
@@ -159,7 +159,7 @@ export default function CreateTaskPageSeven() {
                         </div>
                         <div className={styles.modalBtns}>
                             <button onClick={() => setIsModalOpen(false)}>Редактировать</button>
-                            <button>Опубликовать задание</button>
+                            <button onClick={() => setPage(8)}>Опубликовать задание</button>
                         </div>
                         <button className={styles.closeModal} onClick={() => setIsModalOpen(false)}>
                             <img 

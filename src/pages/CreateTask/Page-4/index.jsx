@@ -13,7 +13,7 @@ const options = [
         })),
 ];
 
-export default function CreateTaskPageFour() {
+export default function CreateTaskPageFour({ setPage }) {
     return (
         <div className={styles.createTask}>
             <div className={styles.createTaskContainer}>
@@ -47,7 +47,7 @@ export default function CreateTaskPageFour() {
                     />
                 </div>
             </div>
-            <CreateTaskLoad prevLink="/create-task-2" nextLink="/create-task-4"/>
+            <CreateTaskLoad prev={3} next={5} setPage={setPage}/>
         </div>
     );
 }
