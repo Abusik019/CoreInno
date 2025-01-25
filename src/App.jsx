@@ -12,6 +12,7 @@ import FreelancerProfile from './pages/FreelancerProfile';
 import Response from './pages/Response';
 import CreateTask from './pages/CreateTask';
 import ListOrders from './pages/ListOrders';
+import NumberConfirm from './pages/NumberConfirm';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/profile' element={<FreelancerProfile />}/>
         <Route path='/response' element={<Response />}/>
         <Route path='/list-orders' element={<ListOrders/>}/>
+        <Route path='number-confirm' element={<NumberConfirm />}/>
     </Routes>
   )
 }
