@@ -15,6 +15,49 @@
 .content h1{
     font-size: 42px;
 }
+.banner{
+    display: flex;
+    align-items: center;
+    height: 248px;
+    width: 1220px;
+    justify-content: space-around;
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    margin-top: 30px;
+}
+.banner1{
+    width: 840px;
+}
+.close img{
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: 1175px;
+    top: 75px;
+    color: gray;
+    cursor: pointer;
+}
+.banner1 img{
+    position: static;
+}
+.banner1 p:nth-child(1){
+    font-size: 18px;
+}
+.banner1 p:nth-child(2){
+    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 32px;
+}
+.mockGuide{
+    position: static !important;
+    width: 166px;
+    height: 166px;
+}
+.list{
+    display: flex;
+    gap: 18px;
+    margin-top: 30px;
+}
 
 
 
