@@ -136,7 +136,7 @@
         text-align: left;
     }
 
-    >h3, h4{
+    >h3, h4, h5{
         padding-left: 39px;
         box-sizing: border-box;
 
@@ -159,10 +159,50 @@
     >h4{
         background-image: url('../../assets/icons/document.svg');
     }
+
+    >h5{
+        background-image: url('../../assets/icons/email.svg');
+    }
+
+    >a{
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        opacity: 0.5;
+
+        >h2{
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: left;
+
+            padding-left: 39px;
+            box-sizing: border-box;
+
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 19px;
+            text-align: left;
+        }
+    }
+
+    .numberConfirm > h2{
+        background-image: url('../../assets/icons/telephone.svg');
+    }
+
+    .docsConfirm > h2{
+        background-image: url('../../assets/icons/document.svg');
+    }
+
+    .emailConfirm > h2{
+        background-image: url('../../assets/icons/email.svg');
+    }
 }
 
 .profileEducation{
-    margin-top: 30px;
+    margin-top: 0px;
 
     display: flex;
     flex-direction: column;
@@ -173,6 +213,8 @@
         font-weight: 400;
         line-height: 26px;
         text-align: left;
+
+        margin-top: 40px;
     }
 }
 
@@ -227,14 +269,56 @@
     margin-top: 40px;
 
     >h2{
-        font-size: 28px;
+        font-size: 22px;
         font-weight: 400;
-        line-height: 30px;
-        text-align: left;   
+        line-height: 26px;
+        text-align: left;
     }
 }
 
-.experienceList, .otherExperienceList{
+.experienceList{
+    margin-top: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+
+    >li{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+
+        >div{
+            text-align: left;
+
+            >h2{
+                font-size: 22px;
+                font-weight: 500;
+                line-height: 26px;
+            }
+    
+            >h3, p{
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 19px;
+    
+                opacity: 0.6;
+            }
+            
+            >h3{
+                margin-top: 10px;
+            }
+    
+            >p{
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+.otherExperienceList{
     margin-top: 15px;
 
     display: flex;
@@ -280,7 +364,7 @@
 
 .profileBio{
     width: 100%;
-    height: 312px;
+    height: fit-content;
 
     border: 1px solid #0000001A;
     border-radius: 16px;
@@ -289,12 +373,24 @@
 
     padding: 30px 25px;
     box-sizing: border-box;
+    
+    >div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    >h2{
-        font-size: 28px;
-        font-weight: 400;
-        line-height: 31px;
-        text-align: left;
+        width: 100%;
+
+        >h2{
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 31px;
+            text-align: left;
+        }
+
+        >button {
+            background-color: transparent;
+        }
     }
 
     >h3{
@@ -304,17 +400,7 @@
         text-align: left;
 
         margin-top: 25px;
-        opacity: 0.7;
-    }
-
-    >h4{
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 20px;
-        text-align: left;
-
-        margin-top: 25px;
-        opacity: 0.7;
+        opacity: 0.6;
     }
 }
 
@@ -332,6 +418,36 @@
         font-weight: 400;
         line-height: 31px;
         text-align: left;
+    }
+
+    >h3{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: left;
+
+        margin-top: 20px;
+
+        opacity: 0.5;
+    }
+}
+
+.doneTasksTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    >h2{
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 31px;
+        text-align: left;
+    }
+
+    >button{
+        background-color: transparent;
     }
 }
 
@@ -516,6 +632,14 @@
 
     width: 100%;
     height: fit-content;
+}
+
+.profilePortfolioTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
 
     >h2{
         font-size: 28px;
@@ -668,6 +792,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.announcementTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
 
     >h2{
         font-size: 28px;
@@ -756,6 +888,205 @@
     
                 border-radius: 14px;
             }
+        }
+    }
+}
+
+.certificates{
+    margin-top: 70px;
+
+    width: 100%;
+    height: fit-content;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.certificatesTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    >h2{
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 31px;
+        text-align: left;
+    }
+}
+
+.certificatesContent{
+    margin-top: 40px;
+
+    width: 100%;
+    height: fit-content;
+
+    border-radius: 16px;
+
+    border: 1px solid #0000001A;
+
+    padding: 20px 25px;
+    box-sizing: border-box;
+
+    >h2{
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 27px;
+        text-align: left;
+    }
+
+    >p{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: left;
+
+        opacity: 0.6;
+
+        margin-top: 10px;
+    }
+
+    >h3{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: left;
+
+        opacity: 0.6;
+
+        margin-top: 20px;
+    }
+}
+
+.profileActions{
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    >a, >button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 10px 0;
+        box-sizing: border-box;
+
+        border-radius: 10px;
+        border: 1px solid #000;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        text-align: center;
+
+        text-wrap: nowrap;
+
+        >h2{
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            text-align: center;
+        }
+    }
+
+    >:nth-child(1){
+        width: 55%;
+
+        background-color: #000;
+        color: #fff;
+    }
+
+    >:nth-child(2){
+        width: 40%;
+
+        background-color: transparent;
+        color: #000;
+    }
+
+    >:nth-child(3){
+        width: 98%;
+
+        background-color: transparent;
+        color: #000;
+
+        gap: 10px;
+    }
+}
+
+.editBlock{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    >button{
+        background-color: transparent;
+    }
+}
+
+.noInfo{
+    margin-top: 15px;
+
+    text-align: left;
+
+    >h2{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: left;
+
+        opacity: 0.5;
+
+        margin-bottom: 15px;
+    }
+}
+
+.linkToSettings{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+
+    color: #4A7358;
+
+    padding-right: 42px;
+    box-sizing: border-box;
+
+    background-image: url('../../assets/icons/greenArrow.svg');
+    background-position: right;
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+
+.noInfoBlock{
+    width: 100%;
+    height: fit-content;
+
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    >div{
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px;
+        text-align: center;
+
+        color: #7c7c7c;
+
+        >a{
+            color: #4A7358;
+
+            text-decoration: underline;
         }
     }
 }
