@@ -1,0 +1,184 @@
+import React, { useEffect, useState } from "react";
+import styles from "./style.module.css";
+
+import mockGuide from "../../assets/images/mockGuide.png";
+import Frame from "../../assets/icons/Frame.png";
+import close from "../../assets/icons/close.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategory, fetchSubCategoryId } from "../../redux/slices/categorySlice";
+
+import ggAdd from "../../assets/icons/gg_add.svg";
+import Component from "../../assets/icons/Component.svg";
+import Rectangle from "../../assets/icons/Rectangle1.svg";
+import arrow from "../../assets/icons/arrow.svg";
+import tabler from "../../assets/icons/tabler.svg";
+
+function Post() {
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);// Хранит выбранный id категории
+  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(0); // Хранит выбранный id подкатегории
+  const [openSubCategor, setOpenSubCategor] = useState(false)
+  const [numberInput, setNumberInput] = useState([{ id: 1 }]);
+
+  const category = useSelector((state) => state.category.category);
+  const subCategory = useSelector((state) => state.category.subCategory);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategory());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchSubCategoryId());
+  }, [dispatch]);
+
+  function clearInput() {
+    const newId = numberInput.length ? numberInput[numberInput.length - 1].id + 1 : 1; // Генерация уникального id
+    setNumberInput([...numberInput, { id: newId }]);
+  }
+
+  function removeInput(id) {
+    setNumberInput(numberInput.filter((item) => item.id !== id)); // Удаляем по id
+  }
+  function handleClickCategor(id){
+    if(id === selectedCategoryId){
+
+      setOpenSubCategor(!openSubCategor)
+    } else {
+
+      setSelectedCategoryId(id)
+      setOpenSubCategor(true)
+    }   
+  }
+
+  return (
+    <>
+      <div className={styles.rod}>
+        <h1>Разместить объявление</h1>
+        <div className={styles.close}>
+          <img src={close} alt="" />
+        </div>
+        <div className={styles.banner}>
+          <div className={styles.banner1}>
+            <p>Название баннера</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Viverra cursus quam netus bibendum justo
+              pretium est maecenas cursus.{" "}
+            </p>
+            <img src={Frame} alt="" />
+          </div>
+          <img className={styles.mockGuide} src={mockGuide} alt="" />
+        </div>
+      </div>
+      <div className={styles.rod2}>
+        <h2>Основная информация</h2>
+        <div className={styles.line}></div>
+        <p>Название</p>
+        <input placeholder="Ваше предназначение" type="text" />
+        <p>Категория объявления</p>
+        <ul className={styles.categor}>
+          {category.map((item) => (
+            <li
+              key={item.id}
+              style={{
+                color: item.id === selectedCategoryId ? "#FFFFFF" : "#000000",
+                backgroundColor: item.id === selectedCategoryId ? "#000000" : "#FFFFFF",
+              }}
+              onClick={() => handleClickCategor(item.id)} // Устанавливаем id выбранной категории
+            >
+              {item.rusName}
+            </li>
+          ))}
+        </ul>
+       {openSubCategor && <p>Подкатегории</p> }
+        <div className={styles.subCategor}>
+          { openSubCategor && subCategory
+            .filter((subcat) => subcat.categoryId === selectedCategoryId) // Фильтруем по выбранной категории
+            .map((subcat) => (
+              <span onClick={() => setSelectedSubCategoryId(subcat.id)} style={{
+                cursor: "pointer",
+                 color: subcat.id === selectedSubCategoryId ? "#FFFFFF" : "#000000",
+                backgroundColor: subcat.id === selectedSubCategoryId ? "#000000" : "#EAEAEA"
+                 }} key={subcat.id} className={styles.subCategoryTag}>
+                {subcat.rusName}
+              </span>
+            ))}
+        </div>
+        <p style={{marginTop: "30px"}}>Обложка объявления</p>
+        <button>
+          Добавить обложку <img src={ggAdd} alt="" />{" "}
+        </button>
+      </div>
+      <div className={styles.rod3}>
+        <h1>Описание и файлы</h1>
+        <div className={styles.line}></div>
+        <p>Описание услуги</p>
+        <textarea
+          placeholder="Lorem ipsum dolor sit amet consectetur. Cursus netus volutpat aliquam risus purus. Sollicitudin mattis et nibh massa senectus."
+          type="text"
+        />
+        <p>Что нужно от покупателя</p>
+        <textarea
+          placeholder="Lorem ipsum dolor sit amet consectetur. Cursus netus volutpat aliquam risus purus. Sollicitudin mattis et nibh massa senectus."
+          type="text"
+        />
+        <p>Вложения</p>
+        <button>
+          Прикрепить файлы <img src={Component} alt="" />
+        </button>
+      </div>
+      <div className={styles.rod4}>
+        <h1>Портфолио</h1>
+        <div className={styles.line1}></div>
+        <p>
+          Портфолио — одним из ключевых факторов, определяющих вероятность успешного привлечения
+          клиентов. Без хорошего портфолио становится сложно выделиться в конкурентной среде
+          фриланса, поэтому инвестирование времени и усилий в его создание и обновление —
+          критически важный шаг!
+        </p>
+        <button>+</button>
+        <div className={styles.carts}>
+          <div className={styles.cart}>
+            <img src={Rectangle} alt="" />
+            <p style={{ color: "#000000" }}>Название выполненной работы или кейса</p>
+          </div>
+        </div>
+        <div className={styles.arrows}>
+          <img className={styles.prevArrow} src={arrow} alt="" />
+          <img src={arrow} alt="" />
+        </div>
+      </div>
+      <div className={styles.rod5}>
+        <h1>FAQ - Частые вопросы</h1>
+        <div className={styles.line1}></div>
+        <p>
+          У ваших покупателей часто могут возникать одни и те же вопросы, Вы можете заранее дать
+          ответы на них, чтобы увеличить шансы на успешный заказ
+        </p>
+        {numberInput.map((item, index) => (
+          <div key={index} className={styles.inputs}>
+            <div className={styles.input}>
+              <input placeholder="Вопрос" type="text" />
+              <input placeholder="Дайте ответ" type="text" />
+            </div>
+            <img
+              onClick={() => removeInput(item.id)}
+              style={{ cursor: "pointer" }}
+              src={tabler}
+              alt=""
+            />
+          </div>
+        ))}
+        <div className={styles.createInput}>
+          <button onClick={() => clearInput()}>Добавить вопрос +</button>
+        </div>
+        <div className={styles.buttons}>
+          <button>Вернуться назад</button>
+          <button>Опубликовать объявление</button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Post;

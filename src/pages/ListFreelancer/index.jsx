@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import search from "../../assets/icons/search.svg";
 import right from "../../assets/icons/right.svg";
@@ -6,6 +6,11 @@ import bottom from "../../assets/icons/bottom.svg";
 
 import ReactSlider from "react-slider";
 import ListPagination from "../../components/ListPagination";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCategory,
+  fetchSubCategoryId,
+} from "../../redux/slices/categorySlice";
 
 function ListFreelancer() {
   const [text, setText] = useState("");
@@ -17,47 +22,32 @@ function ListFreelancer() {
   const [openWords, setOpenWords] = useState(false);
   const [openOrders, setOpenOrders] = useState(false);
   const [openOrders1, setOpenOrders1] = useState(false);
-  const [subcategorie, setSubcategorie] = useState();
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000000);
   const [successRate, setSuccessRate] = useState(0);
   const [successRate1, setSuccessRate1] = useState(0);
+  const [indexSubCategor, setIndexSubCategor] = useState(null)
 
-  const categories = [
-    {
-      name: "Категория 1 ",
-      subcategories: ["Категория 1.1", "Категория 1.2", "Категория 1.3"],
-    },
-    {
-      name: "Категория 2 ",
-      subcategories: ["Категория 2.1", "Категория 2.2", "Категория 2.3"],
-    },
-    {
-      name: "Категория 3 ",
-      subcategories: ["Категория 3.1", "Категория 3.2", "Категория 3.3"],
-    },
-    {
-      name: "Категория 4 ",
-      subcategories: ["Категория 4.1", "Категория 4.2", "Категория 4.3"],
-    },
-    {
-      name: "Категория 5 ",
-      subcategories: ["Категория 5.1", "Категория 5.2", "Категория 5.3"],
-    },
-  ];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCategory());
+  }, []);
+  useEffect(() => {
+    dispatch(fetchSubCategoryId());
+  }, []);
+
+  const categories = useSelector((state) => state.category.category);
+  const subCategory = useSelector((state) => state.category.subCategory);
   const rows = [5, 4, 3, 2, 1];
   const items = Array(15).fill("Something");
 
-  const [openIndex, setOpenIndex] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   const toggleCategory = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setActiveCategory(activeCategory === index ? null : index);
+    setIndexSubCategor(null);
+   
   };
-
-  function handleTogleCategor(index) {
-    toggleCategory(index);
-    setSubcategorie();
-  }
 
   function handleSliderChange([min, max]) {
     setMinPrice(min);
@@ -76,7 +66,7 @@ function ListFreelancer() {
           type="text"
         />
       </header>
-      <main className={styles.main} >
+      <main className={styles.main}>
         <div className={styles.left}>
           <div className={styles.sidebar}>
             <h2
@@ -93,39 +83,29 @@ function ListFreelancer() {
             {openCategor && (
               <ul>
                 {categories.map((category, index) => (
-                  <li key={index}>
+                  <li key={category.id}>
                     <div
-                      onClick={() => handleTogleCategor(index)}
+                      onClick={() => toggleCategory(index)}
                       style={{ cursor: "pointer" }}
                     >
-                      {category.name}{" "}
-                      {category.subcategories.length > 0 &&
-                        (openIndex === index ? (
-                          <img src={right} alt="" />
-                        ) : (
-                          <img src={bottom} alt="" />
-                        ))}
-                    </div>
-                    {openIndex === index &&
-                      category.subcategories.length > 0 && (
-                        <ul>
-                          {category.subcategories.map((sub, subIndex) => (
-                            <li
-                              onClick={() => setSubcategorie(subIndex)}
-                              style={{
-                                cursor: "pointer",
-                                backgroundColor:
-                                  subcategorie === subIndex && "#EAEAEA",
-                                borderRadius: "8px",
-                                padding: "5px",
-                              }}
-                              key={subIndex}
-                            >
-                              {sub}
-                            </li>
-                          ))}
-                        </ul>
+                      {category.rusName}{" "}
+                      {activeCategory === index ? (
+                        <img src={right} alt="" />
+                      ) : (
+                        <img src={bottom} alt="" />
                       )}
+                    </div>
+                    {activeCategory === index && (
+                      <ul className={styles.subcategories}>
+                        {subCategory
+                          .filter(
+                            (sub) => sub.categoryId === category.id // Match subcategories to category
+                          )
+                          .map((sub, subIndex) => (
+                            <li onClick={() => setIndexSubCategor(subIndex)}  style={{cursor: "pointer", backgroundColor: indexSubCategor === subIndex && "#EAEAEA", height: "36px", display: "flex", alignItems: "center", borderRadius: "8px", paddingLeft: "8px"}} key={sub.id}>{sub.rusName}</li>
+                          ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -302,21 +282,24 @@ function ListFreelancer() {
                 <p>Текущее значение {successRate}%</p>
 
                 <div
-                  style={{ width: "265px", border: "1px solid black", marginBottom: "40px" }}
+                  style={{
+                    width: "265px",
+                    border: "1px solid black",
+                    marginBottom: "40px",
+                  }}
                 ></div>
-                
-                  <ReactSlider
-                    className={styles.slider1}
-                    thumbClassName={styles.thumb}
-                    trackClassName={styles.track}
-                    min={0}
-                    max={100}
-                    value={successRate}
-                    onChange={(val) => setSuccessRate(val)}
-                    pearling
-                    minDistance={1}
-                  />
-                
+
+                <ReactSlider
+                  className={styles.slider1}
+                  thumbClassName={styles.thumb}
+                  trackClassName={styles.track}
+                  min={0}
+                  max={100}
+                  value={successRate}
+                  onChange={(val) => setSuccessRate(val)}
+                  pearling
+                  minDistance={1}
+                />
               </div>
             )}
           </div>
@@ -335,19 +318,23 @@ function ListFreelancer() {
                 <p>Текущее значение {successRate1}%</p>
 
                 <div
-                  style={{ width: "265px", border: "1px solid black", marginBottom: "40px" }}
+                  style={{
+                    width: "265px",
+                    border: "1px solid black",
+                    marginBottom: "40px",
+                  }}
                 ></div>
-                   <ReactSlider
-                    className={styles.slider1}
-                    thumbClassName={styles.thumb}
-                    trackClassName={styles.track}
-                    min={0}
-                    max={100}
-                    value={successRate1}
-                    onChange={(val) => setSuccessRate1(val)}
-                    pearling
-                    minDistance={1}
-                  />
+                <ReactSlider
+                  className={styles.slider1}
+                  thumbClassName={styles.thumb}
+                  trackClassName={styles.track}
+                  min={0}
+                  max={100}
+                  value={successRate1}
+                  onChange={(val) => setSuccessRate1(val)}
+                  pearling
+                  minDistance={1}
+                />
               </div>
             )}
           </div>
@@ -358,8 +345,7 @@ function ListFreelancer() {
         </div>
         <div className={styles.right}>
           <div className={styles.carts}>
-          <ListPagination/>
-          
+            <ListPagination />
           </div>
         </div>
       </main>

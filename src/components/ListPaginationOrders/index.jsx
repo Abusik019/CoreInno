@@ -49,7 +49,7 @@ const ListPaginationOrders = () => {
                   {item.name} * {item.rating}{" "}
                 </p>
                 <p>{item.title}</p>
-                <p className={styles.payment}>
+                <div className={styles.payment}>
                   {" "}
                   <div>
                     <img src={material} alt="" /> {item.payment}
@@ -60,7 +60,7 @@ const ListPaginationOrders = () => {
                   <div>
                     <img src={fluent} alt="" /> {item.payment2}
                   </div>
-                </p>
+                </div>
               </div>
               <div className={styles.favorite}>
                 <img src={favorite} alt="" />
@@ -68,7 +68,7 @@ const ListPaginationOrders = () => {
               </div>
             </div>
 
-            <p style={{ color: "gray", marginTop: "12px" }}>
+            <p style={{ color: "gray", marginTop: "12px", fontSize: "14px" }}>
               {item.description}{" "}
               <span style={{ color: "#000000", cursor: "pointer" }}>
                 Подробнее
