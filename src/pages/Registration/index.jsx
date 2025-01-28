@@ -10,6 +10,7 @@ import hidePasswordImgRed from "../../assets/icons/redHidePassword.svg";
 import showPasswordImgRed from "../../assets/icons/redShowPassword.svg";
 import vkImg from "../../assets/icons/vk.svg";
 import { SuccesRegistration } from "../../components/SuccessRegistration";
+import handleValidateEmail from "../../utils/emailValidate";
 
 export default function Registration() {
     const [hidePassword, setHidePassword] = useState(true);
@@ -59,15 +60,6 @@ export default function Registration() {
         }
     }
 
-    function handleValidateEmail(e, changeState) {
-        setEmail(e.target.value);
-        if (e.target.value !== "") {
-            const value = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value);
-            changeState(value);
-        } else {
-            changeState(true);
-        }
-    }
     function handleValidatePassword(e) {
         setPassword(e.target.value);
         if (e.target.value.length < 8) {
@@ -175,7 +167,7 @@ export default function Registration() {
                                 id="email"
                                 placeholder="Ваша почта"
                                 onChange={(e) =>
-                                    handleValidateEmail(e, setEmailVaildate)
+                                    handleValidateEmail(e, setEmailVaildate, setEmail)
                                 }
                                 style={{
                                     borderColor: emailVaildate

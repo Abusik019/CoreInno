@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authSignIn } from "../../redux/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import handleValidateEmail from "../../utils/emailValidate";
 
 import styles from "./style.module.css";
 
@@ -32,16 +33,6 @@ function Login() {
         navigate("/");
     }
 
-    function handleValidateEmail(e, changeState) {
-        setEmail(e.target.value);
-        if (e.target.value !== "") {
-            const value = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value);
-            changeState(value);
-        } else {
-            changeState(true);
-        }
-    }
-
     function handleValidatePassword(e) {
         setPassword(e.target.value);
         if (e.target.value.length < 8) {
@@ -68,7 +59,7 @@ function Login() {
                         id="email"
                         placeholder="Ваша почта"
                         onChange={(e) =>
-                            handleValidateEmail(e, setEmailVaildate)
+                            handleValidateEmail(e, setEmailVaildate, setEmail)
                         }
                         style={{
                             borderColor: emailVaildate ? "#808080" : "#F63939",
