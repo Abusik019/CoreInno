@@ -1,28 +1,85 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import Rectangle from "../../assets/images/Rectangle 55.png";
-import Ellipse from "../../assets/images/Ellipse 6.png"
-import {  useDispatch, useSelector } from "react-redux";
-import { fetchCategory } from "../../redux/slices/categorySlice";
+import Ellipse from "../../assets/images/Ellipse 6.png";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategory, fetchSubCategoryId } from "../../redux/slices/categorySlice";
 import CardCarousel from "../../components/CardCarousel";
 
 function Catalog() {
-  const category = useSelector((state) => state.category.category)
-  const dispatch = useDispatch()
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0); // Хранит выбранный id категории
+  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(0); // Хранит выбранный id подкатегории
+  const [openSubCategor, setOpenSubCategor] = useState(false);
+
+  const category = useSelector((state) => state.category.category);
+    const subCategory = useSelector((state) => state.category.subCategory);
+  
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCategory())
-  }, [])
-  console.log(category)
+    dispatch(fetchCategory());
+  }, []);
+  useEffect(() => {
+    dispatch(fetchSubCategoryId());
+  }, []);
+  console.log(category);
+
+  function handleClickCategor(id) {
+    if (id === selectedCategoryId) {
+      setOpenSubCategor(!openSubCategor);
+    } else {
+      setSelectedCategoryId(id);
+      setOpenSubCategor(true);
+    }
+  }
+
   return (
     <div className={styles.rod}>
       <header>
         <h1>Каталог фрилансеров</h1>
         <ul className={styles.categor}>
           {category.map((item) => {
-           return <li key={item.id}>{item.rusName}</li>
+            return (
+              <li
+                style={{
+                  color: item.id === selectedCategoryId ? "#FFFFFF" : "#000000",
+                  backgroundColor:
+                    item.id === selectedCategoryId ? "#000000" : "#FFFFFF",
+                    cursor: "pointer"
+                }}
+                onClick={() => handleClickCategor(item.id)}
+                key={item.id}
+              >
+                {item.rusName}
+              </li>
+            );
           })}
-         
         </ul>
+        {openSubCategor && <p className={styles.subCat}>Подкатегории</p>}
+        <div className={styles.subCategor}>
+          {openSubCategor &&
+            subCategory
+              .filter((subcat) => subcat.categoryId === selectedCategoryId) // Фильтруем по выбранной категории
+              .map((subcat) => (
+                <span
+                  onClick={() => setSelectedSubCategoryId(subcat.id)}
+                  style={{
+                    cursor: "pointer",
+                    color:
+                      subcat.id === selectedSubCategoryId
+                        ? "#FFFFFF"
+                        : "#000000",
+                    backgroundColor:
+                      subcat.id === selectedSubCategoryId
+                        ? "#000000"
+                        : "#EAEAEA",
+                  }}
+                  key={subcat.id}
+                  className={styles.subCategoryTag}
+                >
+                  {subcat.rusName}
+                </span>
+              ))}
+        </div>
       </header>
 
       <main>
@@ -30,12 +87,12 @@ function Catalog() {
           Опытные фрилансеры в сфере "Реклама / Маркетинг"{" "}
         </h2>
         <div className={styles.carts}>
-       <CardCarousel/>
+          <CardCarousel />
         </div>
 
         <h2 className={styles.zagalovok1}>Недавно просмотренные</h2>
         <div className={styles.carts}>
-         <CardCarousel/>
+          <CardCarousel />
         </div>
       </main>
 
