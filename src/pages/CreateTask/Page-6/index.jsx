@@ -44,7 +44,7 @@ export default function CreateTaskPageSix({ setPage }) {
                         <h2>Опишите задачу</h2>
                         <Link to='#'>Сгеренировать с помощью ИИ</Link>
                     </div>
-                    <Textarea value="Lorem ipsum dolor sit amet consectetur."/>
+                    <Textarea value="Lorem ipsum dolor sit amet consectetur." maxLength={5000}/>
                     <div className={styles.files}>
                         <button>
                             <img 

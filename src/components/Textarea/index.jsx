@@ -1,18 +1,19 @@
 import { useState } from "react";
 import styles from "./style.module.css";
 
-export const Textarea = ({ value }) => {
-    const [textareaValue, setTextareaValue] = useState(value.length);
-
+export const Textarea = ({ value = "", maxLength = 1000, onChange }) => {
+    const [textareaValue, setTextareaValue] = useState(value);
+    console.log(value);
     return (
         <>
             <textarea
-                maxLength={5000}
-                value={value}
-                onInput={(e) => setTextareaValue(e.target.value.length)}
+                maxLength={maxLength}
+                value={textareaValue}
+                onInput={(e) => setTextareaValue(e.target.value)}
                 className={styles.textarea}
+                onChange={onChange}
             />
-            <p className={styles.description}>{textareaValue}/5000</p>
+            <p className={styles.description}>{textareaValue.length}/{maxLength}</p>
         </>
     );
 };

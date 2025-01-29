@@ -82,7 +82,7 @@ export default function Response() {
                 <h2>Ваш отклик</h2>
                 <div className={styles.blackLine}></div>
                 <h3>Описание *</h3>
-                <Textarea value="Расскажите, почему стоит выбрать именно Вас" />
+                <Textarea value="Расскажите, почему стоит выбрать именно Вас" maxLength={5000}/>
                 <div className={styles.yourResponseInputs}>
                     <div className={styles.responsePrice}>
                         <label htmlFor="price">
