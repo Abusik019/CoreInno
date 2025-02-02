@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./style.module.css";
 
 import mockGuide from "../../assets/images/mockGuide.png";
@@ -12,12 +12,16 @@ import Component from "../../assets/icons/Component.svg";
 import Rectangle from "../../assets/icons/Rectangle1.svg";
 import arrow from "../../assets/icons/arrow.svg";
 import tabler from "../../assets/icons/tabler.svg";
+import tablerRed from "../../assets/icons/tablerRed.svg"
 
 function Post() {
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);// Хранит выбранный id категории
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(0); // Хранит выбранный id подкатегории
   const [openSubCategor, setOpenSubCategor] = useState(false)
   const [numberInput, setNumberInput] = useState([{ id: 1 }]);
+  const [coverImages, setCoverImages] = useState([]);
+  const [mainImage, setMainImage] = useState(null);
+  const fileInputRef = useRef(null);
 
   const category = useSelector((state) => state.category.category);
   const subCategory = useSelector((state) => state.category.subCategory);
@@ -33,12 +37,44 @@ function Post() {
   }, [dispatch]);
 
   function clearInput() {
-    const newId = numberInput.length ? numberInput[numberInput.length - 1].id + 1 : 1; // Генерация уникального id
-    setNumberInput([...numberInput, { id: newId }]);
+    setNumberInput((prevInputs) => [...prevInputs, { id: Date.now() }])
+  }
+
+  function handleImageChange(event) {
+    const files = Array.from(event.target.files);
+    const newImages = [];
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        newImages.push(reader.result);
+        if (newImages.length === files.length) {
+          setCoverImages((prevImages) => [...prevImages, ...newImages]);
+          if (!mainImage) {
+            setMainImage(newImages[0]); // Устанавливаем первую загруженную картинку как главную
+          }
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+
+    event.target.value = "";
+  }
+
+  function handleImageClick(image) {
+    setMainImage(image);
+  }
+
+  function removeImage() {
+    if (coverImages.length > 0) {
+      const newCoverImages = coverImages.filter((img) => img !== mainImage);
+      setCoverImages(newCoverImages);
+      setMainImage(newCoverImages.length > 0 ? newCoverImages[0] : null);
+    }
   }
 
   function removeInput(id) {
-    setNumberInput(numberInput.filter((item) => item.id !== id)); // Удаляем по id
+    setNumberInput((prevInputs) => prevInputs.filter((item) => item.id !== id)); // Удаляем по id
   }
   function handleClickCategor(id){
     if(id === selectedCategoryId){
@@ -105,9 +141,41 @@ function Post() {
             ))}
         </div>
         <p style={{marginTop: "30px"}}>Обложка объявления</p>
-        <button>
+        <input 
+          type="file" 
+          accept="image/*" 
+          id="cover-upload" 
+          ref={fileInputRef}
+          style={{ display: "none" }} 
+          onChange={handleImageChange}
+        />
+       {coverImages.length === 0 &&  <button onClick={() => document.getElementById("cover-upload").click()}>
           Добавить обложку <img src={ggAdd} alt="" />{" "}
-        </button>
+        </button>}
+
+        {mainImage && (
+        <div className={styles.mainImageContainer}>
+          <img className={styles.mainImage} src={mainImage} alt="Главное изображение" />
+          <button className={styles.removeButton} onClick={removeImage}>
+            <img src={tablerRed} alt="" />
+          </button>
+        </div>
+      )}
+      <div className={styles.thumbnailContainer}>
+        {coverImages.map((image, index) => (
+          <img
+            key={index}
+            className={styles.thumbnail}
+            src={image}
+            alt={`Обложка ${index + 1}`}
+            onClick={() => handleImageClick(image)}
+          />
+        ))}
+        {coverImages.length !== 0 && <div onClick={() => document.getElementById("cover-upload").click()}  className={styles.addPhoto}>
+          <p>+</p>
+        </div>}
+      </div>
+        
       </div>
       <div className={styles.rod3}>
         <h1>Описание и файлы</h1>
@@ -155,8 +223,8 @@ function Post() {
           У ваших покупателей часто могут возникать одни и те же вопросы, Вы можете заранее дать
           ответы на них, чтобы увеличить шансы на успешный заказ
         </p>
-        {numberInput.map((item, index) => (
-          <div key={index} className={styles.inputs}>
+        {numberInput.map((item) => (
+          <div key={item.id} className={styles.inputs}>
             <div className={styles.input}>
               <input placeholder="Вопрос" type="text" />
               <input placeholder="Дайте ответ" type="text" />

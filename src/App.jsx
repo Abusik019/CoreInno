@@ -16,6 +16,7 @@ import Post from './pages/Post';
 import NumberConfirm from './pages/NumberConfirm';
 import ResetPassword from './pages/ResetPassword';
 import AddNewProject from './pages/AddNewProject';
+import CasePortfolio from './pages/CasePortfolio';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path='/number-confirm' element={<NumberConfirm />}/>
         <Route path='/reset-password' element={<ResetPassword />}/>
         <Route path='/add-new-project' element={<AddNewProject />}/>
+        <Route path='case-portfolio' element={<CasePortfolio/>}/>
     </Routes>
   )
 }
