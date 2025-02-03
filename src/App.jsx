@@ -16,12 +16,9 @@ import Post from './pages/Post';
 import NumberConfirm from './pages/NumberConfirm';
 import ResetPassword from './pages/ResetPassword';
 import AddNewProject from './pages/AddNewProject';
-
 import CasePortfolio from './pages/CasePortfolio';
-
 import Announcement from './pages/Announcement';
-
-
+import CommercialAnnouncement from './pages/CommercialAnnouncement';
 
 function App() {
   return (
@@ -42,11 +39,9 @@ function App() {
         <Route path='/number-confirm' element={<NumberConfirm />}/>
         <Route path='/reset-password' element={<ResetPassword />}/>
         <Route path='/add-new-project' element={<AddNewProject />}/>
-
-        <Route path='case-portfolio' element={<CasePortfolio/>}/>
-
+        <Route path='/case-portfolio' element={<CasePortfolio/>}/>
         <Route path='/announcement' element={<Announcement />}/>
-
+        <Route path='/commercial-announcement' element={<CommercialAnnouncement />}/>
     </Routes>
   )
 }
