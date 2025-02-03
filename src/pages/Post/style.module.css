@@ -247,3 +247,69 @@
   cursor: default;
   border: 1px solid #dcdcdc;
 }
+
+.mainImageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1220px;
+  height: 539px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.mainImage {
+  width: 1220px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  /* margin-top: 15px; */
+}
+
+.removeButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.thumbnailContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
+}
+
+.addPhoto{
+  width: 150px;
+  height: 100px;
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: gray;
+ 
+}
+.addPhoto p{
+  font-size: 32px;
+}
+
+
