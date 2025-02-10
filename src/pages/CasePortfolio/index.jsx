@@ -83,13 +83,13 @@ function CasePortfolio() {
               style={{ transform: "rotate(180deg)", cursor: "pointer" }}
               src={arrow}
               alt=""
-              onClick={handlePrev}
+             
             />
             <img
               style={{ cursor: "pointer" }}
               src={arrow}
               alt=""
-              onClick={handleNext}
+             
             />
           </div>
         </div>

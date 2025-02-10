@@ -19,6 +19,7 @@ import AddNewProject from './pages/AddNewProject';
 import CasePortfolio from './pages/CasePortfolio';
 import Announcement from './pages/Announcement';
 import CommercialAnnouncement from './pages/CommercialAnnouncement';
+import TaskSection from './pages/TaskSection';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path='/case-portfolio' element={<CasePortfolio/>}/>
         <Route path='/announcement' element={<Announcement />}/>
         <Route path='/commercial-announcement' element={<CommercialAnnouncement />}/>
+        <Route path='/task-section' element={<TaskSection/>}/>
     </Routes>
   )
 }
