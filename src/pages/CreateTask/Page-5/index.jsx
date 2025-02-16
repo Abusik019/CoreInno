@@ -84,7 +84,7 @@ export default function CreateTaskPageFive({ setPage }) {
                    </div>
                 </div>
             </div>
-            <CreateTaskLoad prev={4} next={6} setPage={setPage}/>
+            <CreateTaskLoad prev={4} next={6} setPage={setPage} maxPage={6}/>
         </div>
     );
 }

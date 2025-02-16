@@ -13,7 +13,7 @@ export const Textarea = ({ value = "", maxLength = 1000, onChange }) => {
                 className={styles.textarea}
                 onChange={onChange}
             />
-            <p className={styles.description}>{textareaValue.length}/{maxLength}</p>
+            <span className={styles.description}>{textareaValue.length}/{maxLength}</span>
         </>
     );
 };

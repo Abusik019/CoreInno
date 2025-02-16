@@ -14,7 +14,7 @@ export default function CreateTaskPageTwo({ setPage }) {
                 <li>Doloem ipsum dolor sit amet consectetur sit amet consectetur</li>
             </ul>
         </div>
-        <CreateTaskLoad prev={1} next={3} setPage={setPage}/>
+        <CreateTaskLoad prev={1} next={3} setPage={setPage} maxPage={6}/>
     </div>
   )
 }

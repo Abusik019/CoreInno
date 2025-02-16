@@ -75,7 +75,7 @@ export default function CreateTaskPageThree({ setPage }) {
                     </ul>
                 </div>
             </div>
-            <CreateTaskLoad prev={2} next={4} setPage={setPage}/>
+            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={6}/>
         </div>
     );
 }

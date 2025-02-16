@@ -19,8 +19,9 @@
 
     width: 40%;
     height: fit-content;
+    max-height: 100vh;
 
-    padding: 40px 50px;
+    padding: 35px 40px;
     box-sizing: border-box;
 
     display: flex;

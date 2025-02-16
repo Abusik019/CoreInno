@@ -1,7 +1,7 @@
 import styles from "./style.module.css";
 
-export default function CreateTaskLoad({ prev, next, setPage }) {
-    const progress = prev * 16.6;
+export default function CreateTaskLoad({ prev, next, setPage, maxPage, disabled = false, onNext = () => {} }) {
+    const progress = (prev + 1) * (100 / maxPage);
 
     return (
         <div className={styles.createTaskFooter}>
@@ -10,8 +10,11 @@ export default function CreateTaskLoad({ prev, next, setPage }) {
             </div>
             <div className={styles.buttonsContainer}>
                 <button onClick={() => setPage(prev)}>Назад</button>
-                <h2>{prev} из 6</h2>
-                <button onClick={() => setPage(next)}>Продолжить</button>
+                <h2>{prev + 1} из {maxPage}</h2>
+                <button style={{opacity: disabled ? "0.2" : "1"}} onClick={() => {
+                    onNext();
+                    setPage(next);
+                }} disabled={disabled}>Продолжить</button>
             </div>
         </div>
     );

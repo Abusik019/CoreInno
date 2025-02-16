@@ -66,3 +66,7 @@ a{
 .ant-select-arrow{
   color: #000 !important; 
 }
+
+.ant-upload-list-item-container{
+  display: none;
+}
