@@ -7,7 +7,7 @@
 }
 .rod h1{
     font-size: 42px;
-    margin-bottom: 55px;
+    margin-bottom: 25px;
 }
 .categor{
     display: flex;
@@ -54,6 +54,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 30px;
 }
 .info h4{
     gap: 10px;
@@ -80,6 +81,27 @@
 }
 .user1{
     height: 80px;
+}
+.specialization{
+    display: flex;
+    gap: 8px;
+    width: 700px;
+    flex-wrap: wrap;
+    
+    
+}
+
+.specialization p{
+    border-radius: 14px;
+    background-color: #EAEAEA;
+    color: #3d3c3c;
+    padding: 0 24px;
+    height: 36px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+ 
+
 }
 .info2{
     box-sizing: border-box;
@@ -117,7 +139,7 @@
 }
 .button button:nth-child(2){
     box-sizing: border-box;
-    width: 177px;
+    width: 203px;
     height: 36px;
     border-radius: 10px;
     color: black;
@@ -125,6 +147,13 @@
     border: 1px solid black;
     padding: 10px 30px 10px 30px;
     gap: 14px;
+}
+.button button:nth-child(3){
+    background-color: transparent;
+    border: none;
+    color: #F63939;
+    padding: 10px 30px 10px 30px;
+
 }
 
 .button1 button:nth-child(1){
@@ -159,6 +188,34 @@
     gap: 25px;
     margin-top: 55px;
 }
+.connect{
+    box-sizing: border-box;
+    width: 921px;
+    border: 1px solid #0000001A;
+    border-radius: 16px;
+    padding: 25px 30px 25px 30px;
+    gap: 25px;
+    margin-top: 30px;
+}
+.connect p:nth-child(1){
+    font-size: 22px;
+    
+}
+.connect p:nth-child(2){
+    font-size: 16px;
+    color: gray;
+}
+.connect button{
+    box-sizing: border-box;
+    width: 172px;
+    height: 36px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px 30px 10px 30px;
+    gap: 14px;
+    margin-top: 25px;
+}
 .balance p{
     font-size: 22px;
     margin-bottom: 25px;
@@ -187,7 +244,7 @@
 }
 .method p:nth-child(1){
     font-size: 22px;
-    margin-bottom: 5px
+    /* margin-bottom: 5px */
 }
 .method p:nth-child(2){
     color: gray;
@@ -203,6 +260,25 @@
     color: white;
     padding: 12px 28px 12px 28px;
     gap: 14px;
+    margin-top: 25px;
+}
+.balanceTime{
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+    color: gray;
+}
+.operation{
+    margin-top: 25px;
+}
+.operation p{
+    font-size: 18px !important;
+    color: gray;
+    margin-bottom: none !important;
+
+}
+.method button{
+    background-color: transparent;
     margin-top: 25px;
 }
 .taxInfo{
@@ -260,6 +336,34 @@
     margin-bottom: 25px;
 }
 .passwordOfAccount button{
+    width: 187px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px 30px 10px 30px;
+    background-color: transparent;
+}
+.numberOfAccount{
+    box-sizing: border-box;
+    width: 921px;
+    border: 1px solid #0000001A;
+    border-radius: 16px;
+    padding: 25px 30px 25px 30px;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.numberOfAccount p:nth-child(1){
+    font-size: 22px;
+    gap: 15px;
+}
+.numberOfAccount p:nth-child(2){
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+.numberOfAccount button{
     width: 187px;
     height: 36px;
     border-radius: 10px;
@@ -554,6 +658,9 @@
 .input1 div p{
     margin-bottom: 5px;
 }
+.input1 div input{
+    width: 100%;
+}
 .number{
     width: 350px;
     margin-left: 62px;
@@ -563,6 +670,9 @@
 .number p{
     margin-bottom: 5px;
 
+}
+.number input{
+    width: 100%;
 }
 .from{
     width: 716px;
@@ -586,6 +696,8 @@
 }
 .button4{
     width: 350px;
+    /* margin-bottom: 40px; */
+    padding-bottom: 40px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -621,6 +733,24 @@
     top: 10px;
     left: 30px;
 }
+.modalNumber{
+    width: 504px;
+    height: 449px;
+    border-radius: 10px;
+    background-color: #F7F7F7;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+}
+.modalMethodPayment{
+    width: 655px;
+    height: 591px;
+    border-radius: 10px;
+    background-color: #F7F7F7;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+}
 .redactir1{
     width: 394px;
     display: flex;
@@ -630,6 +760,24 @@
     /* margin-top: 50px; */
     margin-bottom: 40px;
 }
+.redactir2{
+    width: 545px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    /* margin-top: 50px; */
+    margin-bottom: 40px;
+}
+.redactir2 h2{
+    margin-bottom: 0;
+    margin-top: 40px;
+}
+.redactir2 img{
+    margin-bottom: 0;
+    margin-top: 40px;
+ }
+
 .redactir1 h2{
     margin-bottom: 0;
     margin-top: 40px;
@@ -638,6 +786,7 @@
     margin-bottom: 0;
     margin-top: 40px;
  }
+
  .inputs{
     width: 504;
     display: flex;
@@ -648,6 +797,15 @@
     width: 394px;
     height: 71px;
  }
+ .inputs label select{
+    width: 545px;
+    height: 46px;
+    border-radius: 10px;
+  
+ }
+ .inputs div input{
+    width: 100%;
+ }
  .inputs div img{
     position: relative;
     top: -32px;
@@ -655,7 +813,7 @@
  }
  .inputs div:nth-child(2){
     margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
  }
  .inputs div:nth-child(3){
     margin-bottom: 76px;
@@ -669,6 +827,38 @@
     margin: auto;
     display: flex;
     justify-content: space-between;
+}
+.buttonModalNumber{
+    width: 394px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+
+}
+.buttonModalNumber button:nth-child(1){
+    width: 116px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: transparent;
+    padding: 10px 30px 10px 30px;
+}
+.buttonModalNumber button:nth-child(2){
+    width: 218px;
+    height: 36px;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid black;
+    background-color: black;
+    padding: 10px 30px 10px 30px;
+}
+.methodPayment label select{
+    width: 394px;
+    height: 46px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-right: 5px;
 }
 .button5 button:nth-child(1){
     width: 116px;
@@ -687,6 +877,48 @@
     background-color: black;
     padding: 10px 30px 10px 30px;
 }
+.spec{
+    width: 840px;
+    /* height: 347px; */
+    border-radius: 10px;
+    background-color: #F7F7F7;
+    position: absolute;
+    top: 10px;
+}
+.subCategories{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 15px;
+   
+}
+
+  
+  .subCategoryTag  {
+    font-size: 14px;
+    display: flex;
+    color: #000000 ;
+    background-color: transparent ;
+    border: 1px solid #000000;
+    margin-top: 5px;
+    border-radius: 14px;
+    padding: 0px 24px;
+    height: 36px;
+    font-size: 18px;
+    align-items: center;
+  }
+  .subCategoryContainer{
+    display: flex;
+    gap: 8px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+
+  }
+ 
+
+
+  
 
 
 
