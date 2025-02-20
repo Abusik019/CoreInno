@@ -24,6 +24,7 @@ import CreateProfile from './pages/CreateProfile';
 import Favorites from './pages/Favorites';
 import Draft from './pages/Draft';
 import CommercialAdvertisement from './pages/CommercialAdvertisement';
+import MyAnnouncements from './pages/MyAnnouncements';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path='/favorites' element={<Favorites />}/>
         <Route path='draft' element={<Draft/>}/>
         <Route path='commercial-advertisement' element={<CommercialAdvertisement/>}/>
+        <Route path='/my-announcements' element={<MyAnnouncements />}/>
     </Routes>
   )
 }
