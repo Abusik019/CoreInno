@@ -26,6 +26,7 @@ const mockGuides = [
 
 export default function MyAnnouncements() {
     const [openDropdownId, setOpenDropdownId] = useState(null);
+    const [modal, setModal] = useState(false);
 
     const toggleDropdown = (id) => {
         setOpenDropdownId((prevId) => (prevId === id ? null : id));
@@ -84,10 +85,10 @@ export default function MyAnnouncements() {
                                     <img src={add} width={24} height={24} alt="add" />
                                     <h2>Редактировать заказ</h2>
                                 </Link>
-                                <Link to="#">
+                                <button onClick={() => setModal(true)}>
                                     <img src={deleteImg} width={24} height={24} alt="delete" />
                                     <h2>Удалить заказ</h2>
-                                </Link>
+                                </button>
                             </div>
                         </li>
                     ))}
@@ -207,6 +208,18 @@ export default function MyAnnouncements() {
                     </div>
                 </div>
             </section>
+            {modal && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                        <h2>Удалить объявление?</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur. Suspendisse purus id urna ut sit risus risus orci mauris.</p>
+                        <div>
+                            <button onClick={() => setModal(false)}>Отмена</button>
+                            <button>Удалить</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
