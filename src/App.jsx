@@ -22,6 +22,8 @@ import CommercialAnnouncement from './pages/CommercialAnnouncement';
 import TaskSection from './pages/TaskSection';
 import CreateProfile from './pages/CreateProfile';
 import Favorites from './pages/Favorites';
+import Draft from './pages/Draft';
+import CommercialAdvertisement from './pages/CommercialAdvertisement';
 
 function App() {
   return (
@@ -48,6 +50,8 @@ function App() {
         <Route path='/task-section' element={<TaskSection/>}/>
         <Route path='/create-profile' element={<CreateProfile />}/>
         <Route path='/favorites' element={<Favorites />}/>
+        <Route path='draft' element={<Draft/>}/>
+        <Route path='commercial-advertisement' element={<CommercialAdvertisement/>}/>
     </Routes>
   )
 }
