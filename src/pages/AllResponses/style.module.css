@@ -1,0 +1,566 @@
+.allResponses{
+    width: 100vw;
+    min-height: 100vh;
+    height: fit-content;
+
+    padding: 90px 120px 160px 120px;
+    box-sizing: border-box;
+
+    >h1{
+        font-weight: 400;
+        font-size: 42px;
+        line-height: 42px;
+    }
+}
+
+.responsesContainer{
+    width: 100%;
+    height: fit-content;
+
+    .resTabs{
+        margin-top: 40px;
+
+        width: fit-content;
+        height: fit-content;
+
+        display: flex;
+        align-items: center;
+        gap: 44px;
+
+        >li{
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 20px;
+
+            opacity: 0.6;
+
+            cursor: pointer;
+
+            border-bottom: 1px solid transparent;
+
+            padding-bottom: 5px;
+        }
+    }
+}
+
+.resContent{
+    width: 100%;
+    height: fit-content;
+
+    margin-top: 27px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.contentLeft{
+    width: 40%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+
+    >input{
+        width: 100%;
+        height: 52px;
+
+        padding: 18px 18px 18px 46px;
+        box-sizing: border-box;
+
+        border-radius: 10px;
+
+        border: 1px solid #636363;
+
+        background-color: transparent;
+        color: #000;
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 16px;
+
+        background-image: url('../../assets/icons/search.svg');
+        background-repeat: no-repeat;
+        background-size: 18px;
+        background-position: 3%;
+    }
+
+    .contentResponses{
+        width: 100%;
+        height: fit-content;
+        max-height: 670px;
+
+        overflow-y: auto;
+
+        margin-top: 10px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        >:last-child{
+            margin-bottom: 10px;
+        }
+
+        >::-webkit-scrollbar {
+            width: 2px;
+            height: 2px;
+        }
+    
+        >::-webkit-scrollbar-track {
+            background: #000;
+        }
+    
+        >::-webkit-scrollbar-thumb {
+            background-color: #050c26;
+            border-radius: 20px;
+            border: 3px solid #050c26;
+        }
+
+        >li{
+            width: 100%;
+
+            padding: 16px;
+            box-sizing: border-box;
+
+            .bioBlock{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                .bioBlockText{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+
+                    >div{
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+
+                        >h2, >span{
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 17px;
+
+                            opacity: 0.6;
+                        }
+
+                        >span{
+                            padding-left: 15px;
+                            box-sizing: border-box;
+
+                            background-image: url('../../assets/icons/star.svg');
+                            background-repeat: no-repeat;
+                            background-position: left;
+                            background-size: auto;
+                        }
+
+                        >button{
+                            background-color: transparent;
+
+                            height: 14px;
+
+                            cursor: pointer;
+                        }
+                    }
+
+                    >h2{
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 16px;
+
+                        max-width: 85%;
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+
+                        margin-top: 5px;
+                    }
+
+                    >h3{
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 13.2px;
+
+                        opacity: 0.6;
+
+                        margin-top: 6px;
+                    }
+                }
+            }
+
+            .infoBlock{
+                width: 100%;
+
+                margin-top: 10px;
+
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                >div{
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 17px;
+
+                    color: #636363;
+                    text-wrap: nowrap;
+                }
+
+                >:nth-child(2), >:nth-child(3){
+                    padding-left: 18px;
+                    box-sizing: border-box;
+
+                    background-repeat: no-repeat;
+                    background-size: auto;
+                    background-position: left;
+                }
+
+                >:nth-child(2){
+                    background-image: url('../../assets/icons/battery.svg');
+                }
+
+                >:nth-child(3){
+                    background-image: url('../../assets/icons/smail.svg');
+                }
+            }
+
+            .skillsBlock{
+                width: 100%;
+
+                margin-top: 12px;
+
+                display: flex;
+                align-items: flex-start;
+                gap: 4px;
+                flex-wrap: nowrap;
+
+                >li{
+                    padding: 7px 12px;
+                    box-sizing: border-box;
+
+                    border-radius: 5px;
+
+                    color: #5e5e5e;
+                    background-color: #EAEAEA;
+
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 14px;
+                    letter-spacing: 0%;
+                }
+            }
+        }
+    }
+}
+
+.contentRight{
+    width: 100%;
+    height: fit-content;
+
+    .responseDate{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+
+        opacity: 0.6;
+
+        margin-top: 20px;
+    }
+
+    .responseActions{
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        >div{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            >a{
+                padding: 9px 15px 9px 43px;
+                box-sizing: border-box;
+
+                background-color: transparent;
+                border: 1px solid #000;
+
+                border-radius: 10px;
+
+                color: #000;
+
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 16px;
+
+                background-image: url('../../assets/icons/message.svg');
+                background-position: 15px;
+                background-repeat: no-repeat;
+                background-size: auto;
+            }
+            
+            >button{
+                padding: 9px 15px;
+                box-sizing: border-box;
+
+                border-radius: 10px;
+
+                background-color: #000;
+                color: #fff;
+            }
+        }
+
+        >button{
+            padding: 7px 0;
+            padding-right: 29px;
+            box-sizing: border-box;
+
+            background-image: url('../../assets/icons/redWarning.svg');
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: right;
+
+            background-color: transparent;
+
+            color: #F63939;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 20px;
+        }
+    }
+
+    .freelancerInfo{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        margin-top: 25px;
+
+        .freelancerBio{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+
+            >h2{
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 20px;
+            }
+
+            >div{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                >h3, >span{
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+
+                    opacity: 0.6;
+                }
+
+                >span{
+                    padding-left: 18px;
+                    box-sizing: border-box;
+
+                    background-image: url('../../assets/icons/star.svg');
+                    background-repeat: no-repeat;
+                    background-size: auto;
+                    background-position: left;
+                }
+            }
+
+            >h3{
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+
+                opacity: 0.6;
+            }
+        }
+    }
+
+    .freelancerBid{
+        margin-top: 30px;
+
+        >h2{
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 26px;
+        }
+
+        >p{
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 20px;
+
+            opacity: 0.6;
+
+            margin-top: 10px;
+        }
+    }
+
+    .freelancerExamples{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        margin-top: 30px;
+
+        >h2{
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 26px;
+        }
+
+        .portfolioTasks{        
+            width: 100%;
+            height: 160px;
+        
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        
+            gap: 13px;
+        
+            >li{
+                width: 220px;
+                height: 100%;
+        
+                >img{
+                    border-radius: 8px;
+                    object-fit: cover;
+                }
+            }
+        }  
+    }
+
+    .freelancerReviews{
+        width: 100%;
+        height: fit-content;
+
+        margin-top: 35px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .freelancerReviewsText{
+            width: 100%;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            >h2{
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 26px;
+
+                >span{
+                    color: #7c7c7c;
+                }
+            }
+        }
+
+        .reviewsList{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        
+            margin-top: 20px;
+
+            margin-bottom: 10px;
+        
+            >li{
+                display: flex;
+                align-items: center;
+                gap: 15px;
+        
+                padding: 15px 25px;
+                box-sizing: border-box;
+        
+                border: 1px solid #0000001A;
+                border-radius: 10px;
+
+                background-color: #fff;
+        
+                .reviewsContentTitle{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 5px;
+    
+                    >div{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+    
+                        >h2{
+                            font-size: 18px;
+                            font-weight: 400;
+                            line-height: 20px;
+                            text-align: left;
+                        }
+                    }
+    
+                    >p{
+                        font-size: 18px;
+                        font-weight: 400;
+                        line-height: 20px;
+                        text-align: left;
+    
+                        opacity: 0.6;
+                    }
+                }
+            }
+        }
+    }
+
+    .cancelResponse{
+        width: 100%;
+        height: 48px;
+
+        background-color: transparent;
+        color: #000;
+        
+        border: 1px solid #000;
+        border-radius: 10px;
+
+        margin-top: 58px;
+
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 16px;
+    }
+}
+
+.arrowBtns{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 10px;
+
+    >button{
+        background-color: transparent;
+    }
+
+    .prevBtn{
+        transform: rotate(180deg);
+        opacity: 0.6;
+    }
+}
