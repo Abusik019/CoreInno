@@ -2,6 +2,7 @@ import styles from "./style.module.css";
 import { Link } from "react-router-dom";
 import { Order } from "../../components/Order";
 import { useState } from "react";
+import { GradientText } from "../../components/GradientText";
 
 import questionImg from "../../assets/icons/question.svg";
 import whiteArrow from "../../assets/icons/w-longArrow.svg";
@@ -143,7 +144,9 @@ export default function MyOrders() {
                             Lorem ipsum dolor sit amet consectetur.
                         </p>
                         <span>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur</span>
-                        <button className={styles.guideGoOne}>Перейти</button>
+                        <button className={styles.guideGoOne}>
+                            <GradientText text="Перейти" />
+                        </button>
                     </li>
                     <li>
                         <div className={styles.guideTitle}>
