@@ -411,6 +411,11 @@
 
     position: relative;
     overflow: hidden; 
+
+    background-image: url('../../assets/images/bg-item.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     
     >div{
         display: flex;
