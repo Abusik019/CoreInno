@@ -11,7 +11,7 @@ const DatePickerItem = ({ setDate, dateOfBirth }) => (
                 dateOfBirth: date ? dateString : "" 
             }));
         }}
-        style={{ width: "229px", height: "46px", borderRadius: "10px" }}
+        style={{ width: "229px", height: "46px", borderRadius: "10px", opacity: "1" }}
         format="DD-MM-YYYY"
         placeholder="dd-mm-yyyy"
     />

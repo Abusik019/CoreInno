@@ -55,7 +55,7 @@
     background-color: #dedede;
 
     >div{
-        background-color: #8085E6;
+        background: linear-gradient(90deg, #886DE0 0%, #2B1867 100%);
 
         border-radius: 1000px;
 

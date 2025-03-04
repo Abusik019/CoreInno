@@ -20,12 +20,13 @@ import CasePortfolio from './pages/CasePortfolio';
 import Announcement from './pages/Announcement';
 import CommercialAnnouncement from './pages/CommercialAnnouncement';
 import TaskSection from './pages/TaskSection';
-import CreateProfile from './pages/CreateProfile';
 import Favorites from './pages/Favorites';
 import Draft from './pages/Draft';
 import CommercialAdvertisement from './pages/CommercialAdvertisement';
 import MyAnnouncements from './pages/MyAnnouncements';
 import AllResponses from './pages/AllResponses';
+import CreateFreelancerProfile from './pages/CreateFreelancerProfile';
+import CreateCustomerProfile from './pages/CreateCustomerProfile';
 
 function App() {
   return (
@@ -50,7 +51,8 @@ function App() {
         <Route path='/announcement' element={<Announcement />}/>
         <Route path='/commercial-announcement' element={<CommercialAnnouncement />}/>
         <Route path='/task-section' element={<TaskSection/>}/>
-        <Route path='/create-profile' element={<CreateProfile />}/>
+        <Route path='/create-freelancer-profile' element={<CreateFreelancerProfile />}/>
+        <Route path='/create-customer-profile' element={<CreateCustomerProfile />}/>
         <Route path='/favorites' element={<Favorites />}/>
         <Route path='/draft' element={<Draft/>}/>
         <Route path='/commercial-advertisement' element={<CommercialAdvertisement/>}/>

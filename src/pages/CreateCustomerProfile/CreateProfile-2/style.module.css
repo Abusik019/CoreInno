@@ -40,7 +40,7 @@
         opacity: 0.6;
     }
 
-    .categories, .subcategories{
+    .categories{
         margin-top: 80px;
 
         display: flex;
@@ -54,7 +54,7 @@
 
             background-color: #EAEAEA;
 
-            border-radius: 14px;
+            border-radius: 8px;
 
             cursor: pointer;
 
@@ -84,9 +84,5 @@
                 z-index: 2;
             }
         }
-    }
-
-    .subcategories{
-        margin-top: 36px;
     }
 }

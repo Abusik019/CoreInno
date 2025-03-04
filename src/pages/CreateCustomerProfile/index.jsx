@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import CreateProfilePageOne from './CreateProfile-1';
 import CreateProfilePageTwo from './CreateProfile-2';
 import CreateProfilePageThree from './CreateProfile-3';
@@ -9,13 +9,13 @@ import CreateProfilePageSeven from './CreateProfile-7';
 import CreateProfilePageEight from './CreateProfile-8';
 import CreateProfilePageNine from './CreateProfile-9';
 
-export default function CreateProfile() {
+export default function CreateCustomerProfile() {
    const [page, setPage] = useState(1);
    const [user, setUser] = useState({
         userResume: [],
         userCategories: [],
-        userProfession: "",
         userExperience: [],
+        userOtherExperience: [],
         userEducation: [],
         userDescription: "",
         userDetails: {}
