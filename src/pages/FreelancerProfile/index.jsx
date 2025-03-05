@@ -17,27 +17,8 @@ import uploadImg from '../../assets/icons/upload.svg';
 import toFavoriteImg from '../../assets/icons/toFavourite.svg';
 import purpleFavoriteImg from '../../assets/icons/purpleFavorite.svg';
 
-const data = {
-    phoneNumber: '',
-    docs: '',
-    emailConfirm: '',
-    description: `
-        Lorem ipsum dolor sit amet consectetur. Sit diam imperdiet elit proin non cursus ridiculus. Nam blandit egestas malesuada imperdiet facilisis in non sit. Dictum vel nec metus morbi.
-        Lorem ipsum dolor sit amet consectetur. Tortor aenean nec risus vel. Magna sed augue eget iaculis vitae enim quam molestie. Sagittis sagittis dolor tincidunt sit id aliquam in id. Elementum integer proin lobortis commodo. Odio dolor lacus in sed lorem luctus sodales. Fringilla commodo mattis leo eget ultricies integer tortor proin. Nunc cursus vel consectetur dui commodo. In dolor diam tortor rhoncus id amet adipiscing egestas.
-    `,
-    doneTasks: [],
-    certificates: [],
-    portfolio: [],
-    education: {},
-    skills: [],
-    workExperience: {},
-    otherExperience: {},
-    reviews: [],
-    announcements: []
-}
-
 export default function FreelancerProfile() {
-    const [isMyProfile, setIsMyProfile] = useState(false);
+    const [isMyProfile, setIsMyProfile] = useState(true);
     const [isShowVerify, setIsShowVerify] = useState(false);
     const [showAllReviews, setShowAllReviews] = useState(false);
 
