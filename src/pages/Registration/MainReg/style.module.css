@@ -1,16 +1,30 @@
+.loginWrapper{
+    width: 100vw;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+
+    padding: 40px 120px 120px 120px;
+    box-sizing: border-box;
+
+    >img{
+        align-self: flex-start;
+    }
+}
+
 .registration{
-    width: 514px;
+    width: 580px;
     height: fit-content;
 
-    border-radius: 30px;
+    border-radius: 16px;
 
     background-color: #fff;
 
-    padding: 60px 60px 20px 60px;
+    padding: 40px;
     box-sizing: border-box;
-
-    margin: 0 auto;
-    margin-top: 32px;
 }
 
 .registration h1{
@@ -19,7 +33,7 @@
     font-weight: 400;
     line-height: normal;
 
-    text-align: left;
+    text-align: center;
 }
 
 
@@ -28,6 +42,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+
+    margin-top: 28px;
 }
 
 .regForm label{
@@ -44,8 +60,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-
-    margin-top: 20px;
 
     width: 100%;
 }
@@ -85,7 +99,7 @@ input[type="text"], input[type="password"]{
     input[type="text"], input[type="password"]{
         width: 100%;
     
-        opacity: 0.5;
+        opacity: 0.8;
     
         transition: opacity .3s ease-in-out;
     }
@@ -118,7 +132,7 @@ input[type="text"], input[type="password"]{
 
     border-radius: 10px;
 
-    margin-top: 10px;
+    margin-top: 22px;
 
     font-size: 16px;
     font-style: normal;
@@ -130,6 +144,16 @@ input[type="text"], input[type="password"]{
 
 .nextBtn:hover{
     background-color: #333333;
+}
+
+.agree{
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+
+    margin-top: 15px;
 }
 
 .regForm > label{
@@ -189,7 +213,7 @@ input[type="text"], input[type="password"]{
 }
 
 .anotherRegistrations{
-    margin-top: 40px;
+    margin-top: 32px;
 
     height: fit-content;
 
@@ -204,7 +228,7 @@ input[type="text"], input[type="password"]{
     height: 46px;
 
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border: 1px solid #00000033;
 
     background-color: transparent;
     color: #000;
@@ -217,7 +241,7 @@ input[type="text"], input[type="password"]{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 10px;
 
     transition: opacity .3s ease-in-out;
 }
@@ -227,12 +251,12 @@ input[type="text"], input[type="password"]{
 }
 
 .haveAccount{
-    margin-top: 20px;
+    margin-top: 30px;
 
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 5px;
 }
 
 .haveAccount > a{
@@ -256,28 +280,10 @@ input[type="text"], input[type="password"]{
     opacity: 1;
 }
 
+.haveAccount > a:last-child{
+    opacity: 0.8;
+}
+
 .haveAccount > a:last-child:hover{
-    opacity: 0.7;
-}
-
-.freelanceRegistration{
-    margin-top: 36px;
-}
-
-.freelanceRegistration > a{
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    opacity: 0.6;
-    transition: opacity .3s ease-in-out;
-
-    color: #000;
-
-    text-decoration: none;
-}
-
-.freelanceRegistration > a:hover{
     opacity: 1;
 }

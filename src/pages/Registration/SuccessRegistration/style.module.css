@@ -1,9 +1,9 @@
-.resetPasswordWrapper{
+.successRegWrapper{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
 
-    padding: 40px 120px 40px 120px;
+    padding: 37px 120px 60px 120px;
     box-sizing: border-box;
 
     display: flex;
@@ -15,30 +15,31 @@
     }
 }
 
-.resetPassword{
+.successReg{
     width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    margin-top: 190px;
+    margin-top: 193px;
 
     >h2{
         font-weight: 400;
         font-size: 42px;
         line-height: 42px;
+        letter-spacing: -3%;
 
         margin-top: 50px;
     }
 
-    >h3{
-        margin-top: 15px;
-
+    .numberConfirm{
         font-weight: 400;
         font-size: 18px;
-        line-height: 42px;
+        line-height: 20px;
         text-align: center;
+
+        margin-top: 10px;
     }
 
     .nextBtn{

@@ -1,16 +1,30 @@
+.loginWrapper{
+    width: 100vw;
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+
+    padding: 40px 120px 0 120px;
+    box-sizing: border-box;
+
+    >img{
+        align-self: flex-start;
+    }
+}
+
 .registration{
     width: 514px;
     height: fit-content;
 
-    border-radius: 30px;
+    border-radius: 16px;
 
     background-color: #fff;
 
-    padding: 60px 60px 20px 60px;
+    padding: 40px;
     box-sizing: border-box;
-
-    margin: 0 auto;
-    margin-top: 32px;
 }
 
 .registration h1{
@@ -19,7 +33,7 @@
     font-weight: 400;
     line-height: normal;
 
-    text-align: left;
+    text-align: center;
 }
 
 
@@ -27,13 +41,26 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
 
     margin-top: 30px;
 }
 
+.forgotPassword{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+
+    opacity: 0.7;
+
+    align-self: flex-end;
+
+    margin-top: 7px;
+
+    background-color: transparent;
+    color: #000;
+}
+
 .regForm label{
-    line-height: 140%;
     text-wrap: nowrap;
     
     margin-bottom: 5px;
@@ -84,13 +111,9 @@
     
         color: #000;
     
-        opacity: 0.5;
+        opacity: 1;
     
         transition: opacity .3s ease-in-out;
-    }
-    
-    input[type="text"]:hover, input[type="password"]:hover{
-        opacity: 1;
     }
     
     input::placeholder{
@@ -106,6 +129,8 @@
     width: 100%;
 
     position: relative;
+
+    margin-top: 10px;
 }
 
 .nextBtn{
@@ -117,7 +142,7 @@
 
     border-radius: 10px;
 
-    margin-top: 10px;
+    margin-top: 40px;
 
     font-size: 16px;
     font-style: normal;
@@ -195,7 +220,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     align-items: center;
 }
 
@@ -204,7 +229,7 @@
     height: 46px;
 
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border: 1px solid #00000033;
 
     background-color: transparent;
     color: #000;
@@ -217,22 +242,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
-
-    transition: opacity .3s ease-in-out;
-}
-
-.anotherRegistrations > button:hover{
-    opacity: 0.7;
+    gap: 10px;
 }
 
 .haveAccount{
-    margin-top: 20px;
+    margin-top: 30px;
+
+    width: 100%;
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .haveAccount > a{
@@ -256,8 +277,12 @@
     opacity: 1;
 }
 
+.haveAccount > a:last-child{
+    opacity: 0.8;
+}
+
 .haveAccount > a:last-child:hover{
-    opacity: 0.7;
+    opacity: 1;
 }
 
 

@@ -1,33 +1,23 @@
 import styles from "./style.module.css";
-import { useEffect, useState } from "react";
-import jobifyLogo from '../../../assets/icons/logoJobify.svg';
+import { useState } from "react";
 import handleValidateEmail from '../../../utils/emailValidate';
 
-export default function ResetPasswordOne({ setPage, setIsEmailType }) {
-    const [isEmailReset, setIsEmailReset] = useState(true);
+import jobifyLogo from '../../../assets/icons/logoJobify.svg';
+
+export default function ResetPasswordOne({ setPage }) {
     const [isValid, setIsValid] = useState(false);
     const [email, setEmail] = useState("");
-    const [number, setNumber] = useState("");
     const [isTouched, setIsTouched] = useState(false);
-
-    function validatePhoneNumber(input) {
-        setIsTouched(true);
-        setNumber(input);
-        const regex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
-        setIsValid(regex.test(input));
-    }
-
-    useEffect(() => {
-        setIsEmailType(isEmailReset)
-    }, [isEmailReset]);
+    const disabledBtn = !email || !isValid; 
     
     return (
         <div className={styles.resetPassword}>
             <img src={jobifyLogo} width={119} height={38} alt="logo Jobify" />
             <div className={styles.resetPasswordContent}>
-                <h2>Восстановление пароля</h2>
-                <p>Пожалуйста, укажите {isEmailReset ? 'адрес электронной почты' : 'номер телефона'}, связанный с вашей учетной записью, и мы отправим вам инструкции для сброса пароля.</p>
-                {isEmailReset ? 
+                <h1>Восстановление пароля</h1>
+                <p>Пожалуйста, укажите адрес электронной почты, связанный с вашей учетной записью</p>
+                <div className={styles.inputWrapper}>
+                    {isTouched && email && !isValid && <h2>Убедитесь в корректности почты</h2>}
                     <input 
                         type="text"
                         placeholder="Ваша почта"
@@ -41,41 +31,16 @@ export default function ResetPasswordOne({ setPage, setIsEmailType }) {
                             color: isTouched && !isValid && email ? "#F63939" : "#000",
                         }}
                     />
-                    :
-                    <input 
-                        type="text"
-                        placeholder="+7 (999) 999 99-99"
-                        onChange={(e) => {
-                            validatePhoneNumber(e.target.value);
-                        }}
-                        onBlur={() => setIsTouched(true)}
-                        onFocus={() => setIsTouched(true)}
-                        style={{
-                            borderColor: isTouched && !isValid && number ? "#F63939" : "#808080",
-                            color: isTouched && !isValid && number ? "#F63939" : "#000",
-                        }}
-                    />
-                }
-                {isEmailReset 
-                    ? isTouched && email && !isValid && <h3>Убедитесь в правильности введенной почты</h3>
-                    : isTouched && number && !isValid && <h3>Убедитесь в правильности введенного номера</h3>
-                }
-                <button onClick={() => {
-                    setIsEmailReset((prev) => !prev);
-                }}>Восстановление {isEmailReset ? 'по номеру телефона' : 'через почту'}</button>
-            </div>
-            <div className={styles.resetPasswordBtns}>
-                <button>Назад</button>
-                <button
-                    disabled={!isValid}
+                </div>
+                <button 
+                    className={styles.nextBtn} 
+                    disabled={disabledBtn} 
                     style={{
-                        opacity: !isValid ? "0.2" : "1",
-                        cursor: !isValid ? "default" : "pointer",
-                    }}
+                        opacity: disabledBtn ? '0.2' : '1',
+                        cursor: disabledBtn ? 'not-allowed' : 'pointer'
+                    }} 
                     onClick={() => setPage(2)}
-                >
-                    Продолжить
-                </button>
+                >Продолжить</button>
             </div>
         </div>
     );
