@@ -23,7 +23,7 @@
 }
 
 .titleBlock{
-    max-width: 478px;
+    width: 43%;
 
     >h2{
         font-size: 42px;
@@ -119,10 +119,14 @@
             appearance: none;
             width: 20px;
             height: 20px;
-            border: 1px solid #000000;
+            border: 1px solid #ccc;
             border-radius: 50%;
             position: relative;
             cursor: pointer;
+        }
+    
+        input[type="checkbox"]:checked {
+            border: 1px solid #543BA7;
         }
         
         input[type="checkbox"]:checked::before {
@@ -135,16 +139,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
     
-            background-color: black;
+            background: linear-gradient(180deg, #543BA7 0%, #7F78E9 100%);
     
-            border: 2px solid #000000;
-        }   
+            border: 2px solid #543BA7;
+        }    
     }
 }
 
 .paymentStages{
-    margin-top: 30px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,7 +188,7 @@
 }
 
 .stages{
-    margin-top: 20px;
+    margin-top: 30px;
 
     display: flex;
     flex-direction: column;
@@ -209,6 +211,8 @@
 
             height: 100%;
             border-radius: 12px;
+
+            opacity: 0.8;
         }
 
         >input[type="number"] {
@@ -224,11 +228,11 @@
         }
 
         >.stageName{
-            width: 76%;
+            width: 75%;
         }
 
         >.stagePrice{
-            width: 19%;
+            width: 25%;
 
             text-align: center;
 

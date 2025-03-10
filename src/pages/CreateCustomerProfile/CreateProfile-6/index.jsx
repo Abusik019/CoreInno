@@ -167,7 +167,12 @@ export default function CreateProfilePageSix({ setPage, setUser, user }) {
                         </div>
                         <div className={styles.formDatePicker}>
                             <h2>Дата рождения <span style={{color: '#F63939'}}>*</span></h2>
-                            <DatePickerItem setDate={setMyProperties} dateOfBirth={myProperties.dateOfBirth}/>
+                            <DatePickerItem value={myProperties.dateOfBirth} onChange={(date, dateString) => {
+                                setMyProperties((prev) => ({
+                                    ...prev,
+                                    dateOfBirth: date ? dateString : "" 
+                                }));
+                            }}/>
                         </div>
                         <div className={styles.formBtns}>
                             <button onClick={handleCloseModal}>Назад</button>

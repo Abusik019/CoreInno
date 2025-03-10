@@ -1,53 +1,80 @@
-import { CircleSelect } from "../../../components/CircleSelect";
-import CreateTaskLoad from "../../../components/CreateTaskLoad";
-import { SquareSelect } from "../../../components/SquareSelect";
 import styles from "./style.module.css";
+import CreateTaskLoad from "../../../components/CreateTaskLoad";
+import { GradientText } from "../../../components/GradientText";
+import { ChooseCategory } from "../../../components/ChooseCategory";
+import { SquareSelect } from "../../../components/SquareSelect";
+import { ChoosePrice } from '../../../components/ChoosePrice';
+import DatePickerItem from '../../../components/DatePicker';
+import TimePickerItem from '../../../components/TimePicker';
 
-const options = [
-    ...Array(3)
-        .fill(null)
-        .map((_, index) => ({
-            id: index + 1,
-            name: "Ipsum dolor sit",
-            description: "Lorem ipsum dolor sit amet (описание)",
-        })),
-];
-
-export default function CreateTaskPageFour({ setPage }) {
+export default function CreateTaskPageFour({ setPage, setTask, task }) {
+    const isDisabledBtn = Boolean(task.details.mainCategory && task.details.subcategories.length && task.details.highPriceOffers && task.details.deadlines.date && task.details.deadlines.time); 
+    
     return (
         <div className={styles.createTask}>
             <div className={styles.createTaskContainer}>
                 <div className={styles.titleBlock}>
-                    <h2>Теперь уточним детали Вашего заказа</h2>
+                    <h2>Теперь уточним <GradientText text="детали"/> Вашего заказа</h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur. Tincidunt sed
-                        placerat erat proin cursus. Sed amet ac congue
+                        Указание деталей заказа помогает привлечь квалифицированных исполнителей, сокращая неподходящие отклики
                     </p>
                 </div>
                 <div className={styles.orderDetails}>
-                    <SquareSelect
-                        question="Lorem ipsum dolor sit amet consectetur. Massa et libero bibendum etiam vel ut sed fermentum vulputate?"
-                        description="Lorem ipsum dolor sit amet consectetur (описание)"
-                        options={options}
+                    <ChooseCategory
+                        question="Введите категорию, которой принадлежит ваш заказ"
+                        description="Список категорий"
+                        options={task.skills}
+                        task={task}
+                        setTask={setTask}
                     />
-                    <CircleSelect 
-                        question="Lorem ipsum dolor sit amet consectetur. Ultricies a vel quam auctor cras?"
-                        description="Lorem ipsum dolor sit amet consectetur (описание)"
-                        options={options}
+                    <SquareSelect 
+                        question="Уточните подкатегории, в которых будет размещён заказ"
+                        description="Список подкатегорий в рамках выбранных категорий"
+                        task={task}
+                        setTask={setTask}
                     />
-                    <SquareSelect
-                        question="Lorem ipsum dolor sit amet consectetur. Massa et libero bibendum etiam vel ut sed fermentum vulputate?"
-                        description="Lorem ipsum dolor sit amet consectetur (описание)"
-                        options={options}
+                    <ChoosePrice
+                        question="Рассмотрите ли предложения за более высокую цену от высококвалифицированных исполнителей?"
+                        description="Да/Нет"
+                        task={task}
+                        setTask={setTask}
                     />
-                    <CircleSelect 
-                        question="Lorem ipsum dolor sit amet consectetur. Ultricies a vel quam auctor cras?"
-                        description="Lorem ipsum dolor sit amet consectetur (описание)"
-                        options={options}
-                    />
+                    <div className={styles.deadlines}>
+                        <h2>Укажите сроки выполнения задания <span style={{color: '#F63939'}}>*</span></h2>
+                        <p>Заполните сроки</p>
+                        <div className={styles.deadlinesContent}>
+                            <DatePickerItem 
+                                value={task.details.deadlines.date}
+                                onChange={(date, dateString) => {
+                                    setTask((prev) => ({
+                                        ...prev,
+                                        details: {
+                                            ...prev.details,
+                                            deadlines: {
+                                                ...prev.details.deadlines,
+                                                date: date ? dateString : "" 
+                                            },
+                                        }
+                                    }));
+                                }}
+                            />
+                            <TimePickerItem value={task.details.deadlines.time} setDate={setTask}/>
+                        </div>
+                    </div>
+                    <div className={styles.notes}>
+                        <h2>Примечания</h2>
+                        <p>Укажите дополнительные детали, чтобы фрилансер знал все тонкости</p>
+                        <input value={task.details.notes} type="text" placeholder="Укажите примечания" onInput={(e) => setTask((prev) => ({
+                            ...prev,
+                            details: {
+                                ...prev.details,
+                                notes: e.target.value
+                            }
+                        }))}/>
+                    </div>
                 </div>
             </div>
-            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={6}/>
+            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={6} disabled={!isDisabledBtn}/>
         </div>
     );
 }

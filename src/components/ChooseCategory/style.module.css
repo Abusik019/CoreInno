@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: flex-start;
 
+    width: 100%;
+
     >h2{
         font-size: 18px;
         font-weight: 400;
@@ -13,11 +15,11 @@
     >p{
         font-size: 18px;
         font-weight: 400;
-        line-height: 19.8px;
+        line-height: 20px;
         text-align: left;
 
         margin-top: 10px;
-        opacity: 0.4;
+        opacity: 0.7;
     }
 }
 
@@ -32,7 +34,7 @@
 
 .checkboxWrapper{
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     gap: 15px;
 
@@ -42,10 +44,14 @@
         appearance: none;
         width: 20px;
         height: 20px;
-        border: 1px solid #000000;
+        border: 1px solid #ccc;
         border-radius: 50%;
         position: relative;
         cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked {
+        border: 1px solid #543BA7;
     }
     
     input[type="checkbox"]:checked::before {
@@ -58,9 +64,9 @@
         left: 50%;
         transform: translate(-50%, -50%);
 
-        background-color: black;
+        background: linear-gradient(180deg, #543BA7 0%, #7F78E9 100%);
 
-        border: 2px solid #000000;
+        border: 2px solid #543BA7;
     }    
 
     >label{
