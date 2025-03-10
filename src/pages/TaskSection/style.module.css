@@ -2,7 +2,7 @@
   /* width: 100vw; */
   height: fit-content;
 
-  padding: 120px 120px 60px 120px;
+  padding: 100px 100px 60px 100px;
   box-sizing: border-box;
 
   display: flex;
@@ -14,14 +14,14 @@
 .announcementContainer {
   display: flex;
   align-items: flex-start;
-  gap: 40px;
+  gap: 20px;
 
   width: 100%;
   height: fit-content;
 }
 
 .announcementContent {
-  width: 77%;
+  width: 895px;
   height: fit-content;
 
   border-right: 1px solid #dedede;
@@ -31,8 +31,11 @@
 }
 
 .announcementAside {
+  border: 1px solid #EAEAEA;
+  padding: 30px 25px 30px 25px;
   width: 23%;
   height: 100%;
+  border-radius: 12px;
 
   > h2 {
     font-size: 18px;
@@ -204,7 +207,7 @@
 .announcementDetails {
   margin-top: 40px;
 
-  width: 100%;
+  width: 850px;
   height: fit-content;
 
   > h2 {
@@ -427,7 +430,7 @@
   width: 100%;
   height: fit-content;
 
-  margin-top: 60px;
+  margin-top: 30px;
 
   > h2 {
     font-size: 22px;

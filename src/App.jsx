@@ -25,9 +25,13 @@ import Draft from './pages/Draft';
 import CommercialAdvertisement from './pages/CommercialAdvertisement';
 import MyAnnouncements from './pages/MyAnnouncements';
 import AllResponses from './pages/AllResponses';
+
+import Chat from './pages/Chat';
+
 import CreateFreelancerProfile from './pages/CreateFreelancerProfile';
 import CreateCustomerProfile from './pages/CreateCustomerProfile';
 import Lending from './pages/Lending';
+
 
 function App() {
   return (
@@ -59,6 +63,7 @@ function App() {
         <Route path='/commercial-advertisement' element={<CommercialAdvertisement/>}/>
         <Route path='/my-announcements' element={<MyAnnouncements />}/>
         <Route path='/responses' element={<AllResponses />}/>
+        <Route path='/chat' element={<Chat/>}/>
     </Routes>
   )
 }

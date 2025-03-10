@@ -204,22 +204,7 @@ function SettingsAccount() {
               Безопасность
             </p>
           </div>
-          <div className={styles.categor}>
-            <img src={settings} alt="" />
-            <p
-              style={{
-                color:
-                  open === 4
-                    ? "Black"
-                    : ("gray" && modal) || modalNumber || methodPayment
-                    ? "black"
-                    : "gray",
-              }}
-              onClick={() => setOpen(4)}
-            >
-              Настройки плана
-            </p>
-          </div>
+
           <div className={styles.categor}>
             <img src={notice} alt="" />
             <p
@@ -238,20 +223,12 @@ function SettingsAccount() {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          height:
-            (open === 2 && "840px") ||
-            (open === 3 && "770px") ||
-            (open === 4 && "1240px"),
-        }}
-        className={styles.line}
-      ></div>
+
       {open === 1 && (
         <div className={styles.rod2}>
           <h2>Основная информация</h2>
           <div className={styles.info}>
-            <h4>
+            <h4 style={{fontWeight: "400"}}>
               Сведения об аккаунте{" "}
               <img onClick={() => setModal(!modal)} src={pen} alt="" />
             </h4>
@@ -266,8 +243,8 @@ function SettingsAccount() {
             </div>
           </div>
           <div className={styles.info}>
-            <h4>
-              Специализация{" "}
+            <h4 style={{fontWeight: "400"}}>
+              Сферы деятельности{" "}
               <img
                 onClick={() => setMetodPayment(!methodPayment)}
                 src={pen}
@@ -276,30 +253,27 @@ function SettingsAccount() {
             </h4>
 
             <div className={styles.specialization}>
-              {selectedCategories.map((item) => (
+              {selectedCategories.slice(0,4).map((item) => (
                 <div key={item.id}>
-                  <p>{item.rusName}</p>
-                 
+                  <p style={{color: "#000000"}}>{item.rusName}</p>
                 </div>
               ))}
             </div>
             {selectedCategories.map((item) => (
-               <div className={styles.subCategories}>
-               {selectedSubCategories[item.id]?.map((subId) => {
-                 const subcat = subCategory.find(
-                   (sub) => sub.id === subId
-                 );
-                 return (
-                   <p key={subId} className={styles.subCategoryTag}>
-                     {subcat?.rusName}
-                   </p>
-                 );
-               })}
-             </div>
-            ) )}
+              <div className={styles.subCategories}>
+                {selectedSubCategories[item.id]?.map((subId) => {
+                  const subcat = subCategory.find((sub) => sub.id === subId);
+                  return (
+                    <p key={subId} className={styles.subCategoryTag}>
+                      {subcat?.rusName}
+                    </p>
+                  );
+                })}
+              </div>
+            ))}
           </div>
           <div className={styles.info2}>
-            <h4>Это аккаунт заказчика</h4>
+            <h4 style={{fontWeight: "400", fontSize: "22px"}}>Это аккаунт заказчика</h4>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Inventore alias consequuntur accusantium.
@@ -315,16 +289,17 @@ function SettingsAccount() {
             <p style={{ color: modal ? "black" : "gray" }}>
               ИИ не собирает ваши данные для повышения качества.
             </p>
-            <div className={styles.button1}>
-              <button>Разрешить</button>
-              <button>Отклонить</button>
+            <div>
+              <button className={styles.buttonII}>Включить</button>
             </div>
           </div>
           {methodPayment && (
             <div className={styles.spec}>
               <div className={styles.redactir}>
                 <div>
-                  <h2>Специализация</h2>
+                  <h2 style={{ border: "none", padding: "0" }}>
+                    Специализация
+                  </h2>
                   <p>Выберите не более 4-х категорий</p>
                 </div>
                 <img onClick={cancelChanges} src={close} alt="" />
@@ -336,13 +311,30 @@ function SettingsAccount() {
                       style={{
                         cursor: "pointer",
                         color: "#000000",
-                        backgroundColor:
-                          tempSelectedCategories.includes(item) ? "transparent" : "#EAEAEA",
-                          border: tempSelectedCategories.includes(item) && "1px solid #000000 " 
+                        backgroundColor: tempSelectedCategories.includes(item)
+                          ? "transparent"
+                          : "#EAEAEA",
+                        border:
+                          tempSelectedCategories.includes(item) &&
+                          "1px solid #000000 ",
                       }}
                       onClick={() => handleCategoryClick(item)}
                     >
-                      {item.rusName} {tempSelectedCategories.includes(item) ? <img style={{width: "15px", position: "relative", top: "1px", left: "3px"}} src={close} alt="" /> : "+"}
+                      {item.rusName}{" "}
+                      {tempSelectedCategories.includes(item) ? (
+                        <img
+                          style={{
+                            width: "15px",
+                            position: "relative",
+                            top: "1px",
+                            left: "3px",
+                          }}
+                          src={close}
+                          alt=""
+                        />
+                      ) : (
+                        "+"
+                      )}
                     </p>
                   </div>
                 ))}
@@ -368,16 +360,32 @@ function SettingsAccount() {
                                 ]?.includes(subcat.id)
                                   ? "transparent"
                                   : "#EAEAEA",
-                                  border: selectedSubCategories[
-                                    item.id
-                                  ]?.includes(subcat.id) ? "1px solid #000000" : "none"
+                                border: selectedSubCategories[
+                                  item.id
+                                ]?.includes(subcat.id)
+                                  ? "1px solid #000000"
+                                  : "none",
                               }}
                               key={subcat.id}
                               className={styles.subCategoryTag}
                             >
-                              {subcat.rusName} {selectedSubCategories[
-                                    item.id
-                                  ]?.includes(subcat.id) ? <img style={{width: "15px", position: "relative", top: "1px", left: "3px"}} src={close} alt="" /> : "+"}
+                              {subcat.rusName}{" "}
+                              {selectedSubCategories[item.id]?.includes(
+                                subcat.id
+                              ) ? (
+                                <img
+                                  style={{
+                                    width: "15px",
+                                    position: "relative",
+                                    top: "1px",
+                                    left: "3px",
+                                  }}
+                                  src={close}
+                                  alt=""
+                                />
+                              ) : (
+                                "+"
+                              )}
                             </span>
                           ))}
                       </div>
@@ -395,7 +403,9 @@ function SettingsAccount() {
           {modal && (
             <div className={styles.modal}>
               <div className={styles.redactir}>
-                <h2>Редактирование данных</h2>
+                <h2 style={{ border: "none", padding: "0" }}>
+                  Редактирование данных
+                </h2>
                 <img onClick={() => setModal(!modal)} src={close} alt="" />
               </div>
               <div className={styles.input1}>
@@ -446,15 +456,11 @@ function SettingsAccount() {
             <button onClick={() => setModalNumber(!modalNumber)}>
               Пополнить счет
             </button>
+            <button style={{backgroundColor: "transparent", color: "#000000", border: "1px solid #000000", marginLeft: "15px"}} >
+              Вывод средств
+            </button>
           </div>
-          <div className={styles.connect}>
-            <p>Доступные коннекты: 12</p>
-            <p>
-              Коннекты позволяют вам откликаться на задания, 1 коннект = 1
-              отклик
-            </p>
-            <button onClick={() => setModal(!modal)}>Купить коннекты</button>
-          </div>
+
           <div className={styles.paymentMethod}>
             <div className={styles.method}>
               <p>Способ оплаты</p>
@@ -465,53 +471,7 @@ function SettingsAccount() {
               <button>+ Новый способ оплаты</button>
             </div>
           </div>
-          <div className={styles.taxInfo}>
-            <div className={styles.method}>
-              <p>Налоговые сведения</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur. Dui laoreet odio blandit
-                neque.
-              </p>
-            </div>
-            <button>+ Добавить</button>
-          </div>
-          <div className={styles.payoutFrequency}>
-            <div className={styles.method}>
-              <p>
-                Частота выплат <img src={pen} alt="" />
-              </p>
-              <p>Как часто средства будут переводиться на ваш счёт</p>
-              <div className={styles.balanceTime}>
-                <span
-                  style={{
-                    color: balanceTime === 1 && "#4A7358",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => setBalanceTime(1)}
-                >
-                  Ежемесячно
-                </span>
-                <span
-                  style={{
-                    color: balanceTime === 2 && "#4A7358",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => setBalanceTime(2)}
-                >
-                  Еженедельно
-                </span>
-                <span
-                  style={{
-                    color: balanceTime === 3 && "#4A7358",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => setBalanceTime(3)}
-                >
-                  Ежедневно
-                </span>
-              </div>
-            </div>
-          </div>
+
           <div className={styles.payoutFrequency}>
             <div className={styles.method}>
               <p>История</p>
@@ -565,7 +525,9 @@ function SettingsAccount() {
           {modalNumber && (
             <div className={styles.modalNumber}>
               <div className={styles.redactir1}>
-                <h2>Пополнить баланс</h2>
+                <h2 style={{ border: "none", padding: "0" }}>
+                  Пополнить баланс
+                </h2>
                 <img
                   onClick={() => setModalNumber(!modalNumber)}
                   src={close}
@@ -596,18 +558,19 @@ function SettingsAccount() {
                   />
                 </div>
               </div>
-              <div className={styles.buttonModalNumber}>
+              <div
+                style={{ marginTop: "60px" }}
+                className={styles.buttonModalNumber}
+              >
                 <button onClick={() => setModal(false)}>Отмена</button>
-                <button onClick={() => setModal(false)}>
-                  Сохранить изменения
-                </button>
+                <button onClick={() => setModal(false)}>Пополнить</button>
               </div>
             </div>
           )}
           {methodPayment && (
             <div className={styles.modalMethodPayment}>
               <div className={styles.redactir2}>
-                <h2>Способ оплаты</h2>
+                <h2 style={{ border: "none", padding: "0" }}>Способ оплаты</h2>
                 <img
                   onClick={() => setMetodPayment(!methodPayment)}
                   src={close}
@@ -683,11 +646,19 @@ function SettingsAccount() {
                 </div>
               </div>
               <div
-                style={{ marginTop: "0" }}
+                style={{ marginTop: "0", width: "545px" }}
                 className={styles.buttonModalNumber}
               >
-                <button onClick={() => setMetodPayment(false)}>Отмена</button>
-                <button onClick={() => setMetodPayment(false)}>
+                <button
+                  style={{ width: "242px" }}
+                  onClick={() => setMetodPayment(false)}
+                >
+                  Отмена
+                </button>
+                <button
+                  style={{ width: "242px" }}
+                  onClick={() => setMetodPayment(false)}
+                >
                   Сохранить изменения
                 </button>
               </div>
@@ -719,22 +690,7 @@ function SettingsAccount() {
           </div>
           <div className={styles.partyServices}>
             <p className={styles.partyService}>Сторонние сервисы</p>
-            <div className={styles.entry}>
-              <img src={google} alt="" />
-              <div className={styles.entry1}>
-                <p>Вход через аккаунт Google</p>
-                <p>Ваш аккаунт Google подключен к учетной записи</p>
-              </div>
-              <button
-                style={{
-                  color: modal ? "black" : "gray",
-                  border: modal ? "1px solid black" : "1px solid gray",
-                }}
-                className={styles.button2}
-              >
-                Уже подключен
-              </button>
-            </div>
+
             <div className={styles.entry}>
               <img src={vk} alt="" />
               <div className={styles.entry1}>
@@ -749,21 +705,7 @@ function SettingsAccount() {
               <p className={styles.partyService}>
                 Двухфакторная аутентификация
               </p>
-              <div className={styles.entry}>
-                <img src={phone1} alt="" />
-                <div className={styles.entry1}>
-                  <p>Подтверждение входа через SMS-код</p>
-                  <p>Lorem ipsum dolor sit amet consectetur.</p>
-                </div>
-                <label className={styles.switch}>
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={handleChecked}
-                  />
-                  <span className={styles.slider}></span>
-                </label>
-              </div>
+
               <div className={styles.entry}>
                 <img src={sms} alt="" />
                 <div className={styles.entry1}>
@@ -780,11 +722,18 @@ function SettingsAccount() {
                 </label>
               </div>
             </div>
+            <div className={styles.passwordOfAccount}>
+              <p>Удалить аккаунт</p>
+              <p>Если в этом есть необходимость, вы можете сделать это здесь</p>
+              <button>Удалить аккаунт</button>
+            </div>
           </div>
           {modal && (
             <div className={styles.modal1}>
               <div className={styles.redactir1}>
-                <h2>Изменить пароль</h2>
+                <h2 style={{ border: "none", padding: "0" }}>
+                  Изменить пароль
+                </h2>
                 <img onClick={() => setModal(!modal)} src={close} alt="" />
               </div>
               <div className={styles.inputs}>
@@ -827,7 +776,7 @@ function SettingsAccount() {
           {modalNumber && (
             <div className={styles.modalNumber}>
               <div className={styles.redactir1}>
-                <h2>Изменить номер</h2>
+                <h2 style={{ border: "none", padding: "0" }}>Изменить номер</h2>
                 <img
                   onClick={() => setModalNumber(!modalNumber)}
                   src={close}
@@ -855,189 +804,28 @@ function SettingsAccount() {
           )}
         </div>
       )}
-      {open === 4 && (
-        <div className={styles.rod2}>
-          <h2>Настройки плана</h2>
-          <div className={styles.namePlan}>
-            <p>Текущий план</p>
-            <p>Название плана</p>
-            <p>Действует с 12 февраля 2024</p>
-            <button>Сменить план</button>
-          </div>
-          <div className={styles.plusPlan}>
-            <p>Преимущества текущего плана</p>
-            <div className={styles.lists}>
-              <div className={styles.list}>
-                <img src={lucide} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <img src={money} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <img src={outline} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <img src={hyper} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className={styles.plusPlan1}>
-            <p>Преимущества "Название" плана</p>
-            <div className={styles.lists}>
-              <div className={styles.list}>
-                <img src={lucide} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <img src={money} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <img src={outline} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <img src={hyper} alt="" />
-                <ul>
-                  Lorem ipsum dolor
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                  <li>Lorem ipsum dolor sit amet</li>
-                </ul>
-              </div>
-            </div>
-            <button>Перейти на "Название" план</button>
-          </div>
-        </div>
-      )}
+
       {open === 5 && (
         <div className={styles.rod2}>
-          <h2>Уведомления</h2>
+          <h2 style={{ marginBottom: "15px" }}>Уведомления</h2>
           <div className={styles.computers}>
             <div className={styles.computer}>
               <img src={computer} alt="" />
-              <p>Компьютер</p>
+              <p style={{fontSize: "22px"}}>Компьютер</p>
             </div>
-            <div className={styles.selects}>
-              <div>
-                <label htmlFor="">
-                  <p>Показывать уведомления:</p>
-                  <select name="" id="">
-                    <option value="">Важные</option>
-                    <option value="">Все</option>
-                  </select>
-                </label>
-              </div>
-              <div>
-                <label htmlFor="">
-                  <p>Счетчик уведомлений:</p>
-                  <select name="" id="">
-                    <option value="">Важные</option>
-                    <option value="">Все</option>
-                  </select>
-                </label>
-              </div>
-            </div>
+            <p className={styles.neprochit}>Звуковой сигнал при получении уведомлений</p>
+            <button>Отключить уведомления</button>
           </div>
-          <div className={styles.computers}>
-            <div className={styles.computer}>
-              <img src={phone1} alt="" />
-              <p>Телефон</p>
-            </div>
-            <div className={styles.selects}>
-              <div>
-                <label htmlFor="">
-                  <p>Показывать уведомления:</p>
-                  <select name="" id="">
-                    <option value="">Важные</option>
-                    <option value="">Все</option>
-                  </select>
-                </label>
-              </div>
-              <div>
-                <label htmlFor="">
-                  <p>Счетчик уведомлений:</p>
-                  <select name="" id="">
-                    <option value="">Важные</option>
-                    <option value="">Все</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-          </div>
+
           <div className={styles.computers}>
             <div className={styles.computer}>
               <img src={sms} alt="" />
-              <p>Электронная почта</p>
+              <p style={{fontSize: "22px"}}>Электронная почта</p>
             </div>
-            <p className={styles.neprochit}>Присылать непрочитанные:</p>
-            <div className={styles.selects}>
-              <div>
-                <label htmlFor="">
-                  <select name="" id="">
-                    <option value="">Все</option>
-                    <option value="">Важные</option>
-                    <option value="">Никакие</option>
-                  </select>
-                </label>
-              </div>
-              <div>
-                <label htmlFor="">
-                  <select name="" id="">
-                    <option value="">Каждые 15 минут</option>
-                    <option value="">Раз в час</option>
-                    <option value="">Раз в сутки</option>
-                  </select>
-                </label>
-              </div>
-            </div>
+            <p className={styles.neprochit}>
+              Присылает уведомления по электронной почте
+            </p>
+            <button style={{backgroundColor: "#000000", color: "#FFFFFF"}}>Присылать уведомления</button>
           </div>
         </div>
       )}
