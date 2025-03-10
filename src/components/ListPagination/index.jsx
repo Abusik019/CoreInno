@@ -5,8 +5,7 @@ import favorite from "../../assets/icons/favorite.png";
 import zipper from "../../assets/icons/zipper.svg";
 import battery from "../../assets/icons/battery.svg";
 import smail from "../../assets/icons/smail.svg";
-
-
+import favoriteAccent from "../../assets/icons/favoriteAccent.svg";
 
 // Данные для карточек
 const data = Array.from({ length: 15 }, (_, i) => ({
@@ -18,12 +17,21 @@ const data = Array.from({ length: 15 }, (_, i) => ({
   price: "-1200₽ за заказ",
   orders: "10 заказов в вашей сфере",
   successRate: "97% успешных заказов",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  description:
+    "Lorem ipsum dolor sit amet consectetur. Nullam feugiat porttitor arcu magna vel fermentum dictumst morbi. Ut id malesuada nisl sit nunc. Pellentesque tellus dignissim eget praesent tellus. In lacus at  rutrum...",
 }));
 
 const ListPagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [favorite1, setFavorite1] = useState(false);
+  const [indexFavorite, setIndexFavorite] = useState(null);
+
   const itemsPerPage = 7;
+
+  function favorites(index) {
+    setFavorite1(!favorite1);
+    setIndexFavorite(index);
+  }
 
   // Определение текущих карточек
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -35,14 +43,14 @@ const ListPagination = () => {
   // Функция для смены страницы
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   };
 
   return (
     <div className={styles.container}>
       {/* Карточки */}
       <div className={styles.cardsContainer}>
-        {currentItems.map((item) => (
+        {currentItems.map((item, index) => (
           <div className={styles.cart} key={item.id}>
             <div className={styles.user}>
               <img className={styles.freelancer} src={freelancer} alt="" />
@@ -55,7 +63,16 @@ const ListPagination = () => {
                 <p>{item.region}</p>
               </div>
               <div className={styles.favorite}>
-                <img src={favorite} alt="" />
+                {favorite1 && indexFavorite === index ? (
+                  <img
+                    onClick={() => favorites(index)}
+                    src={favoriteAccent}
+                    alt=""
+                  />
+                ) : (
+                  <img onClick={() => favorites(index)} src={favorite} alt="" />
+                )}
+
                 <button>Пригласить</button>
               </div>
             </div>
@@ -75,9 +92,9 @@ const ListPagination = () => {
               </span>
             </p>
             <div className={styles.buttons1}>
-              <button>Подходящий навык</button>
-              <button>Подходящий навык</button>
-              <button>Подходящий навык</button>
+              <button> навык</button>
+              <button> навык</button>
+              <button> навык</button>
               <button>навык</button>
               <button>навык</button>
               <button>...</button>
@@ -89,7 +106,6 @@ const ListPagination = () => {
       {/* Пагинация */}
       <div className={styles.pagination}>
         {Array.from({ length: totalPages }, (_, i) => (
-          
           <button
             key={i}
             onClick={() => handlePageChange(i + 1)}

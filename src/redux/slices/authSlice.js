@@ -6,6 +6,7 @@ const initialState = {
     error: null,
     loading: false,
     token: localStorage.getItem("token"),
+    
 };
 
 export const authSignUp = createAsyncThunk(

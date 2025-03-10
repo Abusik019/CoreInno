@@ -259,7 +259,13 @@
 .haveAccount > a:last-child:hover{
     opacity: 0.7;
 }
-
+.passwordForget{
+    width: 390px;
+    display: flex;
+    justify-content: end;
+    opacity: 70%;
+    cursor: pointer;
+}
 
 
 

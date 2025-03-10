@@ -88,31 +88,9 @@
 .buttons1 button{
     margin-right: 10px;
 }
-.buttons1 button:nth-child(1){
-    width: 170px;
-    height: 32px;
-    border-radius: 8px;
-    padding: 8px 16px 8px 16px;
-    background-color: #EAEAEA;
-    color: #000000;
-}
-.buttons1 button:nth-child(2){
-    width: 170px;
-    height: 32px;
-    border-radius: 8px;
-    padding: 8px 16px 8px 16px;
-    background-color: #EAEAEA;
-    color: #000000;
-}
-.buttons1 button:nth-child(3){
-    width: 170px;
-    height: 32px;
-    border-radius: 8px;
-    padding: 8px 16px 8px 16px;
-    background-color: #EAEAEA;
-    color: #000000;
-}
-.buttons1 button:nth-child(4){
+
+
+.buttons1 button{
     width: 75px;
     height: 32px;
     border-radius: 8px;
@@ -120,14 +98,7 @@
     background-color: #EAEAEA;
     color: #00000099;
 }
-.buttons1 button:nth-child(5){
-    width: 75px;
-    height: 32px;
-    border-radius: 8px;
-    padding: 8px 16px 8px 16px;
-    background-color: #EAEAEA;
-    color: #00000099;
-}
+
 .buttons1 button:nth-child(6){
     width: 45px;
     height: 32px;

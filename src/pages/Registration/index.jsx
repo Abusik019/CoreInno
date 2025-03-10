@@ -28,7 +28,7 @@ export default function Registration() {
     const navigate = useNavigate();
     const token = useSelector((state) => state.authSlice.token);
 
-    console.log(token);
+    
 
     function fetchSignUp() {
         dispatch(authSignUp({ email, password, firstName, lastName }));

@@ -16,7 +16,7 @@ import tablerRed from "../../assets/icons/tablerRed.svg"
 
 function Post() {
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);// Хранит выбранный id категории
-  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(0); // Хранит выбранный id подкатегории
+  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState([]); // Хранит выбранный id подкатегории
   const [openSubCategor, setOpenSubCategor] = useState(false)
   const [numberInput, setNumberInput] = useState([{ id: 1 }]);
   const [coverImages, setCoverImages] = useState([]);
@@ -35,6 +35,13 @@ function Post() {
   useEffect(() => {
     dispatch(fetchSubCategoryId());
   }, [dispatch]);
+
+  function handleSubCategoryClick(id) {
+    setSelectedSubCategoryId((prevIds) => 
+      prevIds.includes(id) ? prevIds.filter((subId) => subId !== id) : [...prevIds, id]
+    );
+  }
+  
 
   function clearInput() {
     setNumberInput((prevInputs) => [...prevInputs, { id: Date.now() }])
@@ -117,8 +124,8 @@ function Post() {
             <li
               key={item.id}
               style={{
-                color: item.id === selectedCategoryId ? "#FFFFFF" : "#000000",
-                backgroundColor: item.id === selectedCategoryId ? "#000000" : "#FFFFFF",
+                backgroundColor: item.id === selectedCategoryId ? "transparent" : "#EAEAEA",
+                border: item.id === selectedCategoryId ? "1px solid #000000" : "none",
               }}
               onClick={() => handleClickCategor(item.id)} // Устанавливаем id выбранной категории
             >
@@ -131,11 +138,11 @@ function Post() {
           { openSubCategor && subCategory
             .filter((subcat) => subcat.categoryId === selectedCategoryId) // Фильтруем по выбранной категории
             .map((subcat) => (
-              <span onClick={() => setSelectedSubCategoryId(subcat.id)} style={{
+              <span onClick={() => handleSubCategoryClick(subcat.id)}  style={{
                 cursor: "pointer",
-                 color: subcat.id === selectedSubCategoryId ? "#FFFFFF" : "#000000",
-                backgroundColor: subcat.id === selectedSubCategoryId ? "#000000" : "#EAEAEA"
-                 }} key={subcat.id} className={styles.subCategoryTag}>
+                backgroundColor: selectedSubCategoryId.includes(subcat.id) ? "transparent" : "#EAEAEA",
+                border: selectedSubCategoryId.includes(subcat.id) ? "1px solid #000000 " : "none",
+              }} key={subcat.id} className={styles.subCategoryTag}>
                 {subcat.rusName}
               </span>
             ))}
@@ -149,7 +156,7 @@ function Post() {
           style={{ display: "none" }} 
           onChange={handleImageChange}
         />
-       {coverImages.length === 0 &&  <button onClick={() => document.getElementById("cover-upload").click()}>
+       {coverImages.length === 0 &&  <button style={{color: "#543BA7"}} onClick={() => document.getElementById("cover-upload").click()}>
           Добавить обложку <img src={ggAdd} alt="" />{" "}
         </button>}
 

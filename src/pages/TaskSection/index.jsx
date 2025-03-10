@@ -9,8 +9,8 @@ import shareImg from "../../assets/icons/share.svg";
 import pigImg from "../../assets/icons/pig.svg";
 import { useState } from "react";
 import close from "../../assets/icons/close.svg";
-import stats from "../../assets/icons/Stats.svg"
-import group from "../../assets/icons/Group.svg"
+import stats from "../../assets/icons/Stats.svg";
+import group from "../../assets/icons/Group.svg";
 
 function TaskSection() {
   const [fixPayment, setFixPayment] = useState(false);
@@ -18,41 +18,49 @@ function TaskSection() {
 
   return (
     <div className={styles.announcement}>
-      <div className={styles.static}>
-        <span
-          onClick={() => setNumber(1)}
-          style={{
-            color: number === 1 ? "#000000" : "gray",
-            cursor: "pointer",
-            borderBottom: number === 1 && "2px inset #000000",
-          }}
-        >
-          Обзор
-        </span>
-        <span
-          onClick={() => setNumber(2)}
-          style={{
-            color: number === 2 ? "#000000" : "gray",
-            cursor: "pointer",
-            borderBottom: number === 2 && "2px inset #000000",
-          }}
-        >
-          Статистика
-        </span>
-        <span
-          onClick={() => setNumber(3)}
-          style={{
-            color: number === 3 ? "#000000" : "gray",
-            cursor: "pointer",
-            borderBottom: number === 3 && "2px inset #000000",
-          }}
-        >
-          Отклики(100+)
-        </span>
-      </div>
       <div className={styles.announcementContainer}>
         {number === 1 && (
-          <div className={styles.announcementContent}>
+          <div
+            style={{
+              border: "1px solid #EAEAEA",
+              padding: "30px 25px 30px 25px",
+              borderRadius: "12px",
+              boxSizing: "border-box",
+            }}
+            className={styles.announcementContent}
+          >
+            <div className={styles.static}>
+              <span
+                onClick={() => setNumber(1)}
+                style={{
+                  color: number === 1 ? "#000000" : "gray",
+                  cursor: "pointer",
+                  borderBottom: number === 1 && "2px inset #000000",
+                }}
+              >
+                Обзор
+              </span>
+              <span
+                onClick={() => setNumber(2)}
+                style={{
+                  color: number === 2 ? "#000000" : "gray",
+                  cursor: "pointer",
+                  borderBottom: number === 2 && "2px inset #000000",
+                }}
+              >
+                Статистика
+              </span>
+              <span
+                onClick={() => setNumber(3)}
+                style={{
+                  color: number === 3 ? "#000000" : "gray",
+                  cursor: "pointer",
+                  borderBottom: number === 3 && "2px inset #000000",
+                }}
+              >
+                Отклики(100+)
+              </span>
+            </div>
             <div className={styles.announcementTitleBlock}>
               <h1>Дизайн логотипа для кондитерской лавки</h1>
               <div className={styles.taskInfo}>
@@ -105,6 +113,22 @@ function TaskSection() {
                 metus. Feugiat arcu molestie gravida nec sem magna odio a etiam.
                 Aliquam nisl et quam pellentesque.
               </p>
+            </div>
+            <div className={styles.investments}>
+              <h2>Вложения</h2>
+              <p>Прикрепленные файлы:</p>
+              <div className={styles.buttons}>
+                <button>
+                  document.docx <img src={close} alt="" />{" "}
+                </button>
+                <button>
+                  document.docx <img src={close} alt="" />
+                </button>
+                <button>
+                  document.docx <img src={close} alt="" />
+                </button>
+                <button className={styles.clear}>+</button>
+              </div>
             </div>
             <div className={styles.announcementCategories}>
               <h2>Категория заказа</h2>
@@ -191,27 +215,63 @@ function TaskSection() {
               </div>
             )}
 
-            <div className={styles.investments}>
-              <h2>Вложения</h2>
-              <p>Прикрепленные файлы:</p>
-              <div className={styles.buttons}>
+            <div className={styles.linkToTask}>
+              <h2>Ссылка на задание</h2>
+              <div className={styles.linkToTaskActions}>
+                <button>https://music.yandex.ru/artist/54254</button>
                 <button>
-                  document.docx <img src={close} alt="" />{" "}
+                  <img src={copyImg} width={24} height={24} alt="copy" />
                 </button>
                 <button>
-                  document.docx <img src={close} alt="" />
+                  <img src={shareImg} width={24} height={24} alt="share" />
                 </button>
-                <button>
-                  document.docx <img src={close} alt="" />
-                </button>
-                <button className={styles.clear}>+</button>
               </div>
             </div>
           </div>
         )}
         {number === 2 && (
-          <div className={styles.statics}>
-            <div className={styles.line}></div>
+          <div
+            style={{
+              border: "1px solid #EAEAEA",
+              padding: "30px 25px 30px 25px",
+              borderRadius: "12px",
+              boxSizing: "border-box",
+            }}
+            className={styles.statics}
+          >
+            <div className={styles.static}>
+              <span
+                onClick={() => setNumber(1)}
+                style={{
+                  color: number === 1 ? "#000000" : "gray",
+                  cursor: "pointer",
+                  borderBottom: number === 1 && "2px inset #000000",
+                }}
+              >
+                Обзор
+              </span>
+              <span
+                onClick={() => setNumber(2)}
+                style={{
+                  color: number === 2 ? "#000000" : "gray",
+                  cursor: "pointer",
+                  borderBottom: number === 2 && "2px inset #000000",
+                }}
+              >
+                Статистика
+              </span>
+              <span
+                onClick={() => setNumber(2)}
+                style={{
+                  color: number === 3 ? "#000000" : "gray",
+                  cursor: "pointer",
+                  borderBottom: number === 3 && "2px inset #000000",
+                }}
+              >
+                Отклики(100+)
+              </span>
+            </div>
+
             <h1>Дизайн логотипа для кондитерской лавки</h1>
             <div className={styles.taskInfo}>
               <h2>Дата публикации: 21.12.2024</h2>
@@ -272,24 +332,9 @@ function TaskSection() {
               <li>Figma</li>
               <li>Figma</li>
             </ul>
-            <button className={styles.complaint}>Удалить объявление</button>
           </div>
         </div>
       </div>
-      {number === 1 && (
-        <div className={styles.linkToTask}>
-        <h2>Ссылка на задание</h2>
-        <div className={styles.linkToTaskActions}>
-          <button>https://music.yandex.ru/artist/54254</button>
-          <button>
-            <img src={copyImg} width={24} height={24} alt="copy" />
-          </button>
-          <button>
-            <img src={shareImg} width={24} height={24} alt="share" />
-          </button>
-        </div>
-      </div>
-      )}
     </div>
   );
 }
