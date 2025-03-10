@@ -27,11 +27,12 @@ import MyAnnouncements from './pages/MyAnnouncements';
 import AllResponses from './pages/AllResponses';
 import CreateFreelancerProfile from './pages/CreateFreelancerProfile';
 import CreateCustomerProfile from './pages/CreateCustomerProfile';
+import Lending from './pages/Lending';
 
 function App() {
   return (
     <Routes>
-        <Route path='/' element={<Home />}/>
+        <Route path='/' element={<Lending />}/>
         <Route path='/registration' element={<Registration />}/>
         <Route path='/email-confirm' element={<EmailConfirm />}/>
         <Route path='/login' element={<Login/>}/>

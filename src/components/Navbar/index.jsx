@@ -4,26 +4,26 @@ import { Link, useNavigate } from 'react-router-dom';
 import { TabsComponent } from '../TabsComponent';
 
 import listImg from '../../assets/icons/list.svg';
-import heartImg from '../../assets/icons/heart.svg';
-import notificationImg from '../../assets/icons/notification.svg';
+import whiteListImg from '../../assets/icons/whiteList.svg';
+import heartImg from '../../assets/icons/whiteHeart.svg';
+import notificationImg from '../../assets/icons/whiteNotification.svg';
 import freelancersImg from '../../assets/icons/freelancers.svg';
 import bagImg from '../../assets/icons/bag.svg';
 import freelancerAvatar from '../../assets/images/freelancer.png';
 import arrowImg from '../../assets/icons/smallArrow.svg';
 import settingImg from '../../assets/icons/setting.svg';
 import exitImg from '../../assets/icons/exit.svg';
-import jobifyLogo from '../../assets/icons/logoJobify.svg';
+import jobifyLogo from '../../assets/icons/whiteLogoJobify.svg';
 import wallerImg from '../../assets/icons/wallet.svg';
-import rhombusImg from '../../assets/icons/whiteRhombus.svg';
 
 export const Navbar = () => {
     const navigate = useNavigate();
     const [isNavbarDropdown, setIsNavbarDropdown] = useState({order: false, work: false, notifications: false, profile: false, search: false});
     const [isShowSearch, setIsShowSearch] = useState(false);
     const [isReadNot, setIsReadNot] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const wrapperRef = useRef(null);
 
-    // Обработчик клика вне searchWrapper
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -72,12 +72,6 @@ export const Navbar = () => {
             <ul className={styles.navPanel}>
                 <li>
                     <h2 onClick={() => toggleNavDropdown('order')} style={{opacity: isNavbarDropdown.order ? '1' : '0.7'}}>Заказы</h2>
-                    <img
-                        src={rhombusImg}
-                        width={24}
-                        height={24}
-                        alt="rhombus"
-                    />
                     <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
                         <Link to="#">Разместить заказ</Link>
                         <Link to="#">Мои заказы</Link>
@@ -85,12 +79,6 @@ export const Navbar = () => {
                 </li>
                 <li>
                     <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
-                    <img
-                        src={rhombusImg}
-                        width={24}
-                        height={24}
-                        alt="rhombus"
-                    />
                     <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
                         <Link to="#">Каталог</Link>
                         <Link to="#">Недавно просмотренные</Link>
@@ -99,7 +87,7 @@ export const Navbar = () => {
                     </div>
                 </li>
                 <li><Link to="#">Наш курс</Link></li>
-                <li><Link to="#">Чат</Link></li>
+                {isLogin && <li><Link to="#">Чат</Link></li>}
             </ul>
         </div>
         <div className={styles.rightSide}>
@@ -113,7 +101,7 @@ export const Navbar = () => {
                         />
                         <button className={`${styles.searchDropdown} ${isShowSearch ? styles.visible : ''}`} onClick={toggleDropdown}>
                             <img 
-                                src={listImg} 
+                                src={whiteListImg} 
                                 width={18}
                                 height={18}
                                 alt="list" 
@@ -151,23 +139,27 @@ export const Navbar = () => {
                         </div>
                     </div>
                 </div>
-                <Link to="#">
-                    <img 
-                        src={heartImg}
-                        width={20}
-                        height={20}
-                        alt="heart" 
-                    />
-                </Link>
-                <button onClick={() => toggleNavDropdown('notifications')}>
-                    <img 
-                        src={notificationImg}
-                        width={20}
-                        height={20}
-                        alt="notification" 
-                        style={{opacity: isNavbarDropdown.notifications ? '1' : '0.2'}}
-                    />
-                </button>
+                {isLogin &&  
+                    <Link to="#">
+                        <img 
+                            src={heartImg}
+                            width={20}
+                            height={20}
+                            alt="heart" 
+                        />
+                    </Link>
+                }
+                {isLogin && 
+                    <button onClick={() => toggleNavDropdown('notifications')}>
+                        <img 
+                            src={notificationImg}
+                            width={20}
+                            height={20}
+                            alt="notification" 
+                        />
+                    </button>
+                }
+                {!isLogin && <Link className={styles.login} to='/login'>Войти</Link>}
                 <div className={`${styles.notifictionsDropdown} ${isNavbarDropdown.notifications ? styles.visible : ''}`}>
                     <div className={styles.notificationsTitleBlock}>
                         <h2>Уведомления</h2>
@@ -175,14 +167,16 @@ export const Navbar = () => {
                     </div>
                     <TabsComponent />
                 </div>
-                <button className={styles.profileBtn} onClick={() => toggleNavDropdown('profile')}>
-                    <img 
-                        src={freelancerAvatar}
-                        width={48}
-                        height={48}
-                        alt="avatar" 
-                    />
-                </button>
+                {isLogin && 
+                    <button className={styles.profileBtn} onClick={() => toggleNavDropdown('profile')}>
+                        <img 
+                            src={freelancerAvatar}
+                            width={48}
+                            height={48}
+                            alt="avatar" 
+                        />
+                    </button>
+                }
                 <div className={`${styles.profileDropdown} ${isNavbarDropdown.profile ? styles.visible : ''}`}>
                     <div className={styles.profileInfo}>
                         <div className={styles.profileName}>
