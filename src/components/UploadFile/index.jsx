@@ -27,13 +27,13 @@ const UploadFile = ({ setFiles }) => (
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: 'transparent',
+            backgroundColor: '#EAEAEA40',
             borderColor: '#000',
             borderStyle: 'dashed',
         }}
     >
         <p className="ant-upload-text">
-            <span style={{ textDecoration: "underline" }}>Нажмите для загрузки</span> или перетащите файл
+            Нажмите для загрузки или перетащите файл
         </p>
         <p className="ant-upload-text">Максимальный размер файла 100МБ</p>
     </Dragger>

@@ -1,90 +1,108 @@
 import styles from "./style.module.css";
 import CreateTaskLoad from "../../../components/CreateTaskLoad";
-import { Link } from 'react-router-dom';
+import { GradientText } from "../../../components/GradientText";
 
 import rubleImg from '../../../assets/icons/ruble.svg';
 import plusImg from '../../../assets/icons/plus.svg';
 
-export default function CreateTaskPageFive({ setPage }) {
+export default function CreateTaskPageFive({ setPage, setTask, task }) {
+    const disabledBtn = Boolean(task.stages.length && task.stages[0].name && task.stages[0].price);
 
     const handleAddStage = () => {
-        const li = document.createElement('li');
-    
-        li.innerHTML = `
-            <input type="text" class="${styles.stageName}" placeholder="Название этапа" required/>
-            <input type="text" class="${styles.stagePrice}" placeholder="Цена" required/>
-            <img
-                src="${rubleImg}"
-                width="11"
-                height="20"
-                alt="ruble"
-            />
-        `;
-        
-        document.getElementById('stages').appendChild(li);
-    }
+        setTask(prev => ({
+            ...prev,
+            stages: [...prev.stages, { name: "", price: "" }]
+        }));
+    };
+
+    const handleStageChange = (index, field, value) => {
+        setTask(prev => {
+            const updatedStages = prev.stages.map((stage, i) =>
+                i === index ? { ...stage, [field]: value } : stage
+            );
+            return { ...prev, stages: updatedStages };
+        });
+    };
 
     return (
         <div className={styles.createTask}>
             <div className={styles.createTaskContainer}>
                 <div className={styles.titleBlock}>
-                    <h2>Определим Ваш бюджет</h2>
+                    <h2>Определим Ваш <GradientText text="бюджет"/></h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur. Tincidunt sed placerat erat proin cursus. Sed amet ac congue
+                        Определите приоритеты проекта, выделите средства на ключевые этапы, оцените стоимость исполнителей, оставьте резерв на непредвиденные расходы и поддерживайте гибкость в распределении бюджета
                     </p>
                 </div>
                 <div className={styles.yourBudget}>
                    <div className={styles.selectPaymentMethod}>
                         <div>
                             <label htmlFor="payment1">Оплата по этапам</label>
-                            <input id="payment1" type="checkbox" />
+                            <input id="payment1" type="checkbox" 
+                                checked={task.paymentMethod === 'byStages'} 
+                                onChange={() => setTask(prev => ({
+                                    ...prev,
+                                    paymentMethod: "byStages"
+                                }))}/>
                         </div>
                         <div>
                             <label htmlFor="payment2">Фиксированная оплата</label>
-                            <input id="payment2" type="checkbox" />
+                            <input id="payment2" type="checkbox" 
+                                checked={task.paymentMethod === 'fixed'} 
+                                onChange={() => setTask(prev => ({
+                                    ...prev,
+                                    paymentMethod: "fixed"
+                                }))}/>
                         </div>
                    </div>
-                   <p>Lorem ipsum dolor sit amet consectetur. Tincidunt sed placerat erat proin cursus. Sed amet ac congue</p>
-                   <h2>Оплата по этапам</h2>
-                   <p>Lorem ipsum dolor sit amet consectetur. Tincidunt sed placerat erat proin cursus. Sed amet ac congue</p>
-                   <div className={styles.paymentStages}>
-                        <button className={styles.generateWithAI}>Сгенерировать с помощью ИИ</button>
-                        <ul className={styles.stages} id="stages">
-                            <li>
-                                <input type="text" className={styles.stageName} placeholder="Название этапа" required/>
-                                <input type="text" className={styles.stagePrice} placeholder="Цена" required/>
-                                <img
-                                    src={rubleImg}
-                                    width={11}
-                                    height={20}
-                                    alt="ruble" 
-                                />
-                            </li>
-                            <li>
-                                <input type="text" className={styles.stageName} placeholder="Название этапа" required/>
-                                <input type="number" className={styles.stagePrice} placeholder="Цена" required/>
-                                <img 
-                                    src={rubleImg}
-                                    width={11}
-                                    height={20}
-                                    alt="ruble" 
-                                />
-                            </li>
-                        </ul>
-                        <button className={styles.addStage} onClick={handleAddStage}>
-                            <span>Добавить этап</span>
-                            <img 
-                                src={plusImg}
-                                width={18}
-                                height={18}
-                                alt="plus" 
-                            />
-                        </button>
-                        <Link to="#">Руководство по способу оплаты</Link>
-                   </div>
+                   <p>Вы можете выбрать: разделить работу на этапы и заплатить отдельно за каждый этап или заплатить сразу за весь объём</p>
+                   {task.paymentMethod === 'byStages' && 
+                        <>
+                            <h2>Оплата по этапам <span style={{color: "#F63939"}}>*</span></h2>
+                            <p>Разделите Ваше задание на этапы и производите оплату за каждый этап перед началом выполнения заказчиком данного этапа</p>
+                            <div className={styles.paymentStages}>
+                                    <ul className={styles.stages}>
+                                        {task.stages.map((stage, index) => (
+                                            <li key={index}>
+                                                <input 
+                                                    type="text" 
+                                                    className={styles.stageName} 
+                                                    placeholder="Название этапа" 
+                                                    value={stage.name}
+                                                    onChange={(e) => handleStageChange(index, "name", e.target.value)}
+                                                    required
+                                                />
+                                                <input 
+                                                    type="number" 
+                                                    className={styles.stagePrice} 
+                                                    placeholder="Ваш бюджет" 
+                                                    value={stage.price}
+                                                    onChange={(e) => handleStageChange(index, "price", e.target.value)}
+                                                    required
+                                                />
+                                                <img
+                                                    src={rubleImg}
+                                                    width={11}
+                                                    height={20}
+                                                    alt="ruble" 
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <button className={styles.addStage} onClick={handleAddStage}>
+                                        <span>Добавить этап</span>
+                                        <img 
+                                            src={plusImg}
+                                            width={18}
+                                            height={18}
+                                            alt="plus" 
+                                        />
+                                    </button>
+                            </div>
+                        </>
+                   }
                 </div>
             </div>
-            <CreateTaskLoad prev={4} next={6} setPage={setPage} maxPage={6}/>
+            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={6} disabled={task.paymentMethod === 'fixed' ? false : !disabledBtn}/>
         </div>
     );
 }

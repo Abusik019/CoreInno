@@ -1,177 +1,149 @@
 import styles from "./style.module.css";
-import { Link } from 'react-router-dom';
 import { useState } from "react";
 
-import editImg from '../../../assets/icons/pen.svg';
-import plusImg from '../../../assets/icons/plus.svg';
 import avatarImg from '../../../assets/images/freelancer.png';
-import humanImg from '../../../assets/icons/human.svg';
-import deleteImg from '../../../assets/icons/close.svg';
-import closeImg from '../../../assets/icons/close.svg';
+import sandTimerImg from "../../../assets/icons/sandTimer.svg";
+import pigImg from '../../../assets/icons/pig.svg';
+import fileImg from '../../../assets/icons/file2.svg';
+import arrowImg from '../../../assets/icons/smallArrow.svg';
+import Modal from '../../../components/Modal/index';
 
-export default function CreateTaskPageSeven({ setPage }) {
+export default function CreateTaskPageSeven({ setPage, task }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isHideDesc, setIsHideDesc] = useState(false);
 
     return (
-        <div className={styles.createTask}>
-            <h2>Детали заказа</h2>
-            <div className={styles.orderDetails}>
-                <div className={styles.orderTitleWrapper}>
-                    <div className={styles.orderTitleBlock}>
-                       <h2>Дизайн логотипа для кондитерской лавки</h2>
-                       <Link to='/create-task-1'>
-                            <img 
-                                src={editImg}
-                                width={24}
-                                height={24}
-                                alt="edit" 
-                            />
-                       </Link>
+        <div className={styles.createTaskWrapper}>
+            <div className={styles.createTask}>
+                <div className={styles.createTaskContent}>
+                    <div className={styles.titleContainer}>
+                        <h1>{task.title}</h1>
+                        <h2>Дата публикации: {task.details.deadlines.date.replaceAll('-', '.')}</h2>
+                        <div>
+                            <img src={avatarImg} width={58} height={58} alt="avatar" />
+                            <div className={styles.userInfo}>
+                                <h3>Заказчик</h3>
+                                <h4>Жанна Кондратьева <span>5.0</span></h4>
+                                <h5>Регион</h5>
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.actionsWithTask}>
-                        <button className={styles.deleteTask}></button>
-                        <button className={styles.saveDraft}>
-                            <img 
-                                src={plusImg}
-                                width={18}
-                                height={18}
-                                alt="plus" 
-                            />
-                            <h2>Сохранить черновик</h2>
-                        </button>
+                    <div className={styles.descContainer}>
+                        <div>
+                            <h2>Описание заказа</h2>
+                            <button 
+                                onClick={() => setIsHideDesc((prev) => !prev)}
+                                style={{transform: isHideDesc ? 'rotate(0deg)' : 'rotate(180deg)'}}
+                            >
+                                <img src={arrowImg} width={20} height={20} alt="arrrow" />
+                            </button>
+                        </div>
+                        {!isHideDesc &&
+                        <p>
+                            {task.desc}
+                        </p>
+                        }
+                    </div>
+                    {task.notes && 
+                        <div className={styles.notesContainer}>
+                            <h2>Примечания</h2>
+                            <p>{task.notes}</p>
+                        </div>
+                    }
+                    <div className={styles.filesContainer}>
+                        <h2>Вложения</h2>
+                        <ul>
+                            {task.files.map((file, index) => (
+                                <li key={index}>{file.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className={styles.categoryContainer}>
+                        <h2>Категория заказа</h2>
+                        <div>{task.details.mainCategory.rusName}</div>
+                    </div>
+                    <div className={styles.detailsContainer}>
+                        <h2>Детали заказа</h2>
+                        <ul>
+                            <li>
+                                <div>
+                                    <h2>Фиксированная оплата</h2>
+                                    <h3>Заказчик платит фиксированную сумму</h3>
+                                </div>
+                                <img
+                                    src={pigImg}
+                                    width={20}
+                                    height={20}
+                                    alt="circle"
+                                />
+                            </li>
+                            <li>
+                                <div>
+                                    <h2>Сроки</h2>
+                                    <h3>Не более 2-х месяцев</h3>
+                                </div>
+                                <img
+                                    src={sandTimerImg}
+                                    width={20}
+                                    height={20}
+                                    alt="sand timer"
+                                />
+                            </li>
+                            <li>
+                                <div>
+                                    <h2>Цена в качестве</h2>
+                                    <h3>Согласен на большую плату опытному специалисту</h3>
+                                </div>
+                                <img
+                                    src={fileImg}
+                                    width={20}
+                                    height={20}
+                                    alt="file"
+                                />
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div className={styles.orderContent}>
-                    <div className={styles.orderContentLeft}>
-                        <div className={styles.orderNameWrapper}>
-                            <div className={styles.orderName}>
-                                <img 
-                                    src={avatarImg}
-                                    width={54}
-                                    height={54}
-                                    alt="user avatar"
-                                    style={{borderRadius: '8px'}}
-                                />
-                                <div>
-                                    <h2>Имя</h2>
-                                    <h3>Москва, Россия</h3>
-                                    <h4>номер подтвержден</h4>
-                                    <h5>способ оплаты не подтвержден</h5>
-                                    <h6>На бирже с 22 мая 2009</h6>
-                                </div>
-                                <button style={{backgroundColor: "transparent", cursor: "default"}}>
-                                    <img 
-                                        src={humanImg}
-                                        width={12}
-                                        height={12}
-                                        alt="human" 
-                                    />
-                                </button>
-                            </div>
-                            <div className={styles.orderFiles}>
-                                <h2>Вложения</h2>
-                                <h3>Прикрепленные файлы</h3>
-                                <ul>
-                                    <li>
-                                        <h2>фон.jpg</h2>
-                                        <img 
-                                            src={deleteImg}
-                                            width={18}
-                                            height={18}
-                                            alt="delete" 
-                                        />
-                                    </li>
-                                    <li>
-                                        <h2>логотип.ai</h2>
-                                        <img 
-                                            src={deleteImg}
-                                            width={18}
-                                            height={18}
-                                            alt="delete" 
-                                        />
-                                    </li>
-                                </ul>
-                                <Link to='/create-task-5'>
-                                    <img 
-                                        src={editImg}
-                                        width={16}
-                                        height={16}
-                                        alt="edit"
-                                    />
-                                </Link>
-                            </div>
-                        </div>
-                        <div className={styles.orderDesciprion}>
-                            <div>
-                                <h2>Описание заказа</h2>
-                                <Link to='/create-task-5'>
-                                    <img 
-                                        src={editImg}
-                                        width={16}
-                                        height={16}
-                                        alt="edit" 
-                                    />
-                                </Link>
-                            </div>
-                            <p>Мы ищем талантливого специалиста для создания визуально привлекательного логотипа для кондитерской лавки. Это отличная возможность  внести свой вклад в создание нового и уникального кондитерского дела.</p>
-                        </div>
-                        <div className={styles.orderCategories}>
-                            <div>
-                                <h2>Категория заказа</h2>
-                                <Link to='/create-task-3'>
-                                    <img 
-                                        src={editImg}
-                                        width={16}
-                                        height={16}
-                                        alt="edit" 
-                                    />
-                                </Link>
-                            </div>
-                            <h2>Графический дизайн</h2>
-                        </div>
+                <div className={styles.createTaskAside}>
+                    <div className={styles.asideActions}>
+                        <button>В черновики</button>
+                        <button></button>
                     </div>
-                    <div className={styles.orderContentRight}>
-                        <h2>Детали заказа</h2>
-                        <h3>Бюджет</h3>
-                        <h4>Фиксированный</h4>
-                        <h5>22,000₽ - 30,000₽</h5>
-                        <h6>Теги / навыки</h6>
-                        <ul className={styles.orderSkills}>
-                            <li>Графический дизайн</li>
-                            <li>Брендинг</li>
-                            <li>Adobe smth</li>
-                            <li>Adobe smth</li>
+                    <div className={styles.aboutClient}>
+                        <h2>О заказчике</h2>
+                        <h3>
+                            Россия, г. Казань
+                            <br />
+                            21:00
+                        </h3>
+                        <ul className={styles.clientInfo}>
+                            <li>Почта подтверждена</li>
+                            <li>Способ оплаты добавлен</li>
+                        </ul>
+                        <h5>Ожидаемые навыки</h5>
+                        <ul className={styles.expectedSkills}>
+                            {task.details.subcategories.map(item => (
+                                <li key={item.id}>{item.rusName}</li>
+                            ))}
                         </ul>
                     </div>
                 </div>
             </div>
             <div className={styles.buttonsContainer}>
-                <button className={styles.return} onClick={() => setPage(6)}>Вернуться</button>
+                <button onClick={() => setPage(5)}>Вернуться</button>
                 <h2>6 из 6</h2>
-                <button onClick={() => setIsModalOpen(true)}>Опубликовать заказ</button>
+                <button onClick={() => setIsModalOpen(true)}>Продолжить</button>
             </div>
-            {isModalOpen && (
-                <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
-                    <div className={styles.modal} onClick={e => e.stopPropagation()}>
-                        <div className={styles.modalText}>
-                            <h2>Что произойдет после публикации<br/>заказа?</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur. Vitae non sed suscipit id id posuere. Viverra sem quis?</p>
-                        </div>
-                        <div className={styles.modalBtns}>
-                            <button onClick={() => setIsModalOpen(false)}>Редактировать</button>
-                            <button onClick={() => setPage(8)}>Опубликовать задание</button>
-                        </div>
-                        <button className={styles.closeModal} onClick={() => setIsModalOpen(false)}>
-                            <img 
-                                src={closeImg}
-                                width={20}
-                                height={20}
-                                alt="close modal" 
-                            />
-                        </button>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <div className={styles.modalContent}>
+                    <h2>Что произойдет после публикации заказа?</h2>
+                    <p>Вы начнёте получать отклики от фрилансеров с предложением исполнить ваш заказ</p>
+                    <div>
+                        <button onClick={() => setIsModalOpen(false)}>Отмена</button>
+                        <button onClick={() => setPage(7)}>Опубликовать</button>
                     </div>
                 </div>
-            )}
+            </Modal>
         </div>
     );
 }

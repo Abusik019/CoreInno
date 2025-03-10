@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 
 export const Textarea = ({ value = "", maxLength = 1000, onChange }) => {
     const [textareaValue, setTextareaValue] = useState(value);
-    console.log(value);
+    
     return (
         <>
             <textarea

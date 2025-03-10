@@ -2,9 +2,10 @@
     width: 100%;
     height: fit-content;
 
-    background-color: #EAEAEA;
+    background-color: #EAEAEA40;
 
     border-radius: 12px;
+    border: 1px solid #EAEAEA;
 
     padding: 36px 40px;
     box-sizing: border-box;
@@ -15,6 +16,40 @@
 
     position: relative;
 
+    .orderTheme{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        >h2, >h3{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 16px;
+
+            opacity: 0.7;
+        }
+    }
+
+    >h2{
+        margin-top: 15px;
+
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 31px;
+
+        max-width: 75%;
+    }
+
+    >p{
+        margin-top: 15px;
+
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 20px;
+
+        opacity: 0.7;
+    }
+
     > .orderMenu{
         position: absolute;
         top: 17px;
@@ -23,6 +58,9 @@
         background-color: transparent;
         border: none;
         outline: none;
+
+        width: 24px;
+        height: 24px;
     }
 
     > .orderDropdown{
@@ -38,11 +76,11 @@
 
         background-color: #fff;
 
-        border-radius: 12px;
-        box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.02);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px #0000000D;
 
         position: absolute;
-        top: 47px;
+        top: 40px;
         right: 27px;
 
         display: flex;
@@ -74,19 +112,7 @@
         }
 
         > a:hover{
-            background-color: rgb(227, 227, 227);
-        }
-        
-        > :first-child{
-            border-radius: 12px 12px 0 0;
-        }
-
-        > :nth-child(2){
-            border-radius: 0;
-        }
-
-        > :last-child{
-            border-radius: 0 0 12px 12px;
+            background-color: #EAEAEA80;
         }
     }
      
@@ -98,51 +124,8 @@
         z-index: 2;
     }
 
-    > .orderTitleBlock{
-        width: 95%;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        > h2{
-            font-size: 28px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 110%;
-
-            width: 75%;
-
-            text-align: left;
-        }
-
-        > h3{
-            font-size: 28px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 110%;
-
-            opacity: 1;
-        }
-    }
-
-    > p{
-        margin-top: 16px;
-
-        width: 89%;
-
-        text-align: left;
-
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 110%;
-
-        opacity: 0.7;
-    }
-
     > .orderInfo{
-        margin-top: 33px;
+        margin-top: 25px;
 
         display: flex;
         align-items: center;
@@ -166,12 +149,32 @@
                 opacity: 0.5;
             }
 
-            > h4{
-                color: #6CCA6C;
+            .pendingOrder, .doneOrder{
+                background-position: 12px;
+                background-size: auto;
+                background-repeat: no-repeat;
+
+                padding: 5px 12px 5px 32px;
+
+                border-radius: 8px;
+            }
+
+            .pendingOrder{
+                background-image: url('../../assets/icons/pending.svg');
+
+                color: #D98129;
+                background-color: #FFF4CE80;
+            }
+
+            .doneOrder{
+                background-image: url('../../assets/icons/done.svg');
+
+                color: #2E552C;
+                background-color: #DCFFCA80;
             }
         }
 
-        > .orderInfoRight{
+        > .orderInfoLeft{
             > div{
                 font-size: 18px;
                 font-style: normal;
