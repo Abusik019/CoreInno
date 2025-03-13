@@ -9,34 +9,10 @@ import krestikImg from "../../../assets/icons/close.svg";
 import plusImg from "../../../assets/icons/plus.svg";
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 
-const mockCategories = [
-    {
-        id: 1,
-        rusName: 'sport'
-    },
-    {
-        id: 2,
-        rusName: 'fashion'
-    },
-    {
-        id: 3,
-        rusName: 'moda'
-    },
-    {
-        id: 4,
-        rusName: 'gamedev'
-    },
-    {
-        id: 5,
-        rusName: 'italian'
-    },
-]
-
 export default function CreateProfilePageTwo({ setPage, setUser, user }) {
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.category.category);
     const [choosenCategories, setChoosenCategories] = useState([]);
-    const disabledBtn = choosenCategories?.length ? true : false;
 
     useEffect(() => {
         dispatch(fetchCategory());
@@ -45,8 +21,6 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
     useEffect(() => {
         setChoosenCategories(user.userCategories);
     }, [user.userCategories]);
-
-    console.log(choosenCategories);
 
     return (
         <div className={styles.createProfile}>
@@ -57,11 +31,15 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
                     По желанию, Вы можете выбрать одну или несколько сфер деятельности или оставить это поле пустым. Не переживайте, Ваш выбор можно изменить позже (не более 4 категорий)
                 </h3>
                 <ul className={styles.categories}>
-                    {mockCategories.length !== 0 &&
-                        mockCategories.map((item) => (
+                    {categories.length !== 0 &&
+                        categories.map((item) => (
                             <li
                                 key={item.id}
-                                onClick={() => !choosenCategories.includes(item.id) && setChoosenCategories((prev) => [...prev, item.id])}
+                                onClick={() => {
+                                    if(choosenCategories.length < 4){
+                                        !choosenCategories.includes(item.id) && setChoosenCategories((prev) => [...prev, item.id])
+                                    }
+                                }}
                                 style={{
                                     backgroundColor: choosenCategories.includes(item.id) ? "#fff" : "#EAEAEA",
                                     border: choosenCategories.includes(item.id) ? "1px solid #000" : "none",
@@ -111,7 +89,7 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
                 next={3}
                 setPage={setPage}
                 maxPage={8}
-                disabled={!disabledBtn}
+                disabled={false}
                 onNext={() => {
                     setUser((prev) => ({
                         ...prev,

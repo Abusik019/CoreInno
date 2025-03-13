@@ -1,6 +1,5 @@
 .createProfile{
     width: 100vw;
-    min-width: 100vh;
     height: fit-content;
     min-height: 100vh;
 
@@ -47,7 +46,7 @@
         border-radius: 10px;
         border: 1px solid #000;
 
-        margin-top: 80px;
+        margin-top: 50px;
 
         background-color: transparent;
 
@@ -279,14 +278,12 @@
     flex-wrap: wrap;
     gap: 72px;
 
-    max-width: 842px;
-
     >li{
         display: flex;
         align-items: center;
         gap: 15px;
 
-        width: 391px;
+        width: 338px;
 
         position: relative;
 
@@ -377,4 +374,6 @@
     gap: 60px;
 
     margin-top: 80px;
+
+    max-width: 75%;
 }

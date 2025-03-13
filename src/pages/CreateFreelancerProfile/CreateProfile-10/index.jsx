@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import doneImg from '../../../assets/images/bigDone.png';
 
-export default function CreateProfilePageNine() {
+export default function CreateProfilePageTen() {
     return (
         <div className={styles.createProfile}>
             <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />

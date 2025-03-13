@@ -26,7 +26,7 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                     </ul>
                 </div>
             </div>
-            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={8} disabled={!disabledBtn} onNext={
+            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={9} disabled={!disabledBtn} onNext={
                 () => {
                     setUser((prev) => ({
                         ...prev,
