@@ -1,23 +1,12 @@
 import { Space, TimePicker } from "antd";
 import dayjs from "dayjs";
 
-const TimePickerItem = ({ value, setDate }) => {
+const TimePickerItem = ({ value, onChange }) => {
     return (
         <Space>
             <TimePicker
                 value={value ? dayjs(value, "HH:mm:ss") : null}
-                onChange={(date, dateString) => {
-                    setDate((prev) => ({
-                        ...prev,
-                        details: {
-                            ...prev.details,
-                            deadlines: {
-                                ...prev.details.deadlines,
-                                time: date ? dateString : "" 
-                            },
-                        }
-                    }));
-                }}
+                onChange={onChange}
                 style={{
                     width: "229px",
                     height: "46px",

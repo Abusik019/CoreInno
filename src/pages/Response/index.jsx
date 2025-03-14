@@ -1,171 +1,149 @@
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
 import { Textarea } from "../../components/Textarea";
+import { useState } from "react";
+import DatePickerItem from '../../components/DatePicker';
+import TimePickerItem from '../../components/TimePicker';
 
-import noneImg from '../../assets/images/mockLi.png';
+import avatarImg from '../../assets/images/freelancer.png';
 
 export default function Response() {
+    const [response, setResponse] = useState({
+        desc: '',
+        price: '',
+        deadline: {
+            date: '',
+            time: ''
+        },
+        payment: 'fixed'
+    })
+    const isDisabed = Boolean(response.desc && response.price && response.deadline.date && response.deadline.time);
+
     return (
         <div className={styles.response}>
-            <Link to="#">Раздел заказов</Link>
-            <h2>Предложить услугу</h2>
-            <section className={styles.reponseRules}>
-                <h2>Правила качественного отклика</h2>
-                <ul>
+            <section className={styles.responseRules}>
+                <ul className={styles.rulesList}>
                     <li>
-                        Lorem ipsum dolor sit amet consectetur. Lacus faucibus
-                        convallis sed in nulla et eget euismod vestibulum. Eget
-                        habitasse suspendisse eu sem ut ac orci. Placerat
-                        nascetur odio pretium sit cursus non faucibus ultricies
-                        blandit. Arcu turpis in nulla non volutpat in molestie.
+                        <h2>Персонализация отклика</h2>
+                        <p>Обращайтесь по имени и показывайте знание задания</p>
                     </li>
                     <li>
-                        Lorem ipsum dolor sit amet consectetur. Lacus faucibus
-                        convallis sed in nulla et eget euismod vestibulum. Eget
-                        habitasse suspendisse eu sem ut ac orci. Placerat
-                        nascetur odio pretium sit cursus non faucibus ultricies
-                        blandit. Arcu turpis in nulla non volutpat in molestie.
+                        <h2>Выделение навыков</h2>
+                        <p>Упоминайте релевантный опыт и примеры выполненных работ</p>
                     </li>
                     <li>
-                        Lorem ipsum dolor sit amet consectetur. Lacus faucibus
-                        convallis sed in nulla et eget euismod vestibulum. Eget
-                        habitasse suspendisse eu sem ut ac orci. Placerat
-                        nascetur odio pretium sit cursus non faucibus ultricies
-                        blandit. Arcu turpis in nulla non volutpat in molestie.
+                        <h2>Описание вашего подхода</h2>
+                        <p>Расскажите о методах и этапах работы над проектом</p>
                     </li>
                     <li>
-                        Lorem ipsum dolor sit amet consectetur. Lacus faucibus
-                        convallis sed in nulla et eget euismod vestibulum. Eget
-                        habitasse suspendisse eu sem ut ac orci. Placerat
-                        nascetur odio pretium sit cursus non faucibus ultricies
-                        blandit. Arcu turpis in nulla non volutpat in molestie.
+                        <h2>Краткость и ясность речи</h2>
+                        <p>Избегайте лишней информации и следите за грамотностью</p>
                     </li>
                 </ul>
-                <p>
-                    Lorem ipsum dolor sit amet . Placerat nascetur odio pretium
-                    sit cursus non faucibus ultricies blandit. Arcu turpis in
-                    nulla non volutpat in molestie.
-                </p>
             </section>
-            <section className={styles.orderResponse}>
-                <div className={styles.orderAuthorName}>
-                    <h2>Жанна Кондратьева</h2>
-                    <h3>5.0</h3>
-                </div>
-                <h2>Создать сайт для стоматологический клиники</h2>
-                <ul className={styles.orderVerifications}>
-                    <li>Способ оплаты верифицирован</li>
-                    <li>Телефон подтвержден</li>
-                    <li>Фиксированная оплата</li>
-                </ul>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur. Nullam feugiat
-                    porttitor arcu magna vel fermentum dictumst morbi. Ut id
-                    malesuada nisl sit nunc. Pellentesque tellus dignissim eget
-                    praesent tellus. In lacus at venenatis pretium vestibulum
-                    rutrum... <span>Подробнее</span>
-                </p>
-                <ul className={styles.orderAuthorSkills}>
-                    <li>навык</li>
-                    <li>навык</li>
-                    <li>навык</li>
-                    <li>навык</li>
-                    <li>навык</li>
-                    <li>...</li>
-                </ul>
-                <div className={styles.orderPrice}>
-                    <h2>Предложений получено: 5</h2>
-                    <h3>до 45 000 ₽</h3>
+            <section className={styles.responseCard}>
+                <div>
+                    <h2>Создать сайт для стоматологический клиники</h2>
+                    <div className={styles.cardInfo}>
+                        <h3>Дата публикации: 21.12.2024</h3>
+                        <h4>203</h4>
+                    </div>
+                    <div className={styles.customerInfo}>
+                        <img src={avatarImg} width={58} height={58} alt="avatar" />
+                        <ul>
+                            <li>Заказчик</li>
+                            <li>Жанна Кондратьева <span>5.0</span></li>
+                            <li>Регион</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
             <section className={styles.yourReponse}>
                 <h2>Ваш отклик</h2>
-                <div className={styles.blackLine}></div>
-                <h3>Описание *</h3>
-                <Textarea value="Расскажите, почему стоит выбрать именно Вас" maxLength={5000}/>
+                <h3>Описание <span style={{color: '#F63939'}}>*</span></h3>
+                <Textarea 
+                    value={response.desc ? response.desc : "Расскажите, почему стоит выбрать именно Вас" }
+                    maxLength={5000} 
+                    onInput={(e) => setResponse((prev) => ({
+                        ...prev,
+                        desc: e.target.value
+                    }))}
+                />
                 <div className={styles.yourResponseInputs}>
                     <div className={styles.responsePrice}>
                         <label htmlFor="price">
-                            Укажите стоимость работы *
+                            Укажите стоимость работы <span style={{color: '#F63939'}}>*</span>
                         </label>
                         <input
                             type="number"
                             id="price"
                             placeholder="32000 ₽"
+                            onInput={(e) => setResponse((prev) => ({
+                                ...prev,
+                                price: e.target.value
+                            }))}
+                            value={response.price}
                             required
                         />
                     </div>
                     <div className={styles.responseDate}>
-                        <label htmlFor="date">Срок выполнения *</label>
-                        <input
-                            type="number"
-                            id="date"
-                            placeholder="До 7 дней"
-                            required
-                        />
+                        <h2>Срок выполнения <span style={{color: '#F63939'}}>*</span></h2>
+                        <div>
+                            <DatePickerItem value={response.deadline.date} onChange={(date, dateString) => {
+                                setResponse((prev) => ({
+                                    ...prev,
+                                    deadline: {
+                                        ...prev.deadline,
+                                        date: date ? dateString : "" 
+                                    }
+                                }));
+                            }}/>
+                            <TimePickerItem value={response.deadline.time} onChange={(time, timeString) => {
+                                setResponse((prev) => ({
+                                    ...prev,
+                                    deadline: {
+                                        ...prev.deadline,
+                                        time: time ? timeString : "" 
+                                    }
+                                }));
+                            }}/>
+                        </div>
                     </div>
                 </div>
             </section>
             <section className={styles.payment}>
-                <h2>Порядок оплаты</h2>
-                <div className={styles.blackLine}></div>
+                <h2>Порядок оплаты <span style={{color: '#F63939'}}>*</span></h2>
                 <div className={styles.selectPaymentMethod}>
-                    <div>
+                    <div style={{opacity: response.payment === 'byStages' ? '1' : '0.5'}}>
                         <label htmlFor="payment1">Оплата по этапам</label>
-                        <input id="payment1" type="checkbox" />
+                        <input 
+                            id="payment1" 
+                            type="checkbox" 
+                            onChange={() => setResponse((prev => ({
+                                ...prev,
+                                payment: 'byStages'
+                            })))}
+                            checked={response.payment === 'byStages' ? true : false}
+                        />
                     </div>
-                    <div>
+                    <div style={{opacity: response.payment === 'fixed' ? '1' : '0.5'}}>
                         <label htmlFor="payment2">Фиксированная оплата</label>
-                        <input id="payment2" type="checkbox" />
+                        <input 
+                            id="payment2" 
+                            type="checkbox" 
+                            onChange={() => setResponse((prev => ({
+                                ...prev,
+                                payment: 'fixed'
+                            })))}
+                            checked={response.payment === 'fixed' ? true : false}
+                        />
                     </div>
                 </div>
                 <p>Оплата по этапам — после выполнения некоторой части задания заказчик пересылает вам соответствующую сумму.<br />Заказчик в праве оставить за собой способ оплаты.</p>
             </section>
-            <section className={styles.profilePortfolio}>
-                <h2>Портфолио</h2>
-                <div className={styles.blackLine}></div>
-                <ul className={styles.portfolioTasks}>
-                    <li>
-                        <img 
-                            src={noneImg} 
-                            width={284}
-                            height={160}
-                            alt="task image" 
-                        />
-                        <h2>Название выполненной работы или кейса</h2>
-                    </li>
-                    <li>
-                        <img 
-                            src={noneImg} 
-                            width={284}
-                            height={160}
-                            alt="task image" 
-                        />
-                        <h2>Название выполненной работы или кейса</h2>
-                    </li>
-                    <li>
-                        <img 
-                            src={noneImg} 
-                            width={284}
-                            height={160}
-                            alt="task image" 
-                        />
-                        <h2>Название выполненной работы или кейса</h2>
-                    </li>
-                    <li>
-                        <img 
-                            src={noneImg} 
-                            width={284}
-                            height={160}
-                            alt="task image" 
-                        />
-                        <h2>Название выполненной работы или кейса</h2>
-                    </li>
-                </ul>
-            </section>
             <div className={styles.navBtns}>
                 <Link to='#'>Вернуться назад</Link>
-                <Link to='#'>Отправить отклик</Link>
+                <button disabled={!isDisabed} style={{opacity: isDisabed ? '1' : '.2'}}>Отправить отклик</button>
             </div>
         </div>
     );
