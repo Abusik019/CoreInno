@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { Order } from "../../components/Order";
 import { useState } from "react";
 import { GradientText } from "../../components/GradientText";
+import FreelancersSlider from "../../components/FreelancersSlider";
 
 import questionImg from "../../assets/icons/question.svg";
 import whiteArrow from "../../assets/icons/w-longArrow.svg";
 import blackArrow from "../../assets/icons/b-longArrow.svg";
-import FreelancersSlider from "../../components/FreelancersSlider";
 import close from "../../assets/icons/close.svg";
 import uploadImg from "../../assets/icons/upload.svg";
 

@@ -24,12 +24,11 @@ import Draft from './pages/Draft';
 import CommercialAdvertisement from './pages/CommercialAdvertisement';
 import MyAnnouncements from './pages/MyAnnouncements';
 import AllResponses from './pages/AllResponses';
-
 import Chat from './pages/Chat';
-
 import CreateFreelancerProfile from './pages/CreateFreelancerProfile';
 import CreateCustomerProfile from './pages/CreateCustomerProfile';
 import Lending from './pages/Lending';
+import CustomerProfile from './pages/CustomerProfile';
 
 
 function App() {
@@ -44,7 +43,7 @@ function App() {
         <Route path='/setting-account' element={<SettingsAccount/>}/>
         <Route path='/list-freelancer' element={<ListFreelancer/>} />
         <Route path='/create-task-without-ai' element={<CreateTask />}/>
-        <Route path='/profile' element={<FreelancerProfile />}/>
+        <Route path='/freelancer-profile' element={<FreelancerProfile />}/>
         <Route path='/response' element={<Response />}/>
         <Route path='/list-orders' element={<ListOrders/>}/>
         <Route path='/post' element={<Post/>}/>
@@ -63,6 +62,7 @@ function App() {
         <Route path='/my-announcements' element={<MyAnnouncements />}/>
         <Route path='/responses' element={<AllResponses />}/>
         <Route path='/chat' element={<Chat/>}/>
+        <Route path='/customer-profile' element={<CustomerProfile />}/>
     </Routes>
   )
 }
