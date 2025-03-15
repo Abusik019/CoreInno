@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import questionImg from "../../assets/icons/question.svg";
-import arrow from "../../assets/icons/arrow.svg";
 import whiteArrow from "../../assets/icons/w-longArrow.svg";
 import blackArrow from "../../assets/icons/b-longArrow.svg";
 import close from "../../assets/icons/close.svg";
-import mockGuide from "../../assets/images/mockGuide.png";
 import menu from '../../assets/icons/order-menu.svg';
 import edit from '../../assets/icons/edit.svg';
 import add from '../../assets/icons/add.svg';
 import deleteImg from '../../assets/icons/redDelete.svg';
+import mockImg from '../../assets/images/mockGuide.png';
+import { GradientText } from "../../components/GradientText";
 
 const mockGuides = [
     ...Array(3)
@@ -78,16 +78,76 @@ export default function MyAnnouncements() {
                                 }`}
                             >
                                 <Link to="#">
-                                    <img src={edit} width={24} height={24} alt="edit" />
-                                    <h2>Редактировать заказ</h2>
+                                    <img src={add} width={24} height={24} alt="add" />
+                                    <h2>В архив</h2>
                                 </Link>
                                 <Link to="#">
-                                    <img src={add} width={24} height={24} alt="add" />
-                                    <h2>Редактировать заказ</h2>
+                                    <img src={edit} width={24} height={24} alt="edit" />
+                                    <h2>Редактировать</h2>
                                 </Link>
                                 <button onClick={() => setModal(true)}>
                                     <img src={deleteImg} width={24} height={24} alt="delete" />
-                                    <h2>Удалить заказ</h2>
+                                    <h2>Удалить объявление</h2>
+                                </button>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+                <button className={styles.showAll}>Показать все</button>
+            </section>
+            <section className={styles.myConsultationContent}>
+                <div className={styles.myConsultationHeadContent}>
+                    <div className={styles.myConsultationTitle}>
+                        <h2>Мои консультации</h2>
+                        <img
+                            src={questionImg}
+                            width={24}
+                            height={24}
+                            alt="question"
+                        />
+                    </div>
+                    <button>
+                        <Link to="#">
+                            <span>+</span> Добавить консультацию
+                        </Link>
+                    </button>
+                </div>
+                <ul className={styles.consultations}>
+                    {[1, 2, 3].map((id) => (
+                        <li key={id}>
+                            <div className={styles.consultationContent}>
+                                <img src={mockImg} width={150} height={150} alt="image" />
+                                <div>
+                                    <h2>Название консультации</h2>
+                                    <h3>Бесплатная 15-ти минутная консультация</h3>
+                                    <ul>
+                                        <li>Тема обсуждения</li>
+                                        <li>Тема обсуждения</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button
+                                className={styles.orderMenu}
+                                onClick={() => toggleDropdown(id)}
+                            >
+                                <img src={menu} width={18} height={4} alt="menu" />
+                            </button>
+                            <div
+                                className={`${styles.orderDropdown} ${
+                                    openDropdownId === id ? styles.visible : ""
+                                }`}
+                            >
+                                <Link to="#">
+                                    <img src={add} width={24} height={24} alt="add" />
+                                    <h2>В архив</h2>
+                                </Link>
+                                <Link to="#">
+                                    <img src={edit} width={24} height={24} alt="edit" />
+                                    <h2>Редактировать</h2>
+                                </Link>
+                                <button onClick={() => setModal(true)}>
+                                    <img src={deleteImg} width={24} height={24} alt="delete" />
+                                    <h2>Удалить</h2>
                                 </button>
                             </div>
                         </li>
@@ -106,7 +166,7 @@ export default function MyAnnouncements() {
                             sed adipiscing tempus est ac. Tempor elit
                             blandittempus.
                         </p>
-                        <button>
+                        <button className={styles.guideArrow}>
                             <img
                                 src={whiteArrow}
                                 width={134}
@@ -115,98 +175,71 @@ export default function MyAnnouncements() {
                             />
                         </button>
                     </li>
-                    {mockGuides.map((guide) => (
-                        <li key={guide.id}>
-                            <div className={styles.guideTitle}>
-                                <h2>Название Гайда</h2>
-                                <button>
-                                    <img
-                                        src={close}
-                                        width={29}
-                                        height={29}
-                                        alt="close button"
-                                    />
-                                </button>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur. At
-                                sodales sed adipiscing tempus est ac. Tempor
-                                elit blandittempus.
-                            </p>
+                    <li>
+                        <div className={styles.guideTitle}>
+                            <h2>Название Гайда</h2>
                             <button>
                                 <img
-                                    src={blackArrow}
-                                    width={134}
-                                    height={15}
-                                    alt="arrow"
+                                    src={close}
+                                    width={29}
+                                    height={29}
+                                    alt="close button"
                                 />
                             </button>
-                        </li>
-                    ))}
-                </ul>
-                <div className={styles.fullGuides}>
-                    <div className={styles.bigGuide}>
-                        <div className={styles.guideContent}>
-                            <div className={styles.guideTitle}>
-                                <h2>Название Гайда</h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur.
-                                    Viverra cursus quam netus bibendum justo
-                                    pretium est maecenas cursus.{" "}
-                                </p>
-                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur. At
+                            sodales sed adipiscing tempus est ac. Tempor
+                            elit blandittempus.
+                        </p>
+                        <button className={styles.guideArrow}>
+                            <img
+                                src={blackArrow}
+                                width={134}
+                                height={15}
+                                alt="arrow"
+                            />
+                        </button>
+                    </li>
+                    <li>
+                        <div className={styles.guideTitle}>
+                            <h2>Название Гайда</h2>
                             <button>
-                                <Link to="#">
-                                    <img
-                                        src={arrow}
-                                        width={100}
-                                        height={15}
-                                        alt="arrow"
-                                    />
-                                </Link>
+                                <img
+                                    src={close}
+                                    width={29}
+                                    height={29}
+                                    alt="close button"
+                                />
                             </button>
                         </div>
-                        <img
-                            src={mockGuide}
-                            width={166}
-                            height={166}
-                            alt="guide image"
-                            style={{ borderRadius: "24px" }}
-                        />
-                    </div>
-                    <div className={styles.smallGuides}>
-                        <div>
-                            <div className={styles.smallGuideContent}>
-                                <h2>НазваниеГайда</h2>
-                                <p>
-                                    Lorem ipsum dolo. Viverra cursus quam netus
-                                    bibendum justo.
-                                </p>
-                            </div>
-                            <img
-                                src={mockGuide}
-                                width={110}
-                                height={110}
-                                alt="guide image"
-                            />
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur.
+                        </p>
+                        <span>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur</span>
+                        <button className={styles.guideGoOne}>
+                            <GradientText text="Перейти" />
+                        </button>
+                    </li>
+                    <li>
+                        <div className={styles.guideTitle}>
+                            <h2>Название Гайда</h2>
+                            <button>
+                                <img
+                                    src={close}
+                                    width={29}
+                                    height={29}
+                                    alt="close button"
+                                />
+                            </button>
                         </div>
-                        <div>
-                            <div className={styles.smallGuideContent}>
-                                <h2>НазваниеГайда</h2>
-                                <p>
-                                    Lorem ipsum dolo. Viverra cursus quam netus
-                                    bibendum justo.
-                                </p>
-                            </div>
-                            <img
-                                src={mockGuide}
-                                width={110}
-                                height={110}
-                                alt="guide image"
-                            />
-                        </div>
-                    </div>
-                </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur.
+                        </p>
+                        <span>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur</span>
+                        <button className={styles.guideGoTwo}>Перейти</button>
+                    </li>
+                </ul>
             </section>
             {modal && (
                 <div className={styles.modalOverlay}>
