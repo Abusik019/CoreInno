@@ -1,13 +1,14 @@
 import styles from './style.module.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Textarea } from '../../components/Textarea';
 import DragDrop from '../../components/DragAndDrop';
-import { useState } from 'react';
-import arrowImg from "../../assets/icons/arrowBlackLong.svg";
-import trashImg from "../../assets/icons/trash.svg";
 import SmallDragDrop from '../../components/SmallDragAndDrop';
 import Modal from '../../components/Modal';
 import AddNewProjectTwo from './AddNewProject2';
+
+import crossImg from "../../assets/icons/cross.svg";
+import mockImg from "../../assets/images/mock.addNewProject.png"
 
 export default function AddNewProject() {
     const [files, setFiles] = useState([]);
@@ -23,23 +24,12 @@ export default function AddNewProject() {
         description: "Расскажите о проекте"
     })
 
-    const imageSrc = files.length > 0 ? URL.createObjectURL(files[showImage]) : null;
+    const isDisabled = Boolean(inputData.name && inputData.role && inputData.skills && inputData.description);
+    const imageSrc = files.length > 0 && files[showImage] ? URL.createObjectURL(files[showImage]) : null;
 
     const removeFile = (index) => {
         setFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
         setShowImage(0); 
-    };
-
-    const nextImage = () => {
-        if (showImage < files.length - 1) {
-            setShowImage(prev => prev + 1);
-        }
-    };
-
-    const prevImage = () => {
-        if (showImage > 0) {
-            setShowImage(prev => prev - 1);
-        }
     };
 
     const handleChageInputState = (e, name) => {
@@ -50,25 +40,27 @@ export default function AddNewProject() {
 
     }
     
-    console.log(inputData);
+    console.log(files);
+
     return (
         <>
             {page === "add" ? ( 
                 <div className={styles.addNewProject}>
+                    <button className={styles.closeBtn}><img src={crossImg} width={42} height={42} alt="cross" /></button>
                     <h1>Добавить новый проект</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur. Condimentum nulla lectus bibendum nulla risus fermentum.</p>
+                    <p>Задайте чёткое название и описание, укажите свою роль и использованные навыки. Добавьте ссылку или прикрепите необходимые файлы, а затем внимательно проверьте всю информацию перед публикацией!</p>
                     <div className={styles.addNewProjectContainer}>
                         <div className={styles.inputs}>
                             <div>
-                                <label htmlFor="name">Название проекта</label>
+                                <label htmlFor="name">Название проекта <span style={{color: '#F63939'}}>*</span></label>
                                 <input value={inputData.name} type="text" id="name" placeholder="Введите название проекта" onChange={(e) => handleChageInputState(e, 'name')}/>
                             </div>
                             <div>
-                                <label htmlFor="role">Ваша роль в проекте</label>
+                                <label htmlFor="role">Ваша роль в проекте <span style={{color: '#F63939'}}>*</span></label>
                                 <input value={inputData.role} type="text" id="role" placeholder="UI/UX Дизайнер" onChange={(e) => handleChageInputState(e, 'role')}/>
                             </div>
                             <div>
-                                <label htmlFor="skills">Какие навыки применялись?</label>
+                                <label htmlFor="skills">Какие навыки применялись? <span style={{color: '#F63939'}}>*</span></label>
                                 <input value={inputData.skills} type="text" id="skills" placeholder="UX-аналитика; Figma; Photoshop" onChange={(e) => handleChageInputState(e, 'skills')}/>
                                 <h4>Перечислите навыки, разделяя их точкой с запятой (;)</h4>
                             </div>
@@ -77,45 +69,40 @@ export default function AddNewProject() {
                                 <input value={inputData.link} type="text" id="link" placeholder="example.com" onChange={(e) => handleChageInputState(e, 'link')}/>
                             </div>
                             <div>
-                                <h2>Описание</h2>
-                                <Textarea maxLength={1000} value={inputData.description} onChange={(e) => handleChageInputState(e, 'description')}/>
+                                <h2>Описание <span style={{color: '#F63939'}}>*</span></h2>
+                                <Textarea maxLength={1000} value={inputData.description} onInput={(e) => handleChageInputState(e, 'description')}/>
                             </div>
                         </div>
                         <div className={styles.dragAndDrop}>
                             {files.length > 0 ? (
                                 <div className={styles.imageContainer}>
                                     <div className={styles.imageWrapper}>
-                                        <img src={imageSrc} alt="Preview" className={styles.previewImage} />
-                                        <button onClick={() => removeFile(showImage)}>
-                                            <img
-                                                src={trashImg}
-                                                width={24}
-                                                height={24}
-                                                alt="trash" 
-                                            />
-                                        </button>
-                                        <h2>{showImage + 1} из {files.length}</h2>
+                                        <img src={imageSrc ? imageSrc : mockImg} alt="Preview" className={styles.previewImage} />
                                         <button onClick={() => setIsOpenModal(true)}>Установить как обложку</button>
                                     </div>
-                                    <SmallDragDrop setFiles={setFiles} />
-                                    <div className={styles.arrowBtns}>
-                                        <button className={`${styles.prevBtn} ${showImage === 0 ? styles.disabled : ''}`} onClick={prevImage} disabled={showImage === 0}>
-                                            <img
-                                                src={arrowImg}
-                                                width={32}
-                                                height={12}
-                                                alt="arrow"
-                                            />
-                                        </button>
-                                        <button className={`${styles.nextBtn} ${showImage === files.length - 1 ? styles.disabled : ''}`} onClick={nextImage} disabled={showImage === files.length - 1}>
-                                            <img
-                                                src={arrowImg}
-                                                width={33}
-                                                height={12}
-                                                alt="arrow"
-                                            />
-                                        </button>
-                                    </div>
+                                    <ul className={styles.coversList}>
+                                        {files.length && 
+                                            files.map((item, index) => {
+                                                if(index !== showImage){
+                                                    const newImageSrc = files.length > 0 ? URL.createObjectURL(item) : null;
+                                                    return (
+                                                        <li onClick={() => setShowImage(index)}>
+                                                            <img src={newImageSrc} width={150} height={100} alt="image" />
+                                                            <button onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                removeFile(index);
+                                                            }}>
+                                                                <img src={crossImg} width={16} height={16} alt="cross" />
+                                                            </button>
+                                                        </li>
+                                                    )
+                                                }
+                                            })
+                                        }
+                                        <li>
+                                            <SmallDragDrop setFiles={setFiles} />
+                                        </li>
+                                    </ul>
                                 </div>
                             ) : (
                                 <DragDrop setFiles={setFiles} />
@@ -126,7 +113,11 @@ export default function AddNewProject() {
                         <Link to="#">Назад</Link>
                         <div>
                             <button>В черновики</button>
-                            <button onClick={() =>  setPage('publish')}>Продолжить</button>
+                            <button 
+                                onClick={() => setPage('publish')}
+                                style={{opacity: isDisabled ? '1' : '.2'}}
+                                disabled={!isDisabled}
+                            >Продолжить</button>
                         </div>
                     </div>
                     <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
@@ -151,7 +142,7 @@ export default function AddNewProject() {
                     </Modal>
                 </div>
             )
-            : <AddNewProjectTwo setPage={setPage} inputData={inputData} files={files} showImage={showImage} setShowImage={setShowImage} imageSrc={imageSrc}/>
+                : <AddNewProjectTwo setPage={setPage} inputData={inputData} files={files} showImage={showImage} setShowImage={setShowImage} imageSrc={imageSrc}/>
             }
         </>
     );

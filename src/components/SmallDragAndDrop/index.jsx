@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import './style.css'
 import plusImg from '../../assets/icons/plus.svg';
@@ -23,8 +22,8 @@ function SmallDragDrop({ setFiles }) {
                 <div className="addImage">
                     <img
                         src={plusImg}
-                        width={30}
-                        height={30}
+                        width={20}
+                        height={20}
                         alt="plus" 
                     />
                 </div>
