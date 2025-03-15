@@ -1,17 +1,35 @@
 import styles from "./style.module.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
 import avatarImg from "../../assets/images/freelancer.png";
-import circleImg from "../../assets/icons/partOfCircle.svg";
 import sandTimerImg from "../../assets/icons/sandTimer.svg";
 import smallArrowImg from "../../assets/icons/smallArrow.svg";
 import copyImg from "../../assets/icons/copy.svg";
 import shareImg from "../../assets/icons/share.svg";
 import pigImg from '../../assets/icons/pig.svg';
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import documentImg from '../../assets/icons/document2.svg';
+import checkmarkImg from '../../assets/icons/checkmark.svg';
+import warningImg from '../../assets/icons/warning.svg';
+import arrowImg from '../../assets/icons/smallArrow.svg';
 
 export default function Announcement() {
-    const [fixPayment, setFixPayment] = useState(true);
+    const [fixPayment, setFixPayment] = useState(false);
+    const [isCopyLink, setIsCopyLink] = useState(false);
+    const [isHideDesc, setIsHideDesc] = useState(false);
 
+    function handleCopyClick() {
+        const { textContent } = document.getElementById('copyText')
+        navigator.clipboard.writeText(textContent)
+            .then(() => {
+                setIsCopyLink(true);
+                setTimeout(() => {
+                    setIsCopyLink(false);
+                }, 3000);
+            })
+            .catch(err => console.error("Ошибка копирования: ", err));
+    }
+    
     return (
         <div className={styles.announcement}>
             <div className={styles.announcementContainer}>
@@ -24,58 +42,79 @@ export default function Announcement() {
                             <h2>Дата публикации: 21.12.2024</h2>
                             <h3>203</h3>
                         </div>
-                        <div className={styles.authorInfo}>
-                            <img
-                                src={avatarImg}
-                                width={58}
-                                height={58}
-                                alt="freelancer avatar"
-                            />
-                            <ul>
-                                <li>Заказчик</li>
-                                <li>
-                                    Жанна Кондратьева <span>5.0</span>
-                                </li>
-                                <li>Регион</li>
-                            </ul>
+                        <div className={styles.authorInfoWrapper}>
+                            <div className={styles.authorInfo}>
+                                <img
+                                    src={avatarImg}
+                                    width={58}
+                                    height={58}
+                                    alt="freelancer avatar"
+                                />
+                                <ul>
+                                    <li>Заказчик</li>
+                                    <li>
+                                        Жанна Кондратьева <span>5.0</span>
+                                    </li>
+                                    <li>Регион</li>
+                                </ul>
+                            </div>
+                            {fixPayment && <h2>до 50 000₽</h2>}
                         </div>
                     </div>
                     <div className={styles.announcementDesc}>
-                        <h2>Описание задания</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur. Risus odio
-                            ac tellus id quis ante. Eget pharetra sed quam
-                            tortor leo blandit. Ac iaculis turpis porttitor
-                            lectus sed. Sapien sit elementum pulvinar est vitae
-                            diam condimentum.
-                            <br />
-                            Ipsum non volutpat urna augue amet placerat gravida
-                            scelerisque risus. Ut tempor maecenas vestibulum
-                            elit at amet amet eget. Neque lorem lorem diam enim
-                            vitae dolor magna non sit. Pellentesque eget aliquam
-                            suspendisse lacus vitae arcu sem lacus. Eu vitae
-                            condimentum quisque non vulputate pharetra. Mi diam
-                            eu semper tellus a enim pulvinar. Tincidunt pharetra
-                            vel leo enim dictum amet amet quis pellentesque.
-                            Arcu at blandit non quis ipsum ipsum iaculis.
-                            Aliquam tortor massa duis sit hendrerit viverra
-                            aliquam consequat. Massa diam in donec nec commodo
-                            quis.
-                            <br />
-                            Velit tincidunt sem sed vel potenti quisque
-                            fringilla. Rhoncus praesent sapien pulvinar
-                            ullamcorper sapien quam enim arcu habitasse. Feugiat
-                            vestibulum lacus sed donec suscipit vulputate non.
-                            Cursus urna nibh erat risus enim. Est ultricies
-                            scelerisque mauris euismod. Aliquet lorem tellus
-                            sollicitudin sit semper sit viverra eu magnis.
-                            Ridiculus odio tincidunt ac sit aliquam adipiscing
-                            eu malesuada est. Sit egestas arcu metus sit urna.
-                            Aenean cursus molestie posuere convallis scelerisque
-                            libero metus. Feugiat arcu molestie gravida nec sem
-                            magna odio a etiam. Aliquam nisl et quam
-                            pellentesque.
-                        </p>
+                        <div className={styles.descTitleBlock}>
+                            <h2>Описание задания</h2>
+                            <button 
+                                onClick={() => setIsHideDesc((prev) => !prev)}
+                                style={{transform: isHideDesc ? 'rotate(0deg)' : 'rotate(180deg)'}}
+                            >
+                                <img src={arrowImg} width={20} height={20} alt="arrow" />
+                            </button>
+                        </div>
+                        {!isHideDesc && 
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur. Risus odio
+                                ac tellus id quis ante. Eget pharetra sed quam
+                                tortor leo blandit. Ac iaculis turpis porttitor
+                                lectus sed. Sapien sit elementum pulvinar est vitae
+                                diam condimentum.
+                                <br />
+                                Ipsum non volutpat urna augue amet placerat gravida
+                                scelerisque risus. Ut tempor maecenas vestibulum
+                                elit at amet amet eget. Neque lorem lorem diam enim
+                                vitae dolor magna non sit. Pellentesque eget aliquam
+                                suspendisse lacus vitae arcu sem lacus. Eu vitae
+                                condimentum quisque non vulputate pharetra. Mi diam
+                                eu semper tellus a enim pulvinar. Tincidunt pharetra
+                                vel leo enim dictum amet amet quis pellentesque.
+                                Arcu at blandit non quis ipsum ipsum iaculis.
+                                Aliquam tortor massa duis sit hendrerit viverra
+                                aliquam consequat. Massa diam in donec nec commodo
+                                quis.
+                                <br />
+                                Velit tincidunt sem sed vel potenti quisque
+                                fringilla. Rhoncus praesent sapien pulvinar
+                                ullamcorper sapien quam enim arcu habitasse. Feugiat
+                                vestibulum lacus sed donec suscipit vulputate non.
+                                Cursus urna nibh erat risus enim. Est ultricies
+                                scelerisque mauris euismod. Aliquet lorem tellus
+                                sollicitudin sit semper sit viverra eu magnis.
+                                Ridiculus odio tincidunt ac sit aliquam adipiscing
+                                eu malesuada est. Sit egestas arcu metus sit urna.
+                                Aenean cursus molestie posuere convallis scelerisque
+                                libero metus. Feugiat arcu molestie gravida nec sem
+                                magna odio a etiam. Aliquam nisl et quam
+                                pellentesque.
+                            </p>
+                        }
+                    </div>
+                    <div className={styles.announcementAttachments}>
+                        <h2>Вложения</h2>
+                        <ul>
+                            <li>document.docx</li>
+                            <li>document.docx</li>
+                            <li>document.docx</li>
+                        </ul>
                     </div>
                     <div className={styles.announcementCategories}>
                         <h2>Категория заказа</h2>
@@ -94,10 +133,10 @@ export default function Announcement() {
                                         <h3>Заказчик платит за отдельные этапы</h3>
                                     </div>
                                     <img
-                                        src={circleImg}
+                                        src={pigImg}
                                         width={20}
                                         height={20}
-                                        alt="circle"
+                                        alt="pig"
                                     />
                                 </li>
                                 <li>
@@ -114,23 +153,11 @@ export default function Announcement() {
                                 </li>
                                 <li>
                                     <div>
-                                        <h2>Lorem ipsum</h2>
-                                        <h3>Lorem ipsum dolor sit amet</h3>
+                                        <h2>Цена в качестве</h2>
+                                        <h3>Согласен на большую плату опытному специалисту</h3>
                                     </div>
                                     <img
-                                        src={sandTimerImg}
-                                        width={20}
-                                        height={20}
-                                        alt="sand timer"
-                                    />
-                                </li>
-                                <li>
-                                    <div>
-                                        <h2>Lorem ipsum</h2>
-                                        <h3>Lorem ipsum dolor sit amet</h3>
-                                    </div>
-                                    <img
-                                        src={sandTimerImg}
+                                        src={documentImg}
                                         width={20}
                                         height={20}
                                         alt="sand timer"
@@ -158,30 +185,6 @@ export default function Announcement() {
                                         <div>
                                             <h2>Сроки</h2>
                                             <h3>Не более 2-х месяцев</h3>
-                                        </div>
-                                        <img
-                                            src={sandTimerImg}
-                                            width={20}
-                                            height={20}
-                                            alt="sand timer"
-                                        />
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <h2>Lorem ipsum</h2>
-                                            <h3>Lorem ipsum dolor sit amet</h3>
-                                        </div>
-                                        <img
-                                            src={sandTimerImg}
-                                            width={20}
-                                            height={20}
-                                            alt="sand timer"
-                                        />
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <h2>Lorem ipsum</h2>
-                                            <h3>Lorem ipsum dolor sit amet</h3>
                                         </div>
                                         <img
                                             src={sandTimerImg}
@@ -273,13 +276,38 @@ export default function Announcement() {
                             </li>
                         </ul>
                     </div>
+                    <div className={styles.linkToTask}>
+                        <h2>Ссылка на задание</h2>
+                        <div className={styles.linkToTaskActions}>
+                            <button id="copyText">https://music.yandex.ru/artist/54254</button>
+                            <button 
+                                onClick={handleCopyClick} 
+                                style={{
+                                    backgroundColor: isCopyLink ? '#EAEAEA' : 'transparent',
+                                    border: isCopyLink && 'none'
+                                }}
+                            >
+                                <img src={!isCopyLink ? copyImg : checkmarkImg} width={24} height={24} alt="copy" />
+                            </button>
+                            <button>
+                                <img
+                                    src={shareImg}
+                                    width={24}
+                                    height={24}
+                                    alt="share"
+                                />
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.announcementAside}>
                     <button className={styles.responseBtn}>Я возьмусь</button>
-                    <button className={styles.saveBtn}>
-                        Сохранить в избранное
-                    </button>
-                    <h2>Доступно коннектов: 12</h2>
+                    <div className={styles.saveBtnWrapper}>
+                        <button className={styles.saveBtn}>
+                            Сохранить в избранное
+                        </button>
+                        <button><img src={warningImg} width={20} height={20} alt="warning" /></button>
+                    </div>
                     <div className={styles.aboutClient}>
                         <h2>О клиенте</h2>
                         <h3>
@@ -288,9 +316,7 @@ export default function Announcement() {
                             21:00
                         </h3>
                         <ul className={styles.clientInfo}>
-                            <li>Аккаунт верифицирован</li>
-                            <li>Телефон подтвержден</li>
-                            <li>Документы подтверждены</li>
+                            <li>Почта подтверждена</li>
                             <li>Способ оплаты добавлен</li>
                         </ul>
                         <h4>Активность задания</h4>
@@ -308,27 +334,7 @@ export default function Announcement() {
                             <li>Figma</li>
                             <li>Figma</li>
                         </ul>
-                        <button className={styles.complaint}>
-                            Пожаловаться на объявление
-                        </button>
                     </div>
-                </div>
-            </div>
-            <div className={styles.linkToTask}>
-                <h2>Ссылка на задание</h2>
-                <div className={styles.linkToTaskActions}>
-                    <button>https://music.yandex.ru/artist/54254</button>
-                    <button>
-                        <img src={copyImg} width={24} height={24} alt="copy" />
-                    </button>
-                    <button>
-                        <img
-                            src={shareImg}
-                            width={24}
-                            height={24}
-                            alt="share"
-                        />
-                    </button>
                 </div>
             </div>
         </div>
