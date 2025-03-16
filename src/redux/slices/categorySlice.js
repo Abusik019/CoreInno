@@ -10,7 +10,7 @@ const initialState = {
 export const fetchCategory = createAsyncThunk('category/fetch', 
     async (_, thunkAPI) => {
         try {
-            const res = await fetch(`${API_URL}/api/category/get/all`)
+            const res = await fetch(`${API_URL}/api/category/get-all`)
             const category = await res.json()
             
             if(category.error){
@@ -26,7 +26,7 @@ export const fetchCategory = createAsyncThunk('category/fetch',
 export const fetchSubCategoryId = createAsyncThunk('subCategoryId/fetch', 
     async (_, thunkAPI) => {
         try {
-            const res = await fetch(`${API_URL}/api/subcategory/get/all`)
+            const res = await fetch(`${API_URL}/api/subcategory/get-all`)
             const subCategory = await res.json()
             if(subCategory.error){
                 return thunkAPI.rejectWithValue(subCategory.error)

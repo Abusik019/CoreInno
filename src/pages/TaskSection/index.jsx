@@ -11,6 +11,7 @@ import { useState } from "react";
 import close from "../../assets/icons/close.svg";
 import stats from "../../assets/icons/Stats.svg";
 import group from "../../assets/icons/Group.svg";
+import Close1 from "../../assets/icons/Close1.svg"
 
 function TaskSection() {
   const [fixPayment, setFixPayment] = useState(false);
@@ -307,7 +308,10 @@ function TaskSection() {
         )}
         <div className={styles.announcementAside}>
           <button className={styles.responseBtn}>Редактировать заказ</button>
-          <button className={styles.saveBtn}>В черновик</button>
+          <div style={{display: "flex", alignItems: "center"}}>
+          <button className={styles.saveBtn}>В черновики </button>
+          <img style={{marginTop: "10px", marginLeft: "10px", cursor: "pointer"}} src={Close1} alt="" />
+          </div>
 
           <div className={styles.aboutClient}>
             <h2>О заказчике</h2>
@@ -317,9 +321,9 @@ function TaskSection() {
               21:00
             </h3>
             <ul className={styles.clientInfo}>
-              <li>Аккаунт верифицирован</li>
-              <li>Телефон подтвержден</li>
-              <li>Документы подтверждены</li>
+              {/* <li>Аккаунт верифицирован</li> */}
+              {/* <li>Телефон подтвержден</li> */}
+              <li>Почта подтверждена</li>
               <li>Способ оплаты добавлен</li>
             </ul>
 

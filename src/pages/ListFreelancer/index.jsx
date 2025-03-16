@@ -26,7 +26,7 @@ function ListFreelancer() {
   const [maxPrice, setMaxPrice] = useState(1000000);
   const [successRate, setSuccessRate] = useState(0);
   const [successRate1, setSuccessRate1] = useState(0);
-  const [indexSubCategor, setIndexSubCategor] = useState(null)
+  const [indexSubCategor, setIndexSubCategor] = useState(null);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -46,7 +46,6 @@ function ListFreelancer() {
   const toggleCategory = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
     setIndexSubCategor(null);
-   
   };
 
   function handleSliderChange([min, max]) {
@@ -102,7 +101,22 @@ function ListFreelancer() {
                             (sub) => sub.categoryId === category.id // Match subcategories to category
                           )
                           .map((sub, subIndex) => (
-                            <li onClick={() => setIndexSubCategor(subIndex)}  style={{cursor: "pointer", backgroundColor: indexSubCategor === subIndex && "#EAEAEA", height: "36px", display: "flex", alignItems: "center", borderRadius: "8px", paddingLeft: "8px"}} key={sub.id}>{sub.rusName}</li>
+                            <li
+                              onClick={() => setIndexSubCategor(subIndex)}
+                              style={{
+                                cursor: "pointer",
+                                backgroundColor:
+                                  indexSubCategor === subIndex && "#EAEAEA",
+                                height: "36px",
+                                display: "flex",
+                                alignItems: "center",
+                                borderRadius: "8px",
+                                paddingLeft: "8px",
+                              }}
+                              key={sub.id}
+                            >
+                              {sub.rusName}
+                            </li>
                           ))}
                       </ul>
                     )}
@@ -237,7 +251,7 @@ function ListFreelancer() {
               </div>
             )}
           </div>
-          
+
           <div className={styles.orders}>
             <h2 onClick={() => setOpenOrders(!openOrders)}>
               Успешные заказы{" "}
@@ -254,7 +268,7 @@ function ListFreelancer() {
 
                 <div
                   style={{
-                    width: "265px",
+                    width: "240px",
                     border: "1px solid black",
                     marginBottom: "40px",
                   }}
@@ -290,7 +304,7 @@ function ListFreelancer() {
 
                 <div
                   style={{
-                    width: "265px",
+                    width: "240px",
                     border: "1px solid black",
                     marginBottom: "40px",
                   }}

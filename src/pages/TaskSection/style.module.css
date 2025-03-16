@@ -487,19 +487,19 @@
       background-repeat: no-repeat;
     }
 
-    > :nth-child(1) {
+    > :nth-child(3) {
       background-image: url("../../assets/icons/user.svg");
     }
 
-    > :nth-child(2) {
+    > :nth-child(4) {
       background-image: url("../../assets/icons/telephone.svg");
     }
 
-    > :nth-child(3) {
-      background-image: url("../../assets/icons/document.svg");
+    > :nth-child(1) {
+      background-image: url("../../assets/icons/sms.svg");
     }
 
-    > :nth-child(4) {
+    > :nth-child(2) {
       background-image: url("../../assets/icons/payment.svg");
     }
   }

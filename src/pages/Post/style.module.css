@@ -1,26 +1,58 @@
 .rod {
   width: 1200px;
   margin: auto;
+  border: 1px solid #EAEAEA;
+  /* padding: 30px 25px 30px 25px; */
+  border-radius: 12px;
 }
 .rod2 {
   width: 1200px;
   margin: auto;
-  margin-top: 79px;
+  margin-top: 15px;
 }
+.info{
+  width: 1200px;
+  border: 1px solid #EAEAEA;
+  padding: 30px 0px 30px 25px;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+.oblojka{
+  border: 1px solid #EAEAEA;
+  padding: 0px 25px 30px 25px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
 .rod3 {
     width: 1200px;
     margin: auto;
-    margin-top: 70px;
+    margin-top: 15px;
+    border: 1px solid #EAEAEA;
+    padding: 30px 25px 30px 25px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    
   }
   .rod4 {
     width: 1200px;
     margin: auto;
-    margin-top: 70px;
+    margin-top: 15px;
+    border: 1px solid #EAEAEA;
+    padding: 30px 25px 30px 25px;
+    box-sizing: border-box;
+    border-radius: 12px;
   }
   .rod5 {
     width: 1200px;
     margin: auto;
-    margin-top: 70px;
+    margin-top: 15px;
+  }
+  .faq{
+    border: 1px solid #EAEAEA;
+    padding: 30px 25px 30px 25px;
+    box-sizing: border-box;
+    border-radius: 12px;
   }
 
 .banner {
@@ -30,7 +62,7 @@
   width: 1220px;
   justify-content: space-around;
   border-radius: 24px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 .banner1 {
   width: 840px;
@@ -89,7 +121,7 @@
     margin-bottom: 15px;
 }
 .rod2 input{
-    width: 1220px;
+    width: 1145px;
     margin-top: 15px;
     margin-bottom: 30px;
 }
@@ -108,7 +140,7 @@
 
 .rod3 textarea{
     box-sizing: border-box;
-    width: 1220px;
+    width: 1145px;
     height: 165px;
     background-color: transparent;
     border-radius: 14px;
@@ -136,7 +168,7 @@
     color: gray;
 }
 .rod4 button{
-    width: 1220px;
+    width: 1145px;
     height: 57px;
     font-size: 25px;
     color: gray;
@@ -164,7 +196,7 @@
   padding-top: 8px;
 }
 .arrows{
-    width: 1220px;
+    width: 1145px;
     display: flex;
     justify-content: space-between;
 }
@@ -183,13 +215,13 @@
     color: gray;
 }
 .inputs{
-    width: 1220px;
+    width: 1145px;
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
 }
 .input input{
-    width: 1176px;
+    width: 1106px;
     margin-bottom: 10px;
 }
 .createInput{
@@ -258,7 +290,7 @@
 }
 
 .mainImage {
-  width: 1220px;
+  width: 1145px;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;

@@ -307,36 +307,7 @@ function ListOrders() {
               </div>
             )}
           </div>
-          <div className={styles.words}>
-            <h2 onClick={() => setOpenWords(!openWords)}>
-              Ключевые слова{" "}
-              {openWords ? (
-                <img src={right} alt="" />
-              ) : (
-                <img src={bottom} alt="" />
-              )}{" "}
-            </h2>
-            {openWords && (
-              <div className={styles.word}>
-                <img src={search} alt="" />
-                <input
-                  value={text1}
-                  onChange={(e) => setText1(e.target.value)}
-                  placeholder="Поиск"
-                  type="text"
-                />
-                <div className={styles.container}>
-                  {items.map((item, index) => (
-                    <div key={index} className={styles.item}>
-                      <input type="checkbox" />
-                      <span>{item}</span>
-                      <span>99</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+         
           <div className={styles.orders}>
             <h2 onClick={() => setOpenOrders(!openOrders)}>
               Успешные заказы{" "}
@@ -353,7 +324,7 @@ function ListOrders() {
 
                 <div
                   style={{
-                    width: "265px",
+                    width: "240px",
                     border: "1px solid black",
                     marginBottom: "40px",
                   }}
@@ -389,7 +360,7 @@ function ListOrders() {
 
                 <div
                   style={{
-                    width: "265px",
+                    width: "240px",
                     border: "1px solid black",
                     marginBottom: "40px",
                   }}
