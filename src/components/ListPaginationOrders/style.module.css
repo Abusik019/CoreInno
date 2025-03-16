@@ -5,7 +5,7 @@
   .cardsContainer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 20px
+    gap: 15px
   
   }
 
@@ -16,7 +16,8 @@
     padding: 20px 25px 20px 25px;
     border-radius: 12px;
     background-color: #FFFFFF;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    border: 1px solid #EAEAEA;
 }
 .user{
     width: 845px;

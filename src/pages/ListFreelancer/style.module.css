@@ -14,6 +14,7 @@
 }
 .content h1{
     font-size: 42px;
+    font-weight: 400;
 }
 
 
@@ -28,11 +29,15 @@
     width: 265px;
     margin-top: 50px;
     margin-left: 120px;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 15px 0 0 15px;
+    box-sizing: border-box;
     
 }
 .sidebar h2{
 font-size: 18px;
-margin-bottom: 20px;
+margin-bottom: 15px;
 }
 
 .sidebar ul li{
@@ -46,12 +51,16 @@ margin-bottom: 20px;
 
 .price{
     width: 265px;
-    margin-top: 35px;
+    margin-top: 15px;
     margin-left: 120px; 
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 15px 0 0 15px;
+    box-sizing: border-box;
 }
 .price h2{
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .priceInputs{
     display: flex;
@@ -81,7 +90,7 @@ margin-bottom: 20px;
     border: 1px solid #000000;
 }
 .slider{
-    width: 265px;
+    width: 255px;
     height: 10px;
     border-radius: 5px;
     position: relative;
@@ -109,23 +118,31 @@ margin-bottom: 20px;
 
 .rating{
     width: 265px;
-    margin-top: 35px;
+    margin-top: 15px;
     margin-left: 120px;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 15px 0 0 15px;
+    box-sizing: border-box;
 }
 .rating h2{
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .executor{
     width: 265px;
-    margin-top: 35px;
+    margin-top: 15px;
     margin-left: 120px;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 15px 0 0 15px;
+    box-sizing: border-box;
 }
 .executor h2{
     cursor: pointer;
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .executors{
     display: flex;
@@ -170,11 +187,11 @@ margin-bottom: 20px;
 }
 
 .slider1{
-    width: 265px;
-    height: 10px;
+    width: 240px;
+    height: 40px;
     border-radius: 5px;
     position: relative;
-   /* bottom: -48px; */
+   /* bottom: 28px; */
    
 }
 
@@ -202,12 +219,19 @@ div::-webkit-scrollbar-thumb{
 }
 .orders{
     width: 265px;
-    margin-top: 35px;
+    /* height: 197px; */
+    margin-top: 15px;
     margin-left: 120px;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 15px 0 0 15px;
+    box-sizing: border-box;
+    
 }
 .orders h2{
     cursor: pointer;
     font-size: 18px;
+    margin-bottom: 15px;
 }
 .order{
     margin-top: 20px;
@@ -255,6 +279,7 @@ div::-webkit-scrollbar-thumb{
     margin-top: 40px;
     margin-left: 40px;
 }
+
 
 
 

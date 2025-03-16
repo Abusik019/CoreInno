@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./style.module.css";
 import favorite from "../../assets/icons/favorite.png";
+import favoriteAccent from "../../assets/icons/favoriteAccent.svg";
 import material from "../../assets/icons/material.svg";
 import mingcute from "../../assets/icons/mingcute.svg";
 import fluent from "../../assets/icons/fluent.svg";
@@ -22,6 +23,8 @@ const data = Array.from({ length: 15 }, (_, i) => ({
 
 const ListPaginationOrders = () => {
   const [currentPage, setCurrentPage] = useState(1);
+    const [favorite1, setFavorite1] = useState(false);
+      const [indexFavorite, setIndexFavorite] = useState(null);
   const itemsPerPage = 7;
 
   // Определение текущих карточек
@@ -37,11 +40,16 @@ const ListPaginationOrders = () => {
     window.scrollTo(0, 0);
   };
 
+  function favorites(index) {
+    setFavorite1(!favorite1);
+    setIndexFavorite(index);
+  }
+
   return (
     <div className={styles.container}>
       {/* Карточки */}
       <div className={styles.cardsContainer}>
-        {currentItems.map((item) => (
+        {currentItems.map((item, index) => (
           <div className={styles.cart} key={item.id}>
             <div className={styles.user}>
               <div className={styles.userInfo}>
@@ -63,7 +71,15 @@ const ListPaginationOrders = () => {
                 </div>
               </div>
               <div className={styles.favorite}>
-                <img src={favorite} alt="" />
+                 {favorite1 && indexFavorite === index ? (
+                                  <img
+                                    onClick={() => favorites(index)}
+                                    src={favoriteAccent}
+                                    alt=""
+                                  />
+                                ) : (
+                                  <img onClick={() => favorites(index)} src={favorite} alt="" />
+                                )}
                 <button>Откликнуться</button>
               </div>
             </div>
