@@ -29,6 +29,7 @@ import CreateFreelancerProfile from './pages/CreateFreelancerProfile';
 import CreateCustomerProfile from './pages/CreateCustomerProfile';
 import Lending from './pages/Lending';
 import CustomerProfile from './pages/CustomerProfile';
+import Review from './pages/Review';
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
         <Route path='/responses' element={<AllResponses />}/>
         <Route path='/chat' element={<Chat/>}/>
         <Route path='/customer-profile' element={<CustomerProfile />}/>
+        <Route path='/review' element={<Review />}/>
     </Routes>
   )
 }
