@@ -69,7 +69,7 @@ function CasePortfolio() {
         </div>
         <div className={styles.right}>
           <input
-            type="file"
+            
             accept="image/*"
             style={{ display: "none" }}
             id="upload-image"

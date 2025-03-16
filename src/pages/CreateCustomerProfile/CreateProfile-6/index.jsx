@@ -142,7 +142,7 @@ export default function CreateProfilePageSix({ setPage, setUser, user }) {
                                 height={88}
                                 alt="your photo" 
                             />
-                             <label>
+                            <label>
                                 Выбрать фотографию
                                 <input
                                     type="file"

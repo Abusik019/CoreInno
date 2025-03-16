@@ -30,7 +30,8 @@ import CreateCustomerProfile from './pages/CreateCustomerProfile';
 import Lending from './pages/Lending';
 import CustomerProfile from './pages/CustomerProfile';
 import Review from './pages/Review';
-
+import NotFound from './pages/404';
+import CreateConsultation from './pages/CreateConsultation';
 
 function App() {
   return (
@@ -65,6 +66,8 @@ function App() {
         <Route path='/chat' element={<Chat/>}/>
         <Route path='/customer-profile' element={<CustomerProfile />}/>
         <Route path='/review' element={<Review />}/>
+        <Route path='/not-found' element={<NotFound />}/>
+        <Route path='/create-consultation' element={<CreateConsultation />}/>
     </Routes>
   )
 }
