@@ -15,8 +15,8 @@ import arrowImg from '../../assets/icons/smallArrow.svg';
 
 export default function Announcement() {
     const [fixPayment, setFixPayment] = useState(false);
-    const [isCopyLink, setIsCopyLink] = useState(false);
     const [isHideDesc, setIsHideDesc] = useState(false);
+    const [isCopyLink, setIsCopyLink] = useState(false);
 
     function handleCopyClick() {
         const { textContent } = document.getElementById('copyText')
