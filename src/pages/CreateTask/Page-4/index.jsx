@@ -58,7 +58,18 @@ export default function CreateTaskPageFour({ setPage, setTask, task }) {
                                     }));
                                 }}
                             />
-                            <TimePickerItem value={task.details.deadlines.time} setDate={setTask}/>
+                            <TimePickerItem value={task.details.deadlines.time} onChange={(date, dateString) => {
+                                setDate((prev) => ({
+                                    ...prev,
+                                    details: {
+                                        ...prev.details,
+                                        deadlines: {
+                                            ...prev.details.deadlines,
+                                            time: date ? dateString : "" 
+                                        },
+                                    }
+                                }));
+                            }}/>
                         </div>
                     </div>
                     <div className={styles.notes}>

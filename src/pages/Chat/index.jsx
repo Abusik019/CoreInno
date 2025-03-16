@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserAuth, fetchUsers } from "../../redux/slices/userSlice";
 
 // Используем реальный сервер, а не localhost
-const socket = io("https://yourserver.com");
+// const socket = io("https://yourserver.com");
 
 export default function Chat() {
   const [chats, setChats] = useState([]);

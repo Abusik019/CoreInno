@@ -7,7 +7,7 @@ export default function CreateProfilePageEight({ setPage, user }) {
         <div className={styles.createProfile}>
             <div className={styles.createProfileContainer}>
                 <h2>Ваш профиль</h2>
-                <p>Вы сможете изменить данные позже в разделе настроек, а пока что Ваш профиль<br />выглядит таким образом</p>
+                <p>Вы сможете изменить данные позже в разделе настроек, а пока что Ваш профиль выглядит таким образом</p>
                 <div className={styles.details}>
                     <div className={styles.detailsContent}>
                         <img 
@@ -58,13 +58,15 @@ export default function CreateProfilePageEight({ setPage, user }) {
                                 />
                             </button>
                         </div>
-                        <ul className={styles.skills}>
-                            <li>навык</li>
-                            <li>навык</li>
-                            <li>навык</li>
-                            <li>навык</li>
-                            <li>навык</li>
-                        </ul>
+                        {user.userCategories.length !== 0 ? 
+                            <ul className={styles.skills}>
+                                {user.userCategories.map(item => (
+                                    <li key={item.id}>{item.rusName}</li>
+                                ))}
+                            </ul>
+                            :
+                            <h2 className={styles.optionalText}>Вы не оставили информации в этом поле, но не беспокойтесь — оно необязательное</h2>
+                        }
                     </div>
                 </div>
                 <div className={styles.experience}>

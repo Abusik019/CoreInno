@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import ReviewsSelect from "../../components/SelectReviews";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import MyCommercialAnnouncement from '../MyCommercialAnnouncement';
 
@@ -8,11 +8,27 @@ import copyImg from "../../assets/icons/copy.svg";
 import shareImg from "../../assets/icons/share.svg";
 import mockImg from "../../assets/images/Rectangle 55.png";
 import arrowImg from "../../assets/icons/arrowBlackLong.svg";
+import smallArrowImg from "../../assets/icons/smallArrow.svg";
 import like from '../../assets/icons/like.svg';
-import tgImg from '../../assets/icons/tg.svg';
+import warningImg from '../../assets/icons/warning.svg';
+import checkmarkImg from '../../assets/icons/checkmark.svg';
 
 export default function CommercialAnnouncement() {
+    const [isHideDesc, setIsHideDesc] = useState(false);
+    const [isCopyLink, setIsCopyLink] = useState(false);
     const isMyCommercialAnnouncement = true;
+
+    function handleCopyClick() {
+        const { textContent } = document.getElementById('copyText')
+        navigator.clipboard.writeText(textContent)
+            .then(() => {
+                setIsCopyLink(true);
+                setTimeout(() => {
+                    setIsCopyLink(false);
+                }, 3000);
+            })
+            .catch(err => console.error("Ошибка копирования: ", err));
+    }
 
     return (
         <>
@@ -34,7 +50,7 @@ export default function CommercialAnnouncement() {
                                         alt="freelancer avatar"
                                     />
                                     <ul>
-                                        <li>Заказчик</li>
+                                        <li>Фрилансер</li>
                                         <li>
                                             Жанна Кондратьева <span>5.0</span>
                                         </li>
@@ -53,58 +69,85 @@ export default function CommercialAnnouncement() {
                                         <img src={mockImg} alt="announcement image" />
                                     </div>
                                 </div>
-                                <ul className={styles.announcementImagesLinks}>
+                            </div>
+                            <div className={styles.announcementDesc}>
+                                <div className={styles.descTitleBlock}>
+                                    <h2>Описание задания</h2>
+                                    <button 
+                                        onClick={() => setIsHideDesc((prev) => !prev)}
+                                        style={{transform: isHideDesc ? 'rotate(0deg)' : 'rotate(180deg)'}}
+                                    >
+                                        <img src={smallArrowImg} width={20} height={20} alt="arrow" />
+                                    </button>
+                                </div>
+                                {!isHideDesc && 
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur. Risus odio
+                                        ac tellus id quis ante. Eget pharetra sed quam
+                                        tortor leo blandit. Ac iaculis turpis porttitor
+                                        lectus sed. Sapien sit elementum pulvinar est vitae
+                                        diam condimentum.
+                                        <br />
+                                        Ipsum non volutpat urna augue amet placerat gravida
+                                        scelerisque risus. Ut tempor maecenas vestibulum
+                                        elit at amet amet eget. Neque lorem lorem diam enim
+                                        vitae dolor magna non sit. Pellentesque eget aliquam
+                                        suspendisse lacus vitae arcu sem lacus. Eu vitae
+                                        condimentum quisque non vulputate pharetra. Mi diam
+                                        eu semper tellus a enim pulvinar. Tincidunt pharetra
+                                        vel leo enim dictum amet amet quis pellentesque.
+                                        Arcu at blandit non quis ipsum ipsum iaculis.
+                                        Aliquam tortor massa duis sit hendrerit viverra
+                                        aliquam consequat. Massa diam in donec nec commodo
+                                        quis.
+                                        <br />
+                                        Velit tincidunt sem sed vel potenti quisque
+                                        fringilla. Rhoncus praesent sapien pulvinar
+                                        ullamcorper sapien quam enim arcu habitasse. Feugiat
+                                        vestibulum lacus sed donec suscipit vulputate non.
+                                        Cursus urna nibh erat risus enim. Est ultricies
+                                        scelerisque mauris euismod. Aliquet lorem tellus
+                                        sollicitudin sit semper sit viverra eu magnis.
+                                        Ridiculus odio tincidunt ac sit aliquam adipiscing
+                                        eu malesuada est. Sit egestas arcu metus sit urna.
+                                        Aenean cursus molestie posuere convallis scelerisque
+                                        libero metus. Feugiat arcu molestie gravida nec sem
+                                        magna odio a etiam. Aliquam nisl et quam
+                                        pellentesque.
+                                    </p>
+                                }
+                            </div>
+                            <div className={styles.announcementFiles}>
+                                <h2>Вложения</h2>
+                                <ul>
+                                    <li>document.docx</li>
+                                    <li>document.docx</li>
+                                    <li>document.docx</li>
+                                </ul>
+                            </div>
+                            <div className={styles.announcementCategory}>
+                                <h2>Категория объявления</h2>
+                                <div>Графический дизайн</div>
+                            </div>
+                            <div className={styles.announcementQuestions}>
+                                <h2>Частые вопросы</h2>
+                                <ul>
                                     <li>
-                                        <Link to="#">Описание услуги</Link>
+                                        <h2>Lorem ipsum dolor sit amet consectetur?</h2>
+                                        <h3>Lorem ipsum dolor sit amet consectetur. Odio adipiscing rutrum gravida tortor senectus.</h3>
                                     </li>
                                     <li>
-                                        <Link to="#">Что включено?</Link>
+                                        <h2>Lorem ipsum dolor sit amet consectetur?</h2>
+                                        <h3>Lorem ipsum dolor sit amet consectetur. Odio adipiscing rutrum gravida tortor senectus.</h3>
                                     </li>
                                     <li>
-                                        <Link to="#">Отзывы</Link>
+                                        <h2>Lorem ipsum dolor sit amet consectetur?</h2>
+                                        <h3>Lorem ipsum dolor sit amet consectetur. Odio adipiscing rutrum gravida tortor senectus.</h3>
                                     </li>
                                 </ul>
                             </div>
-                            <div className={styles.announcementDesc}>
-                                <h2>Описание задания</h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur. Risus odio
-                                    ac tellus id quis ante. Eget pharetra sed quam
-                                    tortor leo blandit. Ac iaculis turpis porttitor
-                                    lectus sed. Sapien sit elementum pulvinar est vitae
-                                    diam condimentum.
-                                    <br />
-                                    Ipsum non volutpat urna augue amet placerat gravida
-                                    scelerisque risus. Ut tempor maecenas vestibulum
-                                    elit at amet amet eget. Neque lorem lorem diam enim
-                                    vitae dolor magna non sit. Pellentesque eget aliquam
-                                    suspendisse lacus vitae arcu sem lacus. Eu vitae
-                                    condimentum quisque non vulputate pharetra. Mi diam
-                                    eu semper tellus a enim pulvinar. Tincidunt pharetra
-                                    vel leo enim dictum amet amet quis pellentesque.
-                                    Arcu at blandit non quis ipsum ipsum iaculis.
-                                    Aliquam tortor massa duis sit hendrerit viverra
-                                    aliquam consequat. Massa diam in donec nec commodo
-                                    quis.
-                                    <br />
-                                    Velit tincidunt sem sed vel potenti quisque
-                                    fringilla. Rhoncus praesent sapien pulvinar
-                                    ullamcorper sapien quam enim arcu habitasse. Feugiat
-                                    vestibulum lacus sed donec suscipit vulputate non.
-                                    Cursus urna nibh erat risus enim. Est ultricies
-                                    scelerisque mauris euismod. Aliquet lorem tellus
-                                    sollicitudin sit semper sit viverra eu magnis.
-                                    Ridiculus odio tincidunt ac sit aliquam adipiscing
-                                    eu malesuada est. Sit egestas arcu metus sit urna.
-                                    Aenean cursus molestie posuere convallis scelerisque
-                                    libero metus. Feugiat arcu molestie gravida nec sem
-                                    magna odio a etiam. Aliquam nisl et quam
-                                    pellentesque.
-                                </p>
-                            </div>
                             <div className={styles.profilePortfolio}>
                                 <h2>Портфолио</h2>
-                                <div className={styles.grayLine}></div>
                                 <ul className={styles.portfolioTasks}>
                                     <li>
                                         <img
@@ -145,12 +188,9 @@ export default function CommercialAnnouncement() {
                                 </div>
                             </div>
                             <div className={styles.profileReviews}>
-                                <h2>Отзывы о фрилансере (12)</h2>
-                                <div className={styles.blackLine}></div>
-                                <ReviewsSelect />
+                                <h2>Отзывы о фрилансере <span>(12)</span></h2>
                                 <ul className={styles.reviewsList}>
                                     <li>
-                                        <h2>Помог настроить CRM систему</h2>
                                         <div className={styles.reviewsContent}>
                                             <img
                                                 src={avatarImg}
@@ -201,8 +241,34 @@ export default function CommercialAnnouncement() {
                                 </div>
                             </div>
                             <div className={styles.announcementOtherTasks}>
+                                                    <div>
+                                                        <h2>Другие объявления фрилансера</h2>
+                                                        <Link to="#">Смотреть все</Link>
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <Link to="#">
+                                                                Lorem ipsum dolor sit amet consec eu tellus
+                                                                dui eu non
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link to="#">
+                                                                Lorem ipsum dolor sit amet consec eu tellus
+                                                                dui eu non
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link to="#">
+                                                                Lorem ipsum dolor sit amet consec eu tellus
+                                                                dui eu non
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                            </div>
+                            <div className={styles.announcementSimilarTasks}>
                                 <div>
-                                    <h2>Другие задания заказчика</h2>
+                                    <h2>Похожие объявления на Бирже</h2>
                                     <Link to="#">Смотреть все</Link>
                                 </div>
                                 <ul>
@@ -226,46 +292,40 @@ export default function CommercialAnnouncement() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className={styles.announcementSimilarTasks}>
-                                <div>
-                                    <h2>Похожие задания на Бирже</h2>
-                                    <Link to="#">Смотреть все</Link>
+                            <div className={styles.linkToTask}>
+                                <h2>Ссылка на задание</h2>
+                                <div className={styles.linkToTaskActions}>
+                                    <button id="copyText">https://music.yandex.ru/artist/54254</button>
+                                    <button 
+                                        onClick={handleCopyClick} 
+                                        style={{
+                                            backgroundColor: isCopyLink ? '#EAEAEA' : 'transparent',
+                                            border: isCopyLink && 'none'
+                                        }}
+                                    >
+                                        <img src={!isCopyLink ? copyImg : checkmarkImg} width={24} height={24} alt="copy" />
+                                    </button>
+                                    <button>
+                                        <img
+                                            src={shareImg}
+                                            width={24}
+                                            height={24}
+                                            alt="share"
+                                        />
+                                    </button>
                                 </div>
-                                <ul>
-                                    <li>
-                                        <Link to="#">
-                                            Lorem ipsum dolor sit amet consec eu tellus
-                                            dui eu non
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#">
-                                            Lorem ipsum dolor sit amet consec eu tellus
-                                            dui eu non
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#">
-                                            Lorem ipsum dolor sit amet consec eu tellus
-                                            dui eu non
-                                        </Link>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                         <div className={styles.announcementAside}>
                             <button className={styles.responseBtn}>
                                 Отправить запрос
                             </button>
-                            <button className={styles.saveBtn}>
-                                <img 
-                                    src={tgImg}
-                                    width={16}
-                                    height={14}
-                                    alt="telegram logo"
-                                />
-                                <span>Связаться</span> 
-                            </button>
+                            <div className={styles.saveBtnWrapper}>
+                                <button className={styles.saveBtn}>
+                                    В избранное
+                                </button>
+                                <button><img src={warningImg} width={20} height={20} alt="warning" /></button>
+                            </div>
                             <div className={styles.aboutClient}>
                                 <h2>О фрилансере</h2>
                                 <h3>
@@ -277,27 +337,7 @@ export default function CommercialAnnouncement() {
                                     <li>Почта подтверждена</li>
                                     <li>Способ оплаты добавлен</li>
                                 </ul>
-                                <button className={styles.complaint}>
-                                    Пожаловаться на объявление
-                                </button>
                             </div>
-                        </div>
-                    </div>
-                    <div className={styles.linkToTask}>
-                        <h2>Ссылка на задание</h2>
-                        <div className={styles.linkToTaskActions}>
-                            <button>https://music.yandex.ru/artist/54254</button>
-                            <button>
-                                <img src={copyImg} width={24} height={24} alt="copy" />
-                            </button>
-                            <button>
-                                <img
-                                    src={shareImg}
-                                    width={24}
-                                    height={24}
-                                    alt="share"
-                                />
-                            </button>
                         </div>
                     </div>
                 </div>

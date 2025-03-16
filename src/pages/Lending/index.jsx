@@ -49,6 +49,7 @@ export default function Lending() {
     const [activeItem, setActiveItem] = useState(null);
     const sectionRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
+    const [role, setRole] = useState('freelancer');
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -111,8 +112,8 @@ export default function Lending() {
                     <h2>Найдите идеальную работу или специалиста с Jobify!</h2>
                     <p>Платформа для поиска фриланс-заказов и исполнителей с удобным интерфейсом и надежными инструментами</p>
                     <div className={styles.mainBtns}>
-                        <button>Присоединиться</button>
-                        <button>Есть вопросы?</button>
+                        <Link to="/registration">Присоединиться</Link>
+                        {/* <button>Есть вопросы?</button> */}
                     </div>
                 </div>
                 <ul className={styles.advantages}>
@@ -140,22 +141,34 @@ export default function Lending() {
                     <div className={styles.stepsSwitchRole}>
                         <h2>Как мне находить исполнителей?</h2>
                         <div>
-                            <button>Я фрилансер</button>
-                            <button>Я заказчик</button>
+                            <button 
+                                onClick={() => setRole('freelancer')}
+                                style={{
+                                    backgroundColor: role === 'freelancer' ? '#000' : '#fff',
+                                    color: role === 'freelancer' ? '#fff' : '#000'
+                                }}
+                            >Я фрилансер</button>
+                            <button 
+                                onClick={() => setRole('customer')}
+                                style={{
+                                    backgroundColor: role === 'customer' ? '#000' : '#fff',
+                                    color: role === 'customer' ? '#fff' : '#000'
+                                }}
+                            >Я заказчик</button>
                         </div>
                     </div>
                     <ul className={styles.stepsList}>
                         <li>
                             <h2>Шаг №1</h2>
-                            <p>Создайте задание/Найдите подходящий проект</p>
+                            <p>{role === 'customer' ? "Создайте задание" : "Найдите подходящий проект"}</p>
                         </li>
                         <li>
                             <h2>Шаг №2</h2>
-                            <p>Выберите исполнителя/Откликнитесь на заказ</p>
+                            <p>{role === 'customer' ? "Выберите исполнителя" : "Откликнитесь на заказ"}</p>
                         </li>
                         <li>
                             <h2>Шаг №3</h2>
-                            <p>Оплачивайте через безопасную сделку и получайте безупречный результат/Работайте и получайте оплату через безопасную сделку</p>
+                            <p>{role === 'customer' ? "Оплачивайте через безопасную сделку и получайте безупречный результат" : "Работайте и получайте оплату через безопасную сделку"}</p>
                         </li>
                     </ul>
                 </div>
@@ -165,7 +178,7 @@ export default function Lending() {
                     <div className={styles.implementAI}>Что-то тут будет</div>
                     <h2>Туториал по работе на Jobify</h2>
                     <p>Мы обновили биржу — добавили встроенный чат, быстрые переводы и систему гарантии сделок, а также поддержку пользователей</p>
-                    <button>Присоединиться</button>
+                    <Link to='/registration'>Присоединиться</Link>
                 </div>
                 <img 
                     src={videoImg}
@@ -241,7 +254,7 @@ export default function Lending() {
                     ))}
                 </ul>
             </section>
-            <section className={styles.stats}>
+            {/* <section className={styles.stats}>
                 <ul className={styles.statsList}>
                     <li>
                         <h2>1000+</h2>
@@ -260,7 +273,7 @@ export default function Lending() {
                         <p>Успешных заказов</p>
                     </li>
                 </ul>
-            </section>
+            </section> */}
             <section className={styles.course}>
                 <h2>Курс по искусственному интелекту</h2>
                 <p>Наш курс по искусственному интеллекту (ИИ) создан специально для фрилансеров, которые хотят зарабатывать больше и автоматизировать рутинные задачи.</p>
@@ -280,9 +293,9 @@ export default function Lending() {
                     </div>
                     <div className={styles.foooterLinks}>
                         <div>
-                            <Link to="#"><img src={vkImg} width={24} height={24} alt="vk" /></Link>
-                            <Link to="#"><img src={tgImg} width={24} height={24} alt="tg" /></Link>
-                            <Link to="#"><img src={igImg} width={24} height={24} alt="ig" /></Link>
+                            <Link to="https://m.vk.com/coreinno"><img src={vkImg} width={24} height={24} alt="vk" /></Link>
+                            <Link to="https://t.me/+pTuTWwR-Rg02ZGIy"><img src={tgImg} width={24} height={24} alt="tg" /></Link>
+                            <Link to="https://www.instagram.com/core_inno?igsh=d2M3Z3RteHIwa3Bm"><img src={igImg} width={24} height={24} alt="ig" /></Link>
                         </div>
                         <h2>core.inno@mail.ru</h2>
                     </div>

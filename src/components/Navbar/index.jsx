@@ -87,7 +87,7 @@ export const Navbar = () => {
                     </div>
                 </li>
                 <li><Link to="#">Наш курс</Link></li>
-                {isLogin && <li><Link to="#">Чат</Link></li>}
+                {isLogin && <li><Link to="/chat">Чат</Link></li>}
             </ul>
         </div>
         <div className={styles.rightSide}>

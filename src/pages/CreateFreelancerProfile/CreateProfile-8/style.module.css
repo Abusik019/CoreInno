@@ -1,4 +1,4 @@
-.createProfile{
+.createProfile {
     width: 100vw;
     height: fit-content;
     min-height: 100vh;
@@ -9,262 +9,269 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
+    gap: 100px;
 }
 
-.createProfileContainer{
+.createProfileContainer {
     width: 100%;
+    height: fit-content;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
-    >h2{
-        font-weight: 400;
+    >h2 {
         font-size: 42px;
+        font-weight: 400;
         line-height: 42px;
-        letter-spacing: -3%;
+        letter-spacing: -0.03em;
+        text-align: left;
 
-        margin-top: 100px;
+        max-width: 60%;
     }
 
-    >p{
-        font-weight: 400;
+    >h3 {
         font-size: 18px;
-        line-height: 20px;
-
-        opacity: 0.6;
-        margin-top: 20px;
-    }
-}
-
-.details{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    height: fit-content;
-    width: 100%;
-
-    padding: 30px;
-    box-sizing: border-box;
-
-    border: 1px solid #0000001A;
-    border-radius: 16px;
-
-    margin-top: 50px;
-
-    .detailsContent{
-        display: flex;
-        align-items: center;
-        gap: 25px;
-
-        >img{
-            border-radius: 12px;
-        }
-
-        >div{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 15px;
-
-            >h2{
-                font-weight: 500;
-                font-size: 22px;
-                line-height: 26.4px;
-            }
-
-            >h3{
-                padding-left: 30px;
-                box-sizing: border-box;
-
-                background-image: url('../../../assets/icons/location.svg');
-                background-position: left;
-                background-size: auto;
-                background-repeat: no-repeat;
-            }
-        }
-    }
-
-    >button{
-        background-color: transparent;
-    }
-}
-
-.description{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-
-    height: fit-content;
-    width: 100%;
-
-    padding: 30px;
-    box-sizing: border-box;
-
-    border: 1px solid #0000001A;
-    border-radius: 16px;
-
-    margin-top: 40px;
-
-    >div{
-        width: 100%;
-        height: fit-content;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-
-        >p{
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 20px;
-        }
-
-        .speciality{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-
-            >li{
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 20px;
-
-                opacity: 0.8;
-            }
-        }
-
-        .skills{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-
-            >li{
-                background-color: #EAEAEA;
-                color: #00000099;
-
-                padding: 5px 16px;
-                box-sizing: border-box;
-
-                border-radius: 8px;
-            }
-        }
-    }
-}
-
-.experience, .education{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-
-    height: fit-content;
-    width: 100%;
-
-    padding: 30px;
-    box-sizing: border-box;
-
-    border: 1px solid #0000001A;
-    border-radius: 16px;
-
-    margin-top: 40px;
-
-    .experiencesList{
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-
-        >li{
-            width: 100%;
-
-            display: flex;
-            align-items: center;
-            gap: 15px;
-
-            >div{
-                height: 100%;
-
-                >h2{
-                    font-weight: 500;
-                    font-size: 22px;
-                    line-height: 26.4px;
-                }
-
-                >h3{
-                    font-weight: 400;
-                    font-size: 18px;
-                    line-height: 20px;
-
-                    margin-top: 5px;
-                }
-
-                >p{
-                    font-weight: 400;
-                    font-size: 18px;
-                    line-height: 20px;
-
-                    opacity: 0.6;
-                    margin-top: 15px;
-                }
-            }
-        }
-    }
-}
-
-.title{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    >h2{
         font-weight: 400;
-        font-size: 28px;
-        line-height: 31px;
+        line-height: 20px;
+        text-align: left;
+
+        margin-top: 20px;
+        opacity: 0.6;
+
+        max-width: 60%;
     }
 
-    >button{
-        height: 24px;
-        background-color: transparent;
-    }
-}
-
-.btns{
-    margin-top: 76px;
-
-    width: 100%;
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    >button{
-        padding: 10px 30px;
-        box-sizing: border-box;
+    .addExperience {
+        width: 424px;
+        height: 50px;
 
         border-radius: 10px;
         border: 1px solid #000;
 
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 16px;
-        text-align: center;
-    }
+        margin-top: 50px;
 
-    >:first-child{
         background-color: transparent;
-        color: #000;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        >span {
+            color: #000;
+
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: center;
+        }
+    }
+}
+
+.modalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+
+    >h2 {
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 31px;
+        text-align: left;
+
+        margin-bottom: 28px;
     }
 
-    >:last-child{
-        color: #fff;
-        background-color: #000;
+    >form {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+
+        >div {
+            width: 100%;
+        }
+
+        .formImage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+
+            align-self: center;
+
+            >label {
+                display: inline-block;
+
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 16px;
+                letter-spacing: 0%;
+                text-align: center;
+
+                opacity: 0.5;
+
+                cursor: pointer;
+
+                >input {
+                    display: none;
+                }
+            }
+        }
+
+        .formNumber{
+            >input{
+                width: 100%;
+            }
+        }
+
+        .formLocation {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            >div {
+                width: 50%;
+
+                >input {
+                    width: 100%;
+                }
+            }
+        }
+
+        .formDatePicker{
+            >h2{
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 20px;
+                letter-spacing: 0%;
+
+                margin-bottom: 8px;
+            }
+        }
+
+        .formBtns {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            >button {
+                padding: 10px 30px;
+                box-sizing: border-box;
+
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 16px;
+                text-align: center;
+
+                border-radius: 10px;
+                border: 1px solid #000;
+            }
+
+            >:first-child {
+                background-color: #fff;
+                color: #000;
+            }
+
+            >:last-child {
+                background-color: #000000;
+                color: #fff;
+            }
+        }
     }
+}
+
+
+.aboutMeBlock {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    width: 422px;
+    height: fit-content;
+
+    margin-top: 50px;
+
+    position: relative;
+
+    .aboutMeContent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        >div {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            >h2 {
+                font-size: 22px;
+                font-weight: 500;
+                line-height: 26.4px;
+                text-align: left;
+            }
+
+            >div {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                >button {
+                    background-color: transparent;
+                }
+            }
+        }
+
+        >h3 {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: left;
+
+            opacity: 0.6;
+
+            margin-top: 5px;
+        }
+
+        >h4 {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 20px;            
+
+            margin-top: 13px;
+
+            opacity: 0.7;
+        }
+    }
+}
+
+.addExperienceSmall {
+    padding: 13px;
+    box-sizing: border-box;
+
+    border-radius: 10px;
+    border: 1px solid #000;
+
+    background-color: transparent;
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

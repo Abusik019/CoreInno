@@ -40,7 +40,7 @@
         opacity: 0.6;
     }
 
-    .categories{
+    .categories, .subcategories{
         margin-top: 80px;
 
         display: flex;
@@ -85,4 +85,8 @@
             }
         }
     }
+}
+
+.subcategories{
+    margin-top: 35px !important;
 }

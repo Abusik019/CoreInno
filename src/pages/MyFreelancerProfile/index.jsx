@@ -14,6 +14,13 @@ import editImg from "../../assets/icons/edit2.svg";
 import plusImg from "../../assets/icons/plusWithBg.svg";
 import messageImg from "../../assets/icons/bigChat.svg";
 import boxImg from "../../assets/icons/box.svg";
+import folderImg from "../../assets/icons/folder.svg";
+import certificateImg from "../../assets/icons/cup.svg";
+import bagImg from "../../assets/icons/bigBag.svg";
+import menu from "../../assets/icons/order-menu.svg";
+import ratingStarImg from "../../assets/icons/ratingStar.svg";
+import mockImg from '../../assets/images/mockGuide.png';
+import noneImg from '../../assets/images/mockLi.png';
 
 const data = {
     first_name: "",
@@ -24,12 +31,17 @@ const data = {
     desc: "",
     education: "",
     sphere: "",
+    experience: "",
+    tasks: "",
     reviews: "",
-    announcements: ""
+    announcements: "",
+    certficates: "",
+    portfolio: ""
 }
 
 export default function MyFreelancerProfile() {
     const [isShowVerify, setIsShowVerify] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
 
     return (
         <div className={styles.profile}>
@@ -126,7 +138,7 @@ export default function MyFreelancerProfile() {
                             </div>
                         )}
                     </div>
-                    <div className={styles.profileEducation}>
+                    <div className={styles.profileAsideInfo}>
                         <h2>Образование</h2>
                         <div className={styles.profileEducationContent}>
                             {data.education ? (
@@ -150,7 +162,7 @@ export default function MyFreelancerProfile() {
                                 </div>
                             )}
                         </div>
-                        <h2>Сфера деятельности</h2>
+                        <h2>Навыки</h2>
                         {data.sphere ? (
                             <ul className={styles.profileSkills}>
                                 <li>Сфера</li>
@@ -164,6 +176,34 @@ export default function MyFreelancerProfile() {
                                 <Link to="#"><GradientText text="Указать навыки"/></Link>
                             </div>
                         )}
+                        <div className={styles.jobExperience}>
+                            <h2>Опыт работы</h2>
+                            {data.experience && (
+                                <ul className={styles.experienceList}>
+                                    <li>
+                                        <h2>Специалист по кибербезопасности</h2>
+                                        <h3>05.12.24 - сейчас</h3>
+                                        <p>
+                                            Lorem ipsum dolor sit amet consectetur. Massa et id faucibus id fermentum.
+                                        </p>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+                        <div className={styles.jobExperience}>
+                            <h2>Другой опыт работы</h2>
+                            {data.experience && (
+                                <ul className={styles.experienceList}>
+                                    <li>
+                                        <h2>Специалист по кибербезопасности</h2>
+                                        <h3>05.12.24 - сейчас</h3>
+                                        <p>
+                                            Lorem ipsum dolor sit amet consectetur. Massa et id faucibus id fermentum.
+                                        </p>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
                     </div>
                 </aside>
                 <div className={styles.profileContent}>
@@ -195,115 +235,104 @@ export default function MyFreelancerProfile() {
                             </>
                         )}
                     </section>
-                    <section className={styles.profileReviews}>
-                        <h2>
-                            Ваши отзывы <span>(12)</span>
-                        </h2>
-                        {data.reviews ? (
+                    {!isEdit && 
+                        <section className={styles.responseConsultation}>
+                            <div className={styles.consultationTitleBlock}>
+                                <h2>Запросить консультацию</h2>
+                                <div>
+                                    <button>
+                                        <img 
+                                            src={editImg} 
+                                            width={24}
+                                            height={24}
+                                            alt="edit" 
+                                        />
+                                    </button>
+                                    <button>
+                                        <img 
+                                            src={plusImg} 
+                                            width={24}
+                                            height={24}
+                                            alt="plus" 
+                                        />
+                                    </button>
+                                </div>
+                            </div>
+                            <div className={styles.consultationCard}>
+                                <button>
+                                    <img src={menu} width={18} height={4} alt="menu"/>
+                                </button>
+                                <img
+                                    src={avatarImg}
+                                    width={150}
+                                    height={150}
+                                    alt="avatar consultant"
+                                />
+                                <div className={styles.consultationCardContent}>
+                                    <h2>Название консультации</h2>
+                                    <h3>Бесплатная 15-ти минутная консультация</h3>
+                                    <ul>
+                                        <li>Тема обсуждения</li>
+                                        <li>Тема обсуждения</li>
+                                    </ul>
+                                    <Link to="#">
+                                        <GradientText text="Записаться"/>
+                                    </Link>
+                                </div>
+                            </div>
+                        </section>
+                    }
+                    <section className={styles.profileTasks}>
+                        <h2>Выполненные задания</h2>
+                        {data.tasks ? (
                             <>
-                                <ul className={styles.reviewsList}>
+                                <ul className={styles.taskCards}>
                                     <li>
-                                        <img
-                                            src={avatarImg}
-                                            width={52}
-                                            height={52}
-                                            alt="profile avatar"
-                                        />
-                                        <div className={styles.reviewsContentTitle}>
+                                        <h2>Название задания</h2>
+                                        <div className={styles.rating}>
                                             <div>
-                                                <h2>Имя Юзера</h2>
                                                 <img
-                                                    src={like}
-                                                    width={20}
-                                                    height={20}
-                                                    alt="like"
+                                                    src={ratingStarImg}
+                                                    width={18}
+                                                    height={18}
+                                                    alt="star"
+                                                />
+                                                <img
+                                                    src={ratingStarImg}
+                                                    width={18}
+                                                    height={18}
+                                                    alt="star"
+                                                />
+                                                <img
+                                                    src={ratingStarImg}
+                                                    width={18}
+                                                    height={18}
+                                                    alt="star"
+                                                />
+                                                <img
+                                                    src={ratingStarImg}
+                                                    width={18}
+                                                    height={18}
+                                                    alt="star"
+                                                />
+                                                <img
+                                                    src={ratingStarImg}
+                                                    width={18}
+                                                    height={18}
+                                                    alt="star"
                                                 />
                                             </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet consectetur. Faucibus
-                                                gravida elit odio neque massa id nibh
-                                                pellentesque. Lorem ipsum dolor sit amet
-                                                consectetur. Faucibus gravida elit odio neque
-                                                massa id nibh pellentesque.
-                                            </p>
+                                            <h3>5.0</h3>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <img
-                                            src={avatarImg}
-                                            width={52}
-                                            height={52}
-                                            alt="profile avatar"
-                                        />
-                                        <div className={styles.reviewsContentTitle}>
-                                            <div>
-                                                <h2>Имя Юзера</h2>
-                                                <img
-                                                    src={like}
-                                                    width={20}
-                                                    height={20}
-                                                    alt="like"
-                                                />
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet consectetur. Faucibus
-                                                gravida elit odio neque massa id nibh
-                                                pellentesque. Lorem ipsum dolor sit amet
-                                                consectetur. Faucibus gravida elit odio neque
-                                                massa id nibh pellentesque.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img
-                                            src={avatarImg}
-                                            width={52}
-                                            height={52}
-                                            alt="profile avatar"
-                                        />
-                                        <div className={styles.reviewsContentTitle}>
-                                            <div>
-                                                <h2>Имя Юзера</h2>
-                                                <img
-                                                    src={like}
-                                                    width={20}
-                                                    height={20}
-                                                    alt="like"
-                                                />
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet consectetur. Faucibus
-                                                gravida elit odio neque massa id nibh
-                                                pellentesque. Lorem ipsum dolor sit amet
-                                                consectetur. Faucibus gravida elit odio neque
-                                                massa id nibh pellentesque.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img
-                                            src={avatarImg}
-                                            width={52}
-                                            height={52}
-                                            alt="profile avatar"
-                                        />
-                                        <div className={styles.reviewsContentTitle}>
-                                            <div>
-                                                <h2>Имя Юзера</h2>
-                                                <img
-                                                    src={like}
-                                                    width={20}
-                                                    height={20}
-                                                    alt="like"
-                                                />
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet consectetur. Faucibus
-                                                gravida elit odio neque massa id nibh
-                                                pellentesque. Lorem ipsum dolor sit amet
-                                                consectetur. Faucibus gravida elit odio neque
-                                                massa id nibh pellentesque.
-                                            </p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet consectetur.
+                                            Malesuada parturient placerat sit at
+                                            fermentum. Feugiat sit facilisi aenean et
+                                            venenatis maecenas tortor sit arcu.
+                                        </p>
+                                        <div className={styles.taskCardPrice}>
+                                            <h2>₽ 32 000</h2>
+                                            <h3>45 часов</h3>
                                         </div>
                                     </li>
                                 </ul>
@@ -329,18 +358,122 @@ export default function MyFreelancerProfile() {
                         ) : (
                             <div className={styles.notReviews}>
                                 <img 
-                                    src={messageImg}
+                                    src={folderImg}
                                     width={68}
                                     height={68} 
                                     alt="message" 
                                 />
-                                <p>У вас нет ни одного отзыва, а чтобы их получить, выполняйте задания</p>
+                                <p>Выполненных работ пока что нет</p>
                             </div>
                         )}
                     </section>
-                    <section className={styles.announcement}>
-                        <div className={styles.announcementTitleBlock}>
-                            <h2>Ваши объявления</h2>
+                    <section className={styles.profileCertificates}>
+                        <div className={styles.certificatesTitleBlock}>
+                            <h2>Сертификаты</h2>
+                            {isEdit &&  
+                                <div>
+                                    <button>
+                                        <img 
+                                            src={editImg} 
+                                            width={24}
+                                            height={24}
+                                            alt="edit" 
+                                        />
+                                    </button>
+                                    <button>
+                                        <img 
+                                            src={plusImg} 
+                                            width={24}
+                                            height={24}
+                                            alt="plus" 
+                                        />
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                        {data.certficates ? (
+                            <>
+                                <ul className={styles.certficatesList}>
+                                    <li>
+                                        <h2>Победитель хакатона</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur. Malesuada parturient placerat sit at fermentum. Feugiat sit facilisi aenean et venenatis maecenas tortor sit arcu.</p>
+                                        <h3>dd:mm:yy</h3>
+                                    </li>
+                                </ul>
+                                <div className={styles.arrowBtns}>
+                                    <button className={styles.prevBtn}>
+                                        <img
+                                            src={arrowImg}
+                                            width={32}
+                                            height={12}
+                                            alt="arrow"
+                                        />
+                                    </button>
+                                    <button className={styles.nextBtn}>
+                                        <img
+                                            src={arrowImg}
+                                            width={33}
+                                            height={12}
+                                            alt="arrow"
+                                        />
+                                    </button>
+                                </div>
+                            </>
+                        ) : (
+                            <div className={styles.notReviews}>
+                                <img 
+                                    src={certificateImg}
+                                    width={68}
+                                    height={68} 
+                                    alt="box" 
+                                />
+                                <p>Это поле пустует, но вы можете <Link to="#"><GradientText text="добавить свои сертификаты"/></Link> уже сейчас</p>
+                            </div>
+                        )}
+                    </section>
+                    {!data.portfolio && (
+                        <section className={styles.profilePortfolio}>
+                            <div className={styles.portfolioTitleBlock}>
+                                <h2>Портфолио</h2>
+                                {isEdit &&  
+                                    <div>
+                                        <button>
+                                            <img 
+                                                src={editImg} 
+                                                width={24}
+                                                height={24}
+                                                alt="edit" 
+                                            />
+                                        </button>
+                                        <button>
+                                            <img 
+                                                src={plusImg} 
+                                                width={24}
+                                                height={24}
+                                                alt="plus" 
+                                            />
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                            <div className={styles.notReviews}>
+                                <img 
+                                    src={bagImg}
+                                    width={68}
+                                    height={68} 
+                                    alt="box" 
+                                />
+                                <p>Вы не загрузили ни одной работы, но вы можете <Link to="#"><GradientText text="сделать это"/></Link> уже сейчас</p>
+                            </div>
+                        </section>
+                    )}
+                </div>
+            </div>
+            {data.portfolio && (
+                <section className={styles.profilePortfolio}>
+                    <div className={styles.portfolioTitleBlock}>
+                        <h2>Портфолио</h2>
+                        {isEdit &&  
                             <div>
                                 <button>
                                     <img 
@@ -359,23 +492,176 @@ export default function MyFreelancerProfile() {
                                     />
                                 </button>
                             </div>
-                        </div>
-                        <div className={styles.notReviews}>
-                            <img 
-                                src={boxImg}
-                                width={78}
-                                height={78} 
-                                alt="box" 
+                        }
+                    </div>
+                    <ul className={styles.portfolioList}>
+                        <li>
+                            <img src={mockImg} alt="case image" />
+                            <h2>Название выполненной работы или кейса</h2>
+                        </li>
+                        <li>
+                            <img src={mockImg} alt="case image" />
+                            <h2>Название выполненной работы или кейса</h2>
+                        </li>
+                        <li>
+                            <img src={mockImg} alt="case image" />
+                            <h2>Название выполненной работы или кейса</h2>
+                        </li>
+                        <li>
+                            <img src={mockImg} alt="case image" />
+                            <h2>Название выполненной работы или кейса</h2>
+                        </li>
+                    </ul>
+                    <div className={styles.arrowBtns}>
+                        <button className={styles.prevBtn}>
+                            <img
+                                src={arrowImg}
+                                width={32}
+                                height={12}
+                                alt="arrow"
                             />
-                            <p>Вы не выложили ни одного объявления, но можете <Link to="#"><GradientText text="сделать это сейчас"/></Link></p>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            {data.announcements && (
-                <section className={styles.announcement}>
-                    <div className={styles.announcementTitleBlock}>
-                        <h2>Ваши объявления</h2>
+                        </button>
+                        <button className={styles.nextBtn}>
+                            <img
+                                src={arrowImg}
+                                width={33}
+                                height={12}
+                                alt="arrow"
+                            />
+                        </button>
+                    </div>
+                </section>
+            )}
+            <section className={styles.profileReviews}>
+                <h2>
+                    Ваши отзывы <span>(0)</span>
+                </h2>
+                {data.reviews ? (
+                    <div className={styles.reviewsListWrapper}>
+                        <ul className={styles.reviewsList}>
+                            <li>
+                                <img
+                                    src={avatarImg}
+                                    width={52}
+                                    height={52}
+                                    alt="profile avatar"
+                                />
+                                <div className={styles.reviewsContentTitle}>
+                                    <div>
+                                        <h2>Имя Юзера</h2>
+                                        <img
+                                            src={like}
+                                            width={20}
+                                            height={20}
+                                            alt="like"
+                                        />
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur. Faucibus
+                                        gravida elit odio neque massa id nibh
+                                        pellentesque. Lorem ipsum dolor sit amet
+                                        consectetur. Faucibus gravida elit odio neque
+                                        massa id nibh pellentesque.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img
+                                    src={avatarImg}
+                                    width={52}
+                                    height={52}
+                                    alt="profile avatar"
+                                />
+                                <div className={styles.reviewsContentTitle}>
+                                    <div>
+                                        <h2>Имя Юзера</h2>
+                                        <img
+                                            src={like}
+                                            width={20}
+                                            height={20}
+                                            alt="like"
+                                        />
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur. Faucibus
+                                        gravida elit odio neque massa id nibh
+                                        pellentesque. Lorem ipsum dolor sit amet
+                                        consectetur. Faucibus gravida elit odio neque
+                                        massa id nibh pellentesque.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img
+                                    src={avatarImg}
+                                    width={52}
+                                    height={52}
+                                    alt="profile avatar"
+                                />
+                                <div className={styles.reviewsContentTitle}>
+                                    <div>
+                                        <h2>Имя Юзера</h2>
+                                        <img
+                                            src={like}
+                                            width={20}
+                                            height={20}
+                                            alt="like"
+                                        />
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur. Faucibus
+                                        gravida elit odio neque massa id nibh
+                                        pellentesque. Lorem ipsum dolor sit amet
+                                        consectetur. Faucibus gravida elit odio neque
+                                        massa id nibh pellentesque.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img
+                                    src={avatarImg}
+                                    width={52}
+                                    height={52}
+                                    alt="profile avatar"
+                                />
+                                <div className={styles.reviewsContentTitle}>
+                                    <div>
+                                        <h2>Имя Юзера</h2>
+                                        <img
+                                            src={like}
+                                            width={20}
+                                            height={20}
+                                            alt="like"
+                                        />
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur. Faucibus
+                                        gravida elit odio neque massa id nibh
+                                        pellentesque. Lorem ipsum dolor sit amet
+                                        consectetur. Faucibus gravida elit odio neque
+                                        massa id nibh pellentesque.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                        <button className={styles.showMoreReviews}>Показать все</button>
+                    </div>
+                ) : (
+                    <div className={styles.notReviews}>
+                        <img 
+                            src={messageImg}
+                            width={68}
+                            height={68} 
+                            alt="message" 
+                        />
+                        <p>У вас нет ни одного отзыва, а чтобы их получить, выполняйте задания</p>
+                    </div>
+                )}
+            </section>
+            <section className={styles.announcement}>
+                <div className={styles.announcementTitleBlock}>
+                    <h2>Ваши объявления</h2>
+                    {isEdit &&  
                         <div>
                             <button>
                                 <img 
@@ -394,35 +680,99 @@ export default function MyFreelancerProfile() {
                                 />
                             </button>
                         </div>
+                    }
+                </div>
+                {data.announcements ? (
+                    <>
+                        <ul className={styles.announcementList}>
+                            <li>
+                                <img 
+                                    src={noneImg}
+                                    width={284}
+                                    height={160}
+                                    alt="order image" 
+                                />
+                                <div className={styles.orderText}>
+                                    <h2>Контекстная реклама любых видов под ключ</h2>
+                                    <h3>от 1000₽</h3>
+                                    <h4>Срок выполнения: от 48 часов</h4>
+                                    <Link to='#'>Подробнее</Link>
+                                </div>
+                            </li>
+                            <li>
+                                <img 
+                                    src={noneImg}
+                                    width={284}
+                                    height={160}
+                                    alt="order image" 
+                                />
+                                <div className={styles.orderText}>
+                                    <h2>Контекстная реклама любых видов под ключ</h2>
+                                    <h3>от 1000₽</h3>
+                                    <h4>Срок выполнения: от 48 часов</h4>
+                                    <Link to='#'>Подробнее</Link>
+                                </div>
+                            </li>
+                            <li>
+                                <img 
+                                    src={noneImg}
+                                    width={284}
+                                    height={160}
+                                    alt="order image" 
+                                />
+                                <div className={styles.orderText}>
+                                    <h2>Контекстная реклама любых видов под ключ</h2>
+                                    <h3>от 1000₽</h3>
+                                    <h4>Срок выполнения: от 48 часов</h4>
+                                    <Link to='#'>Подробнее</Link>
+                                </div>
+                            </li>
+                            <li>
+                                <img 
+                                    src={noneImg}
+                                    width={284}
+                                    height={160}
+                                    alt="order image" 
+                                />
+                                <div className={styles.orderText}>
+                                    <h2>Контекстная реклама любых видов под ключ</h2>
+                                    <h3>от 1000₽</h3>
+                                    <h4>Срок выполнения: от 48 часов</h4>
+                                    <Link to='#'>Подробнее</Link>
+                                </div>
+                            </li>
+                        </ul>
+                        <div className={styles.arrowBtns}>
+                            <button className={styles.prevBtn}>
+                                <img
+                                    src={arrowImg}
+                                    width={32}
+                                    height={12}
+                                    alt="arrow"
+                                />
+                            </button>
+                            <button className={styles.nextBtn}>
+                                <img
+                                    src={arrowImg}
+                                    width={33}
+                                    height={12}
+                                    alt="arrow"
+                                />
+                            </button>
+                        </div>
+                    </>
+                ): (
+                    <div className={styles.notReviews}>
+                        <img 
+                            src={boxImg}
+                            width={78}
+                            height={78} 
+                            alt="box" 
+                        />
+                        <p>Вы не выложили ни одного объявления, но можете <Link to="#"><GradientText text="сделать это сейчас"/></Link></p>
                     </div>
-                    <ul className={styles.announcementList}>
-                    <li>
-                            <div>
-                                <h2>Выбранная тема</h2>
-                                <h3>2 декабря, 00:11</h3>
-                            </div>
-                            <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
-                            <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
-                    </li>
-                    <li>
-                            <div>
-                                <h2>Выбранная тема</h2>
-                                <h3>2 декабря, 00:11</h3>
-                            </div>
-                            <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
-                            <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
-                    </li>
-                    <li>
-                            <div>
-                                <h2>Выбранная тема</h2>
-                                <h3>2 декабря, 00:11</h3>
-                            </div>
-                            <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
-                            <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
-                    </li>
-                    </ul>
-                </section>
-            )}
+                )}
+            </section>
         </div>
     );
 }

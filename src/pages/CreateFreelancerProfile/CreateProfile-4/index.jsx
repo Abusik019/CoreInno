@@ -1,12 +1,13 @@
 import styles from "./style.module.css";
+import { useEffect, useState } from "react";
 import CreateTaskLoad from "../../../components/CreateTaskLoad";
+import Modal from "../../../components/Modal";
+import { GradientText } from "../../../components/GradientText";
+
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import plusImg from '../../../assets/icons/plusWithBg.svg';
-import { useEffect, useState } from "react";
-import Modal from "../../../components/Modal";
-import bagImg from '../../../assets/icons/bag.svg';
-import editImg from '../../../assets/icons/pen.svg';
-import deleteImg from '../../../assets/icons/delete.svg';
+import editImg from '../../../assets/icons/edit2.svg';
+import deleteImg from '../../../assets/icons/cross.svg';
 import plus2Img from '../../../assets/icons/plus.svg';
 
 export default function CreateProfilePageFour({ setPage, setUser, user }) {
@@ -33,8 +34,6 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
         description: ''
     });
     
-    const disabledBtn = experiences.length === 0 ? false : true;
-
     useEffect(() => {
         setExperiences([...user.userExperience]);
     }, [user.userExperience]);
@@ -90,7 +89,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
         <div className={styles.createProfile}>
             <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
             <div className={styles.createProfileContainer}>
-                <h2>Расскажите о своём опыте</h2>
+                <h2>Расскажите о своём <GradientText text="опыте работы"/></h2>
                 <h3>Если у вас есть опыт работы в выбранной отрасли, то вы можете указать его тут</h3>
                 {!experiences.length ? (
                     <button className={styles.addExperience} onClick={() => setIsOpenModal(true)}>
@@ -107,12 +106,6 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                         <ul className={styles.experienceList}>
                             {experiences.map((item, index) => (
                                 <li key={index}>
-                                    <img 
-                                        src={bagImg}
-                                        width={58}
-                                        height={58}
-                                        alt="bag" 
-                                    />
                                     <div className={styles.experienceContent}>
                                         <div>
                                             <h2>{item.name}</h2>
@@ -130,7 +123,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                                                         src={deleteImg}
                                                         width={24}
                                                         height={24}
-                                                        alt="edit" 
+                                                        alt="delete" 
                                                     />
                                                 </button>
                                             </div>
@@ -152,7 +145,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                     </div>
                 }
             </div>
-            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={8} disabled={!disabledBtn} onNext={
+            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={9} disabled={false} onNext={
                 () => {
                     setUser((prev) => ({
                         ...prev,
@@ -160,25 +153,25 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                     }));
                 }
             }/>
-            <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
+            <Modal isOpen={isOpenModal} onClose={handleCloseModal} showClose={false}>
                 <div className={styles.modalContainer}>
                     <h2>Указать опыт работы</h2>
                     <form>
                         <div className={styles.formName}>
-                            <label htmlFor="name">Название *</label>
+                            <label htmlFor="name">Название <span style={{color: '#F63939'}}>*</span></label>
                             <input type="text" id="name" value={myExperience.name} placeholder="Разработчик игр" required onInput={(e) => handleSetData(e, 'name')}/>
                         </div>
                         <div className={styles.formCompany}>
-                            <label htmlFor="company">Компания (если есть)</label>
+                            <label htmlFor="company">Компания <span style={{opacity: '.6'}}>(если есть)</span></label>
                             <input type="text" id="company" value={myExperience.company} placeholder="Electronic Arts" onInput={(e) => handleSetData(e, 'company')}/>
                         </div>
                         <div className={styles.formLocation}>
                             <div>
-                                <label htmlFor="country">Страна *</label>
+                                <label htmlFor="country">Страна <span style={{color: '#F63939'}}>*</span></label>
                                 <input type="text" id="country" value={myExperience.country} placeholder="Россия" required onInput={(e) => handleSetData(e, 'country')}/>
                             </div>
                             <div>
-                                <label htmlFor="city">Город *</label>
+                                <label htmlFor="city">Город <span style={{color: '#F63939'}}>*</span></label>
                                 <input type="text" id="city" value={myExperience.city} placeholder="Москва" required onInput={(e) => handleSetData(e, 'city')}/>
                             </div>
                         </div>
@@ -188,7 +181,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                         </div>
                         <div className={styles.formWorkTime}>
                             <div>
-                                <h2>Дата начала работы *</h2>
+                                <h2>Дата начала работы <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
                                     <input type="number" placeholder="Месяц" value={myExperience.date.start.month} onChange={(e) => setMyExperience(prev => ({
                                         ...prev, date: { ...prev.date, start: { ...prev.date.start, month: e.target.value } }
@@ -199,7 +192,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                                 </div>
                             </div>
                             <div>
-                                <h2>Дата окончания работы *</h2>
+                                <h2>Дата окончания работы <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
                                     <input type="number" placeholder="Месяц" value={myExperience.date.finish.month} onChange={(e) => setMyExperience(prev => ({
                                         ...prev, date: { ...prev.date, finish: { ...prev.date.finish, month: e.target.value } }
@@ -211,7 +204,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                             </div>
                         </div>
                         <div className={styles.formDescription}>
-                            <h2>Описание *</h2>
+                            <h2>Описание <span style={{color: '#F63939'}}>*</span></h2>
                             <textarea 
                                 value={myExperience.description}
                                 onChange={(e) => handleSetData(e, 'description')} 

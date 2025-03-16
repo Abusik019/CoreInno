@@ -1,7 +1,8 @@
 import styles from "./style.module.css";
+import { Link } from 'react-router-dom';
+
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import doneImg from '../../../assets/images/bigDone.png';
-import { Link } from 'react-router-dom';
 
 export default function CreateProfilePageNine() {
     return (

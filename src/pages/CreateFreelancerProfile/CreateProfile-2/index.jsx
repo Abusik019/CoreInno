@@ -1,12 +1,14 @@
 import styles from "./style.module.css";
 import CreateTaskLoad from "../../../components/CreateTaskLoad";
-import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {
     fetchCategory,
     fetchSubCategoryId,
 } from "../../../redux/slices/categorySlice";
+import { GradientText } from "../../../components/GradientText";
+
+import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import krestikImg from "../../../assets/icons/close.svg";
 import plusImg from "../../../assets/icons/plus.svg";
 
@@ -35,13 +37,12 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
         <div className={styles.createProfile}>
             <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
             <div className={styles.createProfileContainer}>
-                <h2>В какой области вы специализируетесь?</h2>
+                <h2>В какой <GradientText text="области"/> вы специализируетесь?</h2>
                 <h3>
-                    Выберите одну или несколько отраслей. Не беспокойтесь, Вы
-                    сможете изменить это позднее.
+                    Выберите одну или несколько сфер деятельности. Не беспокойтесь, Вы сможете изменить это позднее (не более 4 категорий)
                 </h3>
                 <ul className={styles.categories}>
-                    {categories.length !== 0 &&
+                    {(Array.isArray(categories) && categories.length !== 0) &&
                         categories.map((item) => (
                             <li
                                 key={item.id}
@@ -87,7 +88,7 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
                 </ul>
                 {choosenCategory && (
                     <ul className={styles.subcategories}>
-                        {subcategories.length !== 0 &&
+                        {(Array.isArray(subcategories) && subcategories.length !== 0) &&
                             subcategories
                                 .filter(
                                     (subcategory) =>
@@ -97,12 +98,14 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
                                 .map((item) => (
                                     <li
                                         key={item.id}
-                                        onClick={() =>
-                                            setChoosenSubcategories((prev) => [
-                                                ...prev,
-                                                item,
-                                            ])
-                                        }
+                                        onClick={() => {
+                                            if(choosenSubcategories.length < 4){
+                                                setChoosenSubcategories((prev) => [
+                                                    ...prev,
+                                                    item,
+                                                ])
+                                            }
+                                        }}
                                         style={{
                                             backgroundColor:
                                                 choosenSubcategories.some(
@@ -172,7 +175,7 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
                 prev={1}
                 next={3}
                 setPage={setPage}
-                maxPage={8}
+                maxPage={9}
                 disabled={!disabledBtn}
                 onNext={() => {
                     setUser((prev) => ({

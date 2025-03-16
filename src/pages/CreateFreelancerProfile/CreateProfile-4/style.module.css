@@ -1,6 +1,5 @@
 .createProfile{
     width: 100vw;
-    min-width: 100vh;
     height: fit-content;
     min-height: 100vh;
 
@@ -41,13 +40,13 @@
     }
 
     .addExperience{
-        width: 60%;
+        width: 424px;
         height: 50px;
 
         border-radius: 10px;
         border: 1px solid #000;
 
-        margin-top: 80px;
+        margin-top: 50px;
 
         background-color: transparent;
 
@@ -89,7 +88,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 28px;
+        gap: 20px;
 
         >div{
             width: 100%;
@@ -277,16 +276,14 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 60px;
-
-    max-width: 842px;
+    gap: 72px;
 
     >li{
         display: flex;
         align-items: center;
         gap: 15px;
 
-        width: 391px;
+        width: 338px;
 
         position: relative;
 
@@ -294,6 +291,11 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+
+            border-left: 1.5px solid #000000B2;
+
+            padding-left: 20px;
+            box-sizing: border-box;
 
             >div{
                 width: 100%;
@@ -372,4 +374,6 @@
     gap: 60px;
 
     margin-top: 80px;
+
+    max-width: 75%;
 }

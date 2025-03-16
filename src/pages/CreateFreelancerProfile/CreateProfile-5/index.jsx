@@ -1,57 +1,55 @@
 import styles from "./style.module.css";
 import CreateTaskLoad from "../../../components/CreateTaskLoad";
-import jobifyImg from "../../../assets/icons/logoJobify.svg";
-import plusImg from '../../../assets/icons/plusWithBg.svg';
 import { useEffect, useState } from "react";
 import Modal from "../../../components/Modal";
-import bookImg from '../../../assets/icons/book.svg';
-import editImg from '../../../assets/icons/pen.svg';
-import deleteImg from '../../../assets/icons/delete.svg';
+import { GradientText } from "../../../components/GradientText";
+
+import jobifyImg from "../../../assets/icons/logoJobify.svg";
+import editImg from '../../../assets/icons/edit2.svg';
+import deleteImg from '../../../assets/icons/cross.svg';
+import plusImg from '../../../assets/icons/plusWithBg.svg';
 import plus2Img from '../../../assets/icons/plus.svg';
 
-export default function CreateProfilePageFour({ setPage, setUser, user }) {
+export default function CreateProfilePageFive({ setPage, setUser, user }) {
     const [editId, setEditId] = useState(null);
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [experiences, setExperiences] = useState([]);
     const [myExperience, setMyExperience] = useState({
         id: null,
-        speciality: '',
-        education_place: '',
+        title: '',
         country: '',
         city: '',
-        isStudy: false,
         date: {
-            start: { month: '', year: '' },
-            finish: { month: '', year: '' }
+            month: '', 
+            year: ''
         },
+        description: ''
     });
     
-    const disabledBtn = experiences.length === 0 ? false : true;
-    const isSaveDisabled = !myExperience.speciality || !myExperience.education_place || !myExperience.country || !myExperience.city || !myExperience.date.start.month || !myExperience.date.start.year || (!myExperience.isStudy && (!myExperience.date.finish.month || !myExperience.date.finish.year));
+    const isSaveDisabled = !myExperience.title || !myExperience.country || !myExperience.city || !myExperience.date.month || !myExperience.date.year || !myExperience.description;
     
     useEffect(() => {
-        setExperiences([...user.userEducation]);
-    }, [user.userEducation]);
+        setExperiences([...user.userOtherExperience]);
+    }, [user.userOtherExperience]);
 
     const handleSetData = (e, item) => {
         setMyExperience((prev) => ({
             ...prev,
-            [item]: item === 'isStudy' ? e.target.checked : e.target.value
+            [item]: e.target.value
         }));
     }
 
     const handleCloseModal = () => {
         setMyExperience({
             id: null,
-            speciality: '',
-            education_place: '',
+            title: '',
             country: '',
             city: '',
-            isStudy: false,
             date: {
-                start: { month: '', year: '' },
-                finish: { month: '', year: '' }
+                month: '', 
+                year: ''
             },
+            description: ''
         });
         setEditId(null);
         setIsOpenModal(false);
@@ -83,8 +81,8 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
         <div className={styles.createProfile}>
             <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
             <div className={styles.createProfileContainer}>
-                <h2>Вы можете рассказать о своём образовании здесь</h2>
-                <h3>Если у вас есть диплом или вы обучаетесь в учебном заведении, то укажите это, чтобы клиенты знали, какими навыками вы обладаете</h3>
+                <h2>Расскажите о своём <GradientText text="другом опыте"/></h2>
+                <h3>Если у вас есть иной опыт  в выбранной отрасли, то вы можете указать его тут. Это может быть участие в мероприятиях (хакатонах, олимпиадах, социальных/коммерческих проектах)</h3>
                 {!experiences.length ? (
                     <button className={styles.addExperience} onClick={() => setIsOpenModal(true)}>
                         <img 
@@ -93,22 +91,16 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                             height={20}
                             alt="plus"
                         />
-                        <span>Указать образование</span>
+                        <span>Указать другой опыт</span>
                     </button> 
                 ) :
                     <div className={styles.experienceWrapper}>
                         <ul className={styles.experienceList}>
                             {experiences.map((item, index) => (
                                 <li key={index}>
-                                    <img 
-                                        src={bookImg}
-                                        width={58}
-                                        height={58}
-                                        alt="bag" 
-                                    />
                                     <div className={styles.experienceContent}>
                                         <div>
-                                            <h2>{item.speciality}</h2>
+                                            <h2>{item.title}</h2>
                                             <div>
                                                 <button onClick={() => handleEdit(item.id)}>
                                                     <img 
@@ -123,12 +115,12 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                                                         src={deleteImg}
                                                         width={24}
                                                         height={24}
-                                                        alt="edit" 
+                                                        alt="delete" 
                                                     />
                                                 </button>
                                             </div>
                                         </div>
-                                        <h3>{item.date.start.month}.{item.date.start.year} - {item.date.finish.month}.{item.date.finish.year}</h3>
+                                        <h3>{item.date.month}.{item.date.year}</h3>
                                         <p>{item.description}</p>
                                     </div>
                                 </li>
@@ -145,67 +137,58 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                     </div>
                 }
             </div>
-            <CreateTaskLoad prev={4} next={6} setPage={setPage} maxPage={8} disabled={!disabledBtn} onNext={
-                () => {
-                    setUser((prev) => ({
-                        ...prev,
-                        userEducation: [...experiences]
-                    }));
+            <CreateTaskLoad 
+                prev={4} 
+                next={6} 
+                setPage={setPage} 
+                maxPage={9} 
+                disabled={false} 
+                onNext={
+                    () => setUser((prev) => ({...prev, userOtherExperience: [...experiences]}))
                 }
-            }/>
-            <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
+            />
+            <Modal isOpen={isOpenModal} onClose={handleCloseModal} showClose={false}>
                 <div className={styles.modalContainer}>
-                    <h2>Указать Ваше образование</h2>
+                    <h2>Указать другой опыт</h2>
                     <form>
-                        <div className={styles.formSpeciality}>
-                            <label htmlFor="speciality">Специальность *</label>
-                            <input type="text" id="speciality" value={myExperience.speciality} placeholder="Маркетинг и дизайн" required onInput={(e) => handleSetData(e, 'speciality')}/>
-                        </div>
-                        <div className={styles.formEducationPlace}>
-                            <label htmlFor="education_place">Учебное заведение *</label>
-                            <input type="text" id="education_place" value={myExperience.education_place} placeholder="Высшая школа экономики" required onInput={(e) => handleSetData(e, 'education_place')}/>
+                        <div className={styles.formTitle}>
+                            <label htmlFor="title">Название <span style={{color: '#F63939'}}>*</span></label>
+                            <input type="text" id="title" value={myExperience.title} placeholder="Участие в хакатоне" required onInput={(e) => handleSetData(e, 'title')}/>
                         </div>
                         <div className={styles.formLocation}>
                             <div>
-                                <label htmlFor="country">Страна *</label>
+                                <label htmlFor="country">Страна <span style={{color: '#F63939'}}>*</span></label>
                                 <input type="text" id="country" value={myExperience.country} placeholder="Россия" required onInput={(e) => handleSetData(e, 'country')}/>
                             </div>
                             <div>
-                                <label htmlFor="city">Город *</label>
+                                <label htmlFor="city">Город <span style={{color: '#F63939'}}>*</span></label>
                                 <input type="text" id="city" value={myExperience.city} placeholder="Москва" required onInput={(e) => handleSetData(e, 'city')}/>
                             </div>
                         </div>
-                        <div className={styles.formCheckbox}>
-                            <input type="checkbox" id="checkbox" checked={myExperience.isStudy} onChange={(e) => handleSetData(e, 'isStudy')}/>
-                            <label htmlFor="checkbox">Учусь здесь в настоящий момент</label>
-                        </div>
                         <div className={styles.formWorkTime}>
                             <div>
-                                <h2>Начало обучения *</h2>
+                                <h2>Дата события <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.date.start.month} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, start: { ...prev.date.start, month: e.target.value } }
+                                    <input type="number" placeholder="Месяц" value={myExperience.date.month} onChange={(e) => setMyExperience(prev => ({
+                                        ...prev, date: { ...prev.date, month: e.target.value }
                                     }))} />
-                                    <input type="number" placeholder="Год" value={myExperience.date.start.year} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, start: { ...prev.date.start, year: e.target.value } }
+                                    <input type="number" placeholder="Год" value={myExperience.date.year} onChange={(e) => setMyExperience(prev => ({
+                                        ...prev, date: { ...prev.date, year: e.target.value }
                                     }))} />
                                 </div>
                             </div>
-                            <div>
-                                <h2>Конец обучения *</h2>
-                                <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.date.finish.month} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, finish: { ...prev.date.finish, month: e.target.value } }
-                                    }))} />
-                                    <input type="number" placeholder="Год" value={myExperience.date.finish.year} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, finish: { ...prev.date.finish, year: e.target.value } }
-                                    }))} />
-                                </div>
-                            </div>
+                        </div>
+                         <div className={styles.formDescription}>
+                            <h2>Описание <span style={{color: '#F63939'}}>*</span></h2>
+                            <textarea 
+                                value={myExperience.description}
+                                onChange={(e) => handleSetData(e, 'description')} 
+                                required 
+                            />
                         </div>
                         <div className={styles.formBtns}>
                             <button onClick={handleCloseModal}>Назад</button>
-                            <button onClick={handleSave} style={{opacity: isSaveDisabled ? '0.2' : '1'}} disabled={isSaveDisabled}>Сохранить</button>
+                            <button onClick={handleSave} style={{opacity: isSaveDisabled ? '0.2' : '1', cursor: isSaveDisabled ? 'not-allowed' : 'pointer'}} disabled={isSaveDisabled}>Сохранить</button>
                         </div>
                     </form>
                 </div>

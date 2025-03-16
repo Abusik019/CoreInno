@@ -52,7 +52,7 @@
             align-items: center;
             gap: 15px;
 
-            >button{
+            >a{
                 padding: 17px 35px;
                 box-sizing: border-box;
 
@@ -320,6 +320,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 35px;
 
     .tutorialContent{
         max-width: 43%;
@@ -341,7 +342,7 @@
             opacity: .7;
         }
 
-        >button{
+        >a{
             margin-top: 40px;
 
             padding: 17px 0;
@@ -358,6 +359,10 @@
             
             background-color: transparent;
             color: #000;
+
+            display: block;
+
+            text-align: center;
         }
     }
 

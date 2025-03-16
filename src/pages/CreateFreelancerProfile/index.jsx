@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import CreateProfilePageOne from './CreateProfile-1';
 import CreateProfilePageTwo from './CreateProfile-2';
 import CreateProfilePageThree from './CreateProfile-3';
@@ -8,6 +8,7 @@ import CreateProfilePageSix from './CreateProfile-6';
 import CreateProfilePageSeven from './CreateProfile-7';
 import CreateProfilePageEight from './CreateProfile-8';
 import CreateProfilePageNine from './CreateProfile-9';
+import CreateProfilePageTen from './CreateProfile-10';
 
 export default function CreateFreelancerProfile() {
    const [page, setPage] = useState(1);
@@ -16,11 +17,13 @@ export default function CreateFreelancerProfile() {
         userCategories: [],
         userProfession: "",
         userExperience: [],
+        userOtherExperience: [],
         userEducation: [],
         userDescription: "",
         userDetails: {}
    });
 
+   console.log(page);
    console.log("Итоговый user", user);
 
     const renderPageContent = () => {
@@ -40,9 +43,11 @@ export default function CreateFreelancerProfile() {
             case 7:
                 return <CreateProfilePageSeven setPage={setPage} setUser={setUser} user={user}/>;
             case 8:
-                return <CreateProfilePageEight setPage={setPage} user={user}/>;
+                return <CreateProfilePageEight setPage={setPage} setUser={setUser} user={user}/>;
             case 9:
-                return <CreateProfilePageNine />;
+                return <CreateProfilePageNine setPage={setPage} user={user}/>;
+            case 10:
+                return <CreateProfilePageTen />;
             default:
                 return <CreateProfilePageOne setPage={setPage}/>;
         }
