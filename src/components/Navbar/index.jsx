@@ -73,14 +73,14 @@ export const Navbar = () => {
                 <li>
                     <h2 onClick={() => toggleNavDropdown('order')} style={{opacity: isNavbarDropdown.order ? '1' : '0.7'}}>Заказы</h2>
                     <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
-                        <Link to="#">Разместить заказ</Link>
-                        <Link to="#">Мои заказы</Link>
+                        <Link to="/create-task-without-ai">Разместить заказ</Link>
+                        <Link to="/my-orders">Мои заказы</Link>
                     </div>
                 </li>
                 <li>
                     <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
                     <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
-                        <Link to="#">Каталог</Link>
+                        <Link to="/catalog">Каталог</Link>
                         <Link to="#">Недавно просмотренные</Link>
                         <Link to="#">Нанятые исполнители</Link>
                         <Link to="#">Приглашенные исполнители</Link>
@@ -109,7 +109,7 @@ export const Navbar = () => {
                             />
                         </button>
                         <div className={`${styles.inputDropdown} ${isNavbarDropdown.search ? styles.visible : ''}`}>
-                            <Link to='#'>
+                            <Link to='/list-freelancer'>
                                 <img 
                                     src={freelancersImg} 
                                     width={20}
@@ -118,7 +118,7 @@ export const Navbar = () => {
                                 />
                                 <h2>Фрилансеры</h2>
                             </Link>
-                            <Link to='#'>
+                            <Link to='/list-orders'>
                                 <img 
                                     src={listImg} 
                                     width={20}
@@ -140,7 +140,7 @@ export const Navbar = () => {
                     </div>
                 </div>
                 {isLogin &&  
-                    <Link to="#">
+                    <Link to="/favorites">
                         <img 
                             src={heartImg}
                             width={20}
@@ -234,7 +234,7 @@ export const Navbar = () => {
                                     height={24}
                                     alt="setting"
                                 />
-                                <Link to='#'>Настройки</Link>
+                                <Link to='/setting-account'>Настройки</Link>
                            </div>
                         </li>
                         <li>
