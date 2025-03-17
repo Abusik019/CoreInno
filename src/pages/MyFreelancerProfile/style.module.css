@@ -2,7 +2,7 @@
     padding: 120px;
     box-sizing: border-box;
 
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     height: fit-content;
 
@@ -1081,7 +1081,7 @@
     
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         gap: 21px;
     
         width: 100%;

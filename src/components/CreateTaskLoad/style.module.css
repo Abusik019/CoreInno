@@ -1,4 +1,6 @@
 .createTaskFooter{
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +49,7 @@
 }
 
 .progressLine{
-    width: calc(100vw - 240px);
+    width: 100%;
     height: 5px;
 
     border-radius: 1000px;

@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Registration from './pages/Registration';
 import EmailConfirm from './pages/EmailConfirm';
 import Login from './pages/Login'
@@ -32,8 +32,19 @@ import CustomerProfile from './pages/CustomerProfile';
 import Review from './pages/Review';
 import NotFound from './pages/404';
 import CreateConsultation from './pages/CreateConsultation';
+import { useEffect } from 'react';
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      document.body.classList.add("landing");
+    } else {
+      document.body.classList.remove("landing");
+    }
+  }, [location.pathname]);
+
   return (
     <Routes>
         <Route path='/' element={<Lending />}/>

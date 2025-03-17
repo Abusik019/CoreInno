@@ -1,5 +1,5 @@
 .createProfile {
-    width: 100vw;
+    width: 100%;
     height: fit-content;
     min-height: 100vh;
 
@@ -201,6 +201,10 @@
     margin-top: 50px;
 
     position: relative;
+
+    >img{
+        border-radius: 8px;
+    }
 
     .aboutMeContent {
         display: flex;

@@ -1,28 +1,26 @@
 .lending{
     width: 100vw;
     height: fit-content;
-    min-height: 100vh;
-
-    overflow: hidden;
 }
 
 .main{
     margin-top: 88px;
 
-    width: 100%;
+    max-width: 100%;
     height: fit-content;
 
-    padding: 200px 120px 100px 120px;
+    padding: 200px 8% 100px 8%;
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 125px;
 
     background: linear-gradient(180deg, #000000 18.66%, #18112F 29.24%, rgba(0, 0, 0, 0) 83.33%);
 
     .mainInfo{
         max-width: 56%;
+        align-self: flex-start;
     
         >h2{
             font-weight: 400;
@@ -62,11 +60,19 @@
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 16px;
+
+                transition: all .3s ease-in-out;
             }
 
             >:first-child{
                 background-color: #fff;
                 color: #000;
+            }
+
+            >:first-child:hover{
+                background-color: #ffffff;
+                color: #000;
+                border-color: #000;
             }
 
             >:last-child{
@@ -81,8 +87,9 @@
 
         display: flex;
         align-items: center;
-        justify-content: space-between;
         gap: 15px;
+
+        align-self: center;
 
         >li{
             width: 285px;
@@ -363,6 +370,14 @@
             display: block;
 
             text-align: center;
+
+            transition: all .3s ease-in-out;
+        }
+
+        >a:hover{
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
         }
     }
 
@@ -453,6 +468,10 @@
 
     padding: 0 120px;
     box-sizing: border-box;
+    
+    >img{
+        object-fit: cover;
+    }
 
     .switchInfoList{
         width: 56%;

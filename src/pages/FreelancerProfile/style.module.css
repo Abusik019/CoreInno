@@ -2,7 +2,7 @@
     padding: 120px;
     box-sizing: border-box;
 
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     height: fit-content;
 
@@ -713,10 +713,9 @@
         height: 240px;
     
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-    
-        gap: auto;
+        align-items: center;  
+        justify-content: center;  
+        gap: 20px;
     
         >li{
             width: 284px;
@@ -861,7 +860,7 @@
     
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         gap: 21px;
     
         width: 100%;

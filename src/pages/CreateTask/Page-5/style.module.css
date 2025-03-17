@@ -1,5 +1,5 @@
 .createTask{
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     height: fit-content;
 
@@ -71,7 +71,7 @@
 .selectPaymentMethod{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
 
     >div{
         width: 300px;

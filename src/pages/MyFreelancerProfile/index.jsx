@@ -23,20 +23,20 @@ import mockImg from '../../assets/images/mockGuide.png';
 import noneImg from '../../assets/images/mockLi.png';
 
 const data = {
-    first_name: "",
-    last_name: "",
-    location: "",
-    stats: "",
+    first_name: "1",
+    last_name: "1",
+    location: "1",
+    stats: "1",
     isEmail: false,
-    desc: "",
-    education: "",
-    sphere: "",
-    experience: "",
-    tasks: "",
-    reviews: "",
-    announcements: "",
-    certficates: "",
-    portfolio: ""
+    desc: "1",
+    education: "1",
+    sphere: "1",
+    experience: "1",
+    tasks: "1",
+    reviews: "1",
+    announcements: "1",
+    certficates: "1",
+    portfolio: "1"
 }
 
 export default function MyFreelancerProfile() {

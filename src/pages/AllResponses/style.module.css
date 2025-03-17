@@ -1,5 +1,5 @@
 .allResponses{
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     height: fit-content;
 
@@ -93,6 +93,7 @@
         max-height: 670px;
 
         overflow-y: auto;
+        overflow-x: hidden;
 
         margin-top: 10px;
 

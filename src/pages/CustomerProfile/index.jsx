@@ -22,7 +22,7 @@ const data = {
 }
 
 export default function CustomerProfile() {
-    const [isMyProfile, setIsMyProfile] = useState(false);
+    const [isMyProfile, setIsMyProfile] = useState(true);
     const [isShowVerify, setIsShowVerify] = useState(false);
     const [resumeModal, setResumeModal] = useState(false);
 

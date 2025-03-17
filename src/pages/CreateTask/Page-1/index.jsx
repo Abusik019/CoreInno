@@ -7,6 +7,7 @@ import unionImg from '../../../assets/images/union.svg';
 import bgItemImg from '../../../assets/images/bgPurpleCircle.svg';
 import bgItem1Img from '../../../assets/images/bgPurpleOval.svg';
 import bgItem2Img from '../../../assets/images/bgPurpleOval2.svg';
+import { Link } from 'react-router-dom';
 
 export default function CreateTaskPageOne({ setPage }) {
     const [questionVisible, setQuestionVisible] = useState(false);
@@ -33,7 +34,7 @@ export default function CreateTaskPageOne({ setPage }) {
                     </button>
                     <div className={`${styles.question} ${questionVisible ? styles.visible : ''}`}>Мы внедрили искусственный интеллект прямо сюда. <GradientText text="Подробнее"/></div>
                 </div>
-                <button>Создать консультацию</button>
+                <Link to="/create-consultation">Создать консультацию</Link>
             </div>
         </div>
         <div className={styles.unionWrapper}>

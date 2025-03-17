@@ -1,5 +1,5 @@
 .createTaskWrapper{
-    width: 100vw;
+    width: 100%;
     height: fit-content;
     min-height: 100vh;
 
@@ -41,14 +41,16 @@
 
     background-image: url('../../../assets/images/bg-item.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     background-position: center;
 
     padding: 25px 30px;
     box-sizing: border-box;
 
-    position: relative;
-    overflow: hidden; 
+    border: 1px solid #EAEAEA;
+
+    /* position: relative;
+    overflow: hidden;  */
 
     >h1{
         font-weight: 400;
@@ -108,7 +110,7 @@
     }
 }
 
-.titleContainers::before {
+/* .titleContainers::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -120,7 +122,7 @@
         linear-gradient(white 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-}
+} */
 
 .descContainer, .notesContainer{
     width: 100%;

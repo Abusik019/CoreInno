@@ -22,9 +22,9 @@ export default function CreateProfilePageSeven({ setPage, setUser, user }) {
                     <h2>Укажите <GradientText text="описание"/> профиля </h2>
                     <p>Заказчики хотят знать, с кем имеют дело, поэтому для привлечения клинетов рекомендуем указать описание</p>
                     <Textarea 
-                        value={user.userDescription ? user.userDescription : "Начните рассказывать здесь, а вдохновение польется само собой"}
+                        value={aboutMe ? aboutMe : "Начните рассказывать здесь, а вдохновение польется само собой"}
                         maxLength="5000" 
-                        onChange={(e) => setAboutMe(e.target.value)}
+                        onInput={(e) => setAboutMe(e.target.value)}
                     />
                 </div>
             </div>

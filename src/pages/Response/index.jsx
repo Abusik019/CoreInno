@@ -9,7 +9,7 @@ import avatarImg from '../../assets/images/freelancer.png';
 import arrowImg from '../../assets/icons/smallArrow.svg';
 
 export default function Response() {
-    const [isMyResponse, setIsMyResponse] = useState(true);
+    const [isMyResponse, setIsMyResponse] = useState(false);
     const [response, setResponse] = useState({
         desc: '',
         price: '',
@@ -22,7 +22,7 @@ export default function Response() {
     const isDisabed = Boolean(response.desc && response.price && response.deadline.date && response.deadline.time);
 
     return (
-        <div className={styles.response} style={{backgroundColor: isMyResponse ? '#f7f7f7' : '#fff'}}>
+        <div className={styles.response}>
             {!isMyResponse &&
                 <section className={styles.responseRules}>
                     <ul className={styles.rulesList}>

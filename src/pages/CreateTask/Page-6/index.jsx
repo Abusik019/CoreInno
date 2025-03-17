@@ -67,7 +67,7 @@ export default function CreateTaskPageSix({ setPage, setTask, task }) {
                     <Textarea 
                         value={task.desc} 
                         maxLength={5000} 
-                        onChange={(e) => setTask((prev) => ({
+                        onInput={(e) => setTask((prev) => ({
                             ...prev,
                             desc: e.target.value
                         }))}

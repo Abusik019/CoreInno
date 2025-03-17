@@ -16,7 +16,7 @@ import checkmarkImg from '../../assets/icons/checkmark.svg';
 export default function CommercialAnnouncement() {
     const [isHideDesc, setIsHideDesc] = useState(false);
     const [isCopyLink, setIsCopyLink] = useState(false);
-    const isMyCommercialAnnouncement = true;
+    const isMyCommercialAnnouncement = false;
 
     function handleCopyClick() {
         const { textContent } = document.getElementById('copyText')

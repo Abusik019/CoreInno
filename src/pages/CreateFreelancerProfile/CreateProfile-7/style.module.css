@@ -1,5 +1,5 @@
 .createProfile{
-    width: 100vw;
+    width: 100%;
     min-width: 100vh;
     height: fit-content;
     min-height: 100vh;
@@ -54,12 +54,14 @@
         margin-bottom: 5px;
 
         margin-top: 50px;
+
+        color: #000;
     }
 }
 
 .createProfileQuote{
     width: 390px;
-    height: 361px;
+    height: 381px;
 
     border-radius: 16px;
 

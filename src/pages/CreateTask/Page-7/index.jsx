@@ -60,7 +60,7 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                     </div>
                     <div className={styles.categoryContainer}>
                         <h2>Категория заказа</h2>
-                        <div>{task.details.mainCategory.rusName}</div>
+                        {task.details.mainCategory.rusName && <div>{task.details.mainCategory.rusName}</div>}
                     </div>
                     <div className={styles.detailsContainer}>
                         <h2>Детали заказа</h2>

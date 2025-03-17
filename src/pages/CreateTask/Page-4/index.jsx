@@ -59,7 +59,7 @@ export default function CreateTaskPageFour({ setPage, setTask, task }) {
                                 }}
                             />
                             <TimePickerItem value={task.details.deadlines.time} onChange={(date, dateString) => {
-                                setDate((prev) => ({
+                                setTask((prev) => ({
                                     ...prev,
                                     details: {
                                         ...prev.details,
