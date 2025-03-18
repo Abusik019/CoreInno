@@ -2,29 +2,27 @@ import React, { useState } from "react";
 import styles from "./style.module.css";
 import favorite from "../../assets/icons/favorite.png";
 import favoriteAccent from "../../assets/icons/favoriteAccent.svg";
-import material from "../../assets/icons/material.svg";
-import mingcute from "../../assets/icons/mingcute.svg";
-import fluent from "../../assets/icons/fluent.svg";
+import sms from "../../assets/icons/sms.svg";
+import Rectangle from "../../assets/icons/Rectangle.svg";
 
 // Данные для карточек
 const data = Array.from({ length: 15 }, (_, i) => ({
   id: i + 1,
   name: "Жанна Кондратьева",
   rating: "5.0",
-  title: "Создать сайт для стоматологический клиники",
-  payment: "Способ оплаты верифицирован",
-  payment1: "Телефон подтвержден",
-  payment2: "Оплата по этапам",
+  title: "Создам сайт под ключ для любых целей",
+  payment: "Почта подтверждена",
+  payment1: "Почта подтверждена",
   description:
     "Lorem ipsum dolor sit amet consectetur. Nullam feugiat porttitor arcu magna vel fermentum dictumst morbi. Ut id malesuada nisl sit nunc. Pellentesque tellus dignissim eget praesent tellus. In lacus at venenatis pretium vestibulum rutrum...",
-    proposals: 5,
-    price: "до 45000 ₽"
+  proposals: 5,
+  price: "до 45000 ₽",
 }));
 
 const ListPaginationOrders = () => {
   const [currentPage, setCurrentPage] = useState(1);
-    const [favorite1, setFavorite1] = useState(false);
-      const [indexFavorite, setIndexFavorite] = useState(null);
+  const [favorite1, setFavorite1] = useState(false);
+  const [indexFavorite, setIndexFavorite] = useState(null);
   const itemsPerPage = 7;
 
   // Определение текущих карточек
@@ -52,6 +50,13 @@ const ListPaginationOrders = () => {
         {currentItems.map((item, index) => (
           <div className={styles.cart} key={item.id}>
             <div className={styles.user}>
+              <img
+                style={{ marginRight: "25px" }}
+                width={128}
+                height={128}
+                src={Rectangle}
+                alt=""
+              />
               <div className={styles.userInfo}>
                 <p>
                   {item.name} * {item.rating}{" "}
@@ -60,49 +65,39 @@ const ListPaginationOrders = () => {
                 <div className={styles.payment}>
                   {" "}
                   <div>
-                    <img src={material} alt="" /> {item.payment}
+                    <img width={14} height={14} src={sms} alt="" />{" "}
+                    {item.payment}
                   </div>{" "}
                   <div>
-                    <img src={mingcute} alt="" /> {item.payment1}
+                    <img width={14} height={14} src={sms} alt="" />{" "}
+                    {item.payment1}
                   </div>{" "}
-                  <div>
-                    <img src={fluent} alt="" /> {item.payment2}
-                  </div>
                 </div>
-              </div>
-              <div className={styles.favorite}>
-                 {favorite1 && indexFavorite === index ? (
-                                  <img
-                                    onClick={() => favorites(index)}
-                                    src={favoriteAccent}
-                                    alt=""
-                                  />
-                                ) : (
-                                  <img onClick={() => favorites(index)} src={favorite} alt="" />
-                                )}
-                <button>Откликнуться</button>
-              </div>
-            </div>
-
-            <p style={{ color: "gray", marginTop: "12px", fontSize: "14px" }}>
-              {item.description}{" "}
-              <span style={{ color: "#000000", cursor: "pointer" }}>
-                Подробнее
-              </span>
-            </p>
-            <div className={styles.buttons1}>
+                <div className={styles.buttons1}>
               <button> навык</button>
               <button> навык</button>
               <button> навык</button>
-              <button>навык</button>
               <button>навык</button>
               <button>...</button>
             </div>
-            <div className={styles.price}>
-            <p style={{fontSize: "14px", color: "gray", marginTop: "10px"}}>Предложений получено: {item.proposals}</p>
-            <h4>{item.price}</h4>
-
+              </div>
+              <div className={styles.favorite}>
+                {favorite1 && indexFavorite === index ? (
+                  <img
+                    onClick={() => favorites(index)}
+                    src={favoriteAccent}
+                    alt=""
+                  />
+                ) : (
+                  <img onClick={() => favorites(index)} src={favorite} alt="" />
+                )}
+                <button>Отправить запрос</button>
+                
+              </div>
+              
             </div>
+
+          
           </div>
         ))}
       </div>
