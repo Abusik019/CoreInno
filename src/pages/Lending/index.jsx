@@ -21,6 +21,8 @@ import jobifyImg from '../../assets/icons/logoJobify.svg';
 import vkImg from '../../assets/icons/blackVK.svg';
 import tgImg from '../../assets/icons/blackTG.svg';
 import igImg from '../../assets/icons/blackIG.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategory, fetchSubCategoryId } from '../../redux/slices/categorySlice';
 
 const switchData = [
     {
@@ -46,10 +48,49 @@ const switchData = [
 ]
 
 export default function Lending() {
+    const dispatch = useDispatch();
+    const categories = useSelector((state) => state.category.category);
+    const subcategories = useSelector((state) => state.category.subCategory);
+
     const [activeItem, setActiveItem] = useState(null);
-    const sectionRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     const [role, setRole] = useState('freelancer');
+    const [hoverItems, setHoverItems] = useState({
+        it: {
+            id: 2,
+            hover: false
+        },
+        smm: {
+            id: 5,
+            hover: false
+        },
+        video: {
+            id: 6,
+            hover: false
+        },
+        business: {
+            id: 7,
+            hover: false
+        },
+        seo: {
+            id: 4,
+            hover: false
+        },
+        design: {
+            id: 1,
+            hover: false
+        },
+        text: {
+            id: 3,
+            hover: false
+        },
+    })
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        dispatch(fetchCategory());
+        dispatch(fetchSubCategoryId());
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -101,6 +142,32 @@ export default function Lending() {
             default:
                 return switch1Img;
         }
+    }
+
+    function getSubcategoryByCategory(id){
+        const newSubcategories = subcategories.length && subcategories.filter((item) => item.categoryId === id);
+        
+        return newSubcategories.map(item => item.rusName).join(", ");
+    }
+
+    function handleMouseEnter(category){
+        setHoverItems((prev) => ({
+            ...prev,
+            [category]: {
+                ...prev[category],
+                hover: true
+            }
+        }))
+    }
+
+    function handleMouseLeave(category){
+        setHoverItems((prev) => ({
+            ...prev,
+            [category]: {
+                ...prev[category],
+                hover: false
+            }
+        }))
     }
 
     return (
@@ -189,54 +256,96 @@ export default function Lending() {
             </section>
             <section className={styles.links}>
                 <ul className={styles.linksList}>
-                    <li>
+                    <li 
+                        className={`${styles.link} ${hoverItems.it.hover ? styles.hover : ''}`}
+                        onMouseEnter={() => handleMouseEnter('it')}
+                        onMouseLeave={() => handleMouseLeave('it')}
+                    >
                         <h2>Разработка и IT</h2>
-                        <div>
-                            <img src={itImg} width={78} height={78} alt="it" />
-                            <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                        </div>
+                        {hoverItems.it.hover ? <p>{getSubcategoryByCategory(hoverItems.it.id)}</p> : (
+                            <div>
+                                <img src={itImg} width={78} height={78} alt="it" />
+                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                            </div>
+                        )}
                     </li>
-                    <li>
+                    <li
+                        className={`${styles.link} ${hoverItems.smm.hover ? styles.hover : ''}`}
+                        onMouseEnter={() => handleMouseEnter('smm')}
+                        onMouseLeave={() => handleMouseLeave('smm')}
+                    >
                         <h2>SMM и реклама</h2>
-                        <div>
-                            <img src={smmImg} width={92} height={68} alt="smm" />
-                            <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                        </div>
+                        {hoverItems.smm.hover ? <p>{getSubcategoryByCategory(hoverItems.smm.id)}</p> : (
+                            <div>
+                                <img src={smmImg} width={92} height={68} alt="smm" />
+                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                            </div>
+                        )}
                     </li>
-                    <li>
+                    <li
+                        className={`${styles.link} ${hoverItems.video.hover ? styles.hover : ''}`}
+                        onMouseEnter={() => handleMouseEnter('video')}
+                        onMouseLeave={() => handleMouseLeave('video')}
+                    >
                         <h2>Видео и аудио</h2>
-                        <div>
-                            <img src={audioImg} width={100} height={100} alt="video" />
-                            <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                        </div>
+                        {hoverItems.video.hover ? <p>{getSubcategoryByCategory(hoverItems.video.id)}</p> : (
+                            <div>
+                                <img src={audioImg} width={100} height={100} alt="video" />
+                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                            </div>
+                        )}
                     </li>
-                    <li>
+                    <li
+                        className={`${styles.link} ${hoverItems.business.hover ? styles.hover : ''}`}
+                        onMouseEnter={() => handleMouseEnter('business')}
+                        onMouseLeave={() => handleMouseLeave('business')}
+                    >
                         <h2>Бизнес и обучение</h2>
-                        <div>
-                            <img src={businessImg} width={97} height={79} alt="business" />
-                            <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                        </div>
+                        {hoverItems.business.hover ? <p>{getSubcategoryByCategory(hoverItems.business.id)}</p> : (
+                             <div>
+                                <img src={businessImg} width={97} height={79} alt="business" />
+                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                            </div>
+                        )}
                     </li>
-                    <li>
+                    <li
+                        className={`${styles.link} ${hoverItems.seo.hover ? styles.hover : ''}`}
+                        onMouseEnter={() => handleMouseEnter('seo')}
+                        onMouseLeave={() => handleMouseLeave('seo')}
+                    >
                         <h2>SEO и аналитика</h2>
-                        <div>
-                            <img src={seoImg} width={100} height={100} alt="seo" style={{opacity: '.1'}}/>
-                            <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                        </div>
+                        {hoverItems.seo.hover ? <p>{getSubcategoryByCategory(hoverItems.seo.id)}</p> : (
+                            <div>
+                                <img src={seoImg} width={100} height={100} alt="seo" style={{opacity: '.1'}}/>
+                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                            </div>
+                        )}
                     </li>
-                    <li>
+                    <li
+                        className={`${styles.link} ${hoverItems.design.hover ? styles.hover : ''}`}
+                        onMouseEnter={() => handleMouseEnter('design')}
+                        onMouseLeave={() => handleMouseLeave('design')}
+                    >
                         <h2>Дизайн</h2>
-                        <div>
-                            <img src={designImg} width={100} height={100} alt="design" />
-                            <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                        </div>
+                        {hoverItems.design.hover ? <p>{getSubcategoryByCategory(hoverItems.design.id)}</p> : (
+                            <div>
+                                <img src={designImg} width={100} height={100} alt="design" />
+                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                            </div>
+                        )}
                     </li>
-                    <li>
+                    <li
+                        className={`${styles.link} ${hoverItems.text.hover ? styles.hover : ''}`}
+                        onMouseEnter={() => handleMouseEnter('text')}
+                        onMouseLeave={() => handleMouseLeave('text')}
+                    >
                         <h2>Тексты и переводы</h2>
-                        <div>
-                            <img src={textsImg} width={100} height={100} alt="texts" />
-                            <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                        </div>
+                        {hoverItems.text.hover ? <p>{getSubcategoryByCategory(hoverItems.text.id)}</p> : (
+                            <div>
+                                <img src={textsImg} width={100} height={100} alt="texts" />
+                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                            </div>
+                        )}
                     </li>
                 </ul>
             </section>

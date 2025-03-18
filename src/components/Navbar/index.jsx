@@ -1,7 +1,9 @@
 import styles from './style.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { TabsComponent } from '../TabsComponent';
+import { fetchUserAuth, getUser } from '../../redux/slices/userSlice';
 
 import listImg from '../../assets/icons/list.svg';
 import whiteListImg from '../../assets/icons/whiteList.svg';
@@ -9,20 +11,46 @@ import heartImg from '../../assets/icons/whiteHeart.svg';
 import notificationImg from '../../assets/icons/whiteNotification.svg';
 import freelancersImg from '../../assets/icons/freelancers.svg';
 import bagImg from '../../assets/icons/bag.svg';
-import freelancerAvatar from '../../assets/images/freelancer.png';
+import avatarImg from '../../assets/images/defaultAvatar2.jpg';
 import arrowImg from '../../assets/icons/smallArrow.svg';
 import settingImg from '../../assets/icons/setting.svg';
 import exitImg from '../../assets/icons/exit.svg';
 import jobifyLogo from '../../assets/icons/whiteLogoJobify.svg';
 import wallerImg from '../../assets/icons/wallet.svg';
+import supportImg from '../../assets/icons/support.svg';
 
 export const Navbar = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const token = useSelector((state) => state.authSlice.token);
+    const userAuth = useSelector((state) => state.user.userAuth);
+    const user = useSelector((state) => state.user.user);
+
     const [isNavbarDropdown, setIsNavbarDropdown] = useState({order: false, work: false, notifications: false, profile: false, search: false});
     const [isShowSearch, setIsShowSearch] = useState(false);
     const [isReadNot, setIsReadNot] = useState(false);
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
     const wrapperRef = useRef(null);
+
+    useEffect(() => {
+        if(token){
+            setIsLogin(true);
+        } else{
+            setIsLogin(false);
+        }
+    }, [token])
+
+    useEffect(() => {
+        dispatch(fetchUserAuth())
+    }, []);
+
+    useEffect(() => {
+        if(userAuth.id){
+            dispatch(getUser(userAuth.id))
+        }
+    }, [userAuth.id])
+
+    console.log(user);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -170,10 +198,11 @@ export const Navbar = () => {
                 {isLogin && 
                     <button className={styles.profileBtn} onClick={() => toggleNavDropdown('profile')}>
                         <img 
-                            src={freelancerAvatar}
+                            src={user?.avatarUrl ? user.avatarUrl : avatarImg} 
                             width={48}
                             height={48}
                             alt="avatar" 
+                            style={{borderRadius: '12px', objectFit: 'contain'}}
                         />
                     </button>
                 }
@@ -181,10 +210,11 @@ export const Navbar = () => {
                     <div className={styles.profileInfo}>
                         <div className={styles.profileName}>
                             <img 
-                                src={freelancerAvatar} 
+                                src={user?.avatarUrl ? user.avatarUrl : avatarImg} 
                                 width={48}
                                 height={48}
-                                alt="profile image" 
+                                alt="avatar" 
+                                style={{borderRadius: '12px'}}
                             />
                             <div className={styles.nameData}>
                                 <h2>Александр Блок</h2>
@@ -225,6 +255,17 @@ export const Navbar = () => {
                                 <h2>Ваш баланс</h2>
                             </div>
                             <h3>3200 ₽</h3>
+                        </li>
+                        <li>
+                           <div>
+                                <img 
+                                    src={supportImg}
+                                    width={24}
+                                    height={24}
+                                    alt="support"
+                                />
+                                <Link to='/support-chat'>Чат с поддержкой</Link>
+                           </div>
                         </li>
                         <li>
                            <div>

@@ -333,7 +333,7 @@
 }
 
 .profileDropdown.visible {
-    height: 331px;
+    height: 375px;
     opacity: 1;
     transform: scaleY(1);
 

@@ -30,6 +30,8 @@ export default function MainReg({ setPage }) {
     const navigate = useNavigate();
     const token = useSelector((state) => state.authSlice.token);
 
+    const isDisabled = Boolean(emailVaildate && surnameVaildate && nameVaildate && passwordVaildate && firstName && lastName);
+
     console.log(token);
 
     async function fetchSignUp() {
@@ -61,11 +63,8 @@ export default function MainReg({ setPage }) {
 
     function handleValidatePassword(e) {
         setPassword(e.target.value);
-        if (e.target.value.length < 8) {
-            setPasswordVaildate(false);
-        } else {
-            setPasswordVaildate(true);
-        }
+        const value = /^(?=.*[A-ZА-Я])(?=.*[a-zа-я])(?=.*\d)(?=.*[\W_]).{8,}$/.test(e.target.value);
+        setPasswordVaildate(value);
     }
 
     return (
@@ -191,7 +190,7 @@ export default function MainReg({ setPage }) {
                         >
                             {passwordVaildate
                                 ? "Пароль"
-                                : "Пароль должен содержать минимум 8 символов"}
+                                : "Некорректный пароль"}
                         </label>
                         <input
                             value={password}
@@ -233,11 +232,13 @@ export default function MainReg({ setPage }) {
                         type="button"
                         onClick={fetchSignUp}
                         className={styles.nextBtn}
+                        disabled={!isDisabled}
+                        style={{opacity: isDisabled ? '1' : '.2'}}
                     >
                         Продолжить
                     </button>
                 </form>
-                <div className={styles.agree}>Регистрируясь, вы соглашаетесь с <Link to="#"><GradientText text="политикой конфиденциальности"/></Link> и <Link to="#"><GradientText text="пользовательским соглашением"/></Link></div>
+                <div className={styles.agree}>Регистрируясь, вы соглашаетесь с <Link to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="политикой конфиденциальности"/></Link> и <Link to="https://docs.google.com/document/d/10JwPGD_cqI6uq_3lviSoyrbKJ4Pxwgj3/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="пользовательским соглашением"/></Link></div>
                 <div className={styles.anotherRegistrations}>
                     <button>
                         <img src={vkImg} width={24} height={24} />

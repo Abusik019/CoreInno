@@ -9,6 +9,5 @@ export const store = configureStore({
         authSlice,
         category,
         user
-      
     }
 })
