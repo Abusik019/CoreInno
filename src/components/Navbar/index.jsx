@@ -81,7 +81,7 @@ export const Navbar = () => {
                     <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
                     <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
                         <Link to="/catalog">Каталог</Link>
-                        <Link to="#">Недавно просмотренные</Link>
+                        <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>
                         <Link to="#">Нанятые исполнители</Link>
                         <Link to="#">Приглашенные исполнители</Link>
                     </div>

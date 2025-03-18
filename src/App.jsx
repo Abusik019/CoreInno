@@ -81,8 +81,8 @@ function App() {
         <Route path='/review' element={<Review />}/>
         <Route path='/not-found' element={<NotFound />}/>
         <Route path='/create-consultation' element={<CreateConsultation />}/>
-        <Route path='recently-viewed-freelancer' element={<RecentlyViewed/>}/>
-        <Route path='catalog-posts' element={<CatalogPosts/>}/>
+        <Route path='/recently-viewed-freelancer' element={<RecentlyViewed/>}/>
+        <Route path='/catalog-posts' element={<CatalogPosts/>}/>
     </Routes>
   )
 }
