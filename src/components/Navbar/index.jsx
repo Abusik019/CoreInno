@@ -217,8 +217,8 @@ export const Navbar = () => {
                                 style={{borderRadius: '12px'}}
                             />
                             <div className={styles.nameData}>
-                                <h2>Александр Блок</h2>
-                                <h3>Город, Страна</h3>
+                                <h2>{user?.firstName} {user?.lastName}</h2>
+                                {user?.country && <h3>{user.country}</h3>}
                             </div>
                         </div>
                         <div className={styles.fillProfile}>

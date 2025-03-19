@@ -69,6 +69,26 @@ export const getUser = createAsyncThunk("users/getUsers", async (userID, thunkAP
     }
 })
 
+export const toggleRole = createAsyncThunk("users/toggleRole", async (isFreelancer, thunkAPI) => {
+    const token = thunkAPI.getState().user.token;
+
+    try{
+        const response = await axios.post(`${API_URL}/api/user/toggle-user-state`, { isFreelancer: isFreelancer }, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if(response.status !== 200){
+            throw new Error("Ошибка изменения роли");
+        }
+
+        return response.data;
+    } catch(error){
+        console.error("Ошибка изменения роли:", error); 
+    }
+})
+
 export const userSlice = createSlice({
     name: "user",
     initialState,
@@ -94,6 +114,21 @@ export const userSlice = createSlice({
         });
 
         builder.addCase(getUser.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error;
+        });
+
+        // toggle role
+        builder.addCase(toggleRole.pending, (state) => {
+            state.loading = true;
+        });
+
+        builder.addCase(toggleRole.fulfilled, (state) => {
+            state.loading = false;
+            state.error = null;
+        });
+
+        builder.addCase(toggleRole.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error;
         });

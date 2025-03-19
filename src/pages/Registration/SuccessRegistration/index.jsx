@@ -8,7 +8,7 @@ import { GradientText } from "../../../components/GradientText";
 export default function SuccesRegistration() {
     return (
         <div className={styles.successRegWrapper}>
-            <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
+            <Link to="/"><img src={jobifyImg} width={127} height={42} alt="Jobify logo"/></Link>
             <div className={styles.successReg}>
                 <img 
                     src={doneImg}

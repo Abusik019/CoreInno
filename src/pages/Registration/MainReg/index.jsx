@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authSignUp } from "../../../redux/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,15 +30,18 @@ export default function MainReg({ setPage }) {
     const navigate = useNavigate();
     const token = useSelector((state) => state.authSlice.token);
 
-    const isDisabled = Boolean(emailVaildate && surnameVaildate && nameVaildate && passwordVaildate && firstName && lastName);
+    const isDisabled = Boolean(emailVaildate && surnameVaildate && nameVaildate && passwordVaildate && firstName && lastName && email && password);
 
     console.log(token);
 
+    useEffect(() => {
+        if (token) {
+            setPage(2);
+        }
+    }, [token]);
+
     async function fetchSignUp() {
         await dispatch(authSignUp({ email, password, firstName, lastName })).unwrap();
-        if(token){
-            setPage(2)
-        }
     }
 
     function handleValidateName(e, changeState) {
@@ -69,12 +72,7 @@ export default function MainReg({ setPage }) {
 
     return (
         <div className={styles.loginWrapper}>
-            <img 
-                src={jobifyImg} 
-                width={127}
-                height={42}
-                alt="jobify" 
-            />
+            <Link to="/"><img src={jobifyImg} width={127} height={42} alt="Jobify logo"/></Link>
             <div className={styles.registration}>
                 <h1>Регистрация аккаунта Jobify</h1>
                 <form className={styles.regForm}>

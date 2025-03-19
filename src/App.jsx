@@ -35,6 +35,7 @@ import CreateConsultation from './pages/CreateConsultation';
 import { useEffect } from 'react';
 import RecentlyViewed from './pages/RecentlyViewed';
 import CatalogPosts from './pages/CatalogPosts';
+import SupportChat from './pages/SupportChat';
 
 function App() {
   const location = useLocation();
@@ -83,6 +84,7 @@ function App() {
         <Route path='/create-consultation' element={<CreateConsultation />}/>
         <Route path='/recently-viewed-freelancer' element={<RecentlyViewed/>}/>
         <Route path='/catalog-posts' element={<CatalogPosts/>}/>
+        <Route path='/support-chat' element={<SupportChat/>}/>
     </Routes>
   )
 }

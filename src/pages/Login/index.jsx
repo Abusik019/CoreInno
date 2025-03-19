@@ -45,7 +45,7 @@ function Login() {
 
     return (
         <div className={styles.loginWrapper}>
-            <img src={jobifyImg} width={127} height={42} alt="jobify" />
+            <Link to="/"><img src={jobifyImg} width={127} height={42} alt="Jobify logo"/></Link>
             <div className={styles.registration}>
                 <h1>Вход в аккаунт Jobify</h1>
                 <form className={styles.regForm}>
