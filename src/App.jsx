@@ -1,5 +1,6 @@
 import './App.css'
 import { Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect } from 'react';
 import Registration from './pages/Registration';
 import EmailConfirm from './pages/EmailConfirm';
 import Login from './pages/Login'
@@ -25,17 +26,16 @@ import CommercialAdvertisement from './pages/CommercialAdvertisement';
 import MyAnnouncements from './pages/MyAnnouncements';
 import AllResponses from './pages/AllResponses';
 import Chat from './pages/Chat';
-import CreateFreelancerProfile from './pages/CreateFreelancerProfile';
-import CreateCustomerProfile from './pages/CreateCustomerProfile';
 import Lending from './pages/Lending';
 import CustomerProfile from './pages/CustomerProfile';
 import Review from './pages/Review';
 import NotFound from './pages/404';
 import CreateConsultation from './pages/CreateConsultation';
-import { useEffect } from 'react';
 import RecentlyViewed from './pages/RecentlyViewed';
 import CatalogPosts from './pages/CatalogPosts';
 import SupportChat from './pages/SupportChat';
+import CreateProfile from './pages/CreateProfile';
+import InvitedFreelancers from './pages/InvitedFreelancers';
 
 function App() {
   const location = useLocation();
@@ -70,8 +70,7 @@ function App() {
         <Route path='/announcement' element={<Announcement />}/>
         <Route path='/commercial-announcement' element={<CommercialAnnouncement />}/>
         <Route path='/task-section' element={<TaskSection/>}/>
-        <Route path='/create-freelancer-profile' element={<CreateFreelancerProfile />}/>
-        <Route path='/create-customer-profile' element={<CreateCustomerProfile />}/>
+        <Route path='/create-profile' element={<CreateProfile />}/>
         <Route path='/favorites' element={<Favorites />}/>
         <Route path='/draft' element={<Draft/>}/>
         <Route path='/commercial-advertisement' element={<CommercialAdvertisement/>}/>
@@ -85,6 +84,7 @@ function App() {
         <Route path='/recently-viewed-freelancer' element={<RecentlyViewed/>}/>
         <Route path='/catalog-posts' element={<CatalogPosts/>}/>
         <Route path='/support-chat' element={<SupportChat/>}/>
+        <Route path='/invited-freelancers' element={<InvitedFreelancers/>}/>
     </Routes>
   )
 }

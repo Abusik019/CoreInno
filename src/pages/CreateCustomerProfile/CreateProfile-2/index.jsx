@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchCategory } from "../../../redux/slices/categorySlice";
 import { GradientText } from "../../../components/GradientText";
+import { Link } from "react-router-dom";
 
 import krestikImg from "../../../assets/icons/close.svg";
 import plusImg from "../../../assets/icons/plus.svg";
@@ -24,7 +25,7 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
 
     return (
         <div className={styles.createProfile}>
-            <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
+            <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <div className={styles.createProfileContainer}>
                 <h2>Укажите <GradientText text="сферу"/> деятельности</h2>
                 <h3>

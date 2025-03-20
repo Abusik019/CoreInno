@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CreateTaskLoad from "../../../components/CreateTaskLoad";
 import Modal from "../../../components/Modal";
 import { GradientText } from "../../../components/GradientText";
+import { Link } from "react-router-dom";
 
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import plusImg from '../../../assets/icons/plusWithBg.svg';
@@ -81,7 +82,7 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
 
     return (
         <div className={styles.createProfile}>
-            <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
+            <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <div className={styles.createProfileContainer}>
                 <h2>Вы можете рассказать о своём <GradientText text="образовании"/> здесь</h2>
                 <h3>Если у вас есть диплом или вы обучаетесь в учебном заведении, то укажите это, чтобы клиенты знали, какими навыками вы обладаете</h3>

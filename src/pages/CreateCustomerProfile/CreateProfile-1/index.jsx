@@ -4,6 +4,7 @@ import UploadFile from "../../../components/UploadFile";
 import Modal from "../../../components/Modal";
 import CreateTaskLoad from "../../../components/CreateTaskLoad";
 import { GradientText } from '../../../components/GradientText';
+import { Link } from "react-router-dom";
 
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import uploadImg from "../../../assets/icons/upload-2.svg";
@@ -33,7 +34,7 @@ export default function CreateProfilePageOne({ setPage, setUser, user }) {
 
     return (
         <div className={styles.createProfile}>
-            <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
+            <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <div className={styles.createProfileContainer}>
                 <div className={styles.createProfileContent}>
                     <h1>А теперь <GradientText text="создадим профиль"/></h1>

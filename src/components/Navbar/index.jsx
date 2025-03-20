@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { TabsComponent } from '../TabsComponent';
-import { fetchUserAuth, getUser } from '../../redux/slices/userSlice';
+import { fetchUserAuth } from '../../redux/slices/userSlice';
 
 import listImg from '../../assets/icons/list.svg';
 import whiteListImg from '../../assets/icons/whiteList.svg';
@@ -24,7 +24,6 @@ export const Navbar = () => {
     const navigate = useNavigate();
     const token = useSelector((state) => state.authSlice.token);
     const userAuth = useSelector((state) => state.user.userAuth);
-    const user = useSelector((state) => state.user.user);
 
     const [isNavbarDropdown, setIsNavbarDropdown] = useState({order: false, work: false, notifications: false, profile: false, search: false});
     const [isShowSearch, setIsShowSearch] = useState(false);
@@ -44,13 +43,7 @@ export const Navbar = () => {
         dispatch(fetchUserAuth())
     }, []);
 
-    useEffect(() => {
-        if(userAuth.id){
-            dispatch(getUser(userAuth.id))
-        }
-    }, [userAuth.id])
-
-    console.log(user);
+    console.log(userAuth);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -111,7 +104,7 @@ export const Navbar = () => {
                         <Link to="/catalog">Каталог</Link>
                         <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>
                         <Link to="#">Нанятые исполнители</Link>
-                        <Link to="#">Приглашенные исполнители</Link>
+                        <Link to="/invited-freelancers">Приглашенные исполнители</Link>
                     </div>
                 </li>
                 <li><Link to="#">Наш курс</Link></li>
@@ -198,7 +191,7 @@ export const Navbar = () => {
                 {isLogin && 
                     <button className={styles.profileBtn} onClick={() => toggleNavDropdown('profile')}>
                         <img 
-                            src={user?.avatarUrl ? user.avatarUrl : avatarImg} 
+                            src={userAuth?.avatarUrl ? userAuth.avatarUrl : avatarImg} 
                             width={48}
                             height={48}
                             alt="avatar" 
@@ -210,15 +203,15 @@ export const Navbar = () => {
                     <div className={styles.profileInfo}>
                         <div className={styles.profileName}>
                             <img 
-                                src={user?.avatarUrl ? user.avatarUrl : avatarImg} 
+                                src={userAuth?.avatarUrl ? userAuth.avatarUrl : avatarImg} 
                                 width={48}
                                 height={48}
                                 alt="avatar" 
                                 style={{borderRadius: '12px'}}
                             />
                             <div className={styles.nameData}>
-                                <h2>{user?.firstName} {user?.lastName}</h2>
-                                {user?.country && <h3>{user.country}</h3>}
+                                <h2>{userAuth?.firstName} {userAuth?.lastName}</h2>
+                                {userAuth?.country && <h3>{userAuth.country}</h3>}
                             </div>
                         </div>
                         <div className={styles.fillProfile}>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CreateTaskLoad from "../../../components/CreateTaskLoad";
 import DatePickerItem from '../../../components/DatePicker';
 import Modal from "../../../components/Modal";
+import { Link } from "react-router-dom";
 
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import plusImg from '../../../assets/icons/plusWithBg.svg';
@@ -73,7 +74,7 @@ export default function CreateProfilePageSix({ setPage, setUser, user }) {
 
     return (
         <div className={styles.createProfile}>
-            <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
+            <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <div className={styles.createProfileContainer}>
                 <h2>Осталось совсем чуть-чуть</h2>
                 <h3>На этом этапе укажите необходимые детали о себе такие как фотография, локация и дата рождения</h3>

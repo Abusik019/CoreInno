@@ -3,6 +3,7 @@ import CreateTaskLoad from "../../../components/CreateTaskLoad";
 import { useEffect, useState } from "react";
 import Modal from "../../../components/Modal";
 import { GradientText } from "../../../components/GradientText";
+import { Link } from "react-router-dom";
 
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import editImg from '../../../assets/icons/edit2.svg';
@@ -79,7 +80,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
 
     return (
         <div className={styles.createProfile}>
-            <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
+            <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <div className={styles.createProfileContainer}>
                 <h2>Опишите сторонние <GradientText text="достижения"/></h2>
                 <h3>Если у вас есть иной опыт  в выбранной отрасли, то вы можете указать его тут. Это может быть участие в мероприятиях (хакатонах, олимпиадах, социальных/коммерческих проектах)</h3>
