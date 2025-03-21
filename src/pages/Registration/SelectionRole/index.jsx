@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { toggleRole } from "../../../redux/slices/userSlice";
+import { updateUser } from "../../../redux/slices/userSlice";
 
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 
@@ -13,8 +13,8 @@ export default function SelectionRole() {
     const isFreelancer = choice === 'freelancer' ? true : false;
 
     async function fetchChangeRole(){
-        await dispatch(toggleRole(isFreelancer)).unwrap();
-        navigate('/');
+        await dispatch(updateUser({ isFreelancer: isFreelancer })).unwrap();
+        // navigate('/');
     }
 
     return (

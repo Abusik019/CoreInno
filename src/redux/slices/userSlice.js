@@ -89,6 +89,26 @@ export const toggleRole = createAsyncThunk("users/toggleRole", async (isFreelanc
     }
 })
 
+export const updateUser = createAsyncThunk("users/updateUser", async (data, thunkAPI) => {
+    const token = thunkAPI.getState().user.token;
+
+    try{
+        const response = await axios.patch(`${API_URL}/api/user/update-profile`, data, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if(response.status !== 200){
+            throw new Error("Ошибка изменения данных");
+        }
+
+        return response.data;
+    } catch(error){
+        console.error("Ошибка изменения данных:", error); 
+    }
+})
+
 export const userSlice = createSlice({
     name: "user",
     initialState,
@@ -129,6 +149,21 @@ export const userSlice = createSlice({
         });
 
         builder.addCase(toggleRole.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error;
+        });
+
+        // update user
+        builder.addCase(updateUser.pending, (state) => {
+            state.loading = true;
+        });
+
+        builder.addCase(updateUser.fulfilled, (state) => {
+            state.loading = false;
+            state.error = null;
+        });
+
+        builder.addCase(updateUser.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error;
         });
