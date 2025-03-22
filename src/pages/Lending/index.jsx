@@ -2,6 +2,7 @@ import styles from './style.module.css';
 import { Navbar } from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 import bgImg from '../../assets/images/lending-bg-item.png';
 import videoImg from '../../assets/images/video.png';
@@ -46,6 +47,11 @@ const switchData = [
         desc: 'Формирование рейтинга будет базироваться на опыте человека, количестве качественных работ в портфолио, отзывах реальных клиентов',
     },
 ]
+
+const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Lending() {
     const dispatch = useDispatch();
@@ -143,7 +149,7 @@ export default function Lending() {
     }
 
     function getSubcategoryByCategory(id){
-        const newSubcategories = subcategories.length && subcategories.filter((item) => item.categoryId === id);
+        const newSubcategories = Boolean(Array.isArray(subcategories) && subcategories.length) && subcategories.filter((item) => item.categoryId === id);
         
         return newSubcategories.map(item => item.rusName).join(", ");
     }
@@ -200,7 +206,13 @@ export default function Lending() {
                     </li>
                 </ul>
             </main>
-            <section className={styles.steps}>
+            <motion.section
+                className={styles.steps}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={sectionVariants}
+            >
                 <img src={bgImg} alt="bg item" />
                 <div className={styles.stepsContent}>
                     <div className={styles.stepsSwitchRole}>
@@ -237,8 +249,14 @@ export default function Lending() {
                         </li>
                     </ul>
                 </div>
-            </section>
-            <section className={styles.tutorial}>
+            </motion.section>
+            <motion.section 
+                className={styles.tutorial}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={sectionVariants}
+            >
                 <div className={styles.tutorialContent}>
                     <div className={styles.implementAI}>Что-то тут будет</div>
                     <h2>Туториал по работе на Jobify</h2>
@@ -251,8 +269,14 @@ export default function Lending() {
                     height={410}
                     alt='video'
                 />
-            </section>
-            <section className={styles.links}>
+            </motion.section>
+            <motion.section
+                className={styles.links}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={sectionVariants}
+            >
                 <ul className={styles.linksList}>
                     <li 
                         className={`${styles.link} ${hoverItems.it.hover ? styles.hover : ''}`}
@@ -346,8 +370,15 @@ export default function Lending() {
                         )}
                     </li>
                 </ul>
-            </section>
-            <section ref={sectionRef} className={styles.switchInfo}>
+            </motion.section>
+            <motion.section
+                ref={sectionRef}
+                className={styles.switchInfo}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={sectionVariants}
+            >
                 <img src={changeImageSource()} width={474} height={531} alt="switch" />
                 <ul className={styles.switchInfoList}>
                     {switchData.map(item => (
@@ -360,7 +391,7 @@ export default function Lending() {
                         </li>
                     ))}
                 </ul>
-            </section>
+            </motion.section>
             {/* <section className={styles.stats}>
                 <ul className={styles.statsList}>
                     <li>
@@ -381,18 +412,36 @@ export default function Lending() {
                     </li>
                 </ul>
             </section> */}
-            <section className={styles.course}>
+            <motion.section
+                className={styles.course}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={sectionVariants}
+            >
                 <h2>Курс по искусственному интелекту</h2>
                 <p>Наш курс по искусственному интеллекту (ИИ) создан специально для фрилансеров, которые хотят зарабатывать больше и автоматизировать рутинные задачи.</p>
                 <button>Перейти к курсу</button>
-            </section>
-            <section className={styles.getFirstOffer}>
+            </motion.section>
+            <motion.section
+                className={styles.getFirstOffer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={sectionVariants}
+            >
                 <h2><span>Ищешь работу?</span> Возьми свой первый заказ!</h2>
                 <p>Начните работать с Jobify уже сегодня!</p>
                 <input type="text" placeholder='Что будем искать?'/>
                 <button>Найти работу</button>
-            </section>
-            <footer className={styles.footer}>
+            </motion.section>
+            <motion.footer
+                className={styles.footer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={sectionVariants}
+            >
                 <div className={styles.footerTop}>
                     <div className={styles.footerLogoBlock}>
                         <img src={jobifyImg} width={119} height={39} alt="Jobify logo" />
@@ -414,7 +463,7 @@ export default function Lending() {
                         <Link target='_blank' to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true">Политика конфиденциальности</Link>
                     </div>
                 </div>
-            </footer>
+            </motion.footer>
         </div>
     )
 }
