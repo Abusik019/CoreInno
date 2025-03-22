@@ -6,17 +6,56 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const mockFreelancers = [
-  ...Array(10)
-    .fill(null)
-    .map((_, index) => ({
-      id: index + 1,
-      name: "Жанна Кондратьева",
-      image: `${freelancer}`,
-      region: "Стаж 14 лет",
-      totalOrders: "97",
-      rating: "5.0",
-      price: "1200",
-    })),
+  {
+    id: 1,
+    name: "Иван Петров",
+    image: "https://i.pravatar.cc/150?img=3", // Пример аватарки
+    region: "Стаж 14 лет",
+    totalOrders: "97",
+    rating: "5.0",
+    price: "1200",
+    sum: 12000
+  },
+  {
+    id: 2,
+    name: "Мария Сидорова",
+    image: "https://i.pravatar.cc/150?img=1", // Пример аватарки
+    region: "Стаж 10 лет",
+    totalOrders: "85",
+    rating: "4.9",
+    price: "1100",
+    sum: 48000
+  },
+  {
+    id: 3,
+    name: "Алексей Иванов",
+    image: "https://i.pravatar.cc/150?img=2", // Пример аватарки
+    region: "Стаж 8 лет",
+    totalOrders: "72",
+    rating: "4.0",
+    price: "1000",
+    sum: 2000
+  },
+  {
+    id: 4,
+    name: "Екатерина Кузнецова",
+    image: "https://i.pravatar.cc/150?img=5", // Пример аватарки
+    region: "Стаж 12 лет",
+    totalOrders: "90",
+    rating: "4.5",
+    price: "1300",
+    sum: 120000
+  },
+  {
+    id: 5,
+    name: "Дмитрий Смирнов",
+    image: "https://i.pravatar.cc/150?img=4", // Пример аватарки
+    region: "Стаж 15 лет",
+    totalOrders: "100",
+    rating: "4.7",
+    price: "1400",
+    sum: 17000
+  },
 ];
 
 export default function FreelancersSlider() {
@@ -72,7 +111,7 @@ export default function FreelancersSlider() {
                   </div>
                   <div className={styles.price}>
 
-                  <p>12000₽ заработано</p>
+                  <p>{slide.sum}₽ заработано</p>
                   <p>~{slide.price}₽ за заказ</p>
                   </div>
                 </div>

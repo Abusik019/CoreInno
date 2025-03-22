@@ -119,19 +119,40 @@ function Catalog() {
                     <div className={styles.cart}>
                         <img
                             className={styles.rectange}
-                            src={Rectangle}
+                            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
                             alt=""
                         />
                         <div className={styles.block}>
                             <div className={styles.reclama}>
                                 <p>Контекстная реклама любых видов под ключ </p>
-                                <h4>от 1000₽</h4>
+                                <h4>от 8000₽</h4>
                             </div>
                             <div className={styles.info1}>
-                                <img src={Ellipse} alt="" />
+                                <img src="https://i.pravatar.cc/150?img=8" style={{borderRadius: "50%"}} alt="" />
                                 <div className={styles.info2}>
-                                    <p>Имя Фамилия</p>
-                                    <p>97% успешных заказов</p>
+                                    <p>Иван Делуца</p>
+                                    <p>90% успешных заказов</p>
+                                </div>
+                                <p>4.2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.cart}>
+                        <img
+                            className={styles.rectange}
+                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                            alt=""
+                        />
+                        <div className={styles.block}>
+                            <div className={styles.reclama}>
+                                <p>Настройка и ведение контекстной рекламы в Google Ads</p>
+                                <h4>от 7500₽</h4>
+                            </div>
+                            <div className={styles.info1}>
+                                <img src="https://i.pravatar.cc/150?img=13" style={{borderRadius: "50%"}} alt="" />
+                                <div className={styles.info2}>
+                                    <p>Андрей Быков</p>
+                                    <p>99% успешных заказов</p>
                                 </div>
                                 <p>5.0</p>
                             </div>
@@ -140,63 +161,42 @@ function Catalog() {
                     <div className={styles.cart}>
                         <img
                             className={styles.rectange}
-                            src={Rectangle}
+                            src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
                             alt=""
                         />
                         <div className={styles.block}>
                             <div className={styles.reclama}>
-                                <p>Контекстная реклама любых видов под ключ </p>
-                                <h4>от 1000₽</h4>
+                                <p>Создание рекламных кампаний для малого бизнеса</p>
+                                <h4>от 3300₽</h4>
                             </div>
                             <div className={styles.info1}>
-                                <img src={Ellipse} alt="" />
+                                <img src="https://i.pravatar.cc/150?img=12" style={{borderRadius: "50%"}} alt="" />
                                 <div className={styles.info2}>
-                                    <p>Имя Фамилия</p>
+                                    <p>Максим Лавров</p>
                                     <p>97% успешных заказов</p>
                                 </div>
-                                <p>5.0</p>
+                                <p>4.8</p>
                             </div>
                         </div>
                     </div>
                     <div className={styles.cart}>
                         <img
                             className={styles.rectange}
-                            src={Rectangle}
+                            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
                             alt=""
                         />
                         <div className={styles.block}>
                             <div className={styles.reclama}>
-                                <p>Контекстная реклама любых видов под ключ </p>
-                                <h4>от 1000₽</h4>
+                                <p>Аудит и улучшение текущих рекламных кампаний</p>
+                                <h4>от 2000₽</h4>
                             </div>
                             <div className={styles.info1}>
-                                <img src={Ellipse} alt="" />
+                                <img src="https://i.pravatar.cc/150?img=11" style={{borderRadius: "50%"}} alt="" />
                                 <div className={styles.info2}>
-                                    <p>Имя Фамилия</p>
-                                    <p>97% успешных заказов</p>
+                                    <p>Алексей Иванов</p>
+                                    <p>91% успешных заказов</p>
                                 </div>
-                                <p>5.0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.cart}>
-                        <img
-                            className={styles.rectange}
-                            src={Rectangle}
-                            alt=""
-                        />
-                        <div className={styles.block}>
-                            <div className={styles.reclama}>
-                                <p>Контекстная реклама любых видов под ключ </p>
-                                <h4>от 1000₽</h4>
-                            </div>
-                            <div className={styles.info1}>
-                                <img src={Ellipse} alt="" />
-                                <div className={styles.info2}>
-                                    <p>Имя Фамилия</p>
-                                    <p>97% успешных заказов</p>
-                                </div>
-                                <p>5.0</p>
+                                <p>4.7</p>
                             </div>
                         </div>
                     </div>

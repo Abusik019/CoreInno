@@ -91,6 +91,10 @@ header {
   background-color: #ffffff;
 }
 
+.cart > img{
+  border-radius: 12px 12px 0 0;
+}
+
 .reclama {
   margin-top: 20px;
   width: 256px;
