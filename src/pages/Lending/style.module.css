@@ -72,7 +72,6 @@
             >:first-child:hover{
                 background-color: #ffffff;
                 color: #000;
-                border-color: #000;
             }
 
             >:last-child{

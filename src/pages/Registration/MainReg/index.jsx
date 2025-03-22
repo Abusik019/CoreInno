@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authSignUp } from "../../../redux/slices/authSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import handleValidateEmail from "../../../utils/emailValidate";
 import { GradientText } from '../../../components/GradientText';
 
@@ -27,12 +27,9 @@ export default function MainReg({ setPage }) {
     const [lastName, setLastName] = useState("");
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const token = useSelector((state) => state.authSlice.token);
 
     const isDisabled = Boolean(emailVaildate && surnameVaildate && nameVaildate && passwordVaildate && firstName && lastName && email && password);
-
-    console.log(token);
 
     useEffect(() => {
         if (token) {
@@ -236,7 +233,7 @@ export default function MainReg({ setPage }) {
                         Продолжить
                     </button>
                 </form>
-                <div className={styles.agree}>Регистрируясь, вы соглашаетесь с <Link to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="политикой конфиденциальности"/></Link> и <Link to="https://docs.google.com/document/d/10JwPGD_cqI6uq_3lviSoyrbKJ4Pxwgj3/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="пользовательским соглашением"/></Link></div>
+                <div className={styles.agree}>Регистрируясь, вы соглашаетесь с <Link target="_blank" to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="политикой конфиденциальности"/></Link> и <Link target="_blank" to="https://docs.google.com/document/d/10JwPGD_cqI6uq_3lviSoyrbKJ4Pxwgj3/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="пользовательским соглашением"/></Link></div>
                 <div className={styles.anotherRegistrations}>
                     <button>
                         <img src={vkImg} width={24} height={24} />
@@ -244,7 +241,7 @@ export default function MainReg({ setPage }) {
                     </button>
                 </div>
                 <div className={styles.haveAccount}>
-                    <a href="#">Уже зарегистрированы?</a>
+                    <h2>Уже зарегистрированы?</h2>
                     <Link to="/login"><GradientText text="Авторизация"/></Link>
                 </div>
             </div>

@@ -1,20 +1,19 @@
 import styles from "./style.module.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../../redux/slices/userSlice";
+import { toggleRole } from "../../../redux/slices/userSlice";
 
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 
-export default function SelectionRole() {
+export default function SelectionRole({ setPage }) {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [choice, setChoice] = useState('freelancer');
     const isFreelancer = choice === 'freelancer' ? true : false;
 
     async function fetchChangeRole(){
-        await dispatch(updateUser({ isFreelancer: isFreelancer })).unwrap();
-        // navigate('/');
+        await dispatch(toggleRole(isFreelancer)).unwrap();
+        setPage(3);
     }
 
     return (
@@ -48,7 +47,7 @@ export default function SelectionRole() {
                                 {choice === 'customer' && <div className={styles.checkboxContent}></div>}
                             </div>
                         </div>
-                        <p>Я хочу найти исполнителя для реализации  своей идеи!</p>
+                        <p>Я хочу найти исполнителя для реализации своей идеи!</p>
                     </div>
                 </div>
                 <button className={styles.nextBtn} onClick={fetchChangeRole}>Продолжить</button>

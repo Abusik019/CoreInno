@@ -22,7 +22,7 @@ import vkImg from '../../assets/icons/blackVK.svg';
 import tgImg from '../../assets/icons/blackTG.svg';
 import igImg from '../../assets/icons/blackIG.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategory, fetchSubCategoryId } from '../../redux/slices/categorySlice';
+import { fetchSubCategoryId } from '../../redux/slices/categorySlice';
 
 const switchData = [
     {
@@ -49,7 +49,6 @@ const switchData = [
 
 export default function Lending() {
     const dispatch = useDispatch();
-    const categories = useSelector((state) => state.category.category);
     const subcategories = useSelector((state) => state.category.subCategory);
 
     const [activeItem, setActiveItem] = useState(null);
@@ -88,7 +87,6 @@ export default function Lending() {
     const sectionRef = useRef(null);
 
     useEffect(() => {
-        dispatch(fetchCategory());
         dispatch(fetchSubCategoryId());
     }, []);
 
@@ -412,8 +410,8 @@ export default function Lending() {
                 <div className={styles.footerBottom}>
                     <h2>© Jobify 2025 — Все права защищены</h2>
                     <div>
-                        <Link to="https://docs.google.com/document/d/10JwPGD_cqI6uq_3lviSoyrbKJ4Pxwgj3/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true">Пользовательское соглашение</Link>
-                        <Link to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true">Политика конфиденциальности</Link>
+                        <Link target='_blank' to="https://docs.google.com/document/d/10JwPGD_cqI6uq_3lviSoyrbKJ4Pxwgj3/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true">Пользовательское соглашение</Link>
+                        <Link target='_blank' to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true">Политика конфиденциальности</Link>
                     </div>
                 </div>
             </footer>

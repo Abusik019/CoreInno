@@ -35,7 +35,7 @@ export const Order = ({
                     <div>{views}</div>
                     <div>{response} откликов</div>
                     <div>
-                        <Link to="#">Перейти к откликам</Link>
+                        <Link to="/responses">Перейти к откликам</Link>
                     </div>
                 </div>
                 <div className={styles.orderInfoRight}>

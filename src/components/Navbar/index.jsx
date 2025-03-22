@@ -15,7 +15,7 @@ import avatarImg from '../../assets/images/defaultAvatar2.jpg';
 import arrowImg from '../../assets/icons/smallArrow.svg';
 import settingImg from '../../assets/icons/setting.svg';
 import exitImg from '../../assets/icons/exit.svg';
-import jobifyLogo from '../../assets/icons/whiteLogoJobify.svg';
+import jobifyImg from '../../assets/icons/whiteLogoJobify.svg';
 import wallerImg from '../../assets/icons/wallet.svg';
 import supportImg from '../../assets/icons/support.svg';
 
@@ -84,29 +84,28 @@ export const Navbar = () => {
   return (
     <div className={styles.navbar}>
         <div className={styles.leftSide}>
-            <img 
-                src={jobifyLogo}
-                width={119}
-                height={38}
-                alt='logo Jobify'
-            />
+            <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <ul className={styles.navPanel}>
-                <li>
-                    <h2 onClick={() => toggleNavDropdown('order')} style={{opacity: isNavbarDropdown.order ? '1' : '0.7'}}>Заказы</h2>
-                    <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
-                        <Link to="/create-task-without-ai">Разместить заказ</Link>
-                        <Link to="/my-orders">Мои заказы</Link>
-                    </div>
-                </li>
-                <li>
-                    <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
-                    <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
-                        <Link to="/catalog">Каталог</Link>
-                        <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>
-                        <Link to="#">Нанятые исполнители</Link>
-                        <Link to="/invited-freelancers">Приглашенные исполнители</Link>
-                    </div>
-                </li>
+                {isLogin && (
+                    <li>
+                        <h2 onClick={() => toggleNavDropdown('order')} style={{opacity: isNavbarDropdown.order ? '1' : '0.7'}}>Заказы</h2>
+                        <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
+                            <Link to="/create-task">Разместить заказ</Link>
+                            <Link to="/my-orders">Мои заказы</Link>
+                        </div>
+                    </li>
+                )}
+                {isLogin && (
+                    <li>
+                        <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
+                        <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
+                            <Link to="/catalog">Каталог</Link>
+                            <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>
+                            <Link to="#">Нанятые исполнители</Link>
+                            <Link to="/invited-freelancers">Приглашенные исполнители</Link>
+                        </div>
+                    </li>
+                )}
                 <li><Link to="#">Наш курс</Link></li>
                 {isLogin && <li><Link to="/chat">Чат</Link></li>}
             </ul>
