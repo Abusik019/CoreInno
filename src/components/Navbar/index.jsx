@@ -86,7 +86,7 @@ export const Navbar = () => {
         <div className={styles.leftSide}>
             <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <ul className={styles.navPanel}>
-                {isLogin && (
+                {/* {isLogin && ( */}
                     <li>
                         <h2 onClick={() => toggleNavDropdown('order')} style={{opacity: isNavbarDropdown.order ? '1' : '0.7'}}>Заказы</h2>
                         <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
@@ -94,8 +94,8 @@ export const Navbar = () => {
                             <Link to="/my-orders">Мои заказы</Link>
                         </div>
                     </li>
-                )}
-                {isLogin && (
+                {/* )} */}
+                {/* {isLogin && ( */}
                     <li>
                         <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
                         <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
@@ -105,7 +105,7 @@ export const Navbar = () => {
                             <Link to="/invited-freelancers">Приглашенные исполнители</Link>
                         </div>
                     </li>
-                )}
+                {/* )} */}
                 <li><Link to="#">Наш курс</Link></li>
                 {isLogin && <li><Link to="/chat">Чат</Link></li>}
             </ul>
