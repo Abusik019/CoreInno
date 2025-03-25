@@ -4,6 +4,8 @@ import freelancer from "../../assets/images/freelancer.png";
 import toFavourite from "../../assets/icons/toFavourite.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
 
 const mockFreelancers = [
   ...Array(10)
@@ -19,12 +21,16 @@ const mockFreelancers = [
     })),
 ];
 
-export default function FreelancersSlider() {
+export default function FreelancersSlider({users}) {
+
+  
+
+ 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      Math.min(prevIndex + 1, mockFreelancers.length - 3)
+      Math.min(prevIndex + 1, users.length - 3)
     );
   };
 
@@ -42,26 +48,26 @@ export default function FreelancersSlider() {
           className={styles.slider}
           style={{ transform: `translateX(-${currentIndex * 336}px)` }}
         >
-          {mockFreelancers.map((slide, index) => {
+          {users?.map((slide, index) => {
             const isVisible = index >= currentIndex && index < currentIndex + 3;
             return (
               <li
-                key={slide.id}
+                key={slide.userId}
                 className={`${styles.freelancerCard} ${
                   isVisible ? styles.visible : styles.hidden
                 }`}
               >
                 <div className={styles.freelancerInfo}>
                   <img
-                    src={slide.image}
+                    src={''}
                     width={70}
                     height={70}
                     style={{ borderRadius: "16px", objectFit: "cover" }}
                     alt="profile photo"
                   />
                   <div>
-                    <h2>{slide.name}</h2>
-                    <h3>{slide.region}</h3>
+                    <h2>{slide.lastName} {slide.firstName}</h2>
+                    {/* <h3>{slide.region}</h3> */}
                   </div>
                 </div>
                 <div className={styles.slideLine}></div>

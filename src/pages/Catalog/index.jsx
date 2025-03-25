@@ -8,6 +8,7 @@ import {
     fetchSubCategoryId,
 } from "../../redux/slices/categorySlice";
 import CardCarousel from "../../components/CardCarousel";
+import { fetchUserAuth, fetchUsers } from "../../redux/slices/userSlice";
 
 function Catalog() {
     const [selectedCategoryId, setSelectedCategoryId] = useState(0); // Хранит выбранный id категории
@@ -16,15 +17,22 @@ function Catalog() {
 
     const category = useSelector((state) => state.category.category);
     const subCategory = useSelector((state) => state.category.subCategory);
+    const users = useSelector((state) => state.user.users.profiles) || []
+    console.log(users);
+    
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchCategory());
     }, []);
     useEffect(() => {
+        dispatch(fetchUsers())
+        dispatch(fetchUserAuth())
+    }, [])
+    useEffect(() => {
         dispatch(fetchSubCategoryId());
     }, []);
-    console.log(category);
+  
 
     function handleClickCategor(id) {
         if (id === selectedCategoryId) {
@@ -102,12 +110,12 @@ function Catalog() {
                     Опытные фрилансеры в сфере "Реклама / Маркетинг"{" "}
                 </h2>
                 <div className={styles.carts}>
-                    <CardCarousel />
+                    <CardCarousel users={users} />
                 </div>
 
                 <h2 className={styles.zagalovok1}>Недавно просмотренные</h2>
                 <div className={styles.carts}>
-                    <CardCarousel />
+                    <CardCarousel users={users} />
                 </div>
             </main>
 

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import favorite from "../../assets/icons/favorite.png";
 import favoriteAccent from "../../assets/icons/favoriteAccent.svg";
 import sms from "../../assets/icons/sms.svg";
 import Rectangle from "../../assets/icons/Rectangle.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../redux/slices/userSlice";
 
 // Данные для карточек
 const data = Array.from({ length: 15 }, (_, i) => ({
   id: i + 1,
-  name: "Жанна Кондратьева",
+  lastName: "Жанна Кондратьева",
   rating: "5.0",
   title: "Создам сайт под ключ для любых целей",
   payment: "Почта подтверждена",
@@ -24,13 +26,21 @@ const ListPaginationOrders = () => {
   const [favorite1, setFavorite1] = useState(false);
   const [indexFavorite, setIndexFavorite] = useState(null);
   const itemsPerPage = 7;
-
+  
+  const users = useSelector((state) => state.user.users.profiles)
   // Определение текущих карточек
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = users?.slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(users?.length / itemsPerPage);
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchUsers())
+  }, [])
+
 
   // Функция для смены страницы
   const handlePageChange = (pageNumber) => {
@@ -46,10 +56,10 @@ const ListPaginationOrders = () => {
   return (
     <div className={styles.container}>
       {/* Карточки */}
-      <div className={styles.cardsContainer}>
-        {currentItems.map((item, index) => (
-          <div className={styles.cart} key={item.id}>
-            <div className={styles.user}>
+      <div  className={styles.cardsContainer}>
+        {currentItems?.map((item, index) => (
+          <div  className={styles.cart} key={item.userId}>
+            <div  className={styles.user}>
               <img
                 style={{ marginRight: "25px" }}
                 width={128}
@@ -59,18 +69,18 @@ const ListPaginationOrders = () => {
               />
               <div className={styles.userInfo}>
                 <p>
-                  {item.name} * {item.rating}{" "}
+                  {item.lastName} {item.firstName} * {item.rating}{" "}
                 </p>
                 <p>{item.title}</p>
                 <div className={styles.payment}>
                   {" "}
                   <div>
                     <img width={14} height={14} src={sms} alt="" />{" "}
-                    {item.payment}
+                    Почта подтверждена
                   </div>{" "}
                   <div>
                     <img width={14} height={14} src={sms} alt="" />{" "}
-                    {item.payment1}
+                    Почта подтверждена
                   </div>{" "}
                 </div>
                 <div className={styles.buttons1}>

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserAuth, fetchUsers } from "../../redux/slices/userSlice";
 
 // Используем реальный сервер, а не localhost
-// const socket = io("https://yourserver.com");
+const socket = io("https://jobify.api-coreinno.ru");
 
 export default function Chat() {
   const [chats, setChats] = useState([]);
@@ -16,7 +16,9 @@ export default function Chat() {
   const [search, setSearch] = useState("");
 
   const users = useSelector((state) => state.user.users.profiles);
-  const userId = useSelector((state) => state.user.userAuth.id);
+  const userId = useSelector((state) => state.user.userAuth);
+ 
+  
 
   const dispatch = useDispatch();
 
@@ -28,7 +30,9 @@ export default function Chat() {
   // Функция для загрузки чатов
   const fetchChats = async () => {
     try {
-      const chatsResponse = await axios.get("/api/chat");
+      const chatsResponse = await axios.get("https://jobify.api-coreinno.ru/api/chat");
+      console.log(chatsResponse);
+      
       setChats(chatsResponse.data || []);
     } catch (err) {
       console.error("Ошибка загрузки чатов", err);

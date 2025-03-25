@@ -36,8 +36,15 @@ export const fetchUserAuth = createAsyncThunk(
 export const fetchUsers = createAsyncThunk(
     "users/fetchUsers",
     async (_, thunkAPI) => {
+        const token = thunkAPI.getState().user.token;
         try {
-            const res = await fetch(`${API_URL}/api/user/get-all`);
+            const res = await fetch(`${API_URL}/api/user/get-all`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             const user = await res.json();
             if (user.error) {
                 return thunkAPI.rejectWithValue(user.error);
