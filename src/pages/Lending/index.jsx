@@ -283,7 +283,7 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('it')}
                         onMouseLeave={() => handleMouseLeave('it')}
                     >
-                        <h2>Разработка и IT</h2>
+                        <Link to="/list-orders?category=developmentAndIT">Разработка и IT</Link>
                         {hoverItems.it.hover ? <p>{getSubcategoryByCategory(hoverItems.it.id)}</p> : (
                             <div>
                                 <img src={itImg} width={78} height={78} alt="it" />
@@ -296,7 +296,7 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('smm')}
                         onMouseLeave={() => handleMouseLeave('smm')}
                     >
-                        <h2>SMM и реклама</h2>
+                        <Link to="/list-orders?category=smmAndAdvertising">SMM и реклама</Link>
                         {hoverItems.smm.hover ? <p>{getSubcategoryByCategory(hoverItems.smm.id)}</p> : (
                             <div>
                                 <img src={smmImg} width={92} height={68} alt="smm" />
@@ -309,7 +309,7 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('video')}
                         onMouseLeave={() => handleMouseLeave('video')}
                     >
-                        <h2>Видео и аудио</h2>
+                        <Link to="/list-orders?category=videoAndAudio">Видео и аудио</Link>
                         {hoverItems.video.hover ? <p>{getSubcategoryByCategory(hoverItems.video.id)}</p> : (
                             <div>
                                 <img src={audioImg} width={100} height={100} alt="video" />
@@ -322,7 +322,7 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('business')}
                         onMouseLeave={() => handleMouseLeave('business')}
                     >
-                        <h2>Бизнес и обучение</h2>
+                        <Link to="/list-orders?category=business">Бизнес и обучение</Link>
                         {hoverItems.business.hover ? <p>{getSubcategoryByCategory(hoverItems.business.id)}</p> : (
                              <div>
                                 <img src={businessImg} width={97} height={79} alt="business" />
@@ -335,7 +335,7 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('seo')}
                         onMouseLeave={() => handleMouseLeave('seo')}
                     >
-                        <h2>SEO и аналитика</h2>
+                        <Link to="/list-orders?category=seo">SEO и аналитика</Link>
                         {hoverItems.seo.hover ? <p>{getSubcategoryByCategory(hoverItems.seo.id)}</p> : (
                             <div>
                                 <img src={seoImg} width={100} height={100} alt="seo" style={{opacity: '.1'}}/>
@@ -348,7 +348,7 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('design')}
                         onMouseLeave={() => handleMouseLeave('design')}
                     >
-                        <h2>Дизайн</h2>
+                        <Link to="/list-orders?category=design">Дизайн</Link>
                         {hoverItems.design.hover ? <p>{getSubcategoryByCategory(hoverItems.design.id)}</p> : (
                             <div>
                                 <img src={designImg} width={100} height={100} alt="design" />
@@ -361,7 +361,7 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('text')}
                         onMouseLeave={() => handleMouseLeave('text')}
                     >
-                        <h2>Тексты и переводы</h2>
+                        <Link to="/list-orders?category=textsAndTranslations">Тексты и переводы</Link>
                         {hoverItems.text.hover ? <p>{getSubcategoryByCategory(hoverItems.text.id)}</p> : (
                             <div>
                                 <img src={textsImg} width={100} height={100} alt="texts" />
@@ -392,26 +392,6 @@ export default function Lending() {
                     ))}
                 </ul>
             </motion.section>
-            {/* <section className={styles.stats}>
-                <ul className={styles.statsList}>
-                    <li>
-                        <h2>1000+</h2>
-                        <p>Выполненных заказов</p>
-                    </li>
-                    <li>
-                        <h2>100К+</h2>
-                        <p>Посещений в месяц</p>
-                    </li>
-                    <li>
-                        <h2>15К+</h2>
-                        <p>Активных пользователей</p>
-                    </li>
-                    <li>
-                        <h2>99.9%</h2>
-                        <p>Успешных заказов</p>
-                    </li>
-                </ul>
-            </section> */}
             <motion.section
                 className={styles.course}
                 initial="hidden"
@@ -467,3 +447,25 @@ export default function Lending() {
         </div>
     )
 }
+
+
+{/* <section className={styles.stats}>
+    <ul className={styles.statsList}>
+        <li>
+            <h2>1000+</h2>
+            <p>Выполненных заказов</p>
+        </li>
+        <li>
+            <h2>100К+</h2>
+            <p>Посещений в месяц</p>
+        </li>
+        <li>
+            <h2>15К+</h2>
+            <p>Активных пользователей</p>
+        </li>
+        <li>
+            <h2>99.9%</h2>
+            <p>Успешных заказов</p>
+        </li>
+    </ul>
+</section> */}

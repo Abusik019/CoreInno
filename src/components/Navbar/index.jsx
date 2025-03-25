@@ -86,26 +86,28 @@ export const Navbar = () => {
         <div className={styles.leftSide}>
             <Link to="/"><img src={jobifyImg} width={102} height={42} alt="Jobify logo" /></Link>
             <ul className={styles.navPanel}>
-                {/* {isLogin && ( */}
-                    <li>
-                        <h2 onClick={() => toggleNavDropdown('order')} style={{opacity: isNavbarDropdown.order ? '1' : '0.7'}}>Заказы</h2>
-                        <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
-                            <Link to="/create-task">Разместить заказ</Link>
-                            <Link to="/my-orders">Мои заказы</Link>
-                        </div>
-                    </li>
-                {/* )} */}
-                {/* {isLogin && ( */}
-                    <li>
-                        <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
-                        <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
-                            <Link to="/catalog">Каталог</Link>
-                            <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>
-                            <Link to="#">Нанятые исполнители</Link>
-                            <Link to="/invited-freelancers">Приглашенные исполнители</Link>
-                        </div>
-                    </li>
-                {/* )} */}
+                <li>
+                    <Link to="/list-orders">Заказы</Link>
+                    {isLogin && (
+                        <>
+                            <h2 onClick={() => toggleNavDropdown('order')} style={{opacity: isNavbarDropdown.order ? '1' : '0.7'}}>Заказы</h2>
+                            <div className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ''}`}>
+                                <Link to="/create-task">Разместить заказ</Link>
+                                <Link to="/my-orders">Мои заказы</Link>
+                            </div>
+                        </>
+                    )}
+                </li>
+                <li>
+                    <h2 onClick={() => toggleNavDropdown('work')} style={{opacity: isNavbarDropdown.work ? '1' : '0.7'}}>Фрилансеры</h2>
+                    <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ''}`}>
+                        <Link to="/catalog">Каталог</Link>
+                        {isLogin && <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>}
+                        {isLogin && <Link to="#">Нанятые исполнители</Link>}
+                        {isLogin && <Link to="/invited-freelancers">Приглашенные исполнители</Link>}
+                        {!isLogin && <Link to="/list-freelancer">Список фрилансеров</Link>}
+                    </div>
+                </li>
                 <li><Link to="#">Наш курс</Link></li>
                 {isLogin && <li><Link to="/chat">Чат</Link></li>}
             </ul>

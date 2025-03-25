@@ -289,7 +289,7 @@
 }
 
 .freelancersDropdown.visible {
-    height: 160px;
+    height: fit-content;
     opacity: 1;
     transform: scaleY(1);
 
@@ -297,7 +297,7 @@
 }
 
 .orderDropdown.visible {
-    height: 80px;
+    height: fit-content;
     opacity: 1;
     transform: scaleY(1);
 

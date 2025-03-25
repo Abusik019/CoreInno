@@ -415,7 +415,7 @@
 
             transition: background-color .3s ease-in-out, color .3s ease-in-out;
 
-            >h2{
+            >a{
                 font-weight: 400;
                 font-size: 42px;
                 line-height: 42px;
