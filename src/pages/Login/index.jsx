@@ -29,9 +29,9 @@ function Login() {
 
     function fetchSignIn() {
         dispatch(authSignIn({ email, password }));
-    }
-    if (token) {
-        navigate("/");
+        if (token) {
+            navigate("/");
+        }
     }
 
     function handleValidatePassword(e) {

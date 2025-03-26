@@ -23,6 +23,11 @@
     width: 845px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    
+}
+.userInfo{
+  display: flex;
 }
 .freelancer{
     width: 58px;
