@@ -2,9 +2,9 @@ import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authSignUp } from "../../../redux/slices/authSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import handleValidateEmail from "../../../utils/emailValidate";
-import { GradientText } from '../../../components/GradientText';
+import { GradientText } from "../../../components/GradientText";
 
 import hidePasswordImg from "../../../assets/icons/hidePassword.svg";
 import showPasswordImg from "../../../assets/icons/showPassword.svg";
@@ -13,13 +13,13 @@ import showPasswordImgRed from "../../../assets/icons/redShowPassword.svg";
 import vkImg from "../../../assets/icons/vk.svg";
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 
-
-export default function MainReg({ setPage }) {
+function MainReg() {
     const [hidePassword, setHidePassword] = useState(true);
     const [nameVaildate, setNameVaildate] = useState(true);
     const [surnameVaildate, setSurnameVaildate] = useState(true);
     const [emailVaildate, setEmailVaildate] = useState(true);
     const [passwordVaildate, setPasswordVaildate] = useState(true);
+    const [localRegistrationSuccess, setLocalRegistrationSuccess] = useState(false);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,18 +27,48 @@ export default function MainReg({ setPage }) {
     const [lastName, setLastName] = useState("");
 
     const dispatch = useDispatch();
-    const token = useSelector((state) => state.authSlice.token);
+    const navigate = useNavigate();
+    const { loading, error } = useSelector((state) => state.auth);
 
-    const isDisabled = Boolean(emailVaildate && surnameVaildate && nameVaildate && passwordVaildate && firstName && lastName && email && password);
+    const isDisabled = !(
+        emailVaildate &&
+        surnameVaildate &&
+        nameVaildate &&
+        passwordVaildate &&
+        firstName &&
+        lastName &&
+        email &&
+        password
+    );
 
+    // Редирект после успешной регистрации
     useEffect(() => {
-        if (token) {
-            setPage(2);
+        if (localRegistrationSuccess) {
+            navigate("/login");
         }
-    }, [token]);
+    }, [localRegistrationSuccess, navigate]);
 
     async function fetchSignUp() {
-        await dispatch(authSignUp({ email, password, firstName, lastName })).unwrap();
+        if (isDisabled) return;
+
+        try {
+            const result = await dispatch(
+                authSignUp({
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                })
+            ).unwrap();
+
+            // Если запрос успешен, устанавливаем локальный флаг
+            if (result) {
+                setLocalRegistrationSuccess(true);
+            }
+        } catch (error) {
+            // Ошибка уже обрабатывается в authSlice
+            console.error("Registration error:", error);
+        }
     }
 
     function handleValidateName(e, changeState) {
@@ -69,7 +99,9 @@ export default function MainReg({ setPage }) {
 
     return (
         <div className={styles.loginWrapper}>
-            <Link to="/"><img src={jobifyImg} width={127} height={42} alt="Jobify logo"/></Link>
+            <Link to="/">
+                <img src={jobifyImg} width={127} height={42} alt="Jobify logo" />
+            </Link>
             <div className={styles.registration}>
                 <h1>Регистрация аккаунта Jobify</h1>
                 <form className={styles.regForm}>
@@ -77,15 +109,11 @@ export default function MainReg({ setPage }) {
                         <div>
                             <label
                                 style={{
-                                    color: nameVaildate
-                                        ? "#000"
-                                        : "#F63939",
+                                    color: nameVaildate ? "#000" : "#F63939",
                                 }}
                                 htmlFor="name"
                             >
-                                {nameVaildate
-                                    ? "Имя"
-                                    : "Имя введено некорректно"}
+                                {nameVaildate ? "Имя" : "Имя введено некорректно"}
                             </label>
                             <input
                                 value={firstName}
@@ -94,16 +122,10 @@ export default function MainReg({ setPage }) {
                                 placeholder="Ваше имя"
                                 minLength={2}
                                 maxLength={30}
-                                onChange={(e) =>
-                                    handleValidateName(e, setNameVaildate)
-                                }
+                                onChange={(e) => handleValidateName(e, setNameVaildate)}
                                 style={{
-                                    borderColor: nameVaildate
-                                        ? "#808080"
-                                        : "#F63939",
-                                    color: nameVaildate
-                                        ? "#000"
-                                        : "#F63939",
+                                    borderColor: nameVaildate ? "#808080" : "#F63939",
+                                    color: nameVaildate ? "#000" : "#F63939",
                                 }}
                                 required
                             />
@@ -111,15 +133,11 @@ export default function MainReg({ setPage }) {
                         <div>
                             <label
                                 style={{
-                                    color: surnameVaildate
-                                        ? "#000"
-                                        : "#F63939",
+                                    color: surnameVaildate ? "#000" : "#F63939",
                                 }}
                                 htmlFor="surname"
                             >
-                                {surnameVaildate
-                                    ? "Фамилия"
-                                    : "Фамилия введена некорректно"}
+                                {surnameVaildate ? "Фамилия" : "Фамилия введена некорректно"}
                             </label>
                             <input
                                 value={lastName}
@@ -128,19 +146,10 @@ export default function MainReg({ setPage }) {
                                 placeholder="Ваша фамилия"
                                 minLength={2}
                                 maxLength={30}
-                                onChange={(e) =>
-                                    handleValidateSurName(
-                                        e,
-                                        setSurnameVaildate
-                                    )
-                                }
+                                onChange={(e) => handleValidateSurName(e, setSurnameVaildate)}
                                 style={{
-                                    borderColor: surnameVaildate
-                                        ? "#808080"
-                                        : "#F63939",
-                                    color: surnameVaildate
-                                        ? "#000"
-                                        : "#F63939",
+                                    borderColor: surnameVaildate ? "#808080" : "#F63939",
+                                    color: surnameVaildate ? "#000" : "#F63939",
                                 }}
                                 required
                             />
@@ -153,22 +162,16 @@ export default function MainReg({ setPage }) {
                             }}
                             htmlFor="email"
                         >
-                            {emailVaildate
-                                ? "E-mail"
-                                : "E-mail введен некорректно"}
+                            {emailVaildate ? "E-mail" : "E-mail введен некорректно"}
                         </label>
                         <input
                             value={email}
                             type="text"
                             id="email"
                             placeholder="Ваша почта"
-                            onChange={(e) =>
-                                handleValidateEmail(e, setEmailVaildate, setEmail)
-                            }
+                            onChange={(e) => handleValidateEmail(e, setEmailVaildate, setEmail)}
                             style={{
-                                borderColor: emailVaildate
-                                    ? "#808080"
-                                    : "#F63939",
+                                borderColor: emailVaildate ? "#808080" : "#F63939",
                                 color: emailVaildate ? "#000" : "#F63939",
                             }}
                             required
@@ -177,15 +180,11 @@ export default function MainReg({ setPage }) {
                     <div className={styles.passwordWrapper}>
                         <label
                             style={{
-                                color: passwordVaildate
-                                    ? "#000"
-                                    : "#F63939",
+                                color: passwordVaildate ? "#000" : "#F63939",
                             }}
                             htmlFor="password"
                         >
-                            {passwordVaildate
-                                ? "Пароль"
-                                : "Некорректный пароль"}
+                            {passwordVaildate ? "Пароль" : "Некорректный пароль"}
                         </label>
                         <input
                             value={password}
@@ -194,12 +193,8 @@ export default function MainReg({ setPage }) {
                             placeholder="Ваш пароль"
                             onChange={(e) => handleValidatePassword(e)}
                             style={{
-                                borderColor: passwordVaildate
-                                    ? "#808080"
-                                    : "#F63939",
-                                color: passwordVaildate
-                                    ? "#000"
-                                    : "#F63939",
+                                borderColor: passwordVaildate ? "#808080" : "#F63939",
+                                color: passwordVaildate ? "#000" : "#F63939",
                             }}
                             required
                         />
@@ -220,6 +215,7 @@ export default function MainReg({ setPage }) {
                                         ? hidePasswordImg
                                         : hidePasswordImgRed
                                 }
+                                alt="Toggle password visibility"
                             />
                         </button>
                     </div>
@@ -227,24 +223,44 @@ export default function MainReg({ setPage }) {
                         type="button"
                         onClick={fetchSignUp}
                         className={styles.nextBtn}
-                        disabled={!isDisabled}
-                        style={{opacity: isDisabled ? '1' : '.2'}}
+                        disabled={isDisabled || loading}
+                        style={{ opacity: isDisabled ? ".2" : "1" }}
                     >
-                        Продолжить
+                        {loading ? "Регистрация..." : "Продолжить"}
                     </button>
                 </form>
-                <div className={styles.agree}>Регистрируясь, вы соглашаетесь с <Link target="_blank" to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="политикой конфиденциальности"/></Link> и <Link target="_blank" to="https://docs.google.com/document/d/10JwPGD_cqI6uq_3lviSoyrbKJ4Pxwgj3/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"><GradientText text="пользовательским соглашением"/></Link></div>
+                <div className={styles.agree}>
+                    Регистрируясь, вы соглашаетесь с {" "}
+                    <Link
+                        target="_blank"
+                        to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"
+                    >
+                        <GradientText text="политикой конфиденциальности" />
+                    </Link>{" "}
+                    и
+                    {" "}
+                    <Link
+                        target="_blank"
+                        to="https://docs.google.com/document/d/10JwPGD_cqI6uq_3lviSoyrbKJ4Pxwgj3/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"
+                    >
+                        <GradientText text="пользовательским соглашением" />
+                    </Link>
+                </div>
                 <div className={styles.anotherRegistrations}>
                     <button>
-                        <img src={vkImg} width={24} height={24} />
+                        <img src={vkImg} width={24} height={24} alt="VK" />
                         Войти через аккаунт Вконтакте
                     </button>
                 </div>
                 <div className={styles.haveAccount}>
                     <h2>Уже зарегистрированы?</h2>
-                    <Link to="/login"><GradientText text="Авторизация"/></Link>
+                    <Link to="/login">
+                        <GradientText text="Авторизация" />
+                    </Link>
                 </div>
             </div>
         </div>
     );
 }
+
+export default MainReg;

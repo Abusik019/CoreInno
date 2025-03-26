@@ -3,35 +3,10 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
-    userAuth: {},
     user: {},
     users: [],
     token: localStorage.getItem("token"),
 };
-
-export const fetchUserAuth = createAsyncThunk(
-    "users/fetchUserAuth",
-    async (_, thunkAPI) => {
-        const token = thunkAPI.getState().user.token;
-
-        try {
-            const res = await fetch(`${API_URL}/api/user/check-auth`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            const json = await res.json();
-            if (json.error) {
-                return thunkAPI.rejectWithValue(json.error);
-            }
-            return json;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error);
-        }
-    }
-);
 
 export const fetchUsers = createAsyncThunk(
     "users/fetchUsers",
@@ -122,9 +97,6 @@ export const userSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
         builder
-            .addCase(fetchUserAuth.fulfilled, (state, action) => {
-                state.userAuth = action.payload;
-            })
             .addCase(fetchUsers.fulfilled, (state, action) => {
                 state.users = action.payload;
             });

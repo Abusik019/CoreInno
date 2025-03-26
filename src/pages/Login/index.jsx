@@ -1,7 +1,7 @@
 import styles from "./style.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authSignIn } from "../../redux/slices/authSlice";
+import { authSignIn, checkAuth } from "../../redux/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import handleValidateEmail from "../../utils/emailValidate";
 import { GradientText } from "../../components/GradientText/index";
@@ -19,36 +19,46 @@ function Login() {
     const [emailVaildate, setEmailVaildate] = useState(true);
     const [passwordVaildate, setPasswordVaildate] = useState(true);
 
-    const token = useSelector((state) => state.authSlice.token);
-
+    const { accessToken, loading, error } = useSelector((state) => state.auth);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function fetchSignIn() {
-        dispatch(authSignIn({ email, password }));
-        if (token) {
-            navigate("/");
+    // Проверяем авторизацию при загрузке
+    useEffect(() => {
+        if (accessToken) {
+            dispatch(checkAuth())
+                .unwrap()
+                .then(() => navigate("/"))
+                .catch(() => {});
         }
+    }, [accessToken, dispatch, navigate]);
+
+    function fetchSignIn() {
+        if (!email || !password) return;
+
+        dispatch(authSignIn({ email, password }))
+            .unwrap()
+            .then(() => navigate("/"))
+            .catch((err) => console.error("Login error:", err));
     }
 
     function handleValidatePassword(e) {
         setPassword(e.target.value);
-        if (e.target.value.length < 8) {
-            setPasswordVaildate(false);
-        } else {
-            setPasswordVaildate(true);
-        }
+        setPasswordVaildate(e.target.value.length >= 8);
     }
 
     return (
         <div className={styles.loginWrapper}>
-            <Link to="/"><img src={jobifyImg} width={127} height={42} alt="Jobify logo"/></Link>
+            <Link to="/">
+                <img src={jobifyImg} width={127} height={42} alt="Jobify logo" />
+            </Link>
             <div className={styles.registration}>
                 <h1>Вход в аккаунт Jobify</h1>
                 <form className={styles.regForm}>
+                    {error && <div className={styles.errorMessage}>{error}</div>}
                     <div className={styles.emailWrapper}>
                         <label
                             style={{
@@ -56,26 +66,16 @@ function Login() {
                             }}
                             htmlFor="email"
                         >
-                            {emailVaildate
-                                ? "E-mail"
-                                : "E-mail введен некорректно"}
+                            {emailVaildate ? "E-mail" : "E-mail введен некорректно"}
                         </label>
                         <input
                             value={email}
                             type="text"
                             id="email"
                             placeholder="Ваша почта"
-                            onChange={(e) =>
-                                handleValidateEmail(
-                                    e,
-                                    setEmailVaildate,
-                                    setEmail
-                                )
-                            }
+                            onChange={(e) => handleValidateEmail(e, setEmailVaildate, setEmail)}
                             style={{
-                                borderColor: emailVaildate
-                                    ? "#808080"
-                                    : "#F63939",
+                                borderColor: emailVaildate ? "#808080" : "#F63939",
                                 color: emailVaildate ? "#000" : "#F63939",
                             }}
                             required
@@ -88,9 +88,7 @@ function Login() {
                             }}
                             htmlFor="password"
                         >
-                            {passwordVaildate
-                                ? "Пароль"
-                                : "Пароль должен содержать минимум 8 символов"}
+                            {passwordVaildate ? "Пароль" : "Пароль должен содержать минимум 8 символов"}
                         </label>
                         <input
                             value={password}
@@ -99,9 +97,7 @@ function Login() {
                             placeholder="Ваш пароль"
                             onChange={(e) => handleValidatePassword(e)}
                             style={{
-                                borderColor: passwordVaildate
-                                    ? "#808080"
-                                    : "#F63939",
+                                borderColor: passwordVaildate ? "#808080" : "#F63939",
                                 color: passwordVaildate ? "#000" : "#F63939",
                             }}
                             required
@@ -123,27 +119,22 @@ function Login() {
                                         ? hidePasswordImg
                                         : hidePasswordImgRed
                                 }
+                                alt="Toggle password visibility"
                             />
                         </button>
                     </div>
-                    <button className={styles.forgotPassword}>
-                        Забыли пароль?
-                    </button>
-                    <button
-                        type="button"
-                        onClick={fetchSignIn}
-                        className={styles.nextBtn}
-                    >
-                        Войти
+                    <button className={styles.forgotPassword}>Забыли пароль?</button>
+                    <button type="button" onClick={fetchSignIn} className={styles.nextBtn} disabled={loading}>
+                        {loading ? "Загрузка..." : "Войти"}
                     </button>
                 </form>
                 <div className={styles.anotherRegistrations}>
                     <button>
-                        <img src={phoneImg} width={26} height={26} />
+                        <img src={phoneImg} width={26} height={26} alt="Phone" />
                         Войти с помощью номера
                     </button>
                     <button>
-                        <img src={vkImg} width={24} height={24} />
+                        <img src={vkImg} width={24} height={24} alt="VK" />
                         Войти через аккаунт Вконтакте
                     </button>
                 </div>

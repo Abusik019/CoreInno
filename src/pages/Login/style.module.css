@@ -293,6 +293,20 @@
     cursor: pointer;
 }
 
+.errorMessage{
+    width: 100%;
 
+    border: 1px solid #f70c0c;
+    color: #f70c0c;
 
+    padding: 8px 0;
+    box-sizing: border-box;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+
+    border-radius: 8px;
+}
 

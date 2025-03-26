@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import axios from "axios";
 import styles from "./style.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserAuth, fetchUsers } from "../../redux/slices/userSlice";
+import { fetchUsers } from "../../redux/slices/userSlice";
 
 // Используем реальный сервер, а не localhost
 const socket = io("https://jobify.api-coreinno.ru");
@@ -16,15 +16,12 @@ export default function Chat() {
   const [search, setSearch] = useState("");
 
   const users = useSelector((state) => state.user.users.profiles);
-  const userId = useSelector((state) => state.user.userAuth);
+  const userId = useSelector((state) => state.auth.userInfo);
  
-  
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUsers());
-    dispatch(fetchUserAuth());
   }, [dispatch]);
 
   // Функция для загрузки чатов

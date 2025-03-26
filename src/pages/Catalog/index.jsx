@@ -8,7 +8,7 @@ import {
     fetchSubCategoryId,
 } from "../../redux/slices/categorySlice";
 import CardCarousel from "../../components/CardCarousel";
-import { fetchUserAuth, fetchUsers } from "../../redux/slices/userSlice";
+import { fetchUsers } from "../../redux/slices/userSlice";
 
 function Catalog() {
     const [selectedCategoryId, setSelectedCategoryId] = useState(0); // Хранит выбранный id категории
@@ -27,7 +27,6 @@ function Catalog() {
     }, []);
     useEffect(() => {
         dispatch(fetchUsers())
-        dispatch(fetchUserAuth())
     }, [])
     useEffect(() => {
         dispatch(fetchSubCategoryId());

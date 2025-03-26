@@ -36,6 +36,7 @@ import CatalogPosts from "./pages/CatalogPosts";
 import SupportChat from "./pages/SupportChat";
 import CreateProfile from "./pages/CreateProfile";
 import InvitedFreelancers from "./pages/InvitedFreelancers";
+import { AuthProvider } from "./components/AuthProvider";
 
 function App() {
     const location = useLocation();
@@ -49,7 +50,7 @@ function App() {
     }, [location.pathname]);
 
     return (
-        <>
+        <AuthProvider>
             <Routes>
                 <Route path="/" element={<Lending />} />
                 <Route path="/registration" element={<Registration />} />
@@ -87,7 +88,7 @@ function App() {
                 <Route path="/support-chat" element={<SupportChat />} />
                 <Route path="/invited-freelancers" element={<InvitedFreelancers />} />
             </Routes>
-        </>
+        </AuthProvider>
     );
 }
 

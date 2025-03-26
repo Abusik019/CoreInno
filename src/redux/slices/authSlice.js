@@ -5,29 +5,42 @@ const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
     error: null,
     loading: false,
-    token: localStorage.getItem("token"),
-    
+    accessToken: localStorage.getItem("accessToken") || null, // Добавлено fallback значение
+    refreshToken: localStorage.getItem("refreshToken") || null,
+    userInfo: null
+};
+
+// Функция для сохранения токенов
+const saveTokens = (accessToken, refreshToken) => {
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+};
+
+// Функция для очистки токенов
+const clearTokens = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
 };
 
 export const authSignUp = createAsyncThunk(
     "auth/signup",
-    async ({ email, password, firstName, lastName }, thunkAPI) => {
+    async ({ email, password, firstName, lastName, phone, country }, thunkAPI) => {
         try {
             const res = await fetch(`${API_URL}/api/user/sign-up`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password, firstName, lastName }),
+                body: JSON.stringify({ email, password, firstName, lastName, phone, country }),
             });
-            const { token } = await res.json();
-            console.log("мой токен", token);
 
-            if (token.error) {
-                return thunkAPI.rejectWithValue(token.error);
+            const data = await res.json();
+
+            if (!res.ok) {
+                return thunkAPI.rejectWithValue(data.message || "Ошибка регистрации");
             }
-            localStorage.setItem("token", token);
-            return token;
+
+            return data; // Возвращаем { id, isFreelancer }
         } catch (error) {
-            return thunkAPI.rejectWithValue(error);
+            return thunkAPI.rejectWithValue(error.message);
         }
     }
 );
@@ -41,17 +54,90 @@ export const authSignIn = createAsyncThunk(
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
-            const { token } = await res.json();
-            console.log("мой токен", token);
 
-            if (token.error) {
-                return thunkAPI.rejectWithValue(token.error);
+            const { accessToken, refreshToken } = await res.json();
+
+            if (!res.ok) {
+                return thunkAPI.rejectWithValue("Неверный логин или пароль");
             }
-            localStorage.setItem("token", token);
-            return token;
+
+            saveTokens(accessToken, refreshToken);
+            return { accessToken, refreshToken };
         } catch (error) {
-            return thunkAPI.rejectWithValue(error);
+            return thunkAPI.rejectWithValue(error.message);
         }
+    }
+);
+
+export const checkAuth = createAsyncThunk(
+    "auth/check",
+    async (_, thunkAPI) => {
+        try {
+            const accessToken = localStorage.getItem("accessToken");
+
+            if (!accessToken) {
+                return thunkAPI.rejectWithValue("Токен отсутствует");
+            }
+
+            const res = await fetch(`${API_URL}/api/user/check-auth`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            });
+
+            const userInfo = await res.json();
+
+            if (!res.ok) {
+                clearTokens();
+                return thunkAPI.rejectWithValue(userInfo.message || "Ошибка проверки авторизации");
+            }
+
+            return userInfo;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+export const refreshTokens = createAsyncThunk(
+    "auth/refresh",
+    async (_, thunkAPI) => {
+        try {
+            const refreshToken = localStorage.getItem("refreshToken");
+
+            if (!refreshToken) {
+                clearTokens();
+                return thunkAPI.rejectWithValue("Refresh token отсутствует");
+            }
+
+            const res = await fetch(`${API_URL}/api/user/refresh-token`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ refreshToken }),
+            });
+
+            const { accessToken, refreshToken: newRefreshToken } = await res.json();
+
+            if (!res.ok) {
+                clearTokens();
+                return thunkAPI.rejectWithValue("Не удалось обновить токен");
+            }
+
+            saveTokens(accessToken, newRefreshToken);
+            return { accessToken, refreshToken: newRefreshToken };
+        } catch (error) {
+            clearTokens();
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+export const logout = createAsyncThunk(
+    "auth/logout",
+    async () => {
+        clearTokens();
+        return null;
     }
 );
 
@@ -61,22 +147,24 @@ export const authSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
         builder
-            // Auth
+            // Регистрация
             .addCase(authSignUp.pending, (state) => {
                 state.loading = true;
+                state.error = null;
             })
             .addCase(authSignUp.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })
-            .addCase(authSignUp.fulfilled, (state, action) => {
+            .addCase(authSignUp.fulfilled, (state) => {
                 state.loading = false;
                 state.error = null;
-                state.token = action.payload;
             })
-            // Login
+
+            // Вход
             .addCase(authSignIn.pending, (state) => {
                 state.loading = true;
+                state.error = null;
             })
             .addCase(authSignIn.rejected, (state, action) => {
                 state.loading = false;
@@ -85,7 +173,54 @@ export const authSlice = createSlice({
             .addCase(authSignIn.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.token = action.payload;
+                state.accessToken = action.payload.accessToken;
+                state.refreshToken = action.payload.refreshToken;
+            })
+
+            // Проверка авторизации
+            .addCase(checkAuth.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(checkAuth.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+                state.accessToken = null;
+                state.refreshToken = null;
+                state.userInfo = null;
+            })
+            .addCase(checkAuth.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.userInfo = action.payload;
+            })
+
+            // Обновление токенов
+            .addCase(refreshTokens.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(refreshTokens.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+                state.accessToken = null;
+                state.refreshToken = null;
+                state.userInfo = null;
+            })
+            .addCase(refreshTokens.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.accessToken = action.payload.accessToken;
+                state.refreshToken = action.payload.refreshToken;
+            })
+
+            // Выход
+            .addCase(logout.fulfilled, (state) => {
+                state.accessToken = null;
+                state.refreshToken = null;
+                state.userInfo = null;
+                state.error = null;
+                state.loading = false;
             });
     },
 });
