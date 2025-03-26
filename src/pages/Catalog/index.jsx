@@ -17,7 +17,7 @@ function Catalog() {
 
     const category = useSelector((state) => state.category.category);
     const subCategory = useSelector((state) => state.category.subCategory);
-    const users = useSelector((state) => state.user.users.profiles) || []
+    const users = useSelector((state) => state.user.users.users) || []
     console.log(users);
     
 

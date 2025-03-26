@@ -15,7 +15,7 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [search, setSearch] = useState("");
 
-  const users = useSelector((state) => state.user.users.profiles);
+  const users = useSelector((state) => state.user.users.users);
   const userId = useSelector((state) => state.auth.userInfo);
  
   const dispatch = useDispatch();

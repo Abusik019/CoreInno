@@ -1,10 +1,8 @@
 .favorites{
-    min-height: 100vh;
+    width: 100%;
     height: fit-content;
-    width: 100vw;
 
-    padding: 120px;
-    box-sizing: border-box;
+    margin-top: 128px;
 
     display: flex;
     align-items: flex-start;

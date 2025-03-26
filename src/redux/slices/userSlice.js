@@ -5,19 +5,19 @@ const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
     user: {},
     users: [],
-    token: localStorage.getItem("token"),
+    accessToken: localStorage.getItem("accessToken") || null,
 };
 
 export const fetchUsers = createAsyncThunk(
     "users/fetchUsers",
     async (_, thunkAPI) => {
-        const token = thunkAPI.getState().user.token;
+        const accessToken = thunkAPI.getState().user.accessToken;
         try {
             const res = await fetch(`${API_URL}/api/user/get-all`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             });
             const user = await res.json();
@@ -32,12 +32,12 @@ export const fetchUsers = createAsyncThunk(
 );
 
 export const getUser = createAsyncThunk("users/getUsers", async (userID, thunkAPI) => {
-    const token = thunkAPI.getState().user.token;
+    const accessToken = thunkAPI.getState().user.accessToken;
 
     try{
         const response = await axios.get(`${API_URL}/api/user/get-one/${userID}`, {
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
@@ -52,12 +52,12 @@ export const getUser = createAsyncThunk("users/getUsers", async (userID, thunkAP
 })
 
 export const toggleRole = createAsyncThunk("users/toggleRole", async (isFreelancer, thunkAPI) => {
-    const token = thunkAPI.getState().user.token;
+    const accessToken = thunkAPI.getState().user.accessToken;
 
     try{
         const response = await axios.post(`${API_URL}/api/user/toggle-user-state`, { isFreelancer: isFreelancer }, {
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
@@ -72,12 +72,12 @@ export const toggleRole = createAsyncThunk("users/toggleRole", async (isFreelanc
 })
 
 export const updateUser = createAsyncThunk("users/updateUser", async (data, thunkAPI) => {
-    const token = thunkAPI.getState().user.token;
+    const accessToken = thunkAPI.getState().user.accessToken;
 
     try{
         const response = await axios.patch(`${API_URL}/api/user/update-profile`, data, {
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
