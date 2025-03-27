@@ -78,7 +78,7 @@
             }
         
             >h3{
-                font-weight: 500;
+                font-weight: 400;
                 font-size: 14px;
                 line-height: 20px;
         
@@ -94,6 +94,10 @@
                 margin-top: 10px;
 
                 color: #000000B2;
+
+                >span{
+                    color: #000;
+                }
             }
 
             .offerInfo{
@@ -111,6 +115,11 @@
                     gap: 10px;
 
                     .freelancerInfo{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 5px;
+
                         >h2{
                             font-weight: 400;
                             font-size: 14px;
@@ -154,6 +163,13 @@
                     background-position: 10%;
                     background-size: 18px;
                     background-repeat: no-repeat;
+
+                    opacity: .7;
+                    transition: opacity .3s ease-in-out;
+                }
+
+                >a:hover{
+                    opacity: 1;
                 }
             }
         }
@@ -207,7 +223,7 @@
         margin-top: 5px;
     }
 
-    .offersList{
+    .offersHistoryList{
         margin-top: 20px;
 
         width: 100%;
@@ -233,6 +249,8 @@
             align-items: center;
             justify-content: space-between;
 
+            opacity: .7;
+
             >div{
 
                 >h2{
@@ -246,7 +264,7 @@
                     font-size: 14px;
                     line-height: 14px;
             
-                    margin-top: 5px;        
+                    margin-top: 10px;        
                     opacity: .7;
                 }
             

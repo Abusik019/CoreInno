@@ -145,6 +145,7 @@
 
         >:nth-child(3){
             background: linear-gradient(180deg, #000000E5 70%, rgba(255, 255, 255, 0.4) 250%);
+            pointer-events: none;
 
             >h2{
                 color: #fff;
@@ -153,6 +154,10 @@
             >p{
                 color: #fff;
             }
+        }
+
+        >:nth-child(3)::before{
+            display: none !important;
         }
 
         >li::before{
@@ -408,54 +413,61 @@
 
             background-color: transparent;
 
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
-
             transition: background-color .3s ease-in-out, color .3s ease-in-out;
 
             >a{
-                font-weight: 400;
-                font-size: 42px;
-                line-height: 42px;
-            }
+                display: inline-block;
 
-            >div{
                 width: 100%;
+                height: 100%;
 
                 display: flex;
-                align-items: flex-end;
+                flex-direction: column;
+                align-items: flex-start;
                 justify-content: space-between;
 
-                >a{
-                    border-radius: 16px;
-
-                    background-color: #EAEAEA40;
-
-                    width: 50px;
-                    height: 50px;
-                    
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                >h2{
+                    font-weight: 400;
+                    font-size: 42px;
+                    line-height: 42px;
                 }
-            }
+    
+                >div{
+                    width: 100%;
+    
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: space-between;
+    
+                    >a{
+                        border-radius: 16px;
+    
+                        background-color: #EAEAEA40;
+    
+                        width: 50px;
+                        height: 50px;
+                        
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
 
-            >p{
-                max-width: 100%;
-                
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 20px;
-
-                opacity: .7;
-
-                display: -webkit-box;
-                -webkit-line-clamp: 4; /* Ограничиваем количество строк */
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis; /* Добавляем многоточие */
+                >p{
+                    max-width: 100%;
+                    
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 20px;
+    
+                    opacity: .7;
+    
+                    display: -webkit-box;
+                    -webkit-line-clamp: 4; /* Ограничиваем количество строк */
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis; /* Добавляем многоточие */
+                }
             }
         }
 
@@ -533,7 +545,7 @@
                 top: 0;
                 width: 100%;
                 height: 0%;
-                background-color: #8A2BE2;
+                background: linear-gradient(180deg, #543BA7 0%, #7F78E9 100%);
                 transition: height 5s linear;
             }
 
@@ -660,10 +672,9 @@
 
 .course{
     width: 100%;
-    height: fit-content;
+    height: 559px;
 
     padding-top: 100px;
-    padding-bottom: 250px;
     box-sizing: border-box;
 
     margin-top: 100px;
@@ -678,6 +689,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    position: relative;
+
+    >img{
+        position: absolute;
+        bottom: 0;
+    }
+
+    .course1{
+        left: 60px;
+    }
+
+    .course2{
+        left: calc(50% - 405px);
+        z-index: 2;
+    }
+
+    .course3{
+        right: 60px;
+    }
 
     >h2{
         font-weight: 400;
@@ -840,7 +871,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 5px;
+            gap: 15px;
 
             >div{
                 display: flex;
@@ -943,4 +974,21 @@
         linear-gradient(white 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+}
+
+
+@media screen and (min-width: 1441px) {
+    .course .course1{
+        left: 120px;
+    }
+
+    .course .course2{
+        left: calc(50% - 405px);
+        z-index: 2;
+    }
+
+    .course .course3{
+        right: 120px;
+    }
+
 }

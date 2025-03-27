@@ -3,6 +3,8 @@ import { Navbar } from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSubCategoryId } from '../../redux/slices/categorySlice';
 
 import bgImg from '../../assets/images/lending-bg-item.png';
 import videoImg from '../../assets/images/video.png';
@@ -22,8 +24,9 @@ import jobifyImg from '../../assets/icons/logoJobify.svg';
 import vkImg from '../../assets/icons/blackVK.svg';
 import tgImg from '../../assets/icons/blackTG.svg';
 import igImg from '../../assets/icons/blackIG.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchSubCategoryId } from '../../redux/slices/categorySlice';
+import course1Img from '../../assets/images/course1.png';
+import course2Img from '../../assets/images/course2.png';
+import course3Img from '../../assets/images/course3.png';
 
 const switchData = [
     {
@@ -53,9 +56,15 @@ const sectionVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+const textVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: .7, y: 0, transition: { duration: 0.3 } }
+};
+
 export default function Lending() {
     const dispatch = useDispatch();
     const subcategories = useSelector((state) => state.category.subCategory);
+    const token = useSelector((state) => state.auth.accessToken);
 
     const [activeItem, setActiveItem] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -183,7 +192,7 @@ export default function Lending() {
                     <h2>Найдите идеальную работу или специалиста с Jobify!</h2>
                     <p>Платформа для поиска фриланс-заказов и исполнителей с удобным интерфейсом и надежными инструментами</p>
                     <div className={styles.mainBtns}>
-                        <Link to="/registration">Присоединиться</Link>
+                        <Link to={token ? "/list-orders" : "/registration"}>Присоединиться</Link>
                         {/* <button>Есть вопросы?</button> */}
                     </div>
                 </div>
@@ -221,14 +230,14 @@ export default function Lending() {
                             <button 
                                 onClick={() => setRole('freelancer')}
                                 style={{
-                                    backgroundColor: role === 'freelancer' ? '#000' : '#fff',
+                                    backgroundColor: role === 'freelancer' ? 'transparent' : '#fff',
                                     color: role === 'freelancer' ? '#fff' : '#000'
                                 }}
                             >Я фрилансер</button>
                             <button 
                                 onClick={() => setRole('customer')}
                                 style={{
-                                    backgroundColor: role === 'customer' ? '#000' : '#fff',
+                                    backgroundColor: role === 'customer' ? 'transparent' : '#fff',
                                     color: role === 'customer' ? '#fff' : '#000'
                                 }}
                             >Я заказчик</button>
@@ -261,7 +270,7 @@ export default function Lending() {
                     <div className={styles.implementAI}>Что-то тут будет</div>
                     <h2>Туториал по работе на Jobify</h2>
                     <p>Мы обновили биржу — добавили встроенный чат, быстрые переводы и систему гарантии сделок, а также поддержку пользователей</p>
-                    <Link to='/registration'>Присоединиться</Link>
+                    <Link to={token ? '/list-orders' : '/registration'}>Присоединиться</Link>
                 </div>
                 <img 
                     src={videoImg}
@@ -283,91 +292,161 @@ export default function Lending() {
                         onMouseEnter={() => handleMouseEnter('it')}
                         onMouseLeave={() => handleMouseLeave('it')}
                     >
-                        <Link to="/list-orders?category=developmentAndIT">Разработка и IT</Link>
-                        {hoverItems.it.hover ? <p>{getSubcategoryByCategory(hoverItems.it.id)}</p> : (
-                            <div>
-                                <img src={itImg} width={78} height={78} alt="it" />
-                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                            </div>
-                        )}
+                        <Link to="/list-orders?category=developmentAndIT"> 
+                            <h2>Разработка и IT</h2>
+                            {hoverItems.it.hover ? (
+                                <motion.p 
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={textVariants}
+                                >
+                                    {getSubcategoryByCategory(hoverItems.it.id)}
+                                </motion.p>
+                                ) : (
+                                <div>
+                                    <img src={itImg} width={78} height={78} alt="it" />
+                                    <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                                </div>
+                            )}
+                        </Link>
                     </li>
                     <li
                         className={`${styles.link} ${hoverItems.smm.hover ? styles.hover : ''}`}
                         onMouseEnter={() => handleMouseEnter('smm')}
                         onMouseLeave={() => handleMouseLeave('smm')}
                     >
-                        <Link to="/list-orders?category=smmAndAdvertising">SMM и реклама</Link>
-                        {hoverItems.smm.hover ? <p>{getSubcategoryByCategory(hoverItems.smm.id)}</p> : (
-                            <div>
-                                <img src={smmImg} width={92} height={68} alt="smm" />
-                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                            </div>
-                        )}
+                        <Link to="/list-orders?category=smmAndAdvertising">
+                            <h2>SMM и реклама</h2>
+                            {hoverItems.smm.hover ? (
+                                <motion.p 
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={textVariants}
+                                >
+                                    {getSubcategoryByCategory(hoverItems.smm.id)}
+                                </motion.p>
+                                ) : (
+                                <div>
+                                    <img src={smmImg} width={92} height={68} alt="smm" />
+                                    <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                                </div>
+                            )}
+                        </Link>
                     </li>
                     <li
                         className={`${styles.link} ${hoverItems.video.hover ? styles.hover : ''}`}
                         onMouseEnter={() => handleMouseEnter('video')}
                         onMouseLeave={() => handleMouseLeave('video')}
                     >
-                        <Link to="/list-orders?category=videoAndAudio">Видео и аудио</Link>
-                        {hoverItems.video.hover ? <p>{getSubcategoryByCategory(hoverItems.video.id)}</p> : (
-                            <div>
-                                <img src={audioImg} width={100} height={100} alt="video" />
-                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                            </div>
-                        )}
+                        <Link to="/list-orders?category=videoAndAudio">
+                            <h2>Видео и аудио</h2>
+                            {hoverItems.video.hover ? (
+                                <motion.p
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={textVariants}
+                                >
+                                    {getSubcategoryByCategory(hoverItems.video.id)}
+                                </motion.p>
+                            ) : (
+                                <div>
+                                    <img src={audioImg} width={100} height={100} alt="video" />
+                                    <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                                </div>
+                            )}
+                        </Link >
                     </li>
                     <li
                         className={`${styles.link} ${hoverItems.business.hover ? styles.hover : ''}`}
                         onMouseEnter={() => handleMouseEnter('business')}
                         onMouseLeave={() => handleMouseLeave('business')}
                     >
-                        <Link to="/list-orders?category=business">Бизнес и обучение</Link>
-                        {hoverItems.business.hover ? <p>{getSubcategoryByCategory(hoverItems.business.id)}</p> : (
-                             <div>
-                                <img src={businessImg} width={97} height={79} alt="business" />
-                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                            </div>
-                        )}
+                        <Link to="/list-orders?category=business">
+                            <h2>Бизнес и обучение</h2>
+                            {hoverItems.business.hover ? (
+                                <motion.p
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={textVariants}
+                                >
+                                    {getSubcategoryByCategory(hoverItems.business.id)}
+                                </motion.p>
+                            ) : (
+                                <div>
+                                    <img src={businessImg} width={97} height={79} alt="business" />
+                                    <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                                </div>
+                            )}
+                        </Link>
                     </li>
                     <li
                         className={`${styles.link} ${hoverItems.seo.hover ? styles.hover : ''}`}
                         onMouseEnter={() => handleMouseEnter('seo')}
                         onMouseLeave={() => handleMouseLeave('seo')}
                     >
-                        <Link to="/list-orders?category=seo">SEO и аналитика</Link>
-                        {hoverItems.seo.hover ? <p>{getSubcategoryByCategory(hoverItems.seo.id)}</p> : (
-                            <div>
-                                <img src={seoImg} width={100} height={100} alt="seo" style={{opacity: '.1'}}/>
-                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                            </div>
-                        )}
+                        <Link to="/list-orders?category=seo">
+                            <h2>SEO и аналитика</h2>
+                            {hoverItems.seo.hover ? (
+                                <motion.p
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={textVariants}
+                                >
+                                    {getSubcategoryByCategory(hoverItems.seo.id)}
+                                </motion.p>
+                            ) : (
+                                <div>
+                                    <img src={seoImg} width={100} height={100} alt="seo" style={{opacity: '.1'}}/>
+                                    <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                                </div>
+                            )}
+                        </Link>
                     </li>
                     <li
                         className={`${styles.link} ${hoverItems.design.hover ? styles.hover : ''}`}
                         onMouseEnter={() => handleMouseEnter('design')}
                         onMouseLeave={() => handleMouseLeave('design')}
                     >
-                        <Link to="/list-orders?category=design">Дизайн</Link>
-                        {hoverItems.design.hover ? <p>{getSubcategoryByCategory(hoverItems.design.id)}</p> : (
-                            <div>
-                                <img src={designImg} width={100} height={100} alt="design" />
-                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                            </div>
-                        )}
+                        <Link to="/list-orders?category=design">
+                            <h2>Дизайн</h2>
+                            {hoverItems.design.hover ? (
+                                <motion.p
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={textVariants}
+                                >
+                                    {getSubcategoryByCategory(hoverItems.design.id)}
+                                </motion.p>
+                            ) : (
+                                <div>
+                                    <img src={designImg} width={100} height={100} alt="design" />
+                                    <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                                </div>
+                            )}
+                        </Link>
                     </li>
                     <li
                         className={`${styles.link} ${hoverItems.text.hover ? styles.hover : ''}`}
                         onMouseEnter={() => handleMouseEnter('text')}
                         onMouseLeave={() => handleMouseLeave('text')}
                     >
-                        <Link to="/list-orders?category=textsAndTranslations">Тексты и переводы</Link>
-                        {hoverItems.text.hover ? <p>{getSubcategoryByCategory(hoverItems.text.id)}</p> : (
-                            <div>
-                                <img src={textsImg} width={100} height={100} alt="texts" />
-                                <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                            </div>
-                        )}
+                        <Link to="/list-orders?category=textsAndTranslations">
+                            <h2>Тексты и переводы</h2>
+                            {hoverItems.text.hover ? (
+                                <motion.p
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={textVariants}
+                                >
+                                    {getSubcategoryByCategory(hoverItems.text.id)}
+                                </motion.p>
+                            ) : (
+                                <div>
+                                    <img src={textsImg} width={100} height={100} alt="texts" />
+                                    <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
+                                </div>
+                            )}
+                        </Link>
                     </li>
                 </ul>
             </motion.section>
@@ -402,6 +481,9 @@ export default function Lending() {
                 <h2>Курс по искусственному интелекту</h2>
                 <p>Наш курс по искусственному интеллекту (ИИ) создан специально для фрилансеров, которые хотят зарабатывать больше и автоматизировать рутинные задачи.</p>
                 <button>Перейти к курсу</button>
+                <img className={styles.course1} src={course1Img} alt="course example" />
+                <img className={styles.course2} src={course2Img} alt="course example" />
+                <img className={styles.course3} src={course3Img} alt="course example" />
             </motion.section>
             <motion.section
                 className={styles.getFirstOffer}

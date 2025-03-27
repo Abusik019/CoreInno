@@ -17,12 +17,12 @@ export default function InvitedFreelancers() {
                     <div className={styles.activeOffers}>
                         <h2>Приглашенные исполнители</h2>
                         <h3>Активные офферы <span>(2)</span></h3>
-                        <p>Здесь виды все ваши офферы, еще не получившие ответа</p>
+                        <p>Здесь видны все ваши офферы, еще не получившие ответа</p>
                         <ul className={styles.offersList}>
                             <li>
                                 <h2>Название задания</h2>
                                 <h3>Дата оффера: 21.02.2024</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur. Non urna pellentesque libero lobortis turpis gravida. Posuere purus convallis quam convallis duis montes est ornare lorem. Aliquam ipsum sit sit aliquam... Показать все</p>
+                                <p>Lorem ipsum dolor sit amet consectetur. Non urna pellentesque libero lobortis turpis gravida. Posuere purus convallis quam convallis duis montes est ornare lorem. Aliquam ipsum sit sit aliquam... <span>Показать все</span></p>
                                 <div className={styles.offerInfo}>
                                     <div>
                                         <img src={activeImg} width={36} height={36} alt="avatar" />
@@ -37,7 +37,7 @@ export default function InvitedFreelancers() {
                             <li>
                                 <h2>Название задания</h2>
                                 <h3>Дата оффера: 21.02.2024</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur. Non urna pellentesque libero lobortis turpis gravida. Posuere purus convallis quam convallis duis montes est ornare lorem. Aliquam ipsum sit sit aliquam... Показать все</p>
+                                <p>Lorem ipsum dolor sit amet consectetur. Non urna pellentesque libero lobortis turpis gravida. Posuere purus convallis quam convallis duis montes est ornare lorem. Aliquam ipsum sit sit aliquam... <span>Показать все</span></p>
                                 <div className={styles.offerInfo}>
                                     <div>
                                         <img src={activeImg} width={36} height={36} alt="avatar" />
@@ -58,7 +58,7 @@ export default function InvitedFreelancers() {
                         <h3>История офферов <span>(3)</span></h3>
                         <p>Здесь вы можете видеть все ваши отклики</p>
                         {!isHideHistory && (
-                            <ul className={styles.offersList}>
+                            <ul className={styles.offersHistoryList}>
                                 <li>
                                     <div>
                                         <h2>Название задания</h2>

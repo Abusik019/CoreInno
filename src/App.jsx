@@ -1,6 +1,7 @@
 import "./App.css";
+import './fonts.css';
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import Registration from "./pages/Registration";
 import EmailConfirm from "./pages/EmailConfirm";
 import Login from "./pages/Login";
@@ -41,7 +42,7 @@ import { AuthProvider } from "./components/AuthProvider";
 function App() {
     const location = useLocation();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (location.pathname === "/") {
             document.body.classList.add("landing");
         } else {

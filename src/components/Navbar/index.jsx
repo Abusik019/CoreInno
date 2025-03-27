@@ -1,15 +1,11 @@
 import styles from "./style.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { TabsComponent } from "../TabsComponent";
 
-import listImg from "../../assets/icons/list.svg";
-import whiteListImg from "../../assets/icons/whiteList.svg";
 import heartImg from "../../assets/icons/whiteHeart.svg";
 import notificationImg from "../../assets/icons/whiteNotification.svg";
-import freelancersImg from "../../assets/icons/freelancers.svg";
-import bagImg from "../../assets/icons/bag.svg";
 import avatarImg from "../../assets/images/defaultAvatar2.jpg";
 import arrowImg from "../../assets/icons/smallArrow.svg";
 import settingImg from "../../assets/icons/setting.svg";
@@ -94,7 +90,7 @@ export const Navbar = () => {
                             <>
                                 <h2
                                     onClick={() => toggleNavDropdown("order")}
-                                    style={{ opacity: isNavbarDropdown.order ? "1" : "0.7" }}
+                                    style={{ opacity: isNavbarDropdown.order && "1" }}
                                 >
                                     Заказы
                                 </h2>
@@ -112,7 +108,7 @@ export const Navbar = () => {
                     <li>
                         <h2
                             onClick={() => toggleNavDropdown("work")}
-                            style={{ opacity: isNavbarDropdown.work ? "1" : "0.7" }}
+                            style={{ opacity: isNavbarDropdown.work && "1" }}
                         >
                             Фрилансеры
                         </h2>
@@ -136,49 +132,21 @@ export const Navbar = () => {
             </div>
             <div className={styles.rightSide}>
                 <div className={styles.navbarActions}>
-                    <div className={styles.searchWrapper} ref={wrapperRef}>
-                        <div className={styles.inputWrapper}>
-                            <input
-                                type="search"
-                                className={`${styles.searchInput} ${isShowSearch ? styles.visible : ""}`}
-                                onClick={() => setIsShowSearch(true)}
-                            />
-                            <button
-                                className={`${styles.searchDropdown} ${isShowSearch ? styles.visible : ""}`}
-                                onClick={toggleDropdown}
-                            >
-                                <img
-                                    src={whiteListImg}
-                                    width={18}
-                                    height={18}
-                                    alt="list"
-                                    onClick={() => toggleNavDropdown("search")}
-                                />
-                            </button>
-                            <div className={`${styles.inputDropdown} ${isNavbarDropdown.search ? styles.visible : ""}`}>
-                                <Link to="/list-freelancer">
-                                    <img src={freelancersImg} width={20} height={20} alt="freelancers" />
-                                    <h2>Фрилансеры</h2>
-                                </Link>
-                                <Link to="/list-orders">
-                                    <img src={listImg} width={20} height={20} alt="list" />
-                                    <h2>Заказы</h2>
-                                </Link>
-                                <Link to="#">
-                                    <img src={bagImg} width={20} height={20} alt="bag" />
-                                    <h2>Объявления</h2>
-                                </Link>
-                            </div>
-                        </div>
+                    <div className={styles.inputWrapper} ref={wrapperRef}>
+                        <input
+                            type="search"
+                            className={`${styles.searchInput} ${isShowSearch ? styles.visible : ""}`}
+                            onClick={() => setIsShowSearch(true)}
+                        />
                     </div>
                     {isLogin && (
                         <Link to="/favorites">
-                            <img src={heartImg} width={20} height={20} alt="heart" />
+                            <img src={heartImg} width={24} height={24} alt="heart" />
                         </Link>
                     )}
                     {isLogin && (
                         <button onClick={() => toggleNavDropdown("notifications")}>
-                            <img src={notificationImg} width={20} height={20} alt="notification" />
+                            <img src={notificationImg} width={24} height={24} alt="notification" />
                         </button>
                     )}
                     {!isLogin && (
