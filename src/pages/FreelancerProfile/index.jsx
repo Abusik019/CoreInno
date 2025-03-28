@@ -18,7 +18,7 @@ import toFavoriteImg from '../../assets/icons/toFavourite.svg';
 import purpleFavoriteImg from '../../assets/icons/purpleFavorite.svg';
 
 export default function FreelancerProfile() {
-    const [isMyProfile, setIsMyProfile] = useState(true);
+    const [isMyProfile, setIsMyProfile] = useState(false);
     const [isShowVerify, setIsShowVerify] = useState(false);
     const [showAllReviews, setShowAllReviews] = useState(false);
 

@@ -185,7 +185,7 @@ export default function Lending() {
 
     return (
         <div className={styles.lending}>
-            <Navbar />
+            <Navbar theme="dark"/>
             <main className={styles.main}> 
                 <div className={styles.mainInfo}>
                     <div className={styles.implementAI}>Внедряем ИИ</div>

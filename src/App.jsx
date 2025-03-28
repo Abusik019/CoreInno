@@ -38,9 +38,11 @@ import SupportChat from "./pages/SupportChat";
 import CreateProfile from "./pages/CreateProfile";
 import InvitedFreelancers from "./pages/InvitedFreelancers";
 import { AuthProvider } from "./components/AuthProvider";
+import { Navbar } from "./components/Navbar";
 
 function App() {
     const location = useLocation();
+    const showNavbar = !["/", "/registration", "/login", "/not-found"].includes(location.pathname);
 
     useLayoutEffect(() => {
         if (location.pathname === "/") {
@@ -52,43 +54,44 @@ function App() {
 
     return (
         <AuthProvider>
-            <Routes>
-                <Route path="/" element={<Lending />} />
-                <Route path="/registration" element={<Registration />} />
-                <Route path="/email-confirm" element={<EmailConfirm />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/catalog" element={<Catalog />} />
-                <Route path="/my-orders" element={<MyOrders />} />
-                <Route path="/setting-account" element={<SettingsAccount />} />
-                <Route path="/list-freelancer" element={<ListFreelancer />} />
-                <Route path="/create-task" element={<CreateTask />} />
-                <Route path="/freelancer-profile" element={<FreelancerProfile />} />
-                <Route path="/response" element={<Response />} />
-                <Route path="/list-orders" element={<ListOrders />} />
-                <Route path="/post" element={<Post />} />
-                <Route path="/number-confirm" element={<NumberConfirm />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
-                <Route path="/add-new-project" element={<AddNewProject />} />
-                <Route path="/case-portfolio" element={<CasePortfolio />} />
-                <Route path="/announcement" element={<Announcement />} />
-                <Route path="/commercial-announcement" element={<CommercialAnnouncement />} />
-                <Route path="/task-section" element={<TaskSection />} />
-                <Route path="/create-profile" element={<CreateProfile />} />
-                <Route path="/favorites" element={<Favorites />} />
-                <Route path="/draft" element={<Draft />} />
-                <Route path="/commercial-advertisement" element={<CommercialAdvertisement />} />
-                <Route path="/my-announcements" element={<MyAnnouncements />} />
-                <Route path="/responses" element={<AllResponses />} />
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/customer-profile" element={<CustomerProfile />} />
-                <Route path="/review" element={<Review />} />
-                <Route path="/not-found" element={<NotFound />} />
-                <Route path="/create-consultation" element={<CreateConsultation />} />
-                <Route path="/recently-viewed-freelancer" element={<RecentlyViewed />} />
-                <Route path="/catalog-posts" element={<CatalogPosts />} />
-                <Route path="/support-chat" element={<SupportChat />} />
-                <Route path="/invited-freelancers" element={<InvitedFreelancers />} />
-            </Routes>
+            {showNavbar && <Navbar theme="light"/>}
+                <Routes>
+                    <Route path="/" element={<Lending />} />
+                    <Route path="/registration" element={<Registration />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/email-confirm" element={<EmailConfirm />} />
+                    <Route path="/my-orders" element={<MyOrders />} />
+                    <Route path="/setting-account" element={<SettingsAccount />} />
+                    <Route path="/list-freelancer" element={<ListFreelancer />} />
+                    <Route path="/create-task" element={<CreateTask />} />
+                    <Route path="/freelancer-profile" element={<FreelancerProfile />} />
+                    <Route path="/response" element={<Response />} />
+                    <Route path="/list-orders" element={<ListOrders />} />
+                    <Route path="/post" element={<Post />} />
+                    <Route path="/number-confirm" element={<NumberConfirm />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/add-new-project" element={<AddNewProject />} />
+                    <Route path="/case-portfolio" element={<CasePortfolio />} />
+                    <Route path="/announcement" element={<Announcement />} />
+                    <Route path="/commercial-announcement" element={<CommercialAnnouncement />} />
+                    <Route path="/task-section" element={<TaskSection />} />
+                    <Route path="/create-profile" element={<CreateProfile />} />
+                    <Route path="/favorites" element={<Favorites />} />
+                    <Route path="/draft" element={<Draft />} />
+                    <Route path="/commercial-advertisement" element={<CommercialAdvertisement />} />
+                    <Route path="/my-announcements" element={<MyAnnouncements />} />
+                    <Route path="/responses" element={<AllResponses />} />
+                    <Route path="/chat" element={<Chat />} />
+                    <Route path="/customer-profile" element={<CustomerProfile />} />
+                    <Route path="/review" element={<Review />} />
+                    <Route path="/not-found" element={<NotFound />} />
+                    <Route path="/create-consultation" element={<CreateConsultation />} />
+                    <Route path="/recently-viewed-freelancer" element={<RecentlyViewed />} />
+                    <Route path="/catalog-posts" element={<CatalogPosts />} />
+                    <Route path="/support-chat" element={<SupportChat />} />
+                    <Route path="/invited-freelancers" element={<InvitedFreelancers />} />
+                </Routes>
         </AuthProvider>
     );
 }

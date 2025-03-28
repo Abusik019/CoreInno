@@ -125,7 +125,7 @@ export default function FreelancersSlider({users}) {
 
                 <div className={styles.slideActions}>
                   <button className={styles.toProfile}>
-                    <Link to="#">Обратиться</Link>
+                    <Link to="/freelancer-profile">Обратиться</Link>
                   </button>
                   <button className={styles.addToFavourite}>
                     <img

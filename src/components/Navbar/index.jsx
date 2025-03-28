@@ -4,17 +4,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { TabsComponent } from "../TabsComponent";
 
-import heartImg from "../../assets/icons/whiteHeart.svg";
-import notificationImg from "../../assets/icons/whiteNotification.svg";
+import whiteHeartImg from "../../assets/icons/whiteHeart.svg";
+import heartImg from "../../assets/icons/heart.svg";
+import whiteNotificationImg from "../../assets/icons/whiteNotification.svg";
+import notificationImg from "../../assets/icons/notification.svg";
 import avatarImg from "../../assets/images/defaultAvatar2.jpg";
 import arrowImg from "../../assets/icons/smallArrow.svg";
 import settingImg from "../../assets/icons/setting.svg";
 import exitImg from "../../assets/icons/exit.svg";
-import jobifyImg from "../../assets/icons/whiteLogoJobify.svg";
+import whiteJobifyImg from "../../assets/icons/whiteLogoJobify.svg";
+import jobifyImg from "../../assets/icons/logoJobify.svg";
 import wallerImg from "../../assets/icons/wallet.svg";
 import supportImg from "../../assets/icons/support.svg";
 
-export const Navbar = () => {
+export const Navbar = ({ theme }) => {
     const navigate = useNavigate();
     const token = useSelector((state) => state.auth.accessToken);
     const userInfo = useSelector((state) => state.auth.userInfo);
@@ -78,10 +81,10 @@ export const Navbar = () => {
     };
 
     return (
-        <div className={styles.navbar}>
+        <div className={`${styles.navbar} ${theme === 'light' ? styles.light : '' }`} style={{backgroundColor: theme === 'dark' ? '#000' : '#fff'}}>
             <div className={styles.leftSide}>
                 <Link to="/">
-                    <img src={jobifyImg} width={102} height={42} alt="Jobify logo" />
+                    <img src={theme === 'dark' ? whiteJobifyImg : jobifyImg} width={102} height={42} alt="Jobify logo" />
                 </Link>
                 <ul className={styles.navPanel}>
                     <li>
@@ -141,12 +144,12 @@ export const Navbar = () => {
                     </div>
                     {isLogin && (
                         <Link to="/favorites">
-                            <img src={heartImg} width={24} height={24} alt="heart" />
+                            <img src={theme === 'dark' ? whiteHeartImg : heartImg} width={24} height={24} alt="heart" />
                         </Link>
                     )}
                     {isLogin && (
                         <button onClick={() => toggleNavDropdown("notifications")}>
-                            <img src={notificationImg} width={24} height={24} alt="notification" />
+                            <img src={theme === 'dark' ? whiteNotificationImg : notificationImg} width={24} height={24} alt="notification" />
                         </button>
                     )}
                     {!isLogin && (

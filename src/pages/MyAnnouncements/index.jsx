@@ -1,6 +1,7 @@
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { GradientText } from "../../components/GradientText";
 
 import questionImg from "../../assets/icons/question.svg";
 import whiteArrow from "../../assets/icons/w-longArrow.svg";
@@ -11,18 +12,6 @@ import edit from '../../assets/icons/edit.svg';
 import add from '../../assets/icons/add.svg';
 import deleteImg from '../../assets/icons/redDelete.svg';
 import mockImg from '../../assets/images/mockGuide.png';
-import { GradientText } from "../../components/GradientText";
-
-const mockGuides = [
-    ...Array(3)
-        .fill(null)
-        .map((_, index) => ({
-            id: index + 1,
-            title: "Название Гайда",
-            description:
-                "Lorem ipsum dolor sit amet consectetur. At sodales sed adipiscing tempus est ac. Tempor elit blandittempus.",
-        })),
-];
 
 export default function MyAnnouncements() {
     const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -45,11 +34,9 @@ export default function MyAnnouncements() {
                             alt="question"
                         />
                     </div>
-                    <button>
-                        <Link to="#">
-                            <span>+</span> Добавить объявление
-                        </Link>
-                    </button>
+                    <Link to="/create-task">
+                        <span>+</span> Добавить объявление
+                    </Link>
                 </div>
                 <ul className={styles.orders}>
                     {[1, 2, 3].map((id) => (
@@ -106,11 +93,9 @@ export default function MyAnnouncements() {
                             alt="question"
                         />
                     </div>
-                    <button>
-                        <Link to="#">
-                            <span>+</span> Добавить консультацию
-                        </Link>
-                    </button>
+                    <Link to="/create-consultation">
+                        <span>+</span> Добавить консультацию
+                    </Link>
                 </div>
                 <ul className={styles.consultations}>
                     {[1, 2, 3].map((id) => (

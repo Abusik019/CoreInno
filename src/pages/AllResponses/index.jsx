@@ -1,7 +1,6 @@
 import styles from './style.module.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ReviewsSelect from '../../components/SelectReviews';
 
 import energyImg from '../../assets/icons/energy.svg';
 import freelancerImg from '../../assets/images/freelancer.png';
