@@ -61,18 +61,25 @@ function CatalogPosts() {
     <div>
       <header className={styles.content}>
         <h1>Каталог объявлений</h1>
-        <div style={{display: "inline"}} >
-          <img style={{position: "relative", left: "1170px", top: "43px"}} src={close} alt="" />
+        <div style={{ display: "inline" }}>
+          <img
+            style={{ position: "relative", left: "1170px", top: "43px" }}
+            src={close}
+            alt=""
+          />
         </div>
-      
-        <img style={{position: "relative", top: "40px", left: "-5px"}} src={search} alt="" />
+
+        <img
+          style={{ position: "relative", top: "40px", left: "-5px" }}
+          src={search}
+          alt=""
+        />
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Поиск"
           type="text"
         />
-        
       </header>
       <main className={styles.main}>
         <div className={styles.left}>
@@ -134,7 +141,7 @@ function CatalogPosts() {
               </ul>
             )}
           </div>
-          
+
           <div className={styles.rating}>
             <h2
               style={{ cursor: "pointer" }}
@@ -187,8 +194,7 @@ function CatalogPosts() {
               </div>
             )}
           </div>
-         
-         
+
           <div className={styles.orders}>
             <h2 onClick={() => setOpenOrders(!openOrders)}>
               Успешные заказы{" "}
@@ -201,7 +207,7 @@ function CatalogPosts() {
             {openOrders && (
               <div className={styles.order}>
                 <p>%успешных заказов от</p>
-                <p>Текущее значение {successRate}%</p>
+                <p> {successRate}%</p>
 
                 <div
                   style={{
@@ -221,6 +227,14 @@ function CatalogPosts() {
                   onChange={(val) => setSuccessRate(val)}
                   pearling
                   minDistance={1}
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${styles.track} ${
+                        state.index === 1 ? "": styles.activeTrack 
+                      }`}
+                    />
+                  )}
                 />
               </div>
             )}
@@ -237,7 +251,7 @@ function CatalogPosts() {
             {openOrders1 && (
               <div className={styles.order}>
                 <p>Не более</p>
-                <p>Текущее значение {successRate1}%</p>
+                <p> {successRate1}%</p>
 
                 <div
                   style={{
@@ -256,6 +270,14 @@ function CatalogPosts() {
                   onChange={(val) => setSuccessRate1(val)}
                   pearling
                   minDistance={1}
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${styles.track} ${
+                        state.index === 1 ? "": styles.activeTrack 
+                      }`}
+                    />
+                  )}
                 />
               </div>
             )}

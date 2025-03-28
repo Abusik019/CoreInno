@@ -123,6 +123,9 @@ margin-bottom: 15px;
     height: 4px;
     border-radius: 5px;
 }
+.activeTrack {
+    background: black !important; /* Закрашиваем активную часть черным */
+  }
 .thumb{
     height: 20px;
     width: 20px;

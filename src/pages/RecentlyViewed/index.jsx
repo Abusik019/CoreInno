@@ -143,6 +143,7 @@ function RecentlyViewed() {
                   <label>Мин. цена</label>
                   <input
                     type="number"
+                    style={{ color: "#000000" }}
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
                   />
@@ -152,6 +153,7 @@ function RecentlyViewed() {
                   <label>Макс. цена</label>
                   <input
                     type="number"
+                    style={{ color: "#000000" }}
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(e.target.value)}
                   />
@@ -167,6 +169,14 @@ function RecentlyViewed() {
                       onChange={handleSliderChange}
                       pearling
                       minDistance={10}
+                      renderTrack={(props, state) => (
+                        <div
+                          {...props}
+                          className={`${styles.track} ${
+                            state.index === 1 ? styles.activeTrack : ""
+                          }`}
+                        />
+                      )}
                     />
                   </div>
                 </div>
@@ -225,7 +235,6 @@ function RecentlyViewed() {
               </div>
             )}
           </div>
-         
 
           <div className={styles.orders}>
             <h2 onClick={() => setOpenOrders(!openOrders)}>
@@ -239,7 +248,7 @@ function RecentlyViewed() {
             {openOrders && (
               <div className={styles.order}>
                 <p>%успешных заказов от</p>
-                <p>Текущее значение {successRate}%</p>
+                <p>{successRate}%</p>
 
                 <div
                   style={{
@@ -259,6 +268,14 @@ function RecentlyViewed() {
                   onChange={(val) => setSuccessRate(val)}
                   pearling
                   minDistance={1}
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${styles.track} ${
+                        state.index === 1 ? "": styles.activeTrack 
+                      }`}
+                    />
+                  )}
                 />
               </div>
             )}
@@ -275,7 +292,7 @@ function RecentlyViewed() {
             {openOrders1 && (
               <div className={styles.order}>
                 <p>Не более</p>
-                <p>Текущее значение {successRate1}%</p>
+                <p> {successRate1}%</p>
 
                 <div
                   style={{
@@ -294,6 +311,14 @@ function RecentlyViewed() {
                   onChange={(val) => setSuccessRate1(val)}
                   pearling
                   minDistance={1}
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${styles.track} ${
+                        state.index === 1 ? "": styles.activeTrack 
+                      }`}
+                    />
+                  )}
                 />
               </div>
             )}

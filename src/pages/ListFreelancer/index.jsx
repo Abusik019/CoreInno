@@ -143,6 +143,7 @@ function ListFreelancer() {
                   <label>Мин. цена</label>
                   <input
                     type="number"
+                    style={{ color: "#000000" }}
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
                   />
@@ -152,6 +153,7 @@ function ListFreelancer() {
                   <label>Макс. цена</label>
                   <input
                     type="number"
+                    style={{color: "#000000"}}
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(e.target.value)}
                   />
@@ -167,6 +169,14 @@ function ListFreelancer() {
                       onChange={handleSliderChange}
                       pearling
                       minDistance={10}
+                      renderTrack={(props, state) => (
+                        <div
+                          {...props}
+                          className={`${styles.track} ${
+                            state.index === 1 ? styles.activeTrack : ""
+                          }`}
+                        />
+                      )}
                     />
                   </div>
                 </div>
@@ -264,7 +274,7 @@ function ListFreelancer() {
             {openOrders && (
               <div className={styles.order}>
                 <p>%успешных заказов от</p>
-                <p>Текущее значение {successRate}%</p>
+                <p>{successRate}%</p>
 
                 <div
                   style={{
@@ -284,6 +294,14 @@ function ListFreelancer() {
                   onChange={(val) => setSuccessRate(val)}
                   pearling
                   minDistance={1}
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${styles.track} ${
+                        state.index === 1 ? "" : styles.activeTrack
+                      }`}
+                    />
+                  )}
                 />
               </div>
             )}
@@ -300,7 +318,7 @@ function ListFreelancer() {
             {openOrders1 && (
               <div className={styles.order}>
                 <p>Не более</p>
-                <p>Текущее значение {successRate1}%</p>
+                <p> {successRate1}%</p>
 
                 <div
                   style={{
@@ -319,6 +337,14 @@ function ListFreelancer() {
                   onChange={(val) => setSuccessRate1(val)}
                   pearling
                   minDistance={1}
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${styles.track} ${
+                        state.index === 1 ? "" : styles.activeTrack
+                      }`}
+                    />
+                  )}
                 />
               </div>
             )}
