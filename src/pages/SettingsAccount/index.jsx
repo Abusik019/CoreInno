@@ -393,7 +393,7 @@ function SettingsAccount() {
                 )}
 
                 <div style={{ marginTop: "50px" }} className={styles.button4}>
-                  <button onClick={cancelChanges}>Отмена</button>
+                  <button style={{color: "#000000"}} onClick={cancelChanges}>Отмена</button>
                   <button onClick={saveChanges}>Сохранить изменения</button>
                 </div>
               </div>
@@ -439,7 +439,7 @@ function SettingsAccount() {
                 </label>
               </div>
               <div className={styles.button4}>
-                <button onClick={() => setModal(false)}>Отмена</button>
+                <button style={{color: "#000000"}} onClick={() => setModal(false)}>Отмена</button>
                 <button onClick={() => setModal(false)}>
                   Сохранить изменения
                 </button>
@@ -562,7 +562,7 @@ function SettingsAccount() {
                 style={{ marginTop: "60px" }}
                 className={styles.buttonModalNumber}
               >
-                <button onClick={() => setModal(false)}>Отмена</button>
+                <button style={{color: "#000000"}} onClick={() => setModal(false)}>Отмена</button>
                 <button onClick={() => setModal(false)}>Пополнить</button>
               </div>
             </div>
@@ -650,7 +650,7 @@ function SettingsAccount() {
                 className={styles.buttonModalNumber}
               >
                 <button
-                  style={{ width: "242px" }}
+                  style={{ width: "242px", color: "#000000" }}
                   onClick={() => setMetodPayment(false)}
                 >
                   Отмена
@@ -674,19 +674,19 @@ function SettingsAccount() {
             <p>
               Вы можете изменить пароль, последние изменения — 20 марта 2024
             </p>
-            <button onClick={() => setModal(!modal)}>Изменить пароль</button>
+            <button style={{color: "#000000"}} onClick={() => setModal(!modal)}>Изменить пароль</button>
           </div>
           <div className={styles.numberOfAccount}>
             <p>Номер телефона</p>
             <p>Вы можете изменить номер, последние изменения — 20 марта 2024</p>
-            <button onClick={() => setModalNumber(!modalNumber)}>
+            <button style={{color: "#000000"}} onClick={() => setModalNumber(!modalNumber)}>
               Изменить номер
             </button>
           </div>
           <div className={styles.numberOfAccount}>
             <p>Электронная почта</p>
             <p>Вы можете изменить почту, последние изменения — 20 марта 2024</p>
-            <button>Изменить почту</button>
+            <button style={{color: "#000000"}}>Изменить почту</button>
           </div>
           <div className={styles.partyServices}>
             <p className={styles.partyService}>Сторонние сервисы</p>
@@ -725,7 +725,7 @@ function SettingsAccount() {
             <div className={styles.passwordOfAccount}>
               <p>Удалить аккаунт</p>
               <p>Если в этом есть необходимость, вы можете сделать это здесь</p>
-              <button>Удалить аккаунт</button>
+              <button style={{color: "#000000"}}>Удалить аккаунт</button>
             </div>
           </div>
           {modal && (
@@ -766,7 +766,7 @@ function SettingsAccount() {
                 </div>
               </div>
               <div className={styles.button5}>
-                <button onClick={() => setModal(false)}>Отмена</button>
+                <button style={{color: "#000000"}} onClick={() => setModal(false)}>Отмена</button>
                 <button onClick={() => setModal(false)}>
                   Сохранить изменения
                 </button>
@@ -795,7 +795,7 @@ function SettingsAccount() {
                 </div>
               </div>
               <div className={styles.buttonModalNumber}>
-                <button onClick={() => setModalNumber(false)}>Отмена</button>
+                <button style={{color: "#000000"}} onClick={() => setModalNumber(false)}>Отмена</button>
                 <button onClick={() => setModalNumber(false)}>
                   Продолжить
                 </button>
@@ -814,7 +814,7 @@ function SettingsAccount() {
               <p style={{fontSize: "22px"}}>Компьютер</p>
             </div>
             <p className={styles.neprochit}>Звуковой сигнал при получении уведомлений</p>
-            <button>Отключить уведомления</button>
+            <button style={{color: "#000000"}}>Отключить уведомления</button>
           </div>
 
           <div className={styles.computers}>

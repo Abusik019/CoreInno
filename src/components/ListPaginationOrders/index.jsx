@@ -27,7 +27,7 @@ const ListPaginationOrders = () => {
   const [indexFavorite, setIndexFavorite] = useState(null);
   const itemsPerPage = 7;
   
-  const users = useSelector((state) => state.user.users.profiles)
+  const users = useSelector((state) => state.user.users.users)
   // Определение текущих карточек
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

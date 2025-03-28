@@ -32,7 +32,7 @@ const ListPagination = () => {
 
   const dispatch = useDispatch()
 
-  const users = useSelector((state) => state.user.users.profiles) || []
+  const users = useSelector((state) => state.user.users.users) || []
  
   
 

@@ -119,7 +119,7 @@ export default function CommercialAnnouncement() {
                             </div>
                             <div className={styles.announcementFiles}>
                                 <h2>Вложения</h2>
-                                <ul>
+                                <ul >
                                     <li>document.docx</li>
                                     <li>document.docx</li>
                                     <li>document.docx</li>

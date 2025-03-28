@@ -110,7 +110,7 @@ export default function Announcement() {
                     </div>
                     <div className={styles.announcementAttachments}>
                         <h2>Вложения</h2>
-                        <ul>
+                        <ul style={{color: "#000000"}}>
                             <li>document.docx</li>
                             <li>document.docx</li>
                             <li>document.docx</li>
@@ -129,7 +129,7 @@ export default function Announcement() {
                             <ul>
                                 <li>
                                     <div>
-                                        <h2>Оплата по этапам</h2>
+                                        <h2 style={{color: "#000000"}}>Оплата по этапам</h2>
                                         <h3>Заказчик платит за отдельные этапы</h3>
                                     </div>
                                     <img
@@ -141,7 +141,7 @@ export default function Announcement() {
                                 </li>
                                 <li>
                                     <div>
-                                        <h2>Сроки</h2>
+                                        <h2 style={{color: "#000000"}}>Сроки</h2>
                                         <h3>1-2 недели на каждый из этапов</h3>
                                     </div>
                                     <img
@@ -153,7 +153,7 @@ export default function Announcement() {
                                 </li>
                                 <li>
                                     <div>
-                                        <h2>Цена в качестве</h2>
+                                        <h2 style={{color: "#000000"}}>Цена в качестве</h2>
                                         <h3>Согласен на большую плату опытному специалисту</h3>
                                     </div>
                                     <img

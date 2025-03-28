@@ -118,17 +118,17 @@ function TaskSection() {
             <div className={styles.investments}>
               <h2>Вложения</h2>
               <p>Прикрепленные файлы:</p>
-              <div className={styles.buttons}>
-                <button>
+              <div  className={styles.buttons}>
+                <button style={{color: "#000000"}}>
                   document.docx <img src={close} alt="" />{" "}
                 </button>
-                <button>
+                <button style={{color: "#000000"}}>
                   document.docx <img src={close} alt="" />
                 </button>
-                <button>
+                <button style={{color: "#000000"}}>
                   document.docx <img src={close} alt="" />
                 </button>
-                <button className={styles.clear}>+</button>
+                <button style={{color: "#000000"}} className={styles.clear}>+</button>
               </div>
             </div>
             <div className={styles.announcementCategories}>
@@ -141,9 +141,9 @@ function TaskSection() {
             <div className={styles.announcementDetails}>
               <h2>Детали заказа</h2>
               <ul>
-                <li onClick={() => setFixPayment(!fixPayment)}>
-                  <div>
-                    <h2>Оплата по этапам</h2>
+                <li style={{cursor: "pointer"}} onClick={() => setFixPayment(!fixPayment)}>
+                  <div >
+                    <h2 style={{color: "#000000"}}>Оплата по этапам</h2>
                     <h3>Заказчик платит за отдельные этапы</h3>
                   </div>
                   <img
@@ -155,7 +155,7 @@ function TaskSection() {
                 </li>
                 <li>
                   <div>
-                    <h2>Сроки</h2>
+                    <h2 style={{color: "#000000"}}>Сроки</h2>
                     <h3>1-2 недели на каждый из этапов</h3>
                   </div>
                   <img
@@ -167,7 +167,7 @@ function TaskSection() {
                 </li>
                 <li>
                   <div>
-                    <h2>Lorem ipsum</h2>
+                    <h2 style={{color: "#000000"}}>Lorem ipsum</h2>
                     <h3>Lorem ipsum dolor sit amet</h3>
                   </div>
                   <img
