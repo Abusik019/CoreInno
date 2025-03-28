@@ -76,7 +76,8 @@ export const Navbar = ({ theme }) => {
     };
 
     const removeToken = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
         navigate("/login");
     };
 
