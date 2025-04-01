@@ -10,7 +10,7 @@
 }
 
 /* Специальный стиль для лендинга */
-body{
+*{
   font-family: 'SF Pro Display', -apple-system, sans-serif;
 }
 
