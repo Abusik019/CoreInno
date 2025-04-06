@@ -145,12 +145,7 @@ function SettingsAccount() {
   }
   return (
     <div
-      style={{
-        backgroundColor:
-          modal || modalNumber || methodPayment ? "#121212" : "#F7F7F7",
-        height:
-          open === 3 ? "950px" : "830px" || open === 2 ? "1490px" : "830px",
-      }}
+     
       className={styles.content}
     >
       <div onClick={() => closeModal()} className={styles.rod}>

@@ -26,7 +26,7 @@ export const authSignUp = createAsyncThunk(
     "auth/signup",
     async ({ email, password, firstName, lastName, phone, country }, thunkAPI) => {
         try {
-            const res = await fetch(`${API_URL}/api/user/sign-up`, {
+            const res = await fetch(`${API_URL}/api/auth/sign-up`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password, firstName, lastName, phone, country }),
@@ -49,7 +49,7 @@ export const authSignIn = createAsyncThunk(
     "auth/signin",
     async ({ email, password }, thunkAPI) => {
         try {
-            const res = await fetch(`${API_URL}/api/user/sign-in`, {
+            const res = await fetch(`${API_URL}/api/auth/sign-in`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
@@ -79,7 +79,7 @@ export const checkAuth = createAsyncThunk(
                 return thunkAPI.rejectWithValue("Токен отсутствует");
             }
 
-            const res = await fetch(`${API_URL}/api/user/check-auth`, {
+            const res = await fetch(`${API_URL}/api/auth/check-me`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${accessToken}`

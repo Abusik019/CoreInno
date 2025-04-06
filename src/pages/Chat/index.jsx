@@ -1,199 +1,216 @@
-import { useEffect, useState, useCallback } from "react";
-import { io } from "socket.io-client";
-import axios from "axios";
+import { useEffect, useState, useRef } from "react";
+import { create } from "zustand";
 import styles from "./style.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../redux/slices/userSlice";
+import { fetchUsers, getUser } from "../../redux/slices/userSlice";
+import axios from "axios";
+import Frame from "../../assets/icons/Frame.svg";
+import Vector from "../../assets/icons/Vector.svg"
 
-// Используем реальный сервер, а не localhost
-const socket = io("https://jobify.api-coreinno.ru");
+const useChatStore = create((set) => ({
+  messages: {},
+  setMessages: (receiverId, msgs) =>
+    set((state) => ({ messages: { ...state.messages, [receiverId]: msgs } })),
+  addMessage: (receiverId, msg) =>
+    set((state) => ({
+      messages: {
+        ...state.messages,
+        [receiverId]: [...(state.messages[receiverId] || []), msg],
+      },
+    })),
+  systemMessage: null,
+  setSystemMessage: (msg) => set(() => ({ systemMessage: msg })),
+  error: null,
+  setError: (msg) => set(() => ({ error: msg })),
+}));
 
 export default function Chat() {
-  const [chats, setChats] = useState([]);
-  const [activeChat, setActiveChat] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
-  const [search, setSearch] = useState("");
+  const {
+    messages,
+    setMessages,
+    addMessage,
+    systemMessage,
+    setSystemMessage,
+    error,
+    setError,
+  } = useChatStore();
 
-  const users = useSelector((state) => state.user.users.users);
-  const userId = useSelector((state) => state.auth.userInfo);
- 
+  const [text, setText] = useState("");
+  const [file, setFile] = useState(null);
+  const [receiverId, setReceiverId] = useState(null);
+
   const dispatch = useDispatch();
+  const senderId = useSelector((state) => state.user.user?.id);
+  const users = useSelector((state) => state.user.users?.users || []);
+  const token = useSelector((state) => state.auth.accessToken);
+
+  const ws = useRef(null);
+  const wsConnected = useRef(false);
 
   useEffect(() => {
+    dispatch(getUser());
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  // Функция для загрузки чатов
-  const fetchChats = async () => {
-    try {
-      const chatsResponse = await axios.get("https://jobify.api-coreinno.ru/api/chat");
-      console.log(chatsResponse);
-      
-      setChats(chatsResponse.data || []);
-    } catch (err) {
-      console.error("Ошибка загрузки чатов", err);
-    }
-  };
-
-  // Загружаем чаты при запуске
   useEffect(() => {
-    fetchChats();
-  }, []);
+    if (!senderId || wsConnected.current) return;
 
-  useEffect(() => {
-    if (!activeChat) return;
+    ws.current = new WebSocket("wss://jobify.api-coreinno.ru");
+    wsConnected.current = true;
 
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get(`/api/chat/${activeChat}`);
-        setMessages(response.data.messages || []);
-      } catch (err) {
-        console.error("Ошибка загрузки сообщений", err);
-      }
-    };
+    ws.current.onopen = () => console.log("✅ WebSocket подключен");
 
-    fetchMessages();
-    socket.emit("join_chat", { chat_id: activeChat, user_id: userId });
+    ws.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("📩 Получено сообщение:", data);
 
-    const handleReceiveMessage = (msg) => {
-      setMessages((prev) => [...prev, msg]);
-    };
-
-    socket.on("receive_message", handleReceiveMessage);
-
-    return () => {
-      socket.emit("leave_chat", { chat_id: activeChat });
-      socket.off("receive_message", handleReceiveMessage);
-    };
-  }, [activeChat, userId]);
-
-  const startChat = async (user) => {
-    try {
-      const existingChat = chats.find((chat) =>
-        chat.participants.includes(user.userId)
-      );
-
-      if (existingChat) {
-        setActiveChat(existingChat.id);
+      if (data.system) {
+        setSystemMessage(data.system);
+      } else if (data.error) {
+        setError(data.error);
       } else {
-        const response = await axios.post("/api/chats", {
-          user1: userId,
-          user2: user.userId,
-        });
-
-        fetchChats(); // Обновляем список чатов после создания нового
-        setActiveChat(response.data.id);
+        addMessage(
+          data.senderId === senderId ? data.receiverId : data.senderId,
+          data
+        );
       }
-    } catch (err) {
-      console.error("Ошибка при создании чата", err);
+    };
+
+    ws.current.onerror = (error) =>
+      console.error("❌ WebSocket ошибка:", error);
+
+    ws.current.onclose = () => {
+      console.log("🔌 WebSocket отключен, переподключаемся...");
+      wsConnected.current = false;
+      setTimeout(() => {
+        ws.current = new WebSocket("wss://jobify.api-coreinno.ru");
+        wsConnected.current = true;
+      }, 3000);
+    };
+
+    return () => ws.current?.close();
+  }, [senderId]);
+
+  const loadChatHistory = async (receiverId) => {
+    try {
+      const response = await axios.get(
+        `https://jobify.api-coreinno.ru/api/message?receiverId=${receiverId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setMessages(receiverId, response.data.messages);
+    } catch (error) {
+      console.error("Ошибка загрузки чата:", error);
     }
   };
 
-  const sendMessage = useCallback(() => {
-    if (!userId) {
-      console.error("Ошибка: userId отсутствует!");
+  const sendMessage = () => {
+    if (!receiverId) {
+      setError("Выберите пользователя для чата!");
       return;
     }
-    if (message.trim()) {
-      socket.emit(
-        "send_message",
-        { chat_id: activeChat, sender_id: userId, content: message },
-        () => {
-          setMessage("");
-        }
-      );
+
+    if (!ws.current || ws.current.readyState !== WebSocket.OPEN) {
+      console.error("🚫 WebSocket не открыт, не удалось отправить сообщение.");
+      return;
     }
-  }, [message, activeChat, userId]);
+
+    const messageData = {
+      senderId,
+      receiverId,
+      text,
+      time: new Date().toISOString(),
+    };
+    if (file) {
+      messageData.fileUrl = URL.createObjectURL(file);
+    }
+    console.log("📤 Отправка сообщения:", messageData);
+    ws.current.send(JSON.stringify(messageData));
+
+    addMessage(receiverId, messageData);
+    setText("");
+    setFile(null);
+  };
+
+  // Получаем имя собеседника
+  const getReceiverName = (receiverId) => {
+    const receiver = users.find((user) => user.id === receiverId);
+    return receiver ? receiver.firstName : "Собеседник";
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.sidebar}>
-        <div className={styles.searchBar}>
-          <input
-            type="text"
-            placeholder="Поиск..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className={styles.searchInput}
-          />
-        </div>
-
-        <div className={styles.chatList}>
-          {(Array.isArray(chats) ? chats : [])
-            .filter((chat) =>
-              chat.participants.some((participant) =>
-                participant.toLowerCase().includes(search.toLowerCase())
-              )
-            )
-            .map((chat) => (
-              <div
-                key={chat.id}
-                className={`${styles.chatItem} ${
-                  activeChat === chat.id ? styles.activeChat : ""
-                }`}
-                onClick={() => setActiveChat(chat.id)}
-              >
-                <div className={styles.chatInfo}>
-                  <div className={styles.chatName}>
-                    {chat.participants.join(", ")}
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
-
-        <div className={styles.userList}>
-          <h3>Пользователи</h3>
-          {(Array.isArray(users) ? users : []).map((user) => (
-            <div
-              key={user.userId}
-              className={styles.userItem}
-              onClick={() => startChat(user)}
+    <div className={styles.rod}>
+      <div className={styles.users}>
+        <h2>Пользователи:</h2>
+        <ul className={styles.userList}>
+          {users.map((user) => (
+            <li
+              key={user.id}
+              className={receiverId === user.id ? styles.activeUser : ""}
+              onClick={() => {
+                setReceiverId(user.id);
+                loadChatHistory(user.id);
+              }}
             >
-              <div className={styles.userInfo}>
-                <div className={styles.userName}>{user.firstName}</div>
-              </div>
-            </div>
+              {user.firstName}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
-      <div className={styles.chatMain}>
-        {activeChat ? (
-          <>
-            <div className={styles.messageContainer}>
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`${styles.message} ${
-                    msg.sender_id === userId ? styles.sent : styles.received
-                  }`}
-                >
-                  {msg.content}
-                  <div className={styles.messageTime}>
-                    {new Date(msg.created_at).toLocaleTimeString()}
-                  </div>
-                </div>
-              ))}
+      <div className={styles.chatContainer}>
+      <h1 className={styles.chatTitle}>Чат</h1>
+
+      
+
+      {systemMessage && (
+        <div className={styles.systemMessage}>{systemMessage}</div>
+      )}
+      {error && <div className={styles.errorMessage}>{error}</div>}
+
+      <div className={styles.chatBox}>
+        {(messages[receiverId] || []).map((msg, index) => (
+          <div
+            key={index}
+            className={
+              msg.senderId === senderId ? styles.myMessage : styles.otherMessage
+            }
+          >
+            <strong>
+              {msg.senderId === senderId ? "Вы" : getReceiverName(receiverId)}:
+            </strong>{" "}
+            {msg.text}
+            {msg.fileUrl && (
+              <div>
+                <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">
+                  📎 Прикрепленный файл
+                </a>
+              </div>
+            )}
+            <div className={styles.timestamp}>
+              {new Date(msg.time).toLocaleTimeString()}
             </div>
-            <div className={styles.inputArea}>
-              <input
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Введите сообщение..."
-                className={styles.inputField}
-              />
-              <button onClick={sendMessage} className={styles.sendButton}>
-                ➤
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className={styles.emptyChat}>Выберите чат для общения</div>
-        )}
+          </div>
+        ))}
       </div>
+
+      <img className={styles.vector} width={20} height={20} src={Vector} alt="" />
+
+      <input
+        className={styles.inputField}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Введите сообщение..."
+        disabled={!receiverId}
+      />
+      <img className={styles.send} width={40} height={40} onClick={sendMessage} disabled={!receiverId} src={Frame} alt="" />
+      {/* <input
+        type="file"
+        onChange={(e) => setFile(e.target.files[0])}
+        className={styles.fileInput}
+      /> */}
+      
     </div>
+    </div>
+    
   );
 }

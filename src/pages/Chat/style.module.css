@@ -1,195 +1,98 @@
-/* Основной контейнер */
-.container {
-    display: flex;
-    height: 100vh;
-    background: #f9f9f9;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* -------- Sidebar (Левая панель) -------- */
-  .sidebar {
-    width: 320px;
-    background: #fff;
-    border-right: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    padding: 16px 0;
-  }
-  
-  .searchBar {
-    padding: 12px 16px;
-  }
-  
-  .searchInput {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #f1f1f1;
-    outline: none;
-  }
-  
-  /* Список чатов */
-  .chatList {
-    flex-grow: 1;
-    overflow-y: auto;
-  }
-  
-  .chatItem {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid #f1f1f1;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .chatItem:hover {
-    background: #f7f7f7;
-  }
-  
-  .activeChat {
-    background: #e3e3e3;
-  }
-  
-  .avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-right: 12px;
-  }
-  
-  .chatInfo {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .chatName {
-    font-weight: bold;
-    font-size: 15px;
-  }
-  
-  .chatMessage {
-    font-size: 13px;
-    color: #777;
-  }
-  
-  .chatTime {
-    font-size: 12px;
-    color: #aaa;
-  }
-  
-  /* -------- Chat (Правая панель) -------- */
-  .chatMain {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-  }
-  
-  /* Заголовок чата */
-  .chatHeader {
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-  }
-  
-  .chatHeader img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 12px;
-  }
-  
-  .chatHeaderTitle {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  /* Сообщения */
-  .messageContainer {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 16px;
-    background: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .message {
-    max-width: 70%;
-    padding: 12px;
-    border-radius: 16px;
-    font-size: 14px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-  
-  .sent {
-    align-self: flex-end;
-    background: #d8f3dc;
-  }
-  
-  .received {
-    align-self: flex-start;
-    background: #fff;
-    border: 1px solid #ddd;
-  }
-  
-  .messageTime {
-    font-size: 12px;
-    color: #777;
-    margin-top: 4px;
-    align-self: flex-end;
-  }
-  
-  /* Поле ввода */
-  .inputArea {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    border-top: 1px solid #ddd;
-    background: #fff;
-  }
-  
-  .inputField {
-    flex-grow: 1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    outline: none;
-  }
-  
-  .sendButton {
-    margin-left: 8px;
-    background: #6c63ff;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .sendButton:hover {
-    background: #574bff;
-  }
-  
-  /* Пустой чат */
-  .emptyChat {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    color: #777;
-  }
-  .userList h3{
-    padding: 12px 16px;
-  }
-  
+.rod{
+  display: flex;
+  width: 1200px;
+  justify-content: space-between;
+  margin: auto;
+}
+.chatContainer {
+  width: 750px;
+  height: 535px;
+  /* margin: auto; */
+  margin-top: 120px;
+  /* margin-left: 530px; */
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chatTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.users{
+  margin-top: 120px;
+  text-align: center;
+  width: 430px;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 535px;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.send{
+  position: absolute;
+  right: 200px;
+  bottom: 67px;
+  cursor: pointer;
+}
+.vector{
+  position: relative;
+  top: 105px;
+  left: 25px;
+  opacity: 40%;
+}
+
+.chatBox {
+  height: 300px;
+  overflow-y: auto;
+  /* border: 1px solid #ddd; */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.myMessage {
+  background: #d1e7ff;
+  padding: 8px;
+  border-radius: 5px;
+  align-self: flex-end;
+}
+
+.otherMessage {
+  background: #f1f1f1;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.inputField {
+  width: 89%;
+  padding: 8px;
+  margin-top: 64px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  height: 30px;
+  padding-left: 60px;
+
+}
+
+.sendButton {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sendButton:hover {
+  background: #0056b3;
+}

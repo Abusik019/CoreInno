@@ -13,7 +13,7 @@ export const fetchUsers = createAsyncThunk(
     async (_, thunkAPI) => {
         const accessToken = thunkAPI.getState().user.accessToken;
         try {
-            const res = await fetch(`${API_URL}/api/user/get-all`, {
+            const res = await fetch(`${API_URL}/api/user/all`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const getUser = createAsyncThunk("users/getUsers", async (userID, thunkAP
     const accessToken = thunkAPI.getState().user.accessToken;
 
     try{
-        const response = await axios.get(`${API_URL}/api/user/get-one/${userID}`, {
+        const response = await axios.get(`${API_URL}/api/auth/check-me`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
