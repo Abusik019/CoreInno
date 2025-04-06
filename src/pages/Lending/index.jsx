@@ -230,15 +230,15 @@ export default function Lending() {
                             <button 
                                 onClick={() => setRole('freelancer')}
                                 style={{
-                                    backgroundColor: role === 'freelancer' ? 'transparent' : '#fff',
-                                    color: role === 'freelancer' ? '#fff' : '#000'
+                                    backgroundColor: role === 'freelancer' ? '#fff' : 'transparent',
+                                    color: role === 'freelancer' ? '#000' : '#fff'
                                 }}
                             >Я фрилансер</button>
                             <button 
                                 onClick={() => setRole('customer')}
                                 style={{
-                                    backgroundColor: role === 'customer' ? 'transparent' : '#fff',
-                                    color: role === 'customer' ? '#fff' : '#000'
+                                    backgroundColor: role === 'customer' ? '#fff' : 'transparent',
+                                    color: role === 'customer' ? '#000' : '#fff'
                                 }}
                             >Я заказчик</button>
                         </div>

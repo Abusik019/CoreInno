@@ -215,6 +215,8 @@ function MainReg() {
                                         ? hidePasswordImg
                                         : hidePasswordImgRed
                                 }
+                                width={24}
+                                height={24}
                                 alt="Toggle password visibility"
                             />
                         </button>
@@ -224,20 +226,19 @@ function MainReg() {
                         onClick={fetchSignUp}
                         className={styles.nextBtn}
                         disabled={isDisabled || loading}
-                        style={{ opacity: isDisabled ? ".2" : "1" }}
                     >
                         {loading ? "Регистрация..." : "Продолжить"}
                     </button>
                 </form>
                 <div className={styles.agree}>
-                    Регистрируясь, вы соглашаетесь с {" "}
+                    <span>Регистрируясь, вы соглашаетесь с {" "}</span>
                     <Link
                         target="_blank"
                         to="https://docs.google.com/document/d/1t5rbYrRGtbRtd5YVwtdx14RJ6f5vZMWB/edit?usp=sharing&ouid=105424839330593201083&rtpof=true&sd=true"
                     >
                         <GradientText text="политикой конфиденциальности" />
                     </Link>{" "}
-                    и
+                    <span>и</span>
                     {" "}
                     <Link
                         target="_blank"

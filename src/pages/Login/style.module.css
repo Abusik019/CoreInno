@@ -10,6 +10,8 @@
     padding: 40px 120px 0 120px;
     box-sizing: border-box;
 
+    background-color: #f7f7f7;
+
     >a{
         align-self: flex-start;
     }
@@ -55,7 +57,7 @@
 
     align-self: flex-end;
 
-    margin-top: 7px;
+    margin-top: 10px;
 
     background-color: transparent;
     color: #000;
@@ -132,6 +134,11 @@
     position: relative;
 
     margin-top: 10px;
+
+    >input{
+        padding: 0 15px !important;
+        box-sizing: border-box;
+    }
 }
 
 .nextBtn{
@@ -151,6 +158,12 @@
     line-height: normal;
 
     transition: background-color .3s ease-in-out;
+    opacity: 1;
+}
+
+.nextBtn:disabled{
+    pointer-events: none;
+    opacity: .2;
 }
 
 .nextBtn:hover{
@@ -198,8 +211,8 @@
 
 .passwordVisible{
     position: absolute;
-    bottom: 12px;
-    right: 12px;
+    bottom: 13px;
+    right: 15px;
 
     background-color: transparent;
 
@@ -210,8 +223,7 @@
 }
 
 .passwordVisible img{
-    height: 100%;
-    width: 100%;
+    opacity: .6;
 }
 
 .anotherRegistrations{
@@ -244,6 +256,13 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    opacity: .8;
+    transition: opacity .3s ease-in-out;
+}
+
+.anotherRegistrations > button:hover{
+    opacity: 1;
 }
 
 .haveAccount{
@@ -255,6 +274,15 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
+
+    >h2{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 16px;
+        text-align: center;
+
+        opacity: .9;
+    }
 }
 
 .haveAccount > a{
@@ -270,21 +298,14 @@
     transition: opacity .3s ease-in-out;
 }
 
-.haveAccount > a:first-child{
-    opacity: 0.7;
-}
-
-.haveAccount > a:first-child:hover{
-    opacity: 1;
-}
-
-.haveAccount > a:last-child{
+.haveAccount > a{
     opacity: 0.8;
 }
 
-.haveAccount > a:last-child:hover{
+.haveAccount > a{
     opacity: 1;
 }
+
 .passwordForget{
     width: 390px;
     display: flex;

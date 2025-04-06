@@ -42,6 +42,14 @@ h1, h2, h3, h4, h5, h6, p, input{
   padding: 0;
 }
 
+h1, h2, h3, h4, h5, h6, p, input, b, span, a, i {
+    letter-spacing: .6px;
+}
+
+p{
+  font-weight: 300 !important;
+}
+
 input, button{
   outline: none;
   border: none;

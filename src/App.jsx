@@ -45,7 +45,7 @@ function App() {
     const showNavbar = !["/", "/registration", "/login", "/not-found"].includes(location.pathname);
 
     useLayoutEffect(() => {
-        if (location.pathname === "/") {
+        if (location.pathname === "/" || location.pathname === "/login" || location.pathname === "/registration") {
             document.body.classList.add("landing");
         } else {
             document.body.classList.remove("landing");

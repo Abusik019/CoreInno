@@ -117,7 +117,7 @@ export const Navbar = ({ theme }) => {
                             Фрилансеры
                         </h2>
                         <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ""}`}>
-                            <Link to="/catalog">Каталог</Link>
+                            <Link to="/list-freelancer">Каталог</Link>
                             {isLogin && <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>}
                             {isLogin && <Link to="#">Нанятые исполнители</Link>}
                             {isLogin && <Link to="/invited-freelancers">Приглашенные исполнители</Link>}

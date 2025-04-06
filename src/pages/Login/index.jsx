@@ -15,7 +15,7 @@ import jobifyImg from "../../assets/icons/logoJobify.svg";
 import phoneImg from "../../assets/icons/phone2.svg";
 
 function Login() {
-    const [hidePassword, setHidePassword] = useState(true);
+    const [hidePassword, setHidePassword] = useState(false);
     const [emailVaildate, setEmailVaildate] = useState(true);
     const [passwordVaildate, setPasswordVaildate] = useState(true);
 
@@ -25,6 +25,8 @@ function Login() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const isDisabled = !(email && password && emailVaildate && passwordVaildate);
 
     // Проверяем авторизацию при загрузке
     useEffect(() => {
@@ -47,7 +49,8 @@ function Login() {
 
     function handleValidatePassword(e) {
         setPassword(e.target.value);
-        setPasswordVaildate(e.target.value.length >= 8);
+        const value = /^(?=.*[A-ZА-Я])(?=.*[a-zа-я])(?=.*\d)(?=.*[\W_]).{8,}$/.test(e.target.value);
+        setPasswordVaildate(value);
     }
 
     return (
@@ -119,12 +122,14 @@ function Login() {
                                         ? hidePasswordImg
                                         : hidePasswordImgRed
                                 }
+                                width={24}
+                                height={24}
                                 alt="Toggle password visibility"
                             />
                         </button>
                     </div>
                     <button className={styles.forgotPassword}>Забыли пароль?</button>
-                    <button type="button" onClick={fetchSignIn} className={styles.nextBtn} disabled={loading}>
+                    <button type="button" onClick={fetchSignIn} className={styles.nextBtn} disabled={isDisabled || loading}>
                         {loading ? "Загрузка..." : "Войти"}
                     </button>
                 </form>
@@ -139,7 +144,7 @@ function Login() {
                     </button>
                 </div>
                 <div className={styles.haveAccount}>
-                    <Link to="#">Нет аккаунта?</Link>
+                    <h2>Нет аккаунта?</h2>
                     <Link to="/registration">
                         <GradientText text="Регистрация" />
                     </Link>
