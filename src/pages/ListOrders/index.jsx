@@ -171,7 +171,7 @@ function ListOrders() {
                               }}
                               key={sub.id}
                             >
-                              {sub.rusName}
+                              -{sub.rusName}
                             </li>
                           ))}
                       </ul>
