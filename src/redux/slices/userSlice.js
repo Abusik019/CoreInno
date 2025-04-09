@@ -71,23 +71,86 @@ export const toggleRole = createAsyncThunk("users/toggleRole", async (isFreelanc
     }
 })
 
-export const updateUser = createAsyncThunk("users/updateUser", async (data, thunkAPI) => {
+export const setResume = createAsyncThunk("users/setResume", async (file, thunkAPI) => {
     const accessToken = thunkAPI.getState().user.accessToken;
+    const formData = new FormData();
+
+    formData.append('resume', file)
 
     try{
-        const response = await axios.patch(`${API_URL}/api/user/update-profile`, data, {
+        const response = await axios.post(`${API_URL}/api/resume`, formData, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
-        if(response.status !== 200){
-            throw new Error("Ошибка изменения данных");
+        if(response.status !== 201){
+            throw new Error("Ошибка добавления резюме");
         }
 
         return response.data;
     } catch(error){
-        console.error("Ошибка изменения данных:", error); 
+        console.error("Ошибка добавления резюме:", error); 
+    }
+})
+
+export const setClientExpertises = createAsyncThunk("users/setClientExpertises", async (expertises, thunkAPI) => {
+    const accessToken = thunkAPI.getState().user.accessToken;
+
+    try{
+        const response = await axios.post(`${API_URL}/api/expertise/client`, expertises, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if(response.status !== 201){
+            throw new Error("Ошибка добавления специализаций");
+        }
+
+        return response.data;
+    } catch(error){
+        console.error("Ошибка добавления специализаций:", error); 
+    }
+})
+
+export const setWork = createAsyncThunk("users/setWork", async (data, thunkAPI) => {
+    const accessToken = thunkAPI.getState().user.accessToken;
+
+    try{
+        const response = await axios.post(`${API_URL}/api/work`, data, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if(response.status !== 201){
+            throw new Error("Ошибка добавления данных о работе");
+        }
+
+        return response.data;
+    } catch(error){
+        console.error("Ошибка добавления данных о работе:", error); 
+    }
+})
+
+export const setEducation = createAsyncThunk("users/setEducation", async (data, thunkAPI) => {
+    const accessToken = thunkAPI.getState().user.accessToken;
+
+    try{
+        const response = await axios.post(`${API_URL}/api/education`, data, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if(response.status !== 201){
+            throw new Error("Ошибка добавления данных об образовании");
+        }
+
+        return response.data;
+    } catch(error){
+        console.error("Ошибка добавления данных об образовании:", error); 
     }
 })
 
@@ -99,53 +162,38 @@ export const userSlice = createSlice({
         builder
             .addCase(fetchUsers.fulfilled, (state, action) => {
                 state.users = action.payload;
-            });
+            })
 
         // get user
-        builder.addCase(getUser.pending, (state) => {
+        .addCase(getUser.pending, (state) => {
             state.loading = true;
-        });
+        })
 
-        builder.addCase(getUser.fulfilled, (state, action) => {
+        .addCase(getUser.fulfilled, (state, action) => {
             state.user = action.payload;
             state.loading = false;
             state.error = null;
-        });
+        })
 
-        builder.addCase(getUser.rejected, (state, action) => {
+        .addCase(getUser.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error;
-        });
+        })
 
-        // toggle role
-        builder.addCase(toggleRole.pending, (state) => {
+        // смена роли пользователя
+        .addCase(toggleRole.pending, (state) => {
             state.loading = true;
-        });
+        })
 
-        builder.addCase(toggleRole.fulfilled, (state) => {
+        .addCase(toggleRole.fulfilled, (state) => {
             state.loading = false;
             state.error = null;
-        });
+        })
 
-        builder.addCase(toggleRole.rejected, (state, action) => {
+        .addCase(toggleRole.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error;
-        });
-
-        // update user
-        builder.addCase(updateUser.pending, (state) => {
-            state.loading = true;
-        });
-
-        builder.addCase(updateUser.fulfilled, (state) => {
-            state.loading = false;
-            state.error = null;
-        });
-
-        builder.addCase(updateUser.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.error;
-        });
+        })
     },
 });
 

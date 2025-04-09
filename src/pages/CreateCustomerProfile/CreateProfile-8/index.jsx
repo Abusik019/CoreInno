@@ -1,8 +1,33 @@
 import styles from "./style.module.css";
 import editImg from '../../../assets/icons/edit2.svg';
 import avatarImg from '../../../assets/images/projectImage.png';
+import { useDispatch, useSelector } from "react-redux";
+import { setClientExpertises, setEducation, setResume, setWork } from "../../../redux/slices/userSlice";
 
 export default function CreateProfilePageEight({ setPage, user }) {
+    const dispatch = useDispatch();
+    const categories = useSelector((state) => state.category.category);
+
+    console.log(categories);
+
+    function fetchClientData(){
+        if(user.userResume) dispatch(setResume(user.userResume));
+        if (user.userDescription) {
+            dispatch(setClientExpertises({ 
+                categories: user.userCategories.length ? [...user.userCategories] : [],
+                description: user.userDescription 
+            }));
+        }
+        if (user.userExperience && user.userExperience.length) {
+            const experienceData = user.userExperience.map(({ id, ...rest }) => rest);
+            dispatch(setWork(experienceData));
+        }
+        if (user.userEducation && user.userEducation.length) {
+            const educationData = user.userEducation.map(({ id, ...rest }) => rest);
+            dispatch(setEducation(educationData))
+        }
+    }
+
     return (
         <div className={styles.createProfile}>
             <div className={styles.createProfileContainer}>
@@ -60,9 +85,13 @@ export default function CreateProfilePageEight({ setPage, user }) {
                         </div>
                         {user.userCategories.length !== 0 ? 
                             <ul className={styles.skills}>
-                                {user.userCategories.map(item => (
-                                    <li key={item.id}>{item.rusName}</li>
-                                ))}
+                                {user.userCategories.map(item => {
+                                    const category = categories.find(category => category.id === item);
+
+                                    return (
+                                        <li key={category.id}>{category.rusName}</li>
+                                    )
+                                })}
                             </ul>
                             :
                             <h2 className={styles.optionalText}>Вы не оставили информации в этом поле, но не беспокойтесь — оно необязательное</h2>
@@ -87,7 +116,7 @@ export default function CreateProfilePageEight({ setPage, user }) {
                                 <li key={index}>
                                     <div>
                                         <h2>{item.name}</h2>
-                                        <h3>{item.date.start.month}.{item.date.start.year} - {item.date.finish.month}.{item.date.finish.year}</h3>
+                                        <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3>
                                         <p>{item.description}</p>
                                     </div>
                                 </li>
@@ -115,7 +144,7 @@ export default function CreateProfilePageEight({ setPage, user }) {
                                 <li key={index}>
                                     <div>
                                         <h2>{item.speciality}</h2>
-                                        <h3>{item.date.start.month}.{item.date.start.year} - {item.date.finish.month}.{item.date.finish.year}</h3>
+                                        <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3>
                                         <p>Lorem ipsum dolor sit amet consectetur. Massa et id faucibus id fermentum. Sed netus id gravida dui tellus facilisis nullam interdum montes.</p>
                                     </div>
                                 </li>
@@ -157,7 +186,10 @@ export default function CreateProfilePageEight({ setPage, user }) {
             <div className={styles.btns}>
                 <button onClick={() => setPage(7)}>Вернуться</button>
                 <h2>8 из 8</h2>
-                <button onClick={() => setPage(9)}>Продолжить</button>
+                <button onClick={() => {
+                    setPage(9)
+                    fetchClientData()
+                }}>Продолжить</button>
             </div>
         </div>
     );

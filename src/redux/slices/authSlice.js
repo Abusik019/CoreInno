@@ -55,14 +55,21 @@ export const authSignIn = createAsyncThunk(
                 body: JSON.stringify({ email, password }),
             });
 
-            const { accessToken, refreshToken } = await res.json();
+            const data = await res.json(); 
 
             if (!res.ok) {
-                return thunkAPI.rejectWithValue("Неверный логин или пароль");
+                return thunkAPI.rejectWithValue(data.message || "Неверный логин или пароль");
             }
 
-            saveTokens(accessToken, refreshToken);
-            return { accessToken, refreshToken };
+            if (!data.accessToken || !data.refreshToken) {
+                return thunkAPI.rejectWithValue("Сервер не вернул токены");
+            }
+
+            saveTokens(data.accessToken, data.refreshToken);
+            return { 
+                accessToken: data.accessToken, 
+                refreshToken: data.refreshToken 
+            };
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }

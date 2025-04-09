@@ -12,7 +12,7 @@ import CreateProfilePageNine from './CreateProfile-9';
 export default function CreateCustomerProfile() {
    const [page, setPage] = useState(1);
    const [user, setUser] = useState({
-        userResume: [],
+        userResume: null,
         userCategories: [],
         userExperience: [],
         userOtherExperience: [],

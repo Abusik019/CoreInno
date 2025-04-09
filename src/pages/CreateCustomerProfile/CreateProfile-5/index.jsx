@@ -17,18 +17,18 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
     const [experiences, setExperiences] = useState([]);
     const [myExperience, setMyExperience] = useState({
         id: null,
-        speciality: '',
-        education_place: '',
+        specialty: '',
+        institution: '',
         country: '',
         city: '',
-        isStudy: false,
-        date: {
-            start: { month: '', year: '' },
-            finish: { month: '', year: '' }
-        },
+        currently_studying: false,
+        start_month: null,
+        start_year: null,
+        end_month: null,
+        end_year: null,
     });
     
-    const isSaveDisabled = !myExperience.speciality || !myExperience.education_place || !myExperience.country || !myExperience.city || !myExperience.date.start.month || !myExperience.date.start.year || (!myExperience.isStudy && (!myExperience.date.finish.month || !myExperience.date.finish.year));
+    const isSaveDisabled = !myExperience.specialty || !myExperience.institution || !myExperience.country || !myExperience.city || !myExperience.start_month || !myExperience.start_year || (!myExperience.currently_studying && (!myExperience.end_month || !myExperience.end_year));
     
     useEffect(() => {
         setExperiences([...user.userEducation]);
@@ -37,22 +37,22 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
     const handleSetData = (e, item) => {
         setMyExperience((prev) => ({
             ...prev,
-            [item]: item === 'isStudy' ? e.target.checked : e.target.value
+            [item]: item === 'currently_studying' ? e.target.checked : e.target.value
         }));
     }
 
     const handleCloseModal = () => {
         setMyExperience({
             id: null,
-            speciality: '',
-            education_place: '',
+            specialty: '',
+            institution: '',
             country: '',
             city: '',
-            isStudy: false,
-            date: {
-                start: { month: '', year: '' },
-                finish: { month: '', year: '' }
-            },
+            currently_studying: false,
+            start_month: null,
+            start_year: null,
+            end_month: null,
+            end_year: null,
         });
         setEditId(null);
         setIsOpenModal(false);
@@ -103,7 +103,7 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
                                 <li key={index}>
                                     <div className={styles.experienceContent}>
                                         <div>
-                                            <h2>{item.speciality}</h2>
+                                            <h2>{item.specialty}</h2>
                                             <div>
                                                 <button onClick={() => handleEdit(item.id)}>
                                                     <img 
@@ -123,7 +123,7 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
                                                 </button>
                                             </div>
                                         </div>
-                                        <h3>{item.date.start.month}.{item.date.start.year} - {item.date.finish.month}.{item.date.finish.year}</h3>
+                                        <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3>
                                         <p>{item.description}</p>
                                     </div>
                                 </li>
@@ -160,12 +160,12 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
                     <h2>Указать Ваше образование</h2>
                     <form>
                         <div className={styles.formSpeciality}>
-                            <label htmlFor="speciality">Специальность <span style={{color: '#F63939'}}>*</span></label>
-                            <input type="text" id="speciality" value={myExperience.speciality} placeholder="Маркетинг и дизайн" required onInput={(e) => handleSetData(e, 'speciality')}/>
+                            <label htmlFor="specialty">Специальность <span style={{color: '#F63939'}}>*</span></label>
+                            <input type="text" id="specialty" value={myExperience.specialty} placeholder="Маркетинг и дизайн" required onInput={(e) => handleSetData(e, 'specialty')}/>
                         </div>
                         <div className={styles.formEducationPlace}>
-                            <label htmlFor="education_place">Учебное заведение <span style={{color: '#F63939'}}>*</span></label>
-                            <input type="text" id="education_place" value={myExperience.education_place} placeholder="Высшая школа экономики" required onInput={(e) => handleSetData(e, 'education_place')}/>
+                            <label htmlFor="institution">Учебное заведение <span style={{color: '#F63939'}}>*</span></label>
+                            <input type="text" id="institution" value={myExperience.institution} placeholder="Высшая школа экономики" required onInput={(e) => handleSetData(e, 'institution')}/>
                         </div>
                         <div className={styles.formLocation}>
                             <div>
@@ -178,30 +178,22 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
                             </div>
                         </div>
                         <div className={styles.formCheckbox}>
-                            <input type="checkbox" id="checkbox" checked={myExperience.isStudy} onChange={(e) => handleSetData(e, 'isStudy')}/>
+                            <input type="checkbox" id="checkbox" checked={myExperience.currently_studying} onChange={(e) => handleSetData(e, 'currently_studying')}/>
                             <label htmlFor="checkbox">Учусь здесь в настоящий момент</label>
                         </div>
                         <div className={styles.formWorkTime}>
                             <div>
                                 <h2>Начало обучения <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.date.start.month} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, start: { ...prev.date.start, month: e.target.value } }
-                                    }))} />
-                                    <input type="number" placeholder="Год" value={myExperience.date.start.year} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, start: { ...prev.date.start, year: e.target.value } }
-                                    }))} />
+                                    <input type="number" placeholder="Месяц" value={myExperience.start_month} onChange={(e) => handleSetData(e, 'start_month')} />
+                                    <input type="number" placeholder="Год" value={myExperience.start_year} onChange={(e) => handleSetData(e, 'start_year')} />
                                 </div>
                             </div>
                             <div>
                                 <h2>Конец обучения <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.date.finish.month} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, finish: { ...prev.date.finish, month: e.target.value } }
-                                    }))} />
-                                    <input type="number" placeholder="Год" value={myExperience.date.finish.year} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, finish: { ...prev.date.finish, year: e.target.value } }
-                                    }))} />
+                                    <input type="number" placeholder="Месяц" value={myExperience.end_month} onChange={(e) => handleSetData(e, 'end_month')} />
+                                    <input type="number" placeholder="Год" value={myExperience.end_year} onChange={(e) => handleSetData(e, 'end_year')} />
                                 </div>
                             </div>
                         </div>

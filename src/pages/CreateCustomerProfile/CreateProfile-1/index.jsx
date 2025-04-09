@@ -14,18 +14,14 @@ import fileImg from "../../../assets/icons/file.svg";
 
 export default function CreateProfilePageOne({ setPage, setUser, user }) {
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const [files, setFiles] = useState([]);
+    const [file, setFile] = useState(null);
 
     useEffect(() => {
-        setFiles(user.userResume);
+        setFile(user.userResume);
     }, [user.userResume]);
 
     function formatFileSize(size) {
         return (size / (1024 * 1024)).toFixed(2) + " МБ";
-    }
-
-    function handleFileDelete(index) {
-        setFiles((prev) => prev.filter((_, i) => i !== index));
     }
 
     function handleContinue() {
@@ -49,21 +45,19 @@ export default function CreateProfilePageOne({ setPage, setUser, user }) {
                         <span>Загрузить резюме</span>
                     </button>
                     <ul className={styles.inputResult}>
-                        {files.map((file, index) => (
-                            <li key={index}>
-                                <span>{file.name}</span>
+                        {file &&
+                            <li>
+                                <span>{file?.name}</span>
                                 <img
                                     src={closeImg}
                                     width={16}
                                     height={16}
                                     alt="delete"
-                                    onClick={() =>
-                                        handleFileDelete(index)
-                                    }
+                                    onClick={() => setFile(null)}
                                     style={{ cursor: "pointer" }}
                                 />
                             </li>
-                        ))}
+                        }
                     </ul>
                 </div>
                 <div className={styles.createProfileQuote}>
@@ -72,48 +66,42 @@ export default function CreateProfilePageOne({ setPage, setUser, user }) {
                     <img src={avatarImg} width={78} height={78} alt="avatar"/>
                 </div>
             </div>
-            <CreateTaskLoad prev={0} next={2} setPage={setPage} maxPage={8} nextText={files.length ? 'Продолжить' : 'Продолжить без резюме'} onNext={
+            <CreateTaskLoad prev={0} next={2} setPage={setPage} maxPage={8} nextText={file ? 'Продолжить' : 'Продолжить без резюме'} onNext={
                 () => {
                     setUser((prev) => ({
                         ...prev,
-                        userResume: [...files]
+                        userResume: file
                     }));
                 }
             }/>
             <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
                 <div className={styles.modalContainer}>
                     <h2>Загрузить резюме</h2>
-                    <UploadFile setFiles={setFiles} />
+                    <UploadFile setFile={setFile} />
                     <ul className={styles.filesList}>
-                        {files.length !== 0 &&
-                            files.map((file, index) => (
-                                <li key={index}>
-                                    <div>     
-                                        <img 
-                                            src={fileImg}
-                                            width={36}
-                                            height={36} 
-                                            alt="file" 
-                                        />
-                                        <div className={styles.fileContent}>
-                                            <h2>{file.name}</h2>
-                                            <h3>{formatFileSize(file.size)}</h3>
-                                            <div className={styles.fileProgress}>
-                                                <div></div>
-                                                <span>100%</span>
-                                            </div>
+                        {file &&
+                            <li>
+                                <div>     
+                                    <img src={fileImg} width={36} height={36} alt="file" />
+                                    <div className={styles.fileContent}>
+                                        <h2>{file.name}</h2>
+                                        <h3>{formatFileSize(file.size)}</h3>
+                                        <div className={styles.fileProgress}>
+                                            <div></div>
+                                            <span>100%</span>
                                         </div>
                                     </div>
-                                    <img
-                                        src={closeImg}
-                                        width={20}
-                                        height={20}
-                                        alt="delete"
-                                        onClick={() => setFiles(files.filter((_, i) => i !== index))}
-                                        style={{ cursor: "pointer" }}
-                                    />
-                                </li>
-                            ))}
+                                </div>
+                                <img
+                                    src={closeImg}
+                                    width={20}
+                                    height={20}
+                                    alt="delete"
+                                    onClick={() => setFile(null)}
+                                    style={{ cursor: "pointer" }}
+                                />
+                            </li>
+                        }
                     </ul>
                     <button onClick={handleContinue}>Продолжить</button>
                 </div>

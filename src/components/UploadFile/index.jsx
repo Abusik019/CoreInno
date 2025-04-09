@@ -2,7 +2,7 @@ import React from "react";
 import { Upload } from "antd";
 const { Dragger } = Upload;
 
-const UploadFile = ({ setFiles }) => (
+const UploadFile = ({ setFile }) => (
     <Dragger
         customRequest={({ file, onSuccess }) => {
             console.log("Файл получен, но не отправляется:", file);
@@ -10,15 +10,15 @@ const UploadFile = ({ setFiles }) => (
         }}
         onDrop={(e) => {
             e.preventDefault(); 
-            const filesArray = [...e.dataTransfer.files]; 
-            console.log("Добавленные файлы:", filesArray);
-            if (filesArray.length > 0) {
-                setFiles((prev) => [...prev, ...filesArray]);
+            const droppedFile = e.dataTransfer.files[0];
+            console.log("Добавленный файл:", droppedFile);
+            if (droppedFile) {
+                setFile(droppedFile);
             }
         }}
         beforeUpload={(file) => {
-            setFiles((prev) => [...prev, file]);
-            return false;
+            setFile(file);
+            return false; 
         }}
         style={{
             width: "100%",
@@ -38,6 +38,5 @@ const UploadFile = ({ setFiles }) => (
         <p className="ant-upload-text">Максимальный размер файла 100МБ</p>
     </Dragger>
 );
-
 
 export default UploadFile;

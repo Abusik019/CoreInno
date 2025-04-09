@@ -11,27 +11,21 @@ import plus2Img from '../../../assets/icons/plus.svg';
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import plusImg from '../../../assets/icons/plusWithBg.svg';
 
-export default function CreateProfilePageThree({ setPage, setUser, user }) {
+export default function CreateProfilePageThree({ setPage, setUser, user }) {    
     const [editId, setEditId] = useState(null);
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [experiences, setExperiences] = useState([]);
     const [myExperience, setMyExperience] = useState({
         id: null,
-        name: '',
+        title: '',
         company: '',
         country: '',
         city: '',
-        isWork: false,
-        date: {
-            start: {
-                month: null,
-                year: null
-            },
-            finish: {
-                month: null,
-                year: null
-            }
-        },
+        currently_working: false,
+        start_month: null,
+        start_year: null,
+        end_month: null,
+        end_year: null,
         description: ''
     });
     
@@ -42,22 +36,22 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
     const handleSetData = (e, item) => {
         setMyExperience((prev) => ({
             ...prev,
-            [item]: item === 'isWork' ? e.target.checked : e.target.value
+            [item]: item === 'currently_working' ? e.target.checked : e.target.value
         }));
     }
 
     const handleCloseModal = () => {
         setMyExperience({
             id: null,
-            name: '',
+            title: '',
             company: '',
             country: '',
             city: '',
-            isWork: false,
-            date: {
-                start: { month: '', year: '' },
-                finish: { month: '', year: '' }
-            },
+            currently_working: false,
+            start_month: '',
+            start_year: '',
+            end_month: '',
+            end_year: '',
             description: ''
         });
         setEditId(null);
@@ -109,7 +103,7 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                                 <li key={index}>
                                     <div className={styles.experienceContent}>
                                         <div>
-                                            <h2>{item.name}</h2>
+                                            <h2>{item.title}</h2>
                                             <div>
                                                 <button onClick={() => handleEdit(item.id)}>
                                                     <img 
@@ -129,7 +123,7 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                                                 </button>
                                             </div>
                                         </div>
-                                        <h3>{item.date.start.month}.{item.date.start.year} - {item.date.finish.month}.{item.date.finish.year}</h3>
+                                        <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3>
                                         <p>{item.description}</p>
                                     </div>
                                 </li>
@@ -160,7 +154,7 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                     <form>
                         <div className={styles.formName}>
                             <label htmlFor="name">Название <span style={{color: '#F63939'}}>*</span></label>
-                            <input type="text" id="name" value={myExperience.name} placeholder="Разработчик игр" required onInput={(e) => handleSetData(e, 'name')}/>
+                            <input type="text" id="name" value={myExperience.title} placeholder="Разработчик игр" required onInput={(e) => handleSetData(e, 'title')}/>
                         </div>
                         <div className={styles.formCompany}>
                             <label htmlFor="company">Компания (если есть)</label>
@@ -177,30 +171,22 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                             </div>
                         </div>
                         <div className={styles.formCheckbox}>
-                            <input type="checkbox" id="checkbox" checked={myExperience.isWork} onChange={(e) => handleSetData(e, 'isWork')}/>
+                            <input type="checkbox" id="checkbox" checked={myExperience.currently_working} onChange={(e) => handleSetData(e, 'currently_working')}/>
                             <label htmlFor="checkbox">Работаю здесь в настоящий момент</label>
                         </div>
                         <div className={styles.formWorkTime}>
                             <div>
                                 <h2>Дата начала работы <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.date.start.month} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, start: { ...prev.date.start, month: e.target.value } }
-                                    }))} />
-                                    <input type="number" placeholder="Год" value={myExperience.date.start.year} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, start: { ...prev.date.start, year: e.target.value } }
-                                    }))} />
+                                    <input type="number" placeholder="Месяц" value={myExperience.start_month} onChange={(e) => handleSetData(e, 'start_month')} />
+                                    <input type="number" placeholder="Год" value={myExperience.start_year} onChange={(e) => handleSetData(e, 'start_year')} />
                                 </div>
                             </div>
                             <div>
                                 <h2>Дата окончания работы <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.date.finish.month} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, finish: { ...prev.date.finish, month: e.target.value } }
-                                    }))} />
-                                    <input type="number" placeholder="Год" value={myExperience.date.finish.year} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, finish: { ...prev.date.finish, year: e.target.value } }
-                                    }))} />
+                                    <input type="number" placeholder="Месяц" value={myExperience.end_month} onChange={(e) => handleSetData(e, 'end_month')} />
+                                    <input type="number" placeholder="Год" value={myExperience.end_year} onChange={(e) => handleSetData(e, 'end_year')} />
                                 </div>
                             </div>
                         </div>
