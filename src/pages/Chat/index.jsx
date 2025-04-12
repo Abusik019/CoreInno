@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, getUser } from "../../redux/slices/userSlice";
 import axios from "axios";
 import Frame from "../../assets/icons/Frame.svg";
-import Vector from "../../assets/icons/Vector.svg"
+import Vector from "../../assets/icons/Vector.svg";
+import { Centrifuge } from "centrifuge";
 
 const useChatStore = create((set) => ({
   messages: {},
@@ -36,66 +37,99 @@ export default function Chat() {
   } = useChatStore();
 
   const [text, setText] = useState("");
-  const [file, setFile] = useState(null);
   const [receiverId, setReceiverId] = useState(null);
+  const centrifugoRef = useRef(null);
+  const channelRef = useRef(null);
 
   const dispatch = useDispatch();
   const senderId = useSelector((state) => state.user.user?.id);
   const users = useSelector((state) => state.user.users?.users || []);
   const token = useSelector((state) => state.auth.accessToken);
 
-  const ws = useRef(null);
-  const wsConnected = useRef(false);
-
   useEffect(() => {
     dispatch(getUser());
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!senderId || wsConnected.current) return;
+ 
+ 
+  
 
-    ws.current = new WebSocket("wss://jobify.api-coreinno.ru");
-    wsConnected.current = true;
+ 
+  const connectToCentrifugo = async (receiverId) => {
+    
+    try {
+      const response = await axios.get(
+        `https://jobify.api-coreinno.ru/api/chat/connect?receiverId=${receiverId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          "Cache-Control": "no-cache",
+        }
+      );
 
-    ws.current.onopen = () => console.log("✅ WebSocket подключен");
+      const { token: centrifugoToken, channel } = response.data;
 
-    ws.current.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("📩 Получено сообщение:", data);
-
-      if (data.system) {
-        setSystemMessage(data.system);
-      } else if (data.error) {
-        setError(data.error);
-      } else {
-        addMessage(
-          data.senderId === senderId ? data.receiverId : data.senderId,
-          data
-        );
+      // 👉 Если уже подключены к нужному каналу — выходим
+      if (centrifugoRef.current && channelRef.current === channel) {
+        console.log("🔁 Уже подписаны на канал:", channel);
+        return;
       }
-    };
 
-    ws.current.onerror = (error) =>
-      console.error("❌ WebSocket ошибка:", error);
+      channelRef.current = channel;
 
-    ws.current.onclose = () => {
-      console.log("🔌 WebSocket отключен, переподключаемся...");
-      wsConnected.current = false;
-      setTimeout(() => {
-        ws.current = new WebSocket("wss://jobify.api-coreinno.ru");
-        wsConnected.current = true;
-      }, 3000);
-    };
+      // 🔌 Отключаем старый экземпляр, если он есть
+      if (centrifugoRef.current) {
+        centrifugoRef.current.disconnect();
+      }
 
-    return () => ws.current?.close();
-  }, [senderId]);
+      const centrifuge = new Centrifuge(
+        "ws://jobify.api-coreinno.ru:8000/connection/websocket",
+        { token: centrifugoToken }
+      );
+
+      centrifuge.on("connect", () => {
+        console.log("✅ Подключен к Centrifugo");
+      });
+
+      centrifuge.on("disconnect", (ctx) => {
+        console.warn("🔌 Отключен от Centrifugo", ctx);
+      });
+
+      const sub = centrifuge.newSubscription(channel);
+
+      
+
+      sub.on("publication", (ctx) => {
+        const data = ctx.data;
+        console.log("📩 Новое сообщение:", data);
+
+        if (data.system) {
+          setSystemMessage(data.system);
+          if (data.messages) {
+            setMessages(receiverId, data.messages);
+          }
+        } else {
+          addMessage(receiverId, data);
+        }
+      });
+
+      sub.subscribe();
+      centrifuge.connect();
+
+      centrifugoRef.current = centrifuge;
+    } catch (err) {
+      setError("Ошибка подключения к чату");
+      console.error(err);
+    }
+  };
 
   const loadChatHistory = async (receiverId) => {
     try {
       const response = await axios.get(
-        `https://jobify.api-coreinno.ru/api/message?receiverId=${receiverId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        `https://jobify.api-coreinno.ru/api/chat/messages?receiverId=${receiverId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
       setMessages(receiverId, response.data.messages);
     } catch (error) {
@@ -103,35 +137,29 @@ export default function Chat() {
     }
   };
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!receiverId) {
       setError("Выберите пользователя для чата!");
       return;
     }
 
-    if (!ws.current || ws.current.readyState !== WebSocket.OPEN) {
-      console.error("🚫 WebSocket не открыт, не удалось отправить сообщение.");
-      return;
-    }
+    try {
+      const response = await axios.post(
+        "https://jobify.api-coreinno.ru/api/chat/send",
+        { receiverId, text },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-    const messageData = {
-      senderId,
-      receiverId,
-      text,
-      time: new Date().toISOString(),
-    };
-    if (file) {
-      messageData.fileUrl = URL.createObjectURL(file);
+      console.log("📤 Сообщение отправлено:", response.data);
+      // Оно придёт само через Centrifugo, можно не дублировать вручную
+      setText("");
+    } catch (err) {
+      console.error("Ошибка отправки сообщения:", err);
     }
-    console.log("📤 Отправка сообщения:", messageData);
-    ws.current.send(JSON.stringify(messageData));
-
-    addMessage(receiverId, messageData);
-    setText("");
-    setFile(null);
   };
 
-  // Получаем имя собеседника
   const getReceiverName = (receiverId) => {
     const receiver = users.find((user) => user.id === receiverId);
     return receiver ? receiver.firstName : "Собеседник";
@@ -148,69 +176,83 @@ export default function Chat() {
               className={receiverId === user.id ? styles.activeUser : ""}
               onClick={() => {
                 setReceiverId(user.id);
+                connectToCentrifugo(user.id);
                 loadChatHistory(user.id);
               }}
             >
-              {user.firstName}
+              {user.firstName} {user.lastName}
             </li>
           ))}
         </ul>
       </div>
 
       <div className={styles.chatContainer}>
-      <h1 className={styles.chatTitle}>Чат</h1>
+        <h1 className={styles.chatTitle}>Чат</h1>
+       
 
-      
+        {systemMessage && (
+          <div className={styles.systemMessage}>{systemMessage}</div>
+        )}
+        {error && <div className={styles.errorMessage}>{error}</div>}
 
-      {systemMessage && (
-        <div className={styles.systemMessage}>{systemMessage}</div>
-      )}
-      {error && <div className={styles.errorMessage}>{error}</div>}
-
-      <div className={styles.chatBox}>
-        {(messages[receiverId] || []).map((msg, index) => (
-          <div
-            key={index}
-            className={
-              msg.senderId === senderId ? styles.myMessage : styles.otherMessage
-            }
-          >
-            <strong>
-              {msg.senderId === senderId ? "Вы" : getReceiverName(receiverId)}:
-            </strong>{" "}
-            {msg.text}
-            {msg.fileUrl && (
-              <div>
-                <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">
-                  📎 Прикрепленный файл
-                </a>
+        <div className={styles.chatBox}>
+          {(messages[receiverId] || []).map((msg, index) => (
+            <div
+              key={index}
+              className={
+                msg.senderId === senderId
+                  ? styles.myMessage
+                  : styles.otherMessage
+              }
+            >
+              <strong>
+                {msg.senderId === senderId ? "Вы" : getReceiverName(receiverId)}
+                :
+              </strong>{" "}
+              {msg.text}
+              {msg.fileUrl && (
+                <div>
+                  <a
+                    href={msg.fileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    📎 Прикрепленный файл
+                  </a>
+                </div>
+              )}
+              <div className={styles.timestamp}>
+                {new Date(msg.time).toLocaleTimeString()}
               </div>
-            )}
-            <div className={styles.timestamp}>
-              {new Date(msg.time).toLocaleTimeString()}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <div style={{ position: "relative", width: "720px", }}>
+          <img
+            className={styles.vector}
+            width={20}
+            height={20}
+            src={Vector}
+            alt=""
+          />
+            <img
+              className={styles.send}
+              width={40}
+              height={40}
+              onClick={sendMessage}
+              src={Frame}
+              alt=""
+            />
+          <input
+            className={styles.inputField}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Введите сообщение..."
+            disabled={!receiverId}
+          />
+        </div>
       </div>
-
-      <img className={styles.vector} width={20} height={20} src={Vector} alt="" />
-
-      <input
-        className={styles.inputField}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Введите сообщение..."
-        disabled={!receiverId}
-      />
-      <img className={styles.send} width={40} height={40} onClick={sendMessage} disabled={!receiverId} src={Frame} alt="" />
-      {/* <input
-        type="file"
-        onChange={(e) => setFile(e.target.files[0])}
-        className={styles.fileInput}
-      /> */}
-      
     </div>
-    </div>
-    
   );
 }

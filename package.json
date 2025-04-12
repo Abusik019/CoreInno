@@ -14,6 +14,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "antd": "^5.22.4",
     "axios": "^1.8.1",
+    "centrifuge": "^5.3.4",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.5.0",
     "react": "^18.3.1",

@@ -36,26 +36,38 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.userList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.userList li{
+  text-align: start;
+}
+
 
 .send{
-  position: absolute;
-  right: 200px;
-  bottom: 67px;
+  position: relative;
+  right: -646px;
+  bottom: -50px;
   cursor: pointer;
 }
 .vector{
   position: relative;
-  top: 105px;
-  left: 25px;
+  bottom: -40px;
+  right: -20px;
   opacity: 40%;
 }
 
 .chatBox {
-  height: 300px;
+  height: 320px;
   overflow-y: auto;
   /* border: 1px solid #ddd; */
   padding: 10px;
   border-radius: 8px;
+  width: 100%;
 }
 
 .myMessage {
@@ -63,18 +75,24 @@
   padding: 8px;
   border-radius: 5px;
   align-self: flex-end;
+  margin-top: 10px;
+  text-align: end;
+ 
+
 }
 
 .otherMessage {
   background: #f1f1f1;
   padding: 8px;
   border-radius: 5px;
+  margin-top: 10px;
+ 
 }
 
 .inputField {
   width: 89%;
   padding: 8px;
-  margin-top: 64px;
+  /* margin-top: 14px; */
   border: 1px solid #ddd;
   border-radius: 12px;
   height: 30px;
