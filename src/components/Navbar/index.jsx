@@ -201,8 +201,8 @@ export const Navbar = ({ theme }) => {
                             </div>
                             <div className={styles.fillProfile}>
                                 <div className={styles.fillProfileContent}>
-                                    <h2>Заполнить профиль</h2>
-                                    <Link to="#">
+                                    <Link to="/create-profile">
+                                        <h2>Заполнить профиль</h2>
                                         <img
                                             src={arrowImg}
                                             width={14}
