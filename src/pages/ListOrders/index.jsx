@@ -75,7 +75,7 @@ function ListOrders() {
           </div>
           <img className={styles.mockGuide} src={mockGuide} alt="" />
         </div>
-        <img src={search} alt="" />
+        <img  src={search} alt="" />
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -171,7 +171,7 @@ function ListOrders() {
                               }}
                               key={sub.id}
                             >
-                              -{sub.rusName}
+                              - {sub.rusName}
                             </li>
                           ))}
                       </ul>

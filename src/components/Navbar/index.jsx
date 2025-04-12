@@ -34,7 +34,7 @@ export const Navbar = ({ theme }) => {
     const [isLogin, setIsLogin] = useState(false);
     const wrapperRef = useRef(null);
     
-    console.log(userInfo);
+    // console.log(userInfo);
 
     useEffect(() => {
         if (token) {
