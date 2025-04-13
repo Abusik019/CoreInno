@@ -22,7 +22,7 @@ export default function CreateConsultationPageOne({ setPage }) {
             <p>Консультации со специалистами помогают получить ценные советы, ускоряя решение сложных задач. Это позволяет избежать ошибок и найти оптимальные пути развития</p>
             <div className={styles.createTaskButtons}>
                 <div className={styles.nextWithAI}>
-                    <button className={styles.nextBtn} onClick={() => setPage(1)}>Продолжить</button>
+                    <button className={styles.nextBtn} onClick={() => setPage(2)}>Продолжить</button>
                     <button onClick={toggleQuestionVisible}>
                         <img 
                             src={questionImg} 

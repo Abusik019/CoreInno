@@ -36,9 +36,9 @@ export default function CreateConsultationPageFive({ setPage, consultation }) {
                 </div>
             </div>
             <div className={styles.buttonsContainer}>
-                <button onClick={() => setPage(3)}>Вернуться</button>
-                <h2>4 из 4</h2>
-                <button onClick={() => setPage(5)}>Опубликовать</button>
+                <button onClick={() => setPage(4)}>Вернуться</button>
+                <h2>5 из 5</h2>
+                <button onClick={() => setPage(6)}>Опубликовать</button>
             </div>
         </div>
     );

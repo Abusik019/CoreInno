@@ -18,7 +18,7 @@ export default function CreateConsultationPageThree({ setPage, setConsultation, 
                     desc: e.target.value
                 }))} placeholder="Lorem ipsum dolor sit amet consectetur. Cursus netus volutpat aliquam risus purus. Sollicitudin mattis et nibh massa senectus."></textarea>
             </div>
-            <CreateTaskLoad prev={1} next={3} setPage={setPage} maxPage={4} disabled={!consultation.desc}/>
+            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={5} disabled={!consultation.desc}/>
         </div>
     );
 }

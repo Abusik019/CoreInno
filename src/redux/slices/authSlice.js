@@ -111,6 +111,7 @@ export const refreshTokens = createAsyncThunk(
     "auth/refresh",
     async (_, thunkAPI) => {
         try {
+            const accessToken = localStorage.getItem("accessToken");
             const refreshToken = localStorage.getItem("refreshToken");
 
             if (!refreshToken) {
@@ -120,19 +121,25 @@ export const refreshTokens = createAsyncThunk(
 
             const res = await fetch(`${API_URL}/api/auth/refresh-access-token`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json", 
+                    "Authorization": `Bearer ${accessToken}` 
+                },
                 body: JSON.stringify({ refreshToken }),
             });
 
-            const { accessToken, refreshToken: newRefreshToken } = await res.json();
+            const data = await res.json();
 
-            if (!res.ok) {
+            if (!res.ok || !data.accessToken || !data.refreshToken) {
                 clearTokens();
-                return thunkAPI.rejectWithValue("Не удалось обновить токен");
+                return thunkAPI.rejectWithValue(data.message || "Не удалось обновить токен");
             }
 
-            saveTokens(accessToken, newRefreshToken);
-            return { accessToken, refreshToken: newRefreshToken };
+            saveTokens(data.accessToken, data.refreshToken);
+            return { 
+                accessToken: data.accessToken, 
+                refreshToken: data.refreshToken 
+            };
         } catch (error) {
             clearTokens();
             return thunkAPI.rejectWithValue(error.message);

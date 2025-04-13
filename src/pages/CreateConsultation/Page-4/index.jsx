@@ -18,7 +18,7 @@ export default function CreateConsultationPageFour({ setPage, setConsultation, c
                     ))}
                 </ul>
             </div>
-            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={4} disabled={!consultation.themes}/>
+            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={5} disabled={!consultation.themes}/>
         </div>
     );
 }

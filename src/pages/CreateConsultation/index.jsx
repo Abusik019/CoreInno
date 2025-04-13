@@ -19,17 +19,17 @@ export default function CreateConsultation() {
 
     const renderPageContent = () => {
         switch (page) {
-            case 0:
-                return <CreateConsultationPageOne setPage={setPage}/>;
             case 1:
-                return <CreateConsultationPageTwo setPage={setPage} setConsultation={setConsultation} consultation={consultation}/>;
+                return <CreateConsultationPageOne setPage={setPage}/>;
             case 2:
-                return <CreateConsultationPageThree setPage={setPage} setConsultation={setConsultation} consultation={consultation}/>;
+                return <CreateConsultationPageTwo setPage={setPage} setConsultation={setConsultation} consultation={consultation}/>;
             case 3:
-                return <CreateConsultationPageFour setPage={setPage} setConsultation={setConsultation} consultation={consultation}/>;
+                return <CreateConsultationPageThree setPage={setPage} setConsultation={setConsultation} consultation={consultation}/>;
             case 4:
-                return <CreateConsultationPageFive setPage={setPage} consultation={consultation}/>;
+                return <CreateConsultationPageFour setPage={setPage} setConsultation={setConsultation} consultation={consultation}/>;
             case 5:
+                return <CreateConsultationPageFive setPage={setPage} consultation={consultation}/>;
+            case 6:
                 return <CreateConsultationPageSix />;
         }
     };

@@ -22,48 +22,61 @@ export const Navbar = ({ theme }) => {
     const token = useSelector((state) => state.auth.accessToken);
     const userInfo = useSelector((state) => state.auth.userInfo);
 
+    const [isShowSearch, setIsShowSearch] = useState(false);
+    const [isReadNot, setIsReadNot] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
     const [isNavbarDropdown, setIsNavbarDropdown] = useState({
         order: false,
         work: false,
         notifications: false,
         profile: false,
-        search: false,
     });
-    const [isShowSearch, setIsShowSearch] = useState(false);
-    const [isReadNot, setIsReadNot] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
-    const wrapperRef = useRef(null);
-    
-    // console.log(userInfo);
+
+    const orderDropdownRef = useRef(null);
+    const workDropdownRef = useRef(null);
+    const notificationsDropdownRef = useRef(null);
+    const profileDropdownRef = useRef(null);
+    const searchRef = useRef(null);
+
+    const orderButtonRef = useRef(null);
+    const workButtonRef = useRef(null);
+    const notificationsButtonRef = useRef(null);
+    const profileButtonRef = useRef(null);
 
     useEffect(() => {
-        if (token) {
-            setIsLogin(true);
-        } else {
-            setIsLogin(false);
-        }
+        setIsLogin(!!token);
     }, [token]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-                setIsNavbarDropdown((prev) => ({
-                    ...prev,
-                    search: false,
-                }));
+            const target = event.target;
+
+            if (
+                !orderDropdownRef.current?.contains(target) &&
+                !workDropdownRef.current?.contains(target) &&
+                !notificationsDropdownRef.current?.contains(target) &&
+                !profileDropdownRef.current?.contains(target) &&
+                !searchRef.current?.contains(target) &&
+                !orderButtonRef.current?.contains(target) &&
+                !workButtonRef.current?.contains(target) &&
+                !notificationsButtonRef.current?.contains(target) &&
+                !profileButtonRef.current?.contains(target)
+            ) {
+                setIsNavbarDropdown({
+                    order: false,
+                    work: false,
+                    notifications: false,
+                    profile: false,
+                });
                 setIsShowSearch(false);
             }
         };
 
-        document.addEventListener("click", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            document.removeEventListener("click", handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
-
-    const toggleDropdown = () => {
-        setIsDropdownVisible((prev) => !prev);
-    };
 
     const toggleNavDropdown = (item) => {
         setIsNavbarDropdown((prev) => {
@@ -93,15 +106,15 @@ export const Navbar = ({ theme }) => {
                         {isLogin && (
                             <>
                                 <h2
+                                    ref={orderButtonRef}
                                     onClick={() => toggleNavDropdown("order")}
                                     style={{ opacity: isNavbarDropdown.order && "1" }}
                                 >
                                     Заказы
                                 </h2>
                                 <div
-                                    className={`${styles.orderDropdown} ${
-                                        isNavbarDropdown.order ? styles.visible : ""
-                                    }`}
+                                    ref={orderDropdownRef}
+                                    className={`${styles.orderDropdown} ${isNavbarDropdown.order ? styles.visible : ""}`}
                                 >
                                     <Link to="/create-task">Разместить заказ</Link>
                                     <Link to="/my-orders">Мои заказы</Link>
@@ -111,12 +124,16 @@ export const Navbar = ({ theme }) => {
                     </li>
                     <li>
                         <h2
+                            ref={workButtonRef}
                             onClick={() => toggleNavDropdown("work")}
                             style={{ opacity: isNavbarDropdown.work && "1" }}
                         >
                             Фрилансеры
                         </h2>
-                        <div className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ""}`}>
+                        <div
+                            ref={workDropdownRef}
+                            className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ""}`}
+                        >
                             <Link to="/list-freelancer">Каталог</Link>
                             {isLogin && <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>}
                             {isLogin && <Link to="#">Нанятые исполнители</Link>}
@@ -136,7 +153,7 @@ export const Navbar = ({ theme }) => {
             </div>
             <div className={styles.rightSide}>
                 <div className={styles.navbarActions}>
-                    <div className={styles.inputWrapper} ref={wrapperRef}>
+                    <div className={styles.inputWrapper} ref={searchRef}>
                         <input
                             type="search"
                             className={`${styles.searchInput} ${isShowSearch ? styles.visible : ""}`}
@@ -149,7 +166,7 @@ export const Navbar = ({ theme }) => {
                         </Link>
                     )}
                     {isLogin && (
-                        <button onClick={() => toggleNavDropdown("notifications")}>
+                        <button ref={notificationsButtonRef} onClick={() => toggleNavDropdown("notifications")}>
                             <img src={theme === 'dark' ? whiteNotificationImg : notificationImg} width={24} height={24} alt="notification" />
                         </button>
                     )}
@@ -159,9 +176,8 @@ export const Navbar = ({ theme }) => {
                         </Link>
                     )}
                     <div
-                        className={`${styles.notifictionsDropdown} ${
-                            isNavbarDropdown.notifications ? styles.visible : ""
-                        }`}
+                        ref={notificationsDropdownRef}
+                        className={`${styles.notifictionsDropdown} ${isNavbarDropdown.notifications ? styles.visible : ""}`}
                     >
                         <div className={styles.notificationsTitleBlock}>
                             <h2>Уведомления</h2>
@@ -172,7 +188,7 @@ export const Navbar = ({ theme }) => {
                         <TabsComponent />
                     </div>
                     {isLogin && (
-                        <button className={styles.profileBtn} onClick={() => toggleNavDropdown("profile")}>
+                        <button ref={profileButtonRef} className={styles.profileBtn} onClick={() => toggleNavDropdown("profile")}>
                             <img
                                 src={userInfo?.avatarUrl ? userInfo.avatarUrl : avatarImg}
                                 width={48}
@@ -182,7 +198,7 @@ export const Navbar = ({ theme }) => {
                             />
                         </button>
                     )}
-                    <div className={`${styles.profileDropdown} ${isNavbarDropdown.profile ? styles.visible : ""}`}>
+                    <div ref={profileDropdownRef} className={`${styles.profileDropdown} ${isNavbarDropdown.profile ? styles.visible : ""}`}>
                         <div className={styles.profileInfo}>
                             <div className={styles.profileName}>
                                 <img
@@ -193,9 +209,7 @@ export const Navbar = ({ theme }) => {
                                     style={{ borderRadius: "12px" }}
                                 />
                                 <div className={styles.nameData}>
-                                    <h2>
-                                        {userInfo?.firstName} {userInfo?.lastName}
-                                    </h2>
+                                    <h2>{userInfo?.firstName} {userInfo?.lastName}</h2>
                                     {userInfo?.country && <h3>{userInfo.country}</h3>}
                                 </div>
                             </div>
@@ -244,7 +258,7 @@ export const Navbar = ({ theme }) => {
                             <li>
                                 <div>
                                     <img src={exitImg} width={24} height={24} alt="exit" />
-                                    <h2 onClick={() => removeToken()}>Выход</h2>
+                                    <h2 onClick={removeToken}>Выход</h2>
                                 </div>
                             </li>
                         </ul>

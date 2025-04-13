@@ -130,8 +130,8 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                 </div>
             </div>
             <div className={styles.buttonsContainer}>
-                <button onClick={() => setPage(5)}>Вернуться</button>
-                <h2>6 из 6</h2>
+                <button onClick={() => setPage(6)}>Вернуться</button>
+                <h2>7 из 7</h2>
                 <button onClick={() => setIsModalOpen(true)}>Продолжить</button>
             </div>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
@@ -140,7 +140,7 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                     <p>Вы начнёте получать отклики от фрилансеров с предложением исполнить ваш заказ</p>
                     <div>
                         <button onClick={() => setIsModalOpen(false)}>Отмена</button>
-                        <button onClick={() => setPage(7)}>Опубликовать</button>
+                        <button onClick={() => setPage(8)}>Опубликовать</button>
                     </div>
                 </div>
             </Modal>

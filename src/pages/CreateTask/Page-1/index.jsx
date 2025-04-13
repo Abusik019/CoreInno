@@ -23,7 +23,7 @@ export default function CreateTaskPageOne({ setPage }) {
             <p>Разместив объявление, Вы гораздо быстрее найдете исполнителя! Наша система искусственного интеллекта поможет Вам создать и опубликовать задание с молниеносной скоростью!</p>
             <div className={styles.createTaskButtons}>
                 <div className={styles.nextWithAI}>
-                    <button className={styles.nextBtn} onClick={() => setPage(1)}>Продолжить</button>
+                    <button className={styles.nextBtn} onClick={() => setPage(2)}>Продолжить</button>
                     <button onClick={toggleQuestionVisible}>
                         <img 
                             src={questionImg} 

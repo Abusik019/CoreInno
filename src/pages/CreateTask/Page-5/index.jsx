@@ -102,7 +102,7 @@ export default function CreateTaskPageFive({ setPage, setTask, task }) {
                    }
                 </div>
             </div>
-            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={6} disabled={task.paymentMethod === 'fixed' ? false : !disabledBtn}/>
+            <CreateTaskLoad prev={4} next={6} setPage={setPage} maxPage={7} disabled={task.paymentMethod === 'fixed' ? false : !disabledBtn}/>
         </div>
     );
 }

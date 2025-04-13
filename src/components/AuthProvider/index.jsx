@@ -16,13 +16,13 @@ export const AuthProvider = ({ children }) => {
     }, [accessToken, dispatch]);
 
     useEffect(() => {
-        // Периодически обновляем токен
         const interval = setInterval(() => {
             if (refreshToken) {
+                console.log("Обновление токена...");
                 dispatch(refreshTokens());
             }
-        }, 15 * 60 * 1000); // Каждые 15 минут
-
+        }, 15 * 60 * 1000);
+    
         return () => clearInterval(interval);
     }, [refreshToken, dispatch]);
 

@@ -114,7 +114,7 @@ export default function CreateTaskPageThree({ setPage, setTask, task }) {
                     </ul>
                 </div>
             </div>
-            <CreateTaskLoad prev={1} next={3} setPage={setPage} maxPage={6} disabled={!Boolean(task.skills.length)}/>
+            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={7} disabled={!Boolean(task.skills.length)}/>
         </div>
     );
 }

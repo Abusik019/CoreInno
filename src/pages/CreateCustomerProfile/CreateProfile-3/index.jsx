@@ -182,13 +182,15 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                                     <input type="number" placeholder="Год" value={myExperience.start_year} onChange={(e) => handleSetData(e, 'start_year')} />
                                 </div>
                             </div>
-                            <div>
-                                <h2>Дата окончания работы <span style={{color: '#F63939'}}>*</span></h2>
+                            {!myExperience.currently_working && (
                                 <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.end_month} onChange={(e) => handleSetData(e, 'end_month')} />
-                                    <input type="number" placeholder="Год" value={myExperience.end_year} onChange={(e) => handleSetData(e, 'end_year')} />
+                                    <h2>Дата окончания работы <span style={{color: '#F63939'}}>*</span></h2>
+                                    <div>
+                                        <input type="number" placeholder="Месяц" value={myExperience.end_month} onChange={(e) => handleSetData(e, 'end_month')} />
+                                        <input type="number" placeholder="Год" value={myExperience.end_year} onChange={(e) => handleSetData(e, 'end_year')} />
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                         <div className={styles.formDescription}>
                             <h2>Описание <span style={{color: '#F63939'}}>*</span></h2>

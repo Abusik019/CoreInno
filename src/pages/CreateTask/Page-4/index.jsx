@@ -85,7 +85,7 @@ export default function CreateTaskPageFour({ setPage, setTask, task }) {
                     </div>
                 </div>
             </div>
-            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={6} disabled={!isDisabledBtn}/>
+            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={7} disabled={!isDisabledBtn}/>
         </div>
     );
 }

@@ -34,7 +34,7 @@ export default function CreateConsultationPageTwo({ setPage, setConsultation, co
                     />
                 </label>
             </div>
-            <CreateTaskLoad prev={0} next={2} setPage={setPage} maxPage={4} disabled={!consultation.title}/>
+            <CreateTaskLoad prev={1} next={3} setPage={setPage} maxPage={5} disabled={!consultation.title}/>
         </div>
     );
 }
