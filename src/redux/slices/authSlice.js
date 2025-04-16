@@ -7,7 +7,7 @@ const initialState = {
     loading: false,
     accessToken: localStorage.getItem("accessToken") || null, // Добавлено fallback значение
     refreshToken: localStorage.getItem("refreshToken") || null,
-    userInfo: null
+    userInfo: {}
 };
 
 // Функция для сохранения токенов

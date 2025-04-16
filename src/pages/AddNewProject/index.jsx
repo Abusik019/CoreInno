@@ -70,7 +70,7 @@ export default function AddNewProject() {
                             </div>
                             <div>
                                 <h2>Описание <span style={{color: '#F63939'}}>*</span></h2>
-                                <Textarea maxLength={1000} value={inputData.description} onInput={(e) => handleChageInputState(e, 'description')}/>
+                                <Textarea maxLength={1000} value={inputData.description} onInput={(e) => handleChageInputState(e, 'description')} placeholder='Описание вашего проекта'/>
                             </div>
                         </div>
                         <div className={styles.dragAndDrop}>

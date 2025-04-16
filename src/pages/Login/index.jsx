@@ -53,6 +53,8 @@ function Login() {
         setPasswordVaildate(value);
     }
 
+    console.log(error);
+
     return (
         <div className={styles.loginWrapper}>
             <Link to="/">

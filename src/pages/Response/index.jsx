@@ -102,12 +102,13 @@ export default function Response() {
                     <h2>Ваш отклик</h2>
                     <h3>Описание <span style={{color: '#F63939'}}>*</span></h3>
                     <Textarea 
-                        value={response.desc ? response.desc : "Расскажите, почему стоит выбрать именно Вас" }
+                        value={response.desc}
                         maxLength={5000} 
                         onInput={(e) => setResponse((prev) => ({
                             ...prev,
                             desc: e.target.value
                         }))}
+                        placeholder="Расскажите, почему стоит выбрать именно Вас"
                     />
                     <div className={styles.yourResponseInputs}>
                         <div className={styles.responsePrice}>

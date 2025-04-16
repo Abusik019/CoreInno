@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 import editImg from '../../../assets/icons/edit2.svg';
 import avatarImg from '../../../assets/images/projectImage.png';
 import { useDispatch, useSelector } from "react-redux";
-import { setClientExpertises, setEducation, setResume, setWork } from "../../../redux/slices/userSlice";
+import { setAchievement, setClientExpertises, setEducation, setResume, setWork } from "../../../redux/slices/userSlice";
 
 export default function CreateProfilePageEight({ setPage, user }) {
     const dispatch = useDispatch();
@@ -21,6 +21,10 @@ export default function CreateProfilePageEight({ setPage, user }) {
         if (user.userExperience && user.userExperience.length) {
             const experienceData = user.userExperience.map(({ id, ...rest }) => rest);
             dispatch(setWork(experienceData));
+        }
+        if (user.userOtherExperience && user.userOtherExperience.length) {
+            const otherExperienceData = user.userOtherExperience.map(({ id, ...rest }) => rest);
+            dispatch(setAchievement(otherExperienceData));
         }
         if (user.userEducation && user.userEducation.length) {
             const educationData = user.userEducation.map(({ id, ...rest }) => rest);
@@ -172,7 +176,7 @@ export default function CreateProfilePageEight({ setPage, user }) {
                                 <li key={index}>
                                     <div>
                                         <h2>{item.title}</h2>
-                                        <h3>{item.date.month}.{item.date.year}</h3>
+                                        <h3>{item.event_month}.{item.event_year}</h3>
                                         <p>{item.description}</p>
                                     </div>
                                 </li>

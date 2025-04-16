@@ -17,7 +17,7 @@ export default function CreateProfilePageNine() {
                 />
                 <h2>Отлично, профиль был успешно заполнен</h2>
                 <h3>Изменить данные можно в настройках аккаунта</h3>
-                <Link to="#">Продолжить</Link>
+                <Link to="/">Продолжить</Link>
             </div>
         </div>
     );

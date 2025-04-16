@@ -24,6 +24,8 @@
     outline: none;
 
     margin-top: 15px;
+
+    opacity: .8 !important;
 }
 
 .description{

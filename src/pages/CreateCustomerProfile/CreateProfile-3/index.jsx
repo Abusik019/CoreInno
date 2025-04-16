@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { GradientText } from "../../../components/GradientText";
 import Modal from "../../../components/Modal";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import editImg from '../../../assets/icons/edit2.svg';
 import deleteImg from '../../../assets/icons/cross.svg';
@@ -12,6 +13,7 @@ import jobifyImg from "../../../assets/icons/logoJobify.svg";
 import plusImg from '../../../assets/icons/plusWithBg.svg';
 
 export default function CreateProfilePageThree({ setPage, setUser, user }) {    
+    const userInfo = useSelector((state) => state.auth.userInfo);
     const [editId, setEditId] = useState(null);
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [experiences, setExperiences] = useState([]);
@@ -28,6 +30,8 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
         end_year: null,
         description: ''
     });
+
+    console.log(userInfo);
     
     useEffect(() => {
         setExperiences([...user.userExperience]);

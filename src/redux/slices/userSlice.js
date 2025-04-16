@@ -31,7 +31,7 @@ export const fetchUsers = createAsyncThunk(
     }
 );
 
-export const getUser = createAsyncThunk("users/getUsers", async (userID, thunkAPI) => {
+export const getUser = createAsyncThunk("users/getUsers", async (thunkAPI) => {
     const accessToken = thunkAPI.getState().user.accessToken;
 
     try{
@@ -131,6 +131,26 @@ export const setWork = createAsyncThunk("users/setWork", async (data, thunkAPI) 
         return response.data;
     } catch(error){
         console.error("Ошибка добавления данных о работе:", error); 
+    }
+})
+
+export const setAchievement = createAsyncThunk("users/setAchievement", async (data, thunkAPI) => {
+    const accessToken = thunkAPI.getState().user.accessToken;
+
+    try{
+        const response = await axios.post(`${API_URL}/api/achievement`, data, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if(response.status !== 201){
+            throw new Error("Ошибка добавления данных об достижениях");
+        }
+
+        return response.data;
+    } catch(error){
+        console.error("Ошибка добавления данных об достижениях:", error); 
     }
 })
 

@@ -20,14 +20,12 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
         title: '',
         country: '',
         city: '',
-        date: {
-            month: '', 
-            year: ''
-        },
+        event_month: '',
+        event_year: '',
         description: ''
     });
     
-    const isSaveDisabled = !myExperience.title || !myExperience.country || !myExperience.city || !myExperience.date.month || !myExperience.date.year || !myExperience.description;
+    const isSaveDisabled = !myExperience.title || !myExperience.country || !myExperience.city || !myExperience.event_month || !myExperience.event_year || !myExperience.description;
     
     useEffect(() => {
         setExperiences([...user.userOtherExperience]);
@@ -46,10 +44,8 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
             title: '',
             country: '',
             city: '',
-            date: {
-                month: '', 
-                year: ''
-            },
+            event_month: '',
+            event_year: '',
             description: ''
         });
         setEditId(null);
@@ -121,7 +117,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                                                 </button>
                                             </div>
                                         </div>
-                                        <h3>{item.date.month}.{item.date.year}</h3>
+                                        <h3>{item.event_month}.{item.event_year}</h3>
                                         <p>{item.description}</p>
                                     </div>
                                 </li>
@@ -170,12 +166,8 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                             <div>
                                 <h2>Дата события <span style={{color: '#F63939'}}>*</span></h2>
                                 <div>
-                                    <input type="number" placeholder="Месяц" value={myExperience.date.month} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, month: e.target.value }
-                                    }))} />
-                                    <input type="number" placeholder="Год" value={myExperience.date.year} onChange={(e) => setMyExperience(prev => ({
-                                        ...prev, date: { ...prev.date, year: e.target.value }
-                                    }))} />
+                                    <input type="number" placeholder="Месяц" value={myExperience.event_month} onChange={(e) => handleSetData(e, 'event_month')} />
+                                    <input type="number" placeholder="Год" value={myExperience.event_year} onChange={(e) => handleSetData(e, 'event_year')} />
                                 </div>
                             </div>
                         </div>

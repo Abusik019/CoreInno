@@ -71,6 +71,7 @@ export default function CreateTaskPageSix({ setPage, setTask, task }) {
                             ...prev,
                             desc: e.target.value
                         }))}
+                        placeholder="Lorem ipsum dolor sit amet consectetur. Ultrices cursus massa aliquam tincidunt."
                     />
                     <div className={styles.files}>
                         <h2>Вложения</h2>

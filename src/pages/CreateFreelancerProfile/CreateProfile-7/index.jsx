@@ -21,9 +21,10 @@ export default function CreateProfilePageSeven({ setPage, setUser, user }) {
                     <h2>Расскажите немного о себе</h2>
                     <p>Заказчики хотят знать, с кем имеют дело, поэтому для привлечения клиентов рекомендуем поведать о себе</p>
                     <Textarea 
-                        value={aboutMe ? aboutMe : "Начните рассказывать здесь, а вдохновение польется само собой"} 
+                        value={aboutMe} 
                         maxLength="5000" 
                         onInput={(e) => setAboutMe(e.target.value)}
+                        placeholder="Начните рассказывать здесь, а вдохновение польется само собой"
                     />
                 </div>
                 <div className={styles.createProfileQuote}>
