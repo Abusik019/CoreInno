@@ -23,7 +23,7 @@ import {
     fetchCategory,
     fetchSubCategoryId,
 } from "../../redux/slices/categorySlice";
-import UserIcon from "../../assets/icons/userIcon.jsx";
+import UserIcon from "../../assets/icons/UserIcon.jsx";
 import PaymentIcon from "./../../assets/icons/PaymentIcon.jsx";
 import SecurityIcon from "./../../assets/icons/SecurityIcon.jsx";
 import NotificationIcon from "./../../assets/icons/NotificationIcon.jsx";
