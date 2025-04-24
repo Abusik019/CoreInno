@@ -17,7 +17,7 @@
 
     position: relative;
 
-    width: 568px;
+    min-width: 568px;
     height: fit-content;
     max-height: 100vh;
 

@@ -6,6 +6,7 @@ import bottom from "../../assets/icons/bottom.svg";
 import mockGuide from "../../assets/images/mockGuide.png";
 import Frame from "../../assets/icons/Frame.png";
 import close from "../../assets/icons/close.svg";
+import arrowImg from "../../assets/icons/arrow.svg";
 
 import ReactSlider from "react-slider";
 import ListPaginationOrders from "../../components/ListPaginationOrders";
@@ -58,20 +59,19 @@ function ListOrders() {
   }
 
   return (
-    <div>
+    <div className={styles.listOrders}>
       <header className={styles.content}>
         <h1>Раздел заказов</h1>
-        <div className={styles.close}>
-          <img src={close} alt="" />
-        </div>
         <div className={styles.banner}>
+          <button className={styles.close}>
+            <img src={close} width={24} height={24} alt="close" />
+          </button>
           <div className={styles.banner1}>
-            <p>Название баннера</p>
+            <p>Полезные советы</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Viverra cursus quam netus
-              bibendum justo pretium est maecenas cursus.{" "}
+              Узнай как стать влиятельнее на бирже
             </p>
-            <img src={Frame} alt="" />
+            <button><img src={arrowImg} width={48} height={15} alt="" /></button>
           </div>
           <img className={styles.mockGuide} src={mockGuide} alt="" />
         </div>
@@ -317,7 +317,6 @@ function ListOrders() {
               </div>
             )}
           </div>
-
           <div className={styles.orders}>
             <h2 onClick={() => setOpenOrders(!openOrders)}>
               Успешные заказы{" "}
@@ -411,9 +410,7 @@ function ListOrders() {
           </div>
         </div>
         <div className={styles.right}>
-          <div className={styles.carts}>
             <ListPaginationOrders />
-          </div>
         </div>
       </main>
     </div>
