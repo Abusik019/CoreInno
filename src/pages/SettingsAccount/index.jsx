@@ -23,10 +23,10 @@ import {
     fetchCategory,
     fetchSubCategoryId,
 } from "../../redux/slices/categorySlice";
-import UserIcon from "../../assets/icons/userIcon";
-import PaymentIcon from "./../../assets/icons/PaymentIcon";
-import SecurityIcon from "./../../assets/icons/SecurityIcon";
-import NotificationIcon from "./../../assets/icons/NotificationIcon";
+import UserIcon from "../../assets/icons/userIcon.jsx";
+import PaymentIcon from "./../../assets/icons/PaymentIcon.jsx";
+import SecurityIcon from "./../../assets/icons/SecurityIcon.jsx";
+import NotificationIcon from "./../../assets/icons/NotificationIcon.jsx";
 import Modal from "../../components/Modal";
 
 function SettingsAccount() {
