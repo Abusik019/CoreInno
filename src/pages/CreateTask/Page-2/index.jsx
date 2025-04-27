@@ -32,7 +32,7 @@ export default function CreateTaskPageTwo({ setPage, setTask, task }) {
                     </li>
                 </ul>
             </div>
-            <CreateTaskLoad prev={1} next={3} setPage={setPage} maxPage={7} disabled={!Boolean(task.title)} />
+            <CreateTaskLoad prev={0} next={2} setPage={setPage} maxPage={7} disabled={!Boolean(task.title)} />
         </div>
     );
 }

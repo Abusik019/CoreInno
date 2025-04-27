@@ -20,11 +20,11 @@ export default function CreateTaskPageOne({ setPage }) {
     <div className={styles.createTask}>
         <div className={styles.createTaskTitleBlock}>
             <h2>Создайте и разместите своё <GradientText text="новое задание!"/></h2>
-            <p>Разместив объявление, Вы гораздо быстрее найдете исполнителя! Наша система искусственного интеллекта поможет Вам создать и опубликовать задание с молниеносной скоростью!</p>
+            <p>Разместив объявление на нашей платформе, вы значительно ускорите процесс поиска подходящего исполнителя</p>
             <div className={styles.createTaskButtons}>
                 <div className={styles.nextWithAI}>
-                    <button className={styles.nextBtn} onClick={() => setPage(2)}>Продолжить</button>
-                    <button onClick={toggleQuestionVisible}>
+                    <button className={styles.nextBtn} onClick={() => setPage(1)}>Продолжить</button>
+                    {/* <button onClick={toggleQuestionVisible}>
                         <img 
                             src={questionImg} 
                             width={24}
@@ -33,14 +33,15 @@ export default function CreateTaskPageOne({ setPage }) {
                         />
                     </button>
                     <div className={`${styles.question} ${questionVisible ? styles.visible : ''}`}>Мы внедрили искусственный интеллект прямо сюда. <GradientText text="Подробнее"/></div>
+                 */}
                 </div>
                 <Link to="/create-consultation">Создать консультацию</Link>
             </div>
         </div>
         <div className={styles.unionWrapper}>
-            <img src={bgItemImg} width={247} height={246} alt="purple circle" />
-            <img src={bgItem2Img} width={106} height={140} alt="purple circle" />
-            <img src={bgItem1Img} width={280} height={149} alt="purple circle" />
+            <img src={bgItemImg} width={350} height={350} alt="purple circle" />
+            <img src={bgItem2Img} width={180} height={170} alt="purple circle" />
+            <img src={bgItem1Img} width={390} height={290} alt="purple circle" />
             <img 
                 src={unionImg}
                 width={446}

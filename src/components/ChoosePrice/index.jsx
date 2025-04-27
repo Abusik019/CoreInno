@@ -16,7 +16,7 @@ const options = [
     },
 ]
 
-export const ChoosePrice = ({ question, description, setTask, task }) => {
+export const  ChoosePrice = ({ question, description, setTask, task }) => {
     const [choosenVariable, setChoosenVariable] = useState(task.details.highPriceOffers);
 
     return (

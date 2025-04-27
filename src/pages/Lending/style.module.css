@@ -19,64 +19,61 @@
     background: linear-gradient(180deg, #000000 18.66%, #18112F 29.24%, rgba(0, 0, 0, 0) 83.33%);
 
     .mainInfo{
-        max-width: 56%;
+        max-width: 49%;
         align-self: flex-start;
     
         >h2{
             font-weight: 400;
             font-size: 42px;
             line-height: 42px;
-    
+            letter-spacing: -1.26px;
             margin-top: 20px;
 
             color: #fff;
         }
     
         >p{
-            font-weight: 400;
             font-size: 18px;
             line-height: 20px;
     
             margin-top: 15px;
-            opacity: .5;
+            opacity: .7;
 
             color: #fff;
         }
 
         .mainBtns{
             margin-top: 75px;
-
+            
             display: flex;
             align-items: center;
             gap: 15px;
 
             >a{
-                padding: 17px 35px;
+                padding: 17px 50px;
                 box-sizing: border-box;
 
-                border: 1px solid #fff;
+                background-color: #fff;
+                letter-spacing: 0.5px;
+                
                 border-radius: 12px;
-
+                
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 16px;
 
-                transition: all .3s ease-in-out;
+                transition: 200ms;
             }
 
             >:first-child{
                 background-color: #fff;
-                color: #000;
+                border: 1px solid #fff;
+                color: #201e1e;
             }
 
             >:first-child:hover{
-                background-color: #ffffff;
-                color: #000;
-            }
-
-            >:last-child{
-                background-color: transparent;
                 color: #fff;
+                background-color: transparent;
             }
         }
     }
@@ -90,7 +87,7 @@
 
         align-self: center;
 
-        >li{
+        >div{
             width: 25%;
             height: 250px;
 
@@ -98,7 +95,7 @@
 
             padding: 25px;
             box-sizing: border-box;
-
+            
             position: relative;
             overflow: hidden;
 
@@ -107,11 +104,15 @@
             align-items: flex-start;
             justify-content: space-between;
 
+            border: 1px solid var(--33, #EAEAEA);
+
+            background-color: #fff;
+
             >h2{
                 font-weight: 400;
                 font-size: 42px;
                 line-height: 42px;
-
+                letter-spacing: -1.26px;
                 max-width: 80%;
 
                 >span{
@@ -141,7 +142,7 @@
         >:nth-child(2){
             background-image: url('../../assets/images/bg-item.png');
             background-position: center;
-            background-size: cover;
+            background-size: auto;
             background-repeat: no-repeat;
         }
 
@@ -158,22 +159,8 @@
             }
         }
 
-        >:nth-child(3)::before{
-            display: none !important;
-        }
-
-        >li::before{
-            content: "";
-            position: absolute;
-            inset: 0;
-            padding: 1px; 
-            border-radius: 24px;
-            background: linear-gradient(180deg, #EAEAEA 0%, rgba(159, 159, 210, 0.8) 100%);
-            -webkit-mask: 
-                linear-gradient(white 0 0) content-box, 
-                linear-gradient(white 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
+        >:nth-child(3){
+            border: none !important;
         }
     }
 }
@@ -225,6 +212,7 @@
             >h2{
                 font-weight: 400;
                 font-size: 60px;
+                letter-spacing: -1.8px;
                 line-height: 60px;
 
                 color: #fff;
@@ -243,7 +231,7 @@
                 >button{
                     width: 100%;
 
-                    padding: 17px 0;
+                    padding: 15px 0;
                     box-sizing: border-box;
 
                     border: 1px solid #fff;
@@ -252,6 +240,11 @@
                     font-weight: 400;
                     font-size: 18px;
                     line-height: 20px;
+
+                    transition: all .2s ease-in-out;
+                }
+                >button:hover{
+                    opacity: 0.8;
                 }
             }
         }
@@ -281,7 +274,7 @@
 
                     border-radius: 24px;
                     background-color: #EAEAEA80;
-
+                    letter-spacing: -1.26px;
                     padding: 14px 30px;
                     box-sizing: border-box;
 
@@ -330,7 +323,7 @@
 
         >h2{
             margin-top: 15px;
-    
+            letter-spacing: -1.26px;
             font-weight: 400;
             font-size: 42px;
             line-height: 42px;
@@ -367,13 +360,11 @@
 
             text-align: center;
 
-            transition: all .3s ease-in-out;
+            transition: all .2s ease-in-out;
         }
 
         >a:hover{
-            background-color: #000;
-            color: #fff;
-            border-color: #000;
+            opacity: 0.7;
         }
     }
 
@@ -421,6 +412,7 @@
                 >h2{
                     font-weight: 400;
                     font-size: 42px;
+                    letter-spacing: -1.26px;
                     line-height: 42px;
                 }
     
@@ -443,6 +435,8 @@
                         align-items: center;
                         justify-content: center;
                     }
+
+                    
                 }
 
                 >p{
@@ -451,7 +445,6 @@
                     font-weight: 400;
                     font-size: 18px;
                     line-height: 20px;
-    
                     opacity: .7;
     
                     display: -webkit-box;
@@ -465,10 +458,6 @@
 
         .link.hover{
             background-color: #EAEAEA40;
-
-            >div{
-                opacity: 0;
-            }
         }
     
         >:nth-child(5) {
@@ -707,6 +696,7 @@
         font-size: 42px;
         line-height: 42px;
         text-align: center;
+        letter-spacing: -1.26px;
 
         color: #fff;
     }
@@ -740,9 +730,16 @@
 
         font-weight: 400;
         font-size: 16px;
-        line-height: 16px;
+        line-height: 16px; 
+        border: 1px solid #fff;
 
         margin-top: 50px;
+
+        transition: 200ms;
+        &:hover{
+            background-color: transparent;
+            color: #fff;
+        }
     }
 }
 
@@ -763,6 +760,7 @@
         font-weight: 400;
         font-size: 42px;
         line-height: 42px;
+        letter-spacing: -1.26px;
         text-align: center;
 
         >span{
@@ -790,13 +788,20 @@
         padding-left: 46px;
         padding-right: 15px;
         box-sizing: border-box;
-
+        opacity: 0.7;
         border-radius: 14px;
 
         background-image: url('../../assets/icons/search-2.svg');
         background-position: 3%;
         background-size: auto;
         background-repeat: no-repeat;
+
+        height: 50px;
+
+        transition: 150ms;
+        &:focus{
+            opacity: 1;
+        }
     }
 
     >button{
@@ -807,7 +812,7 @@
 
         background-color: #000;
         color: #ffffff;
-        
+        border: 1px solid #000;
         border-radius: 14px;
 
         text-align: center;
@@ -817,6 +822,11 @@
         line-height: 20px;
 
         margin-top: 18px;
+
+        transition: 200ms;
+        &:hover{
+            background-color: #161515;
+        }
     }
 }
 
@@ -831,6 +841,7 @@
 
     padding: 60px 120px 40px 120px;
     box-sizing: border-box;
+
 
     display: flex;
     flex-direction: column;
@@ -848,14 +859,15 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 5px;
+            gap: 10px;
 
-            >h2{
-                font-weight: 400;
+            >p{
+                font-weight: 300;
                 font-size: 16px;
                 line-height: 16px;
 
                 opacity: .7;
+                
             }
         }
 
@@ -875,11 +887,18 @@
                     height: 36px;
 
                     border-radius: 10px;
-                    border: 1px solid #000;
+                    border: 1.5px solid #000;
 
+                    opacity: 0.8;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+
+                    transition: 200ms;
+
+                    &:hover{
+                        opacity: 1;
+                    }
                 }
             }
 
@@ -906,7 +925,7 @@
         justify-content: space-between;
 
         >h2{
-            font-weight: 400;
+            font-weight: 300;
             font-size: 14px;
             line-height: 20px;
 
@@ -919,11 +938,16 @@
             gap: 25px;
 
             >a{
-                font-weight: 400;
+                font-weight: 300;
                 font-size: 14px;
                 line-height: 20px;
 
                 opacity: .7;
+
+                transition: 200ms;
+                &:hover{
+                    opacity: 1;
+                }
             }
         }
     }

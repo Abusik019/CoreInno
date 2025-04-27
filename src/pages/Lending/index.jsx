@@ -60,6 +60,10 @@ const textVariants = {
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: .7, y: 0, transition: { duration: 0.3 } }
 };
+const imageVariants = {
+    visible: { opacity: 1, transition: { duration: 0.3 }, y:0 },
+    hidden: { opacity: 0, transition: { duration: 3 }, y: 20 },
+  };
 
 export default function Lending() {
     const dispatch = useDispatch();
@@ -196,24 +200,24 @@ export default function Lending() {
                         {/* <button>Есть вопросы?</button> */}
                     </div>
                 </div>
-                <ul className={styles.advantages}>
-                    <li>
+                <div className={styles.advantages}>
+                    <div>
                         <h2><span>Удобный</span> сервис</h2>
-                        <p>Интуитивно понятно и ненавязчиво</p>
-                    </li>
-                    <li>
+                        <p>Интуитивно понятный и ненавязчивый интерфейс</p>
+                    </div>
+                    <div>
                         <h2><span>Быстрый</span> поиск</h2>
                         <p>Поиск клиентов и исполнителей за считаные минуты</p>
-                    </li>
-                    <li>
+                    </div>
+                    <div>
                         <h2>У нас нет подписок</h2>
                         <p>Рейтинг зависит от портфолио и успешно выполненных заказов</p>
-                    </li>
-                    <li>
+                    </div>
+                    <div>
                         <h2><span>Защита</span> всех сделок</h2>
                         <p>Мы уделили особое внимание вашей безопасности</p>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </main>
             <motion.section
                 className={styles.steps}
@@ -246,15 +250,15 @@ export default function Lending() {
                     <ul className={styles.stepsList}>
                         <li>
                             <h2>Шаг №1</h2>
-                            <p>{role === 'customer' ? "Создайте задание" : "Найдите подходящий проект"}</p>
+                            <p>{role === 'customer' ? "Создай задание — чем яснее оно будет, тем проще исполнителю понять твои ожидания и сделать всё на высшем уровне" : "Загляни в список доступных заказов и выбери тот, который подходит под твои навыки или вызывает интерес"}</p>
                         </li>
                         <li>
                             <h2>Шаг №2</h2>
-                            <p>{role === 'customer' ? "Выберите исполнителя" : "Откликнитесь на заказ"}</p>
+                            <p>{role === 'customer' ? "Выбери исполнителя — ознакомься с профилями исполнителей, их портфолио и отзывами, обрати внимание не только на опыт, но и на подход к работе" : "Откликнись и покажи, на что ты способнен, поделитесь, почему именно ты — тот, кто сделает эту работу лучше всех"}</p>
                         </li>
                         <li>
                             <h2>Шаг №3</h2>
-                            <p>{role === 'customer' ? "Оплачивайте через безопасную сделку и получайте безупречный результат" : "Работайте и получайте оплату через безопасную сделку"}</p>
+                            <p>{role === 'customer' ? "После того как исполнитель приступит к работе, не переживай — процесс будет защищен через безопасную сделку, оплати работу только по завершении всех этапов, убедившись в качестве результата" : "Выполняй заказы и получай оплату через безопасную сделку — это не только защищает твои интересы, но и создаёт уверенность, что работа сделана на совесть, а заказчик остался доволен твоей работой"}</p>
                         </li>
                     </ul>
                 </div>
@@ -267,7 +271,7 @@ export default function Lending() {
                 variants={sectionVariants}
             >
                 <div className={styles.tutorialContent}>
-                    <div className={styles.implementAI}>Что-то тут будет</div>
+                    <div className={styles.implementAI}>Начни сейчас</div>
                     <h2>Туториал по работе на Jobify</h2>
                     <p>Мы обновили биржу — добавили встроенный чат, быстрые переводы и систему гарантии сделок, а также поддержку пользователей</p>
                     <Link to={token ? '/list-orders' : '/registration'}>Присоединиться</Link>
@@ -303,10 +307,15 @@ export default function Lending() {
                                     {getSubcategoryByCategory(hoverItems.it.id)}
                                 </motion.p>
                                 ) : (
-                                <div>
+                                <motion.div
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={imageVariants}
+                                >
                                     <img src={itImg} width={78} height={78} alt="it" />
                                     <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                                </div>
+                                </motion.div>
                             )}
                         </Link>
                     </li>
@@ -326,10 +335,15 @@ export default function Lending() {
                                     {getSubcategoryByCategory(hoverItems.smm.id)}
                                 </motion.p>
                                 ) : (
-                                <div>
+                                <motion.div 
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={imageVariants}
+                                >
                                     <img src={smmImg} width={92} height={68} alt="smm" />
                                     <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                                </div>
+                                </motion.div>
                             )}
                         </Link>
                     </li>
@@ -349,10 +363,15 @@ export default function Lending() {
                                     {getSubcategoryByCategory(hoverItems.video.id)}
                                 </motion.p>
                             ) : (
-                                <div>
+                                <motion.div 
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={imageVariants}
+                                >
                                     <img src={audioImg} width={100} height={100} alt="video" />
                                     <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                                </div>
+                                </motion.div>
                             )}
                         </Link >
                     </li>
@@ -372,10 +391,15 @@ export default function Lending() {
                                     {getSubcategoryByCategory(hoverItems.business.id)}
                                 </motion.p>
                             ) : (
-                                <div>
+                                <motion.div 
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={imageVariants}
+                                >
                                     <img src={businessImg} width={97} height={79} alt="business" />
                                     <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                                </div>
+                                </motion.div>
                             )}
                         </Link>
                     </li>
@@ -395,10 +419,15 @@ export default function Lending() {
                                     {getSubcategoryByCategory(hoverItems.seo.id)}
                                 </motion.p>
                             ) : (
-                                <div>
+                                <motion.div 
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={imageVariants}
+                                >
                                     <img src={seoImg} width={100} height={100} alt="seo" style={{opacity: '.1'}}/>
                                     <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                                </div>
+                                </motion.div>
                             )}
                         </Link>
                     </li>
@@ -418,10 +447,15 @@ export default function Lending() {
                                     {getSubcategoryByCategory(hoverItems.design.id)}
                                 </motion.p>
                             ) : (
-                                <div>
+                                <motion.div 
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={imageVariants}
+                                >
                                     <img src={designImg} width={100} height={100} alt="design" />
                                     <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                                </div>
+                                </motion.div>
                             )}
                         </Link>
                     </li>
@@ -441,10 +475,15 @@ export default function Lending() {
                                     {getSubcategoryByCategory(hoverItems.text.id)}
                                 </motion.p>
                             ) : (
-                                <div>
+                                <motion.div 
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={imageVariants}
+                                >
                                     <img src={textsImg} width={100} height={100} alt="texts" />
                                     <Link to="#"><img src={linkArrowImg} width={24} height={24} alt="link" /></Link>
-                                </div>
+                                </motion.div>
                             )}
                         </Link>
                     </li>
@@ -507,7 +546,7 @@ export default function Lending() {
                 <div className={styles.footerTop}>
                     <div className={styles.footerLogoBlock}>
                         <img src={jobifyImg} width={119} height={39} alt="Jobify logo" />
-                        <h2>Будущее начинается с тебя!</h2>
+                        <p>Будущее начинается с тебя!</p>
                     </div>
                     <div className={styles.foooterLinks}>
                         <div>

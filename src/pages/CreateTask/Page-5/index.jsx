@@ -15,6 +15,12 @@ export default function CreateTaskPageFive({ setPage, setTask, task }) {
         }));
     };
 
+    const handleRemoveStage = (index) => {
+        const updatedStages = [...task.stages]; // копируем массив
+        updatedStages.splice(index, 1);          // удаляем нужный этап
+        setTask({ ...task, stages: updatedStages }); // обновляем task через setTask
+    };
+
     const handleStageChange = (index, field, value) => {
         setTask(prev => {
             const updatedStages = prev.stages.map((stage, i) =>
@@ -35,7 +41,7 @@ export default function CreateTaskPageFive({ setPage, setTask, task }) {
                 </div>
                 <div className={styles.yourBudget}>
                    <div className={styles.selectPaymentMethod}>
-                        <div>
+                        <div className={task.paymentMethod === 'byStages' ? styles.active_method : ""}>
                             <label htmlFor="payment1">Оплата по этапам</label>
                             <input id="payment1" type="checkbox" 
                                 checked={task.paymentMethod === 'byStages'} 
@@ -44,7 +50,7 @@ export default function CreateTaskPageFive({ setPage, setTask, task }) {
                                     paymentMethod: "byStages"
                                 }))}/>
                         </div>
-                        <div>
+                        <div className={task.paymentMethod === 'fixed' ? styles.active_method : ""}>
                             <label htmlFor="payment2">Фиксированная оплата</label>
                             <input id="payment2" type="checkbox" 
                                 checked={task.paymentMethod === 'fixed'} 
@@ -74,17 +80,12 @@ export default function CreateTaskPageFive({ setPage, setTask, task }) {
                                                 <input 
                                                     type="number" 
                                                     className={styles.stagePrice} 
-                                                    placeholder="Ваш бюджет" 
+                                                    placeholder="Бюджет, ₽" 
                                                     value={stage.price}
                                                     onChange={(e) => handleStageChange(index, "price", e.target.value)}
                                                     required
                                                 />
-                                                <img
-                                                    src={rubleImg}
-                                                    width={11}
-                                                    height={20}
-                                                    alt="ruble" 
-                                                />
+                                                <button onClick={() => {handleRemoveStage(index)}}>✕</button>
                                             </li>
                                         ))}
                                     </ul>
@@ -102,7 +103,7 @@ export default function CreateTaskPageFive({ setPage, setTask, task }) {
                    }
                 </div>
             </div>
-            <CreateTaskLoad prev={4} next={6} setPage={setPage} maxPage={7} disabled={task.paymentMethod === 'fixed' ? false : !disabledBtn}/>
+            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={7} disabled={task.paymentMethod === 'fixed' ? false : !disabledBtn}/>
         </div>
     );
 }

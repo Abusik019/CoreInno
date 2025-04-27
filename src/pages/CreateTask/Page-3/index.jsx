@@ -51,10 +51,10 @@ export default function CreateTaskPageThree({ setPage, setTask, task }) {
                 <div className={styles.titleBlock}>
                     <h2>Какие <GradientText text="навыки"/> требуются для работы?</h2>
                     <p>
-                        Указание конкретных навыков при создании задания помогает привлечь исполнителей, поскольку четко обозначает ваши требования 
+                        Указание конкретных навыков при создании задания помогает привлечь исполнителей, поскольку четко обозначает ваши требования. 
                         <br />
                         <br />
-                        Позволяет сократить количество неподходящих откликов, привлечь более квалифицированных специалистов и улучшить качество выполнения проекта
+                        А также позволяет сократить количество неподходящих откликов, привлечь более квалифицированных специалистов и улучшить качество выполнения проекта.
                     </p>
                 </div>
                 <div className={styles.contentBlock}>
@@ -95,18 +95,18 @@ export default function CreateTaskPageThree({ setPage, setTask, task }) {
                             ))
                         }
                     </ul>
-                    <h4>Популярные среди заказчиков</h4>
+                    <h4 style={{marginTop: task.skills.length !== 0 ? "20px" : 0}}>Популярные среди заказчиков</h4>
                     <ul className={styles.popularSkills}>
                         {categories.length !== 0 &&
                             categories.map((item) => (
-                                <li key={item.id}>
+                                <li key={item.id} onClick={() => handleAddSkill(item)}>
                                     <h2>{item.rusName}</h2>
-                                    <button onClick={() => handleAddSkill(item)}>
+                                    <button>
                                         <img 
                                             src={addImg}
                                             width={18}
                                             height={18}
-                                            alt="delete" 
+                                            alt="add" 
                                         />
                                     </button>
                                 </li>
@@ -114,7 +114,7 @@ export default function CreateTaskPageThree({ setPage, setTask, task }) {
                     </ul>
                 </div>
             </div>
-            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={7} disabled={!Boolean(task.skills.length)}/>
+            <CreateTaskLoad prev={1} next={3} setPage={setPage} maxPage={7} disabled={!Boolean(task.skills.length)}/>
         </div>
     );
 }

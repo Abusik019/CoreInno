@@ -142,7 +142,7 @@ function Login() {
                     </button>
                     <button>
                         <img src={vkImg} width={24} height={24} alt="VK" />
-                        Войти через аккаунт Вконтакте
+                        Войти через Вконтакте
                     </button>
                 </div>
                 <div className={styles.haveAccount}>

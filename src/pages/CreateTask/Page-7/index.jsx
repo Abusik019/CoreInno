@@ -33,7 +33,7 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                             <h2>Описание заказа</h2>
                             <button 
                                 onClick={() => setIsHideDesc((prev) => !prev)}
-                                style={{transform: isHideDesc ? 'rotate(0deg)' : 'rotate(180deg)'}}
+                                style={{transform: isHideDesc ? 'rotate(-90deg)' : 'rotate(0deg)', transition: "200ms"}}
                             >
                                 <img src={arrowImg} width={20} height={20} alt="arrrow" />
                             </button>
@@ -54,7 +54,7 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                         <h2>Вложения</h2>
                         <ul>
                             {task.files.map((file, index) => (
-                                <li key={index}>{file.name}</li>
+                                <a href="#" key={index}>{file.name}</a>
                             ))}
                         </ul>
                     </div>
@@ -80,7 +80,7 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                             <li>
                                 <div>
                                     <h2>Сроки</h2>
-                                    <h3>Не более 2-х месяцев</h3>
+                                    <h3>До {task.details.deadlines.date} {task.details.deadlines.time}</h3>
                                 </div>
                                 <img
                                     src={sandTimerImg}
@@ -130,7 +130,7 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                 </div>
             </div>
             <div className={styles.buttonsContainer}>
-                <button onClick={() => setPage(6)}>Вернуться</button>
+                <button onClick={() => setPage(5)}>Вернуться</button>
                 <h2>7 из 7</h2>
                 <button onClick={() => setIsModalOpen(true)}>Продолжить</button>
             </div>
@@ -140,7 +140,7 @@ export default function CreateTaskPageSeven({ setPage, task }) {
                     <p>Вы начнёте получать отклики от фрилансеров с предложением исполнить ваш заказ</p>
                     <div>
                         <button onClick={() => setIsModalOpen(false)}>Отмена</button>
-                        <button onClick={() => setPage(8)}>Опубликовать</button>
+                        <button onClick={() => setPage(7)}>Опубликовать</button>
                     </div>
                 </div>
             </Modal>

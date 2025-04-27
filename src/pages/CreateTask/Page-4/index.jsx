@@ -21,7 +21,7 @@ export default function CreateTaskPageFour({ setPage, setTask, task }) {
                 </div>
                 <div className={styles.orderDetails}>
                     <ChooseCategory
-                        question="Введите категорию, которой принадлежит ваш заказ"
+                        question="Выберите категорию, которой принадлежит ваш заказ"
                         description="Список категорий"
                         options={task.skills}
                         task={task}
@@ -35,13 +35,13 @@ export default function CreateTaskPageFour({ setPage, setTask, task }) {
                     />
                     <ChoosePrice
                         question="Рассмотрите ли предложения за более высокую цену от высококвалифицированных исполнителей?"
-                        description="Да/Нет"
+                        description="Выберите один вариант"
                         task={task}
                         setTask={setTask}
                     />
                     <div className={styles.deadlines}>
                         <h2>Укажите сроки выполнения задания <span style={{color: '#F63939'}}>*</span></h2>
-                        <p>Заполните сроки</p>
+                        <p>Заполните конечные сроки</p>
                         <div className={styles.deadlinesContent}>
                             <DatePickerItem 
                                 value={task.details.deadlines.date}
@@ -85,7 +85,7 @@ export default function CreateTaskPageFour({ setPage, setTask, task }) {
                     </div>
                 </div>
             </div>
-            <CreateTaskLoad prev={3} next={5} setPage={setPage} maxPage={7} disabled={!isDisabledBtn}/>
+            <CreateTaskLoad prev={2} next={4} setPage={setPage} maxPage={7} disabled={!isDisabledBtn}/>
         </div>
     );
 }

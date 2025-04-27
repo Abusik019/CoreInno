@@ -34,7 +34,7 @@ export const TabsComponent = () => {
                 </li>
             </ul>
             <ul className={styles.notificationsList}>
-                <li>
+                <a href="#">
                     <img
                         src={avatarImg}
                         width={48}
@@ -52,8 +52,8 @@ export const TabsComponent = () => {
                         alt="circle"
                         className={styles.redCircle}
                     />
-                </li>
-                <li>
+                </a>
+                <a href="#">
                     <img
                         src={avatarImg}
                         width={48}
@@ -71,8 +71,8 @@ export const TabsComponent = () => {
                         alt="circle"
                         className={styles.redCircle}
                     />
-                </li>
-                <li>
+                </a>
+                <a href="#">
                     <img
                         src={avatarImg}
                         width={48}
@@ -90,8 +90,8 @@ export const TabsComponent = () => {
                         alt="circle"
                         className={styles.redCircle}
                     />
-                </li>
-                <li>
+                </a>
+                <a href="#">
                     <img
                         src={avatarImg}
                         width={48}
@@ -109,7 +109,7 @@ export const TabsComponent = () => {
                         alt="circle"
                         className={styles.redCircle}
                     />
-                </li>
+                </a>
             </ul>
         </div>
     );

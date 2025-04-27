@@ -1,5 +1,6 @@
 .modalOverlay {
     position: fixed;
+    visibility: hidden;
     top: 0;
     left: 0;
     width: 100%;
@@ -9,7 +10,16 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+
+    opacity: 0 !important;
+    transition: 200ms;
 }
+
+.modalOverlay.open {
+    opacity: 1 !important;
+    visibility: visible;
+}
+
 
 .modalContent {
     background: white;
@@ -17,7 +27,7 @@
 
     position: relative;
 
-    min-width: 568px;
+    width: 568px;
     height: fit-content;
     max-height: 100vh;
 
@@ -29,8 +39,16 @@
     justify-content: center;
 
     box-shadow: 0px 0px 24px 0px #0000000A;
-}
 
+
+    transform: scale(0.9);
+    opacity: 0;
+    transition: 100ms;
+}
+.modalContent.open {
+    transform: scale(1);
+    opacity: 1;
+}
 .closeButton {
     position: absolute;
     top: 20px;
@@ -40,4 +58,11 @@
     border: none;
 
     height: fit-content;
+    transition: 200ms;
+
+    opacity: 0.6;
+
+    &:hover{
+        opacity: 1;
+    }
 }

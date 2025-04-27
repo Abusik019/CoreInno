@@ -6,7 +6,9 @@ import menu from "../../assets/icons/order-menu.svg";
 import edit from "../../assets/icons/edit.svg";
 import add from "../../assets/icons/add.svg";
 import deleteImg from "../../assets/icons/redDelete.svg";
-
+import pending from "../../assets/icons/pending.svg";
+import done from '../../assets/icons/done.svg';
+import { useEffect, useRef } from "react";
 export const Order = ({
     title,
     desc,
@@ -22,13 +24,30 @@ export const Order = ({
         setIsDropdownVisible((prev) => !prev);
     };
 
+    const dropdownRef = useRef(null);
+
+    // Закрытие при клике вне модалки
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsDropdownVisible(false);
+        }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <li className={styles.orderItem}>
             <div className={styles.orderTheme}>
                 <h2>{theme}</h2>
                 <h3>{date}</h3>
             </div>
-            <h2>{title}</h2>
+            <a href="#"><h2>{title}</h2></a>
             <p>{desc}</p>
             <div className={styles.orderInfo}>
                 <div className={styles.orderInfoLeft}>
@@ -39,15 +58,26 @@ export const Order = ({
                     </div>
                 </div>
                 <div className={styles.orderInfoRight}>
-                    {status === 'pending' && <div className={styles.pendingOrder}>Заказ выполняется</div>}
-                    {status === 'done' && <div className={styles.doneOrder}>Заказ выполнен</div>}
+                    {status === 'pending' && 
+                        <div className={styles.pendingOrder}>
+                            <img src={pending} alt="pending" />
+                            Заказ выполняется
+                        </div>
+                    }
+                    {status === 'done' && 
+                        <div className={styles.doneOrder}>
+                            <img src={done} alt="pending" />
+                            Заказ выполнен
+                        </div>
+                    }
                 </div>
             </div>
 
-            <button className={styles.orderMenu} onClick={toggleDropdown}>
+            <button ref={dropdownRef} className={styles.orderMenu} onClick={toggleDropdown}>
                 <img src={menu} width={18} height={4} alt="menu" />
             </button>
             <div
+                ref={dropdownRef}
                 className={`${styles.orderDropdown} ${
                     isDropdownVisible ? styles.visible : ""
                 }`}

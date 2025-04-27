@@ -29,17 +29,22 @@
         font-size: 42px;
         font-weight: 400;
         line-height: 42px;
-        letter-spacing: -0.03em;
+        letter-spacing: -1.26px;
         text-align: left;
+        >span{
+            letter-spacing: -1.26px;
+        }
     }
 
     >p{
         margin-top: 20px;
-        opacity: 0.6;
+        opacity: 0.7;
 
         font-size: 18px;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 19.8px;
+
+        letter-spacing: 0.5px;
         text-align: left;
     }
 }
@@ -50,10 +55,11 @@
 
     >p{
         font-size: 18px;
-        font-weight: 400;
+        font-weight: 300;
+        letter-spacing: 0.5px;
         line-height: 19.8px;
         text-align: left;
-        opacity: 0.6;
+        opacity: 0.7;
 
         margin-top: 20px;
     }
@@ -62,6 +68,7 @@
         font-size: 28px;
         font-weight: 400;
         line-height: 30.8px;
+        letter-spacing: 0;
         text-align: left;
 
         margin-top: 40px;
@@ -76,6 +83,7 @@
     >div{
         width: 300px;
         height: 82px;
+        opacity: 0.5;
 
         border-radius: 15px;
 
@@ -91,11 +99,17 @@
 
         padding: 0 15px;
         box-sizing: border-box;
+        
+        transition: 200ms   ;
+        &:hover{
+            opacity: 0.9;
+        }
 
         >label{
             font-size: 18px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 19.8px;
+            letter-spacing: 0.5px;
             text-align: left;
 
             width: calc(100% - 20px);
@@ -107,7 +121,7 @@
 
             cursor: pointer;
 
-            padding-left: 15px;
+
             box-sizing: border-box;
 
             user-select: none;
@@ -144,6 +158,9 @@
             border: 2px solid #543BA7;
         }    
     }
+}
+.active_method{
+    opacity: 1 !important;
 }
 
 .paymentStages{
@@ -196,7 +213,7 @@
     gap: 10px;
 
     width: 100%;
-
+    
     >li{
         width: 100%;
         height: 50px;
@@ -205,20 +222,48 @@
         align-items: center;
         justify-content: space-between;
         gap: 10px;
+        transition: 200ms;
+        
+        >button{
+            background: none;
+            opacity: 0.7;
+            font-size: 16px;
 
+            transition: 200ms;
+            &:hover{
+                opacity: 1;
+            }
+        }
+
+        > img {
+            opacity: 0.8;
+        }
         >input{
-            border-color: #000;
+           
+            border-color: #00000067;
 
             height: 100%;
             border-radius: 12px;
 
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 140%; /* 22.4px */
+            letter-spacing: 0.5px;
+
             opacity: 0.8;
+            transition: 200ms;
+            &:focus{
+                opacity: 1;
+                border-color: #000000bb;
+            }
         }
 
         >input[type="number"] {
             -moz-appearance: textfield; 
             -webkit-appearance: none;
             appearance: none;
+            
         }
         
         >input[type="number"]::-webkit-inner-spin-button, 
@@ -238,13 +283,20 @@
 
             background-color: transparent;
 
-            border: 1px solid #000;
-
+            border: 1px solid #00000067;
             color: #000;
 
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 22.4px;
+            letter-spacing: 0.5px;
+
+            opacity: 0.8; 
+            transition: 200ms;
+            &:focus{
+                opacity: 1;
+                border-color: #000000bb !important;
+            }
         }
     }
 }
@@ -265,11 +317,17 @@
     gap: 4px;
 
     color: #000;
-    opacity: 0.6;
+    opacity: 0.7;
 
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.5px;
     line-height: 16px;
 
     margin-top: 15px;
+
+    transition: 200ms;
+    &:hover{
+        opacity: 0.95;
+    }
 }

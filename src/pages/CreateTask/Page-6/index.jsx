@@ -50,7 +50,7 @@ export default function CreateTaskPageSix({ setPage, setTask, task }) {
                     </ul>
                 </div>
                 <div className={styles.task}>
-                    {task.desc.length < 100 && 
+                    {task.desc.length < 30 && 
                         <div className={styles.taskWarning}>
                             <img 
                                 src={warningImg}
@@ -71,7 +71,7 @@ export default function CreateTaskPageSix({ setPage, setTask, task }) {
                             ...prev,
                             desc: e.target.value
                         }))}
-                        placeholder="Lorem ipsum dolor sit amet consectetur. Ultrices cursus massa aliquam tincidunt."
+                        placeholder="Расскажите, кем являетесь, какими навыками обладаете и т.д."
                     />
                     <div className={styles.files}>
                         <h2>Вложения</h2>
@@ -104,7 +104,7 @@ export default function CreateTaskPageSix({ setPage, setTask, task }) {
                     </div>
                 </div>
             </div>
-            <CreateTaskLoad prev={5} next={7} setPage={setPage} maxPage={7} disabled={!isDisabledBtn}/>
+            <CreateTaskLoad prev={4} next={6} setPage={setPage} maxPage={7} disabled={!isDisabledBtn}/>
         </div>
     );
 }

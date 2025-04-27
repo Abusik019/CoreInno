@@ -19,25 +19,31 @@
 .content input{
     width: 100%;
     padding: 20px 50px 20px 60px;
-    border: 2px solid #00000099;
+    border: 1px solid #00000073;
+
+    transition: 200ms;
+}
+.content input:focus{
+    border-color: #000;
 }
 .content h1{
     font-size: 42px;
     font-weight: 400;
+    letter-spacing: -1.26px;
+    line-height: 100%; /* 42px */
 }
 .banner{
     display: flex;
     align-items: center;
-    height: 248px;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
     border-radius: 12px;
     background-color: #FFFFFF;
     border: 1px solid #EAEAEA;
 
     margin-top: 30px;
 
-    padding: 18px 35px;
+    padding: 15px 35px;
     box-sizing: border-box;
     
     display: flex;
@@ -49,12 +55,25 @@
 
 .close{
     position: absolute;
-    right: 16px;
-    top: 16px;
-    
+    right: 12px;
+    top: 12px;
+    opacity: 0.6;
     background-color: transparent;
 
     cursor: pointer;
+}
+.banner_content{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+.banner1{
+    display: flex;
+    flex-direction: column;
+    margin-top: 17px;
+    margin-bottom: 17px;
+    justify-content: space-between;
 }
 .banner1 > img{
     position: static;
@@ -62,25 +81,36 @@
 .banner1 p:nth-child(1){
     font-size: 16px;
     opacity: .6;
+    margin-bottom: 8px;
 }
-.banner1 p:nth-child(2){
+.banner1 h2{
     font-size: 28px;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%; /* 30.8px */
+    letter-spacing: 0;
 }
 
 .banner1 > button{
     background-color: transparent;
     border: 1px solid #000000;
 
+    width: 144px;
+
     border-radius: 32px;
 
     padding: 12px 35px;
     box-sizing: border-box;
-
+    opacity: 0.6;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: 300ms;
+    &:hover{
+        opacity: 1;
+        width: 200px;
+    }
 }
 
 .mockGuide{
@@ -96,11 +126,16 @@
     margin-top: 30px;
 }
 
+.list > p{
+    transition: 200ms;
+}
 
+.list > p:hover {
+    color: #000 !important; 
+}
 
 .main{
     width: 100%;
-
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -116,46 +151,92 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 32px;
+}
+.left__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .right{
     width: 75%;
 }
 
-
 .sidebar{
     width: 100%;
     border: 1px solid #EAEAEA;
     border-radius: 12px;
-    padding: 15px 0 0 15px;
+    padding: 20px 25px;
     box-sizing: border-box;
-    
 }
 .sidebar h2{
-font-size: 18px;
-margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    letter-spacing: 0;
 }
 
 .sidebar ul li{
-    margin-bottom: 20px;
-    font-size: 18px;
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 100% !important; /* 16px */
+    font-style: normal;
+}
+.sidebar ul li:last-child{
+    margin-bottom: 0;
+}
+
+.sidebar ul li ul li{
+    line-height: 100% !important; /* 16px */
+    font-style: normal;
 }
 .sidebar ul li ul li:nth-child(1){
-    margin-top: 20px;
+    margin-top: 10px; 
 }
-
-
+.sidebar > ul > li > div {
+    opacity: 0.7;
+    transition: 150ms;
+}
+.sidebar > ul > li > ul > li{
+    opacity: 0.7;
+    transition: 150ms;
+    line-height: 100% !important; /* 16px */
+    font-style: normal;
+    height: auto !important;
+    margin-bottom: 6px;
+}
+.sidebar > ul > li > ul > li:hover{
+    opacity: 1;
+}
+.sidebar > ul > li > div:hover {
+    opacity: 1 !important;
+}
+.sidebar img{
+    margin-left: 5px;
+    transition: 100ms;
+}
+.active_category, .active_subcategory{
+    transform: rotate(90deg);
+    opacity: 1;
+}
 .price{
     width: 100%; 
     border: 1px solid #EAEAEA;
     border-radius: 12px;
-    padding: 15px 0 0 15px;
+    padding: 20px 25px;
     box-sizing: border-box;
+}
+.price img{
+    margin-left: 5px;
+    transition: 100ms;
 }
 .price h2{
     font-size: 18px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
 }
 .priceInputs{
     display: flex;
@@ -166,10 +247,16 @@ margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     margin-right: 10px;
-
+}
+.priceInputs div:last-child{
+    margin-right: 0;
 }
 .priceInputs div label{
-    color: gray;
+    opacity: 0.5;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 16.8px */
 }
 .priceInputs div input{
     background-color: transparent;
@@ -185,16 +272,15 @@ margin-bottom: 15px;
     border: 1px solid #000000;
 }
 .slider{
-    width: 255px;
+    width: 100%;
     height: 10px;
     border-radius: 5px;
-    position: relative;
-   bottom: -48px;
-    left: -130px;
-    margin-bottom: 50px;
-
 }
-
+.prices{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
 
 .track{
     background: #ccc;
@@ -218,59 +304,32 @@ margin-bottom: 15px;
     width: 100%;
     border: 1px solid #EAEAEA;
     border-radius: 12px;
-    padding: 15px 0 0 15px;
+    padding: 20px 25px;
     box-sizing: border-box;
 }
 .rating h2{
     font-size: 18px;
-    margin-bottom: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0;
 }
-
-.executor{
-    width: 100%;
-    border: 1px solid #EAEAEA;
-    border-radius: 12px;
-    padding: 15px 0 0 15px;
-    box-sizing: border-box;
+.rating img{
+    margin-left: 5px;
+    transition: 100ms;
 }
-.executor h2{
-    cursor: pointer;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-.executors{
+.rowStars{
     display: flex;
-    margin-bottom: 16px;
     align-items: center;
 }
-.executors input{
+.rowStars > div {
+    margin-left: 0px;
+    display: flex;
+}
+.rowStars > div > img {
+    margin-left: 8px;
     width: 20px;
-    height: 20px;
-    margin-right: 16px;
 }
-.executors p{
-    font-size: 18px;
-}
-.words {
-    width: 265px;
-    margin-top: 35px;
-    margin-left: 120px;
-}
-.words h2{
-    cursor: pointer;
-    font-size: 18px;
-}
-.word input{
-    box-sizing: border-box;
-    height: 40px;
-    padding: 5px 50px 5px 50px;
-    border: 2px solid #00000099;
-}
-.word > img{
-    position: relative;
-    top: 35px;
-    left: 15px;
-}
+
 .container{
     width: 265px;
     height: 272px;
@@ -288,7 +347,6 @@ margin-bottom: 15px;
    /* bottom: 28px; */
    
 }
-
 
 
 div::-webkit-scrollbar{
@@ -315,14 +373,16 @@ div::-webkit-scrollbar-thumb{
     width: 100%;
     border: 1px solid #EAEAEA;
     border-radius: 12px;
-    padding: 15px 0 0 15px;
+    padding: 20px 25px;
     box-sizing: border-box;
     
 }
 .orders h2{
     cursor: pointer;
     font-size: 18px;
-    margin-bottom: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0;
 }
 .order{
     margin-top: 20px;
@@ -341,26 +401,38 @@ div::-webkit-scrollbar-thumb{
     width: 100%;
     display: flex;
     flex-direction: column;  
-    margin-bottom: 180px; 
 }
 .buttons button:nth-child(1){
-    width: 265px;
+    width: 100%;
     height: 46px;
     border-radius: 10px;
     background-color:#000000;
+    font-size: 16px;
     color: #FFFFFF;
-    padding: 15px 30px 15px 30px;
+    letter-spacing: 0.5px;
+
+
+    transition: 150ms;
+    &:hover{
+        background-color: #1b1a1a;
+    }
 }
 .buttons button:nth-child(2){
-    width: 265px;
+    width: 100%;
     height: 46px;
     border-radius: 10px;
     border: 1px solid black;
-    padding: 15px 30px 15px 30px;
     background-color: transparent;
     color: #000000;
     margin-top: 10px;
-    
+    font-size: 16px;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+
+    transition: 150ms;
+    &:hover{
+        opacity: 1;
+    }
 }
 
 

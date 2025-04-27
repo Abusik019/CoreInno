@@ -25,19 +25,27 @@
         font-size: 42px;
         font-weight: 400;
         line-height: 42px;
-        letter-spacing: -0.03em;
+        letter-spacing: -1.26px;
         text-align: left;
+
+        > span {
+            letter-spacing: -1.26px;
+        }
     }
 
     >p{
         margin-top: 20px;
 
         font-size: 18px;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 19.8px;
         text-align: left;
 
-        max-width: 660px;
+        letter-spacing: 0.5px;
+
+        max-width: 800px;
+
+        opacity: 0.7;
     }
 
     >input{
@@ -49,15 +57,22 @@
         padding: 12px;
         box-sizing: border-box;
 
-        border: 1px solid #000;
+        border: 1px solid #000000bd;
         border-radius: 10px;
 
         opacity: 0.7;
 
         font-size: 16px;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 22.4px;
         text-align: left;
+        letter-spacing: 0.5px;
+
+        transition: 200ms;
+        &:focus{
+            opacity: 0.9;
+            border-color: #000;
+        }
     }
 
     >h3{
@@ -65,16 +80,17 @@
 
         font-size: 18px;
         font-weight: 400;
+        letter-spacing: 0.5px;
         line-height: 19.8px;
         text-align: left;
 
         color: #000;
 
-        opacity: 1;
+        opacity: 0.9;
     }
 
     .taskExmaples{
-        margin-top: 5px;
+        margin-top: 8px;
 
         display: flex;
         flex-direction: column;
@@ -82,6 +98,9 @@
 
         padding-left: 20px;
         box-sizing: border-box;
+        opacity: 0.7;
+        letter-spacing: 0.5px;
+        font-weight: 300;
 
         >li{
             list-style-type: disc;

@@ -1,5 +1,18 @@
 .gradient{
-    background: linear-gradient(180deg, #543BA7 0%, #7F78E9 100%);
-        -webkit-background-clip: text; 
-        -webkit-text-fill-color: transparent;
+    background: linear-gradient(270deg, #886DE0,  #795ae0, #3d288a, #6245c4, #886DE0);
+    background-size: 800% 800%;
+
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

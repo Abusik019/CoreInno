@@ -221,15 +221,15 @@ function MainReg() {
                             />
                         </button>
                     </div>
-                    <button
+                </form>
+                <button
                         type="button"
                         onClick={fetchSignUp}
                         className={styles.nextBtn}
                         disabled={isDisabled || loading}
                     >
                         {loading ? "Регистрация..." : "Продолжить"}
-                    </button>
-                </form>
+                </button>
                 <div className={styles.agree}>
                     <span>Регистрируясь, вы соглашаетесь с {" "}</span>
                     <Link

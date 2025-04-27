@@ -39,13 +39,15 @@ import CreateProfile from "./pages/CreateProfile";
 import InvitedFreelancers from "./pages/InvitedFreelancers";
 import { AuthProvider } from "./components/AuthProvider";
 import { Navbar } from "./components/Navbar";
+import CourseLending from "./pages/Course/CourseLending";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
     const location = useLocation();
     const showNavbar = !["/", "/registration", "/login", "/not-found"].includes(location.pathname);
 
     useLayoutEffect(() => {
-        if (location.pathname === "/" || location.pathname === "/login" || location.pathname === "/registration") {
+        if (location.pathname === "/" || location.pathname === "/login" || location.pathname === "/registration" || location.pathname==="/course") {
             document.body.classList.add("landing");
         } else {
             document.body.classList.remove("landing");
@@ -53,7 +55,9 @@ function App() {
     }, [location.pathname]);
 
     return (
+        
         <AuthProvider>
+            <ScrollToTop />
             {showNavbar && <Navbar theme="light"/>}
                 <Routes>
                     <Route path="/" element={<Lending />} />
@@ -91,6 +95,7 @@ function App() {
                     <Route path="/catalog-posts" element={<CatalogPosts />} />
                     <Route path="/support-chat" element={<SupportChat />} />
                     <Route path="/invited-freelancers" element={<InvitedFreelancers />} />
+                    <Route path="/course" element={<CourseLending />} />
                 </Routes>
         </AuthProvider>
     );

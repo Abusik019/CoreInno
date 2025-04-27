@@ -122,27 +122,37 @@ export const Navbar = ({ theme }) => {
                             </>
                         )}
                     </li>
+                    {isLogin ? (
+                        <li>
+                            <h2
+                                ref={workButtonRef}
+                                onClick={() => toggleNavDropdown("work")}
+                                style={{ opacity: isNavbarDropdown.work && "1" }}
+                            >
+                                Фрилансеры
+                            </h2>
+                            <div ref={workDropdownRef} 
+                                className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ""}`}
+                            >
+                                <Link to="/list-freelancer">Каталог</Link>
+                                {isLogin && <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>}
+                                {isLogin && <Link to="#">Нанятые исполнители</Link>}
+                                {isLogin && <Link to="/invited-freelancers">Приглашенные исполнители</Link>}
+                                {!isLogin && <Link to="/list-freelancer">Список фрилансеров</Link>}
+                            </div>
+                        </li>) : (
+                            <li>
+                                <Link to="/list-freelancer"
+                                    style={{ opacity: isNavbarDropdown.work && "1" }}
+                                >
+                                Фрилансеры
+                                </Link>
+                            </li>
+                        )
+                    }
+                    
                     <li>
-                        <h2
-                            ref={workButtonRef}
-                            onClick={() => toggleNavDropdown("work")}
-                            style={{ opacity: isNavbarDropdown.work && "1" }}
-                        >
-                            Фрилансеры
-                        </h2>
-                        <div
-                            ref={workDropdownRef}
-                            className={`${styles.freelancersDropdown} ${isNavbarDropdown.work ? styles.visible : ""}`}
-                        >
-                            <Link to="/list-freelancer">Каталог</Link>
-                            {isLogin && <Link to="/recently-viewed-freelancer">Недавно просмотренные</Link>}
-                            {isLogin && <Link to="#">Нанятые исполнители</Link>}
-                            {isLogin && <Link to="/invited-freelancers">Приглашенные исполнители</Link>}
-                            {!isLogin && <Link to="/list-freelancer">Список фрилансеров</Link>}
-                        </div>
-                    </li>
-                    <li>
-                        <Link to="#">Наш курс</Link>
+                        <Link to="/course">Наш курс</Link>
                     </li>
                     {isLogin && (
                         <li>
@@ -200,7 +210,7 @@ export const Navbar = ({ theme }) => {
                     )}
                     <div ref={profileDropdownRef} className={`${styles.profileDropdown} ${isNavbarDropdown.profile ? styles.visible : ""}`}>
                         <div className={styles.profileInfo}>
-                            <div className={styles.profileName}>
+                            <Link to="/customer-profile" className={styles.profileName}>
                                 <img
                                     src={userInfo?.avatarUrl ? userInfo.avatarUrl : avatarImg}
                                     width={48}
@@ -210,9 +220,9 @@ export const Navbar = ({ theme }) => {
                                 />
                                 <div className={styles.nameData}>
                                     <h2>{userInfo?.firstName} {userInfo?.lastName}</h2>
-                                    {userInfo?.country && <h3>{userInfo.country}</h3>}
+                                    {userInfo?.country ? <h3>{userInfo.country}</h3> : <h3>Россия</h3>}
                                 </div>
-                            </div>
+                            </Link>
                             <div className={styles.fillProfile}>
                                 <div className={styles.fillProfileContent}>
                                     <Link to="/create-profile">
@@ -222,7 +232,7 @@ export const Navbar = ({ theme }) => {
                                             width={14}
                                             height={14}
                                             alt="arrow"
-                                            style={{ transform: "rotate(-90deg)", opacity: "0.5" }}
+                                            style={{ transform: "rotate(-90deg)"}}
                                         />
                                     </Link>
                                 </div>

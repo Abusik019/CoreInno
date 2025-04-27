@@ -9,7 +9,7 @@ import CreateTaskPageSeven from "./Page-7";
 import CreateTaskPageEight from "./Page-8";
 
 export default function CreateTask() {
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [task, setTask] = useState({
         title: "",
         skills: [],
@@ -33,21 +33,21 @@ export default function CreateTask() {
 
     const renderPageContent = () => {
         switch (page) {
-            case 1:
+            case 0:
                 return <CreateTaskPageOne setPage={setPage}/>;
-            case 2:
+            case 1:
                 return <CreateTaskPageTwo setPage={setPage} setTask={setTask} task={task}/>;
-            case 3:
+            case 2:
                 return <CreateTaskPageThree setPage={setPage} setTask={setTask} task={task}/>;
-            case 4:
+            case 3:
                 return <CreateTaskPageFour setPage={setPage} setTask={setTask} task={task}/>;
-            case 5:
+            case 4:
                 return <CreateTaskPageFive setPage={setPage} setTask={setTask} task={task}/>;
-            case 6:
+            case 5:
                 return <CreateTaskPageSix setPage={setPage} setTask={setTask} task={task}/>;
-            case 7:
+            case 6:
                 return <CreateTaskPageSeven setPage={setPage} task={task}/>;
-            case 8:
+            case 7:
                 return <CreateTaskPageEight />;
             default:
                 return <div></div>;

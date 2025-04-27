@@ -1,5 +1,7 @@
 .navbar {
     --text-color: #fff; /* Белый по умолчанию (dark theme) */
+    --background-btn-color: #fff;
+    --btn-color: #000;
     --text-hover-opacity: 0.7;
     --border-color: #EAEAEA80; /* Полупрозрачный */
     --dropdown-text: #000;
@@ -11,11 +13,13 @@
 /* Если тема светлая */
 .navbar.light {
     --text-color: #000; /* Чёрный для light theme */
+    --background-btn-color: #000;
+    --btn-color: #fff;
     --text-hover-opacity: 0.8;
     --border-color: #00000033;
     --dropdown-text: #333;
     --arrow: url('../../assets/icons/smallArrow.svg');
-    --search-img: url('../../assets/icons/search.svg');
+    --search-img: url('../../assets/icons/BlackSearch.svg');
     --sign-out-color: #fff;
 }
 
@@ -53,6 +57,7 @@
             position: relative;
 
             >h2{
+
                 background-image: var(--arrow);
                 background-repeat: no-repeat;
                 background-size: 12px;
@@ -73,13 +78,13 @@
 
         >li > a, >li > h2{
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 100%;
 
             cursor: pointer;
             opacity: 0.7;
 
-            transition: opacity .3s ease-in-out;
+            transition: opacity .2s ease-in-out;
 
             color: var(--text-color);
             opacity: var(--text-hover-opacity);
@@ -105,15 +110,15 @@
 
         opacity: .5;
 
-        transition: width 0.3s ease-in-out, padding 0.3s ease-in-out, border-radius 0.3s ease-in-out, opacity .3s ease-in-out;
+        transition: width 0.3s ease-in-out, padding 0.3s ease-in-out, border-radius 0.3s ease-in-out, opacity 200ms;
     }
 
     .searchInput:hover{
-        opacity: 1;
+        opacity: .8;
     }
 
     .searchInput:focus{
-        opacity: 1;
+        opacity: .8;
     }
 
     >input[type="search"]::-webkit-search-decoration,
@@ -124,6 +129,7 @@
     }
 
     .searchInput.visible{
+
         width: 300px;
         height: 44px;
 
@@ -167,24 +173,28 @@
 
             >img{
                 opacity: .2;
-                transition: opacity .3s ease-in-out;
+                transition: 150ms;
             }
         }
 
         >button:hover > img, >a:hover > img{
-            opacity: 1;
+            opacity: 0.9;
         }
     }
 }
 
 .freelancersDropdown, .orderDropdown{
+    pointer-events: none;
+    cursor: default;
     width: fit-content;
     height: fit-content;
 
     background-color: #fff;
     color: var(--dropdown-text);
-    box-shadow: 0px 0px 12px 0px #0000000D;
-    border-radius: 8px;
+    box-shadow: 0px 0px 32px 0px #0000000e;
+    border-radius: 4px;
+
+    padding: 0 10px;
 
     display: flex;
     flex-direction: column;
@@ -192,21 +202,21 @@
 
     position: absolute;
     top: 44px;
-    left: -50%;
+    left: calc(-50% - 23px);
 
-    overflow: hidden;
+    overflow: visible;
 
     opacity: 0;
-    transform: scaleY(0);
+    /* transform: scaleY(1); */
     transform-origin: top;
 
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+    transition: opacity 0.2s ease;
 
     >a{
         width: 100%;
-        height: 40px;
 
-        padding: 12px 15px;
+        padding: 6px 15px;
         box-sizing: border-box;
 
         display: flex;
@@ -214,9 +224,12 @@
         gap: 10px;
 
         background-color: #fff;
-
+        font-weight: 300 !important;
+        letter-spacing: 0.5px;
         text-wrap: nowrap;
 
+        opacity: 0.7;
+        transition: 200ms;
         >h2{
             font-size: 14px;
             font-weight: 400;
@@ -225,35 +238,53 @@
     }
 
     >a:hover{
-        background-color: #0000000D;
+        opacity: 1;
     }
 
     >a:first-child{
+        margin-top: 10px;
         border-radius: 8px 8px 0 0;
     }
 
     >a:last-child{
         border-radius: 0 0 8px 8px;
+        margin-bottom: 10px;
+    }
+
+    &::before{
+        content: '▲';
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        color: #ffffff;
+        position: absolute;
+
+        font-size: 32px;
     }
 }
 
 .freelancersDropdown.visible {
+    pointer-events: auto;
+
     height: fit-content;
     opacity: 1;
-    transform: scaleY(1);
 
     z-index: 2;
 }
 
 .orderDropdown.visible {
+    pointer-events: auto;
+
     height: fit-content;
     opacity: 1;
-    transform: scaleY(1);
 
     z-index: 2;
 }
 
 .profileDropdown{
+    pointer-events: none;
+    cursor: default;
     width: 270px;
     height: fit-content;
 
@@ -272,10 +303,10 @@
     box-sizing: border-box;
 
     opacity: 0;
-    transform: scaleY(0);
+
     transform-origin: top;
 
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: 200ms;
 
     display: flex;
     flex-direction: column;
@@ -283,9 +314,9 @@
 }
 
 .profileDropdown.visible {
-    height: 375px;
+    pointer-events: auto;
     opacity: 1;
-    transform: scaleY(1);
+
 
     z-index: 2;
 }
@@ -309,24 +340,28 @@
     width: 100%;
     height: fit-content;
 
+    cursor: pointer;
+
     >.nameData{
 
         >h2{
             font-size: 16px;
-            font-weight: 400;
-            line-height: 16px;
-            text-align: left;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 100%; /* 16px */
+            letter-spacing: 0.5px;
         }
 
         >h3{
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 16px;
-            text-align: left;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 140%; /* 16.8px */
 
             opacity: 0.5;
 
-            margin-top: 5px;
+
+            margin-top: 3px;
         }
     }
 }
@@ -335,7 +370,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 5px;
 
     width: 100%;
     height: fit-content;
@@ -354,12 +389,20 @@
             align-items: center;
             justify-content: space-between;
             
+            opacity: 0.7;
+
+            transition: 200ms;
 
             > h2{
                 font-size: 14px;
-                font-weight: 400;
+                font-weight: 300;
                 line-height: 19px;
                 text-align: left;
+                letter-spacing: 0.5px;
+            }
+
+            &:hover{
+                opacity: 1;
             }
         }
     }
@@ -380,20 +423,25 @@
             background-color: #EAEAEA;
 
             >div{
-                background: linear-gradient(90deg, #886DE0 0%, #2B1867 100%);
+                background: linear-gradient(270deg, #886DE0,  #795ae0, #3d288a, #795ae0, #886DE0);
+                background-size: 800% 800%;
 
                 width: 76%;
                 height: 100%;
 
                 border-radius: 12px;
+
+                animation: gradientMove 2s ease infinite;
             }
         }
 
         >h2{
             font-size: 12px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 16px;
             text-align: left;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
         }
     }
 }
@@ -426,6 +474,14 @@
         align-items: center;
         justify-content: space-between;
 
+        opacity: 0.9;
+        transition: 300ms;
+
+        &:hover{
+            transform:translateX(1px);
+            opacity: 1;
+        }
+
         >div{
             width: 100%;
             display: flex;
@@ -436,18 +492,20 @@
 
         h2, a{
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 300;
+            font-style: normal;
+            line-height: 100%; /* 16px */
             line-height: 16px;
             text-align: left;
-
+            letter-spacing: 0.5px;
             cursor: pointer;
         }
 
         h3{
             font-size: 14px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 19px;
-
+            letter-spacing: 0.5px;
             opacity: 0.5;
 
             text-wrap: nowrap;
@@ -456,8 +514,11 @@
 }
 
 .notifictionsDropdown{    
+    pointer-events: none;
+    cursor: default;
+
     width: 334px;
-    height: fit-content;
+    height: 349px;
 
     background-color: #fff;
     color: var(--dropdown-text);
@@ -471,10 +532,8 @@
     overflow: hidden;
 
     opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
 
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: 200ms;
 
     display: flex;
     flex-direction: column;
@@ -494,29 +553,38 @@
 
         >h2{
             font-size: 18px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 20px;
             text-align: left;
+
+            letter-spacing: 0.5px;
         }
 
         >button{
             font-size: 14px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 20px;
+            letter-spacing: 0.5px;
             text-align: center;
 
             background-color: transparent;
             color: #000;
 
             opacity: 0.6;
+
+            transition: 200ms;
+
+            &:hover{
+                opacity: 0.9;
+            }
         }
     }
 }
 
 .notifictionsDropdown.visible {
-    height: 349px;
+    pointer-events: auto;
+
     opacity: 1;
-    transform: scaleY(1);
 
     z-index: 2;
 }
@@ -525,23 +593,22 @@
     padding: 14px 48px;
     box-sizing: border-box;
 
-    background-color: transparent;
-    border-color: var(--text-color);
-    color: var(--text-color);
+    background-color: var(--background-btn-color) !important;
+    color: var(--btn-color) !important;
     
-    border: 1px solid;
     border-radius: 10px;
-
+    border: 1px solid var(--background-btn-color);
     font-weight: 400;
     font-size: 16px;
     line-height: 16px;
 
-    transition: background-color .3s ease-in-out;
+    transition: background-color .2s ease-in-out;
 }
 
 .login:hover{
-    background-color: var(--text-color) !important;
-    color: var(--sign-out-color);
+    background-color: transparent !important;
+    border: 1px solid var(--background-btn-color);
+    color: var(--background-btn-color) !important;
 }
 
 .profileBtn > img{
@@ -554,3 +621,12 @@
         padding: 40px 120px;
     }
 }
+
+@keyframes gradientMove {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }

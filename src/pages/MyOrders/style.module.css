@@ -33,8 +33,61 @@
     display: flex;
     align-items: center;
     gap: 15px;
+
+    &>.tooltip > img{
+        margin-top: 13px;
+        opacity: 0.7;
+        cursor: pointer;
+
+        transition: 200ms;
+        &:hover{
+            opacity: 1;
+        }
+    }
 }
 
+/* Контейнер подсказок */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+  /* Текст подсказки */
+.tooltip .tooltiptext {
+    width: 260px;
+    background-color: rgba(223, 223, 223, 0.322);
+    color: #000000cc;
+    line-height: 110%;
+    text-align: start;
+    padding: 10px 15px;
+    border-radius: 6px;
+
+    left: 35px;
+
+    font-weight: 300;
+    font-size: 16px;
+
+    opacity: 0;
+
+    transition: 200ms;
+    /* Разместите текст всплывающей подсказки - см. Примеры ниже! */
+    position: absolute;
+    z-index: 1;
+}
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* Слева от всплывающей подсказки */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgba(223, 223, 223, 0.603) transparent transparent;
+  }
+  /* Показывать текст всплывающей подсказки при наведении указателя мыши на контейнер всплывающей подсказки */
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+}
 .myOrdersTitle > h2{
     font-size: 42px;
     font-style: normal;
@@ -45,20 +98,29 @@
 
 .myOrdersHeadContent > button{
     background-color: #000;
-
+    border: 1px solid transparent;
     padding: 12px 28px;
     box-sizing: border-box;
 
     border-radius: 10px;
 
+    transition: 200ms;
+    &:hover{
+        border-color: #000;
+        background-color: transparent;
+        > a{
+            color: #000;
+        }
+    }
     > a{
         color: #fff;
         text-decoration: none;
 
         font-size: 16px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 100%;
+        letter-spacing: 0.5px;
 
         display: flex;
         align-items: center;
@@ -83,16 +145,22 @@
     margin-top: 30px;
 
     background-color: #EAEAEA;
-    color: #464646;
-
+    color: #000;
+    opacity: 0.7;
     border-radius: 8px;
 
-    padding: 10px 24px;
+    padding: 10px 32px;
     box-sizing: border-box;
 
     font-weight: 400;
     font-size: 16px;
     line-height: 16px;
+    letter-spacing: 0.5px;
+
+    transition: 200ms;
+    &:hover{
+        opacity: 0.9;
+    }
 }
 
 .recommendedFreelancers{
@@ -117,6 +185,7 @@
                 font-size: 28px;
                 font-style: normal;
                 font-weight: 400;
+                letter-spacing: 0;
                 line-height: 31px;  
             }
     
@@ -127,22 +196,31 @@
                 background-color: transparent;
     
                 opacity: 0.6;
-    
+                transition: 200ms;
                 >img{
                     margin-top: 2px;
+                }
+                &:hover{
+                    opacity: 0.9;
                 }
             }
         }
 
         > a{
-            font-weight: 400;
+            font-weight: 300;
             font-size: 16px;
             line-height: 16px;
+            letter-spacing: 0.5px;
 
             background-color: transparent;
             color: #000;
 
-            opacity: 0.6;
+            opacity: 0.7;
+
+            transition: 200ms;
+            &:hover{
+                opacity: 1;
+            }
         }
     }
 }
@@ -190,6 +268,9 @@
             position: relative;
             overflow: hidden; 
 
+            transition: 200ms;
+            cursor: pointer;
+
             .guideArrow {
                 background-color: transparent;
 
@@ -234,11 +315,12 @@
 
                 > h2{
                     font-size: 14px;
-                    font-weight: 400;
+                    font-weight: 300;
                     line-height: 19px;
+                    opacity: 0.8;
+                    letter-spacing: 0.5px;
                     text-align: left;
                 }
-
                 > button{
                     background-color: transparent;
                 }
@@ -252,9 +334,10 @@
 
             > p{
                 font-size: 22px;
-                font-weight: 500;
+                font-weight: 500 !important;
                 line-height: 26px;
                 text-align: left;
+                letter-spacing:0;
 
                 margin-top: 12px;
 
@@ -275,21 +358,46 @@
                 position: absolute;
                 bottom: 30px;
                 right: 32px;
+
+                transition: 300ms;
             }
         }
 
-        >li::before {
+        >li:nth-last-child(-n+3)::before {
             content: "";
             position: absolute;
             inset: 0;
             padding: 1px; 
             border-radius: 12px;
-            background: linear-gradient(180deg, #EAEAEA 0%, rgba(159, 159, 210, 0.8) 100%);
+            --angle: 0deg;
+            background-image: linear-gradient(var(--angle), #EAEAEA, #EAEAEA, #9F9FD2, #EAEAEA, #EAEAEA);
+            animation: gradientMove 8s linear infinite; 
             -webkit-mask: 
                 linear-gradient(white 0 0) content-box, 
                 linear-gradient(white 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
         }
+
+        >li:nth-last-child(-n+3):hover{
+            background-color: #0000000a;
+        }
+        >li:hover{
+            >button{
+                transform: translateY(-5px);
+            }
+        }
     }
+}
+
+@keyframes gradientMove {
+	to {
+		--angle: 360deg;
+	}
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }

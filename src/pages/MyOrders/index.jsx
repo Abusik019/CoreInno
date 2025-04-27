@@ -21,12 +21,16 @@ export default function MyOrders() {
                 <div className={styles.myOrdersHeadContent}>
                     <div className={styles.myOrdersTitle}>
                         <h2>Мои заказы</h2>
-                        <img
-                            src={questionImg}
-                            width={24}
-                            height={24}
-                            alt="question"
-                        />
+                        
+                        <div className={styles.tooltip}>
+                            <img
+                                src={questionImg}
+                                width={24}
+                                height={24}
+                                alt="question"
+                            />
+                            <span className={styles.tooltiptext}>Здесь отображаются все заказы, которые ты выложил</span>
+                        </div>
                     </div>
                     <button>
                         <Link to="/create-task">
@@ -78,7 +82,7 @@ export default function MyOrders() {
                             />
                         </button>
                     </div>
-                    <Link to="">Показать ещё</Link>
+                    <Link to="/list-freelancer">Показать ещё</Link>
                 </div>
                 <FreelancersSlider />
             </section>
@@ -86,12 +90,10 @@ export default function MyOrders() {
                 <ul className={styles.guides}>
                     <li>
                         <div className={styles.guidePinnedTitle}>
-                            <h2>Название Гайда</h2>
+                            <h2>Идеальный исполнитель</h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur. At sodales
-                            sed adipiscing tempus est ac. Tempor elit
-                            blandittempus.
+                            Как же найти того самого, который не подведёт и выполнит заказ на совесть?
                         </p>
                         <button className={styles.guideArrow}>
                             <img
@@ -104,20 +106,10 @@ export default function MyOrders() {
                     </li>
                     <li>
                         <div className={styles.guideTitle}>
-                            <h2>Название Гайда</h2>
-                            <button>
-                                <img
-                                    src={close}
-                                    width={29}
-                                    height={29}
-                                    alt="close button"
-                                />
-                            </button>
+                            <h2>Зарабатывай на навыках</h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur. At
-                            sodales sed adipiscing tempus est ac. Tempor
-                            elit blandittempus.
+                            Как правильно оформить профиль, где искать первые заказы и как выделиться среди конкурентов?
                         </p>
                         <button className={styles.guideArrow}>
                             <img
@@ -130,41 +122,35 @@ export default function MyOrders() {
                     </li>
                     <li>
                         <div className={styles.guideTitle}>
-                            <h2>Название Гайда</h2>
-                            <button>
-                                <img
-                                    src={close}
-                                    width={29}
-                                    height={29}
-                                    alt="close button"
-                                />
-                            </button>
+                            <h2>Безопасные сделки</h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur.
+                            Как избежать обмана и без рисков провести сделку?
                         </p>
-                        <span>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur</span>
-                        <button className={styles.guideGoOne}>
-                            <GradientText text="Перейти" />
+                        <button className={styles.guideArrow}>
+                            <img
+                                src={blackArrow}
+                                width={134}
+                                height={15}
+                                alt="arrow"
+                            />
                         </button>
                     </li>
                     <li>
                         <div className={styles.guideTitle}>
-                            <h2>Название Гайда</h2>
-                            <button>
-                                <img
-                                    src={close}
-                                    width={29}
-                                    height={29}
-                                    alt="close button"
-                                />
-                            </button>
+                            <h2>Прокачай профиль</h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur.
+                            Что влияет на рейтинг? Как собрать сильное портфолио и получать больше заказов?
                         </p>
-                        <span>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur</span>
-                        <button className={styles.guideGoTwo}>Перейти</button>
+                        <button className={styles.guideArrow}>
+                            <img
+                                src={blackArrow}
+                                width={134}
+                                height={15}
+                                alt="arrow"
+                            />
+                        </button>
                     </li>
                 </ul>
             </section>
