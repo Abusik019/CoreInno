@@ -30,22 +30,22 @@ import course3Img from '../../assets/images/course3.png';
 
 const switchData = [
     {
-        id: 1,
+        id: 0,
         title: 'Новые функции платформы',
         desc: 'Мы обновили биржу — добавили встроенный чат, быстрые переводы и систему гарантии сделок, а также поддержку пользователей',
     },
     {
-        id: 2,
+        id: 1,
         title: 'Увеличение скорости выполнения заданий',
         desc: 'Благодаря использованию нейросетей исполнители нашего сервиса смогут выполнить задания за пару часов, вместо того чтобы ждать 2-3 дня, как это делают конкуренты',
     },
     {
-        id: 3,
+        id: 2,
         title: 'Адекватная ценовая политика',
         desc: 'Комииссия сервиса будет значительно меньше, чем у конкурентов. Начинаться с 15% от суммы заказа и уменьшаться в зависимости от количества успешно выполненных работ',
     },
     {
-        id: 4,
+        id: 3,
         title: 'Оптимизация логики формирования рейтинга',
         desc: 'Формирование рейтинга будет базироваться на опыте человека, количестве качественных работ в портфолио, отзывах реальных клиентов',
     },
@@ -63,7 +63,8 @@ const textVariants = {
 const imageVariants = {
     visible: { opacity: 1, transition: { duration: 0.3 }, y:0 },
     hidden: { opacity: 0, transition: { duration: 3 }, y: 20 },
-  };
+};
+const images = [switch1Img, switch2Img, switch3Img, switch4Img]
 
 export default function Lending() {
     const dispatch = useDispatch();
@@ -105,6 +106,7 @@ export default function Lending() {
     })
     const sectionRef = useRef(null);
 
+    
     useEffect(() => {
         dispatch(fetchSubCategoryId());
     }, []);
@@ -132,34 +134,20 @@ export default function Lending() {
 
     useEffect(() => {
         if (isVisible) {
-            setActiveItem(1)
+            setActiveItem(0)
         }
     }, [isVisible]);
 
     useEffect(() => {
         if (isVisible && activeItem !== null) {
             const timer = setTimeout(() => {
-                setActiveItem((prev) => (prev !== 4 ? prev + 1 : null));
-            }, 5000);
+                setActiveItem((prev) => (prev !== 3 ? prev + 1 : 0));
+            }, 4000);
     
             return () => clearTimeout(timer);
         }
     }, [isVisible, activeItem]);
 
-    function changeImageSource(){
-        switch(activeItem){
-            case 1:
-                return switch1Img;
-            case 2:
-                return switch2Img;
-            case 3:
-                return switch3Img;
-            case 4:
-                return switch4Img;
-            default:
-                return switch1Img;
-        }
-    }
 
     function getSubcategoryByCategory(id){
         const newSubcategories = Boolean(Array.isArray(subcategories) && subcategories.length) && subcategories.filter((item) => item.categoryId === id);
@@ -496,12 +484,35 @@ export default function Lending() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={sectionVariants}
-            >
-                <img src={changeImageSource()} width={474} height={531} alt="switch" />
+            >   
+                <div style={{
+                        position: "relative",
+                        width: "485px",/* или сколько нужно */
+                        height: "531px", /* задаёшь высоту под картинки */
+                        overflow: "hidden",/* чтобы лишнее не выходило за границы */
+                    }}
+                >
+                    {images.map((src, index) => {
+                        return (<img 
+                                key={index}
+                                src={src}
+                                alt='switch'
+                                style={{
+                                    opacity: index === activeItem ? 1 : 0,
+                                    transition: "opacity 900ms ease-in-out",
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                        />)
+                    })}
+                </div>
                 <ul className={styles.switchInfoList}>
                     {switchData.map(item => (
-                        <li key={item.id} className={`${activeItem === item.id ? styles.active : ''}`}>
-                            <div onClick={() => setActiveItem(item.id)}></div>
+                        <li onClick={() => setActiveItem(item.id)} key={item.id} className={`${styles.switchItem} ${activeItem === item.id ? styles.active : ''}`}>
+                            <div></div>
                             <div>
                                 <h2>{item.title}</h2>
                                 <p>{item.desc}</p>
@@ -568,25 +579,3 @@ export default function Lending() {
         </div>
     )
 }
-
-
-{/* <section className={styles.stats}>
-    <ul className={styles.statsList}>
-        <li>
-            <h2>1000+</h2>
-            <p>Выполненных заказов</p>
-        </li>
-        <li>
-            <h2>100К+</h2>
-            <p>Посещений в месяц</p>
-        </li>
-        <li>
-            <h2>15К+</h2>
-            <p>Активных пользователей</p>
-        </li>
-        <li>
-            <h2>99.9%</h2>
-            <p>Успешных заказов</p>
-        </li>
-    </ul>
-</section> */}

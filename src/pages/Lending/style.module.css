@@ -527,7 +527,7 @@
                 width: 100%;
                 height: 0%;
                 background: linear-gradient(180deg, #543BA7 0%, #7F78E9 100%);
-                transition: height 5s linear;
+                transition: height 4s linear;
             }
 
             >:last-child{
@@ -550,7 +550,7 @@
         }
 
         > li.active {
-            opacity: 1;
+            opacity: 1 !important;
 
             > :first-child::after {
                 height: 100%;
@@ -1007,4 +1007,12 @@
         right: 120px;
     }
 
+}
+.switchItem{
+    cursor: pointer;
+    opacity: 0.5 !important;
+
+    &:hover{
+        opacity: 0.8 !important;
+    }
 }

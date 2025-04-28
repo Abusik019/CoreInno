@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 import search from "../../assets/icons/search.svg";
 import right from "../../assets/icons/right.svg";
 import bottom from "../../assets/icons/bottom.svg";
-import mockGuide from "../../assets/images/mockGuide.png";
+import mockGuide from "../../assets/images/leaderFreelance.png";
 import Frame from "../../assets/icons/Frame.png";
 import close from "../../assets/icons/close.svg";
 import arrowImg from "../../assets/icons/arrow.svg";
@@ -94,7 +94,7 @@ return (
             <div className={styles.banner1}>
               <div>
                 <p>Полезные советы</p>
-                <h2>Узнай как стать влиятельнее на бирже</h2> 
+                <h2>Как стать лидером на бирже и увеличить своё влияние</h2> 
               </div>
               <button><img src={arrowImg} width={48} height={15} alt="" /></button>
             </div>

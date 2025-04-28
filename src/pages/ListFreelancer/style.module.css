@@ -19,8 +19,9 @@
     width: 100%;
     padding: 20px 50px 20px 60px;
     border: 1px solid #00000073;
-
+    font-weight: 300 !important;
     transition: 200ms;
+    letter-spacing: 0.5px;
 }
 .content input:focus{
     border-color: #000;
@@ -275,6 +276,7 @@
     box-sizing: border-box;
     height: 40px;
     padding: 5px 50px 5px 50px;
+
     border: 2px solid #00000099;
 }
 .word img{

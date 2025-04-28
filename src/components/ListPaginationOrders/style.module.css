@@ -153,7 +153,7 @@
   letter-spacing: 0.5px;
   /* box-sizing: border-box; */
 
-  transition: 100ms;
+  transition: 200ms;
   &:hover{
     background-color: transparent;
     border: 1px solid black;

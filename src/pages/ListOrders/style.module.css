@@ -20,8 +20,9 @@
     width: 100%;
     padding: 20px 50px 20px 60px;
     border: 1px solid #00000073;
-
+    font-weight: 300 !important;
     transition: 200ms;
+    letter-spacing: 0.5px;
 }
 .content input:focus{
     border-color: #000;
@@ -51,6 +52,12 @@
     justify-content: space-between;
 
     position: relative;
+
+    transition: 200ms;
+
+    &:hover{
+        border-color: #00000031;
+    }
 }
 
 .close{
@@ -80,8 +87,11 @@
 }
 .banner1 p:nth-child(1){
     font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 16px */
     opacity: .6;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 .banner1 h2{
     font-size: 28px;

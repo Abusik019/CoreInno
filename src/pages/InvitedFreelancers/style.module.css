@@ -21,6 +21,7 @@
     >h2{
         font-weight: 400;
         font-size: 42px;
+        letter-spacing: -1.26px;
         line-height: 42px;
     }
 
@@ -28,6 +29,7 @@
         font-weight: 500;
         font-size: 22px;
         line-height: 26px;
+        letter-spacing: 0.5px;
 
         margin-top: 30px;
 
@@ -36,6 +38,7 @@
         opacity: 1;
 
         >span{
+            letter-spacing: 0.5px;
             color: #00000080;
         }
     }
@@ -44,6 +47,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 16px;
+        letter-spacing: 0.5px;
 
         opacity: .5;
         margin-top: 5px;
@@ -74,11 +78,13 @@
             >h2{
                 font-weight: 400;
                 font-size: 18px;
+                letter-spacing: 0.5px;
                 line-height: 20px;
             }
         
             >h3{
-                font-weight: 400;
+                font-weight: 300;
+                letter-spacing: 0.5px;
                 font-size: 14px;
                 line-height: 20px;
         
@@ -87,17 +93,16 @@
             }
         
             >p{
-                font-weight: 400;
+                width: 70%;
+
+                font-weight: 300;
                 font-size: 16px;
                 line-height: 16px;
-        
+                letter-spacing: 0.5px;
                 margin-top: 10px;
 
-                color: #000000B2;
-
-                >span{
-                    color: #000;
-                }
+                color: #000;
+                opacity: 0.7;
             }
 
             .offerInfo{
@@ -109,7 +114,8 @@
 
                 margin-top: 20px;
 
-                >div{
+                > a {
+                    cursor: pointer;
                     display: flex;
                     align-items: center;
                     gap: 10px;
@@ -118,11 +124,13 @@
                         display: flex;
                         flex-direction: column;
                         align-items: flex-start;
-                        gap: 5px;
+                        justify-content: space-between;
 
                         >h2{
                             font-weight: 400;
                             font-size: 14px;
+                            opacity: 0.95;
+                            letter-spacing: 0.5px;
                             line-height: 14px;
 
                             >span{
@@ -139,8 +147,9 @@
                         }
 
                         >h3{
-                            font-weight: 400;
+                            font-weight: 300;
                             font-size: 14px;
+                            letter-spacing: 0.5px;
                             line-height: 20px;
 
                             opacity: .6;
@@ -148,7 +157,15 @@
                     }
                 }
 
-                >a{
+                >a:first-child{
+                    transition: 200ms;
+                    transition-delay: 200ms;
+                    &:hover{
+                        transform: translateX(1px);
+                    }
+                }
+
+                >a:last-child{
                     padding: 5px 15px 5px 43px;
                     box-sizing: border-box;
 
@@ -157,6 +174,7 @@
 
                     font-weight: 400;
                     font-size: 14px;
+                    letter-spacing: 0.5px;
                     line-height: 20px;
 
                     background-image: url('../../assets/icons/chat.svg');
@@ -165,7 +183,7 @@
                     background-repeat: no-repeat;
 
                     opacity: .7;
-                    transition: opacity .3s ease-in-out;
+                    transition: 200ms;
                 }
 
                 >a:hover{
@@ -198,11 +216,18 @@
         position: absolute;
         top: 41.5px;
         right: 25px;
+
+        transition: 200ms;
+
+        > img {
+            transition: 200ms;
+        }
     }
 
     >h3{
         font-weight: 500;
         font-size: 22px;
+        letter-spacing: 0.5px;
         line-height: 26px;
 
         color: #000;
@@ -211,12 +236,14 @@
 
         >span{
             color: #00000080;
+            letter-spacing: 0.5px;
         }
     }
 
     >p{
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
+        letter-spacing: 0.5px;
         line-height: 16px;
 
         opacity: .5;
@@ -250,27 +277,41 @@
             justify-content: space-between;
 
             opacity: .7;
-
+            transition: 200ms;
+            > a {
+                opacity: 0.7;
+                transition: 200ms;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+            &:hover{
+                opacity: 1;
+            }
             >div{
 
                 >h2{
                     font-weight: 400;
                     font-size: 18px;
+                    letter-spacing: 0.5px;
                     line-height: 20px;
+                    
                 }
             
                 >h3{
-                    font-weight: 400;
+                    font-weight: 300;
                     font-size: 14px;
-                    line-height: 14px;
+                    letter-spacing: 0.5px;
+                    line-height: 20px;
             
-                    margin-top: 10px;        
-                    opacity: .7;
+                    margin-top: 5px;        
+                    opacity: .6;
                 }
             
                 >h4{
                     font-weight: 400;
                     font-size: 16px;
+                    letter-spacing: 0.5px;
                     line-height: 16px;
             
                     margin-top: 10px;

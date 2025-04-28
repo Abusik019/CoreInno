@@ -13,6 +13,9 @@ import listImg from "../../assets/icons/list.svg";
 import editImg from "../../assets/icons/edit2.svg";
 import plusImg from "../../assets/icons/plusWithBg.svg";
 import messageImg from "../../assets/icons/bigChat.svg";
+import locationImg from "../../assets/icons/location.svg";
+import emailImg from "../../assets/icons/email.svg"
+import boxImg from '../../assets/icons/empty-box.svg'
 
 const data = {
     first_name: "1",
@@ -55,13 +58,12 @@ export default function MyCustomerProfile() {
                                     >
                                         <img
                                             src={verifyImg}
-                                            width={22}
-                                            height={22}
+                                            width={20}
+                                            height={20}
                                             alt="verify"
                                         />
                                     </button>
-                                    {isShowVerify && (
-                                        <div className={styles.isVerify}>
+                                    <div className={`${styles.isVerify} ${isShowVerify ? styles.visible : ""}`}>
                                             <h2>Профиль верифицирован</h2>
                                             <div>
                                                 Заказчик подтвердил свою
@@ -73,10 +75,12 @@ export default function MyCustomerProfile() {
                                                     alt="rhombus"
                                                 />
                                             </div>
-                                        </div>
-                                    )}
+                                    </div>
                                 </div>
-                                <h3>{data.location ? "Россия, Казань" : "Город, Страна - mm:hh"}</h3>
+                                <div className={styles.location}>
+                                    <img src={locationImg} alt="location" />
+                                    <h3>{data.location ? "Россия, Казань" : "Город, Страна - mm:hh"}</h3>
+                                </div>
                             </div>
                         </div>
                         <div className={styles.profileActions}>
@@ -113,16 +117,23 @@ export default function MyCustomerProfile() {
                     </div>
                     <div className={styles.profileVerification}>
                         <h2>Верификация</h2>
-                        {data.isEmail ? <h3>Почта подтверждена</h3> : (
-                            <div className={styles.notVerification}>
-                                <h3>Подтвердить почту</h3>
+                        {data.isEmail ? 
+                            <div className={styles.emailVerify}>
+                                <img src={emailImg} alt="email" />
+                                <h3>Почта подтверждена</h3>
+                            </div> : (
+                            <a href='#' className={styles.notVerification}>
+                                <div>
+                                    <img src={emailImg} alt="email" />
+                                    <h3>Подтвердите почту</h3>
+                                </div>
                                 <img 
                                     src={arrowImg} 
                                     width={32}
                                     height={12}
                                     alt="arrow"
                                 />
-                            </div>
+                            </a>
                         )}
                     </div>
                     <div className={styles.profileEducation}>
@@ -152,10 +163,10 @@ export default function MyCustomerProfile() {
                         <h2>Сфера деятельности</h2>
                         {data.sphere ? (
                             <ul className={styles.profileSkills}>
-                                <li>Сфера</li>
-                                <li>Сфера</li>
-                                <li>Сфера</li>
-                                <li>Сфера</li>
+                                <li>Разработка и IT</li>
+                                <li>Дизайн</li>
+                                <li>Маркетинг</li>
+                                <li>Видео и аудио</li>
                             </ul>
                         ) : (
                             <div className={styles.notSpheres}>
@@ -174,21 +185,15 @@ export default function MyCustomerProfile() {
                                 Lorem ipsum dolor sit amet consectetur. Sit diam
                                 imperdiet elit proin non cursus ridiculus. Nam
                                 blandit egestas malesuada imperdiet facilisis in non
-                                sit. Dictum vel nec metus morbi.
-                                <br />
-                                Lorem ipsum dolor sit amet consectetur. Tortor
+                                sit. Dictum vel nec metus morbi.Lorem ipsum dolor sit amet consectetur. Tortor
                                 aenean nec risus vel. Magna sed augue eget iaculis
                                 vitae enim quam molestie. Sagittis sagittis dolor
-                                tincidunt sit id aliquam in id. Elementum integer
-                                proin lobortis commodo. Odio dolor lacus in sed
-                                lorem luctus sodales. Fringilla commodo mattis leo
-                                eget ultricies integer tortor proin. Nunc cursus vel
-                                consectetur dui commodo. In dolor diam tortor
-                                rhoncus id amet adipiscing egestas.
+                                tincidunt sit id aliquam in id.
                             </h3>
                         </>
                         ) : (
                             <>
+                                <h2>Описание</h2>
                                 <h4>Пока это поле пустует, расскажите немного о себе и своих увлечениях!</h4>
                                 <Link to="#"><GradientText text="Рассказать о себе"/></Link>
                             </>
@@ -213,8 +218,8 @@ export default function MyCustomerProfile() {
                                                 <h2>Имя Юзера</h2>
                                                 <img
                                                     src={like}
-                                                    width={20}
-                                                    height={20}
+                                                    width={16}
+                                                    height={16}
                                                     alt="like"
                                                 />
                                             </div>
@@ -239,8 +244,8 @@ export default function MyCustomerProfile() {
                                                 <h2>Имя Юзера</h2>
                                                 <img
                                                     src={like}
-                                                    width={20}
-                                                    height={20}
+                                                    width={16}
+                                                    height={16}
                                                     alt="like"
                                                 />
                                             </div>
@@ -265,8 +270,8 @@ export default function MyCustomerProfile() {
                                                 <h2>Имя Юзера</h2>
                                                 <img
                                                     src={like}
-                                                    width={20}
-                                                    height={20}
+                                                    width={16}
+                                                    height={16}
                                                     alt="like"
                                                 />
                                             </div>
@@ -291,8 +296,8 @@ export default function MyCustomerProfile() {
                                                 <h2>Имя Юзера</h2>
                                                 <img
                                                     src={like}
-                                                    width={20}
-                                                    height={20}
+                                                    width={16}
+                                                    height={16}
                                                     alt="like"
                                                 />
                                             </div>
@@ -326,7 +331,9 @@ export default function MyCustomerProfile() {
                                 </div>
                             </>
                         ) : (
+                            
                             <div className={styles.notReviews}>
+                                <div className={styles.divider}></div>
                                 <img 
                                     src={messageImg}
                                     width={68}
@@ -339,57 +346,68 @@ export default function MyCustomerProfile() {
                     </section>
                 </div>
             </div>
-            {data.announcements && (
-                <section className={styles.announcement}>
-                    <div className={styles.announcementTitleBlock}>
-                        <h2>Ваши объявления</h2>
-                        <div>
-                            <button>
-                                <img 
-                                    src={editImg} 
-                                    width={24}
-                                    height={24}
-                                    alt="edit" 
-                                />
-                            </button>
-                            <button>
-                                <img 
-                                    src={plusImg} 
-                                    width={24}
-                                    height={24}
-                                    alt="plus" 
-                                />
-                            </button>
-                        </div>
+            <section className={styles.announcement}>
+                <div className={styles.announcementTitleBlock}>
+                    <h2>Ваши объявления</h2>
+                    <div>
+                        <button>
+                            <img 
+                                src={editImg} 
+                                width={24}
+                                height={24}
+                                alt="edit" 
+                            />
+                        </button>
+                        <button>
+                            <img 
+                                src={plusImg} 
+                                width={24}
+                                height={24}
+                                alt="plus" 
+                            />
+                        </button>
                     </div>
-                    <ul className={styles.announcementList}>
-                        <li>
-                            <div>
-                                <h2>Выбранная тема</h2>
-                                <h3>2 декабря, 00:11</h3>
-                            </div>
-                            <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
-                            <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
-                        </li>
-                        <li>
-                            <div>
-                                <h2>Выбранная тема</h2>
-                                <h3>2 декабря, 00:11</h3>
-                            </div>
-                            <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
-                            <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
-                        </li>
-                        <li>
-                            <div>
-                                <h2>Выбранная тема</h2>
-                                <h3>2 декабря, 00:11</h3>
-                            </div>
-                            <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
-                            <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
-                        </li>
-                    </ul>
-                </section>
-            )}
+                </div>
+                
+                {!data.announcements ? (
+                    
+                    <section className={styles.notAnnouncement}>
+                        <div className={styles.divider}></div>
+                        <img src={boxImg} alt="box" />
+                        <p><span>Вы не выложили ни одного объявления, но можете</span> <Link to="/create-task"><GradientText text="сделать это сейчас"/></Link></p>
+                    </section>
+                    ) : (
+                        <ul className={styles.announcementList}>
+                            <li>
+                                <div>
+                                    <h2>Выбранная тема</h2>
+                                    <h3>2 декабря, 00:11</h3>
+                                </div>
+                                <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
+                                <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
+                            </li>
+                            <li>
+                                <div>
+                                    <h2>Выбранная тема</h2>
+                                    <h3>2 декабря, 00:11</h3>
+                                </div>
+                                <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
+                                <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
+                            </li>
+                            <li>
+                                <div>
+                                    <h2>Выбранная тема</h2>
+                                    <h3>2 декабря, 00:11</h3>
+                                </div>
+                                <h2>Контроль и консультирование менеджеров по техническим вопросам</h2>
+                                <p>Нужен человек, способный и распологающий временем для контроля, консультирования и содействия менеджерам в части, касающейся технических вопросов по монтажу ворот и дверей</p>
+                            </li>
+                        </ul>
+                    )
+                }
+                
+                
+            </section>
         </div>
     );
 }
