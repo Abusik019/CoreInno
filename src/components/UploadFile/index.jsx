@@ -1,9 +1,11 @@
 import React from "react";
 import { Upload } from "antd";
+import styles from "./style.module.css";
 const { Dragger } = Upload;
 
 const UploadFile = ({ setFile }) => (
     <Dragger
+        className={styles.ant_upload}
         customRequest={({ file, onSuccess }) => {
             console.log("Файл получен, но не отправляется:", file);
             onSuccess("ok");
@@ -27,15 +29,26 @@ const UploadFile = ({ setFile }) => (
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: '#EAEAEA40',
-            borderColor: '#000',
+            backgroundColor: '#EAEAEA25',
+            borderColor: '#EAEAEA',
             borderStyle: 'dashed',
         }}
     >
-        <p className="ant-upload-text">
+        <p 
+            className={styles.ant_upload_text}
+            style={{
+                opacity: 1
+            }}
+        >
             Нажмите для загрузки или перетащите файл
         </p>
-        <p className="ant-upload-text">Максимальный размер файла 100МБ</p>
+        <p 
+            className={styles.ant_upload_text}
+            style={{
+                opacity: 0.7
+            }}
+        >
+            Максимальный размер файла 100МБ</p>
     </Dragger>
 );
 

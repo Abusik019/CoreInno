@@ -15,7 +15,8 @@
     width: 100%;
 
     >button{
-        padding: 10px 30px;
+        width: 150px;
+        padding: 9px 30px;
         box-sizing: border-box;
 
         border-radius: 10px;

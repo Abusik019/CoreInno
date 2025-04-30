@@ -1,5 +1,4 @@
 .invitedFreelancers{
-    width: 100%;
     height: fit-content;
 
     margin-top: 128px;
@@ -172,7 +171,7 @@
                     border: 1px solid #000;
                     border-radius: 10px;
 
-                    font-weight: 400;
+                    font-weight: 300;
                     font-size: 14px;
                     letter-spacing: 0.5px;
                     line-height: 20px;

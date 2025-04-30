@@ -1,6 +1,5 @@
 .content{
-    width: 1200px;
-    margin: auto;
+    width: 100%;
 }
 .listFreelancer{
     width: 100%;
@@ -12,14 +11,14 @@
 }
 .content img{
     position: relative;
-    top: 40px;
+    top: 42px;
     left: 25px;
 }
 .content input{
     width: 100%;
     padding: 20px 50px 20px 60px;
     border: 1px solid #00000073;
-
+    font-weight: 300;
     transition: 200ms;
 }
 .content input:focus{
@@ -100,7 +99,7 @@
     opacity: 1;
 }
 .left{
-    width: 24%;
+    width: 300px;
 
     padding-top: 20px;
     box-sizing: border-box;
@@ -254,6 +253,9 @@
     width: 20px;
     height: 20px;
     margin-right: 13px;
+}
+.right{
+    width: calc(100% - 300px - 20px);
 }
 .executors p{
     font-size: 16px;

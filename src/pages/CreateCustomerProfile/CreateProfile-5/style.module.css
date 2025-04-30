@@ -25,20 +25,25 @@
         font-size: 42px;
         font-weight: 400;
         line-height: 42px;
-        letter-spacing: -0.03em;
+        letter-spacing: -1.26px;
         text-align: left;
 
         max-width: 60%;
+
+        > span {
+            letter-spacing: -1.26px;
+        }
     }
 
     >h3{
         font-size: 18px;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 20px;
+        letter-spacing: 0.5px;
         text-align: left;
 
-        margin-top: 20px;
-        opacity: 0.6;
+        margin-top: 15px;
+        opacity: 0.7;
 
         max-width: 60%;
     }
@@ -59,11 +64,20 @@
         justify-content: center;
         gap: 10px;
 
+        opacity: 0.8;
+
+        transition: 200ms;
+
+        &:hover{
+            opacity: 1;
+        }
+
         >span{
             color: #000;
 
-            font-size: 18px;
-            font-weight: 400;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
             line-height: 20px;
             text-align: center;
         }
@@ -81,6 +95,7 @@
         font-size: 28px;
         font-weight: 400;
         line-height: 31px;
+        letter-spacing: 0;
         text-align: left;
 
         margin-bottom: 28px;
@@ -96,6 +111,28 @@
 
         >div{
             width: 100%;
+            > label {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 100%; /* 16px */
+                letter-spacing: 0.5px;
+            }
+
+            > input{
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 300;
+                letter-spacing: 0.5px;
+                line-height: 140%; /* 22.4px */
+
+                transition: 200ms;
+                border-color: #00000069;
+
+                &:focus{
+                    border-color: #000000ab;
+                }
+            }
         }
 
         .formSpeciality, .formEducationPlace{
@@ -112,8 +149,27 @@
             >div{
                 width: 50%;
 
-                >input{
+                > input{
                     width: 100%;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    letter-spacing: 0.5px;
+                    line-height: 140%; /* 22.4px */
+    
+                    transition: 200ms;
+                    border-color: #00000069;
+    
+                    &:focus{
+                        border-color: #000000ab;
+                    }
+                }
+                > label {
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: 100%; /* 16px */
+                    letter-spacing: 0.5px;
                 }
             }
         }
@@ -139,6 +195,12 @@
                 cursor: pointer;
             
                 margin-left: 5px;
+
+                transition: 200ms;
+                opacity: 0.7;
+                &:hover{
+                    opacity: 1;
+                }
             }
             
             >input[type="checkbox"]:checked {
@@ -158,10 +220,11 @@
                 width: 50%;
 
                 >h2{
-                    font-size: 18px;
-                    font-weight: 400;
-                    line-height: 20px;
-                    text-align: left;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: 100%; /* 16px */
+                    letter-spacing: 0.5px;
 
                     margin-bottom: 5px;
                 }
@@ -183,7 +246,7 @@
                         box-sizing: border-box;
 
                         border-radius: 10px;
-                        border: 1px solid #000;
+                        border: 1px solid #00000069;
 
                         background-color: #fff;
                         color: #000;
@@ -191,7 +254,14 @@
                         font-size: 16px;
                         font-weight: 400;
                         line-height: 22.4px;
+                        letter-spacing: 0.5px;
                         text-align: left;
+
+                        transition: 200ms;
+
+                        &:focus{
+                            border-color: #000000ab;
+                        }
                     }
                     
                     >input[type="number"]::-webkit-inner-spin-button, 
@@ -206,17 +276,19 @@
 
         .formBtns{
             width: 100%;
-
+            margin-top: 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
 
             >button{
-                padding: 10px 30px;
+                width: 164px;
+                padding: 9px 30px;
                 box-sizing: border-box;
 
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: 300;
+                letter-spacing: 0.5px;
                 line-height: 16px;
                 text-align: center;
 
@@ -227,11 +299,21 @@
             >:first-child{
                 background-color: #fff;
                 color: #000;
+
+                transition: 200ms;
+                &:hover{
+                    opacity: 0.7;;
+                }
             }
 
             >:last-child{
                 background-color: #000000;
                 color: #fff;
+
+                transition: 200ms;
+                &:hover{
+                    background-color: #000000d7;
+                }
             }
         }
     }
@@ -272,6 +354,7 @@
                 >h2{
                     font-size: 22px;
                     font-weight: 500;
+                    letter-spacing: 0;
                     line-height: 26.4px;
                     text-align: left;
                 }
@@ -287,14 +370,24 @@
 
                     >button{
                         background-color: transparent;
+                        > img {
+                            opacity: 0.8;
+
+                            transition: 200ms;
+
+                            &:hover{
+                                opacity: 1;
+                            }
+                        }
                     }
                 }
             }
 
             >h3{
                 font-size: 18px;
-                font-weight: 400;
+                font-weight: 300;
                 line-height: 20px;
+                letter-spacing: 0.5px;
                 text-align: left;
 
                 opacity: 0.6;
@@ -304,13 +397,14 @@
 
             >p{
                 font-size: 18px;
-                font-weight: 400;
+                font-weight: 300;
+                letter-spacing: 0.5px;
                 line-height: 20px;
                 text-align: left;
 
                 margin-top: 15px;
 
-                opacity: 0.6;
+                opacity: 0.7;
             }
         }
     }
@@ -331,7 +425,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.6;
+
+    transition: 200ms;
+
+    &:hover{
+        opacity: 1;
+    }
 }
+
 
 .experienceWrapper{
     display: flex;

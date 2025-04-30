@@ -177,7 +177,7 @@ export default function CreateProfilePageSix({ setPage, setUser, user }) {
                         </div>
                         <div className={styles.formBtns}>
                             <button onClick={handleCloseModal}>Назад</button>
-                            <button onClick={() =>  setIsOpenModal(false)} style={{opacity: isSaveDisabled ? '0.2' : '1'}} disabled={isSaveDisabled}>Сохранить</button>
+                            <button onClick={() => setIsOpenModal(false)} style={{opacity: isSaveDisabled ? '0.2' : '1', pointerEvents: isSaveDisabled ? 'none' : 'auto'}} disabled={isSaveDisabled}>Сохранить</button>
                         </div>
                     </form>
                 </div>

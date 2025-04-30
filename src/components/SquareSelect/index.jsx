@@ -35,24 +35,28 @@ export const SquareSelect = ({ question, description, task, setTask }) => {
     console.log(task.details.subcategories);
 
     return (
-        <div className={styles.selectWrapper}>
-            <h2>{question} <span style={{color: '#F63939'}}>*</span></h2>
-            <p>{description}</p>
-            <div className={styles.selectOption}>
-                {choosenCategoryArray.length !== 0 &&
-                    choosenCategoryArray.map(item => (
-                        <div className={styles.checkboxWrapper} key={item.id}>
-                            <input 
-                                type='checkbox' 
-                                checked={task.details.subcategories.some(el => el.id === item.id)}
-                                onChange={() => handleChangeSubcategories(item)}
-                            />
-                            <label>
-                                {item.rusName}
-                            </label>
-                        </div>
-                    ))}
-            </div>
-        </div>
+        <>
+            {choosenCategoryArray.length !== 0 &&
+                <div className={styles.selectWrapper}>
+                    <h2>{question} <span style={{color: '#F63939'}}>*</span></h2>
+                    <p>{description}</p>
+                    <div className={styles.selectOption}>
+                        {choosenCategoryArray.length !== 0 &&
+                            choosenCategoryArray.map(item => (
+                                <div className={styles.checkboxWrapper} key={item.id}>
+                                    <input 
+                                        type='checkbox' 
+                                        checked={task.details.subcategories.some(el => el.id === item.id)}
+                                        onChange={() => handleChangeSubcategories(item)}
+                                    />
+                                    <label>
+                                        {item.rusName}
+                                    </label>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+            }
+        </>
     )
 }

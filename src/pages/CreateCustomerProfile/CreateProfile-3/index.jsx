@@ -127,7 +127,10 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                                                 </button>
                                             </div>
                                         </div>
-                                        <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3>
+                                        {item.end_month && item.end_year ? 
+                                            <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3> :
+                                            <h3>{item.start_month}.{item.start_year} - сейчас</h3>
+                                        }
                                         <p>{item.description}</p>
                                     </div>
                                 </li>
@@ -161,7 +164,7 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                             <input type="text" id="name" value={myExperience.title} placeholder="Разработчик игр" required onInput={(e) => handleSetData(e, 'title')}/>
                         </div>
                         <div className={styles.formCompany}>
-                            <label htmlFor="company">Компания (если есть)</label>
+                            <label htmlFor="company">Компания</label>
                             <input type="text" id="company" value={myExperience.company} placeholder="Electronic Arts" onInput={(e) => handleSetData(e, 'company')}/>
                         </div>
                         <div className={styles.formLocation}>
@@ -201,7 +204,7 @@ export default function CreateProfilePageThree({ setPage, setUser, user }) {
                             <textarea 
                                 value={myExperience.description}
                                 onChange={(e) => handleSetData(e, 'description')} 
-                                required 
+                                required placeholder="Укажите описание вашей должности"
                             />
                         </div>
                         <div className={styles.formBtns}>

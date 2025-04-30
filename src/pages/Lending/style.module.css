@@ -9,7 +9,7 @@
     max-width: 100%;
     height: fit-content;
 
-    padding: 200px 8% 100px 8%;
+    padding: 200px 120px 100px 120px;
 
     display: flex;
     flex-direction: column;
@@ -253,7 +253,7 @@
             width: 100%;
 
             display: grid;
-            grid-template-columns: 50% 50%; 
+
             grid-template-rows: auto auto; 
             gap: 20px;
 

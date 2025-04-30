@@ -1,6 +1,5 @@
 .content{
-    width: 1200px;
-    margin: auto;
+    width: 100%;
 }
 .listFreelancer{
     width: 100%;
@@ -12,7 +11,7 @@
 }
 .content img{
     position: relative;
-    top: 40px;
+    top: 42px;
     left: 25px;
 }
 .content input{
@@ -36,8 +35,6 @@
 .main{
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
     gap: 20px;
 }
 
@@ -101,7 +98,7 @@
     opacity: 1;
 }
 .left{
-    width: 24%;
+    width: 300px;
 
     padding-top: 20px;
     box-sizing: border-box;
@@ -255,6 +252,9 @@
     width: 20px;
     height: 20px;
     margin-right: 13px;
+}
+.right{
+    width: calc(100% - 300px - 20px);
 }
 .executors p{
     font-size: 16px;

@@ -36,7 +36,7 @@ export default function CreateProfilePageEight({ setPage, user }) {
         <div className={styles.createProfile}>
             <div className={styles.createProfileContainer}>
                 <h2>Ваш профиль</h2>
-                <p>Вы сможете изменить данные позже в разделе настроек, а пока что Ваш профиль выглядит таким образом</p>
+                <p>Вы сможете изменить данные позже в разделе настроек, а пока что ваш профиль выглядит таким образом</p>
                 <div className={styles.details}>
                     <div className={styles.detailsContent}>
                         <img 

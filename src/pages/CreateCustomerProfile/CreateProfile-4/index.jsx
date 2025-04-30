@@ -176,7 +176,7 @@ export default function CreateProfilePageFour({ setPage, setUser, user }) {
                             <textarea 
                                 value={myExperience.description}
                                 onChange={(e) => handleSetData(e, 'description')} 
-                                required 
+                                required placeholder="Укажите описание события"
                             />
                         </div>
                         <div className={styles.formBtns}>

@@ -27,7 +27,6 @@ export default function FreelancersSlider() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [indexFavorite, setIndexFavorite] = useState(null);
     const [favorite, setFavorite] = useState(false);
-
     function favorites(index) {
         setFavorite(!favorite);
         setIndexFavorite(index);
@@ -35,13 +34,13 @@ export default function FreelancersSlider() {
 
     const prevSlide = () => {
         setCurrentIndex((prevIndex) => 
-            Math.max(prevIndex - 1, 0)
+            Math.max(prevIndex - 2, 0)
         );
     };
 
     const nextSlide = () => {
         setCurrentIndex((prevIndex) =>
-            Math.min(prevIndex + 1, mockFreelancers.length - 3)
+            Math.min(prevIndex + 2, mockFreelancers.length - 4)
         );
     };
 
@@ -56,17 +55,11 @@ export default function FreelancersSlider() {
                         }}
                     >
                         {mockFreelancers.map((slide, index) => {
-                            const isVisible =
-                                index >= currentIndex &&
-                                index < currentIndex + 3;
+                            const isVisible = index >= currentIndex && index < currentIndex + 4;
                             return (
                                 <li
                                     key={slide.id}
-                                    className={`${styles.freelancerCard} ${
-                                        isVisible
-                                            ? styles.visible
-                                            : styles.hidden
-                                    }`}
+                                    className={styles.freelancerCard}
                                 >
                                     <div className={styles.freelancerInfo}>
                                         <img
@@ -154,8 +147,8 @@ export default function FreelancersSlider() {
                     className={styles.nextSlide} 
                     onClick={nextSlide}
                     style={{
-                        opacity: currentIndex === mockFreelancers.length - 3 ? '0.5' : '1',
-                        cursor: currentIndex === mockFreelancers.length - 3 ? 'default' : 'pointer'
+                        opacity: currentIndex === mockFreelancers.length - 4 ? '0.5' : '1',
+                        cursor: currentIndex === mockFreelancers.length - 4 ? 'default' : 'pointer'
                     }}
                 >
                     <img

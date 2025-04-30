@@ -29,58 +29,42 @@ export default function CreateProfilePageTwo({ setPage, setUser, user }) {
             <div className={styles.createProfileContainer}>
                 <h2>Укажите <GradientText text="сферу"/> деятельности</h2>
                 <h3>
-                    По желанию, Вы можете выбрать одну или несколько сфер деятельности или оставить это поле пустым. Не переживайте, Ваш выбор можно изменить позже (не более 4 категорий)
+                    По желанию, вы можете выбрать одну или несколько сфер деятельности (не более 4) или оставить это поле пустым
                 </h3>
                 <ul className={styles.categories}>
                     {categories.length !== 0 &&
                         categories.map((item) => (
                             <li
                                 key={item.id}
-                                onClick={() => {
+                                onClick={(e) => {
+                                    if (choosenCategories.includes(item.id)) {
+                                        e.stopPropagation();
+                                        setChoosenCategories((prev) => prev.filter(el => el !== item.id));
+                                    }
+
                                     if(choosenCategories.length < 4){
+                                        e.stopPropagation();
                                         !choosenCategories.includes(item.id) && setChoosenCategories((prev) => [...prev, item.id])
                                     }
                                 }}
                                 style={{
                                     backgroundColor: choosenCategories.includes(item.id) ? "#fff" : "#EAEAEA",
-                                    border: choosenCategories.includes(item.id) ? "1px solid #000" : "none",
+                                    border: choosenCategories.includes(item.id) ? "1px solid #000" : "1px solid transparent",
                                 }}
                             >
                                 <span style={{opacity: choosenCategories.includes(item.id) ? 1 : 0.6}}>
                                     {item.rusName}
                                 </span>
-                                {choosenCategories.includes(item.id) ? (
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            setChoosenCategories((prev) => prev.filter(el => el !== item.id));
-                                        }}
-                                    >
-                                        <img
-                                            src={krestikImg}
-                                            width={16}
-                                            height={16}
-                                            alt="close"
-                                        />
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            setChoosenCategories((prev) => [
-                                                ...prev,
-                                                item.id
-                                            ]);
-                                        }}
-                                    >
-                                        <img
-                                            src={plusImg}
-                                            width={16}
-                                            height={16}
-                                            alt="plus"
-                                        />
-                                    </button>    
-                                )}
+
+                                <img
+                                    src={plusImg}
+                                    style={{
+                                        transform: choosenCategories.includes(item.id) ? "rotate(45deg)" : ""
+                                    }}
+                                    width={18}
+                                    height={18}
+                                    alt="close"
+                                />
                             </li>
                         ))}
                 </ul>

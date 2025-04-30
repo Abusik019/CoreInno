@@ -6,6 +6,7 @@ import bottom from "../../assets/icons/bottom.svg";
 import mockGuide from "../../assets/images/leaderFreelance.png";
 import Frame from "../../assets/icons/Frame.png";
 import close from "../../assets/icons/close.svg";
+import { motion, AnimatePresence } from 'framer-motion';
 import arrowImg from "../../assets/icons/arrow.svg";
 import FilledStarBlack from '../../assets/icons/filled-star-black.svg';
 import FilledStarGray from '../../assets/icons/filled-star-gray.svg';
@@ -156,7 +157,13 @@ return (
                 <img src={right} alt="" className={openCategor ? styles.active_category : ""}/>
               </h2>
               {openCategor && (
-                <ul>
+                <ul
+                  initial={{ opacity: 0, maxHeight: 0 }}
+                  animate={{ opacity: 1, maxHeight: "500px" }}  // Указываем большое значение для maxHeight
+                  exit={{ opacity: 0, maxHeight: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  style={{overflow: "hidden"}}
+                >
                   {categories.map((category, index) => (
                     <li key={category.id}>
                       <div onClick={() => toggleCategory(index)} style={{ cursor: "pointer", opacity: activeCategory===index ? 1 : 0.8 }}>

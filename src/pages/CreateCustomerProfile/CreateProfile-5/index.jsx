@@ -157,7 +157,7 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
             />
             <Modal isOpen={isOpenModal} onClose={handleCloseModal}>
                 <div className={styles.modalContainer}>
-                    <h2>Указать Ваше образование</h2>
+                    <h2>Ваше образование</h2>
                     <form>
                         <div className={styles.formSpeciality}>
                             <label htmlFor="specialty">Специальность <span style={{color: '#F63939'}}>*</span></label>
@@ -201,7 +201,7 @@ export default function CreateProfilePageFive({ setPage, setUser, user }) {
                         </div>
                         <div className={styles.formBtns}>
                             <button onClick={handleCloseModal}>Назад</button>
-                            <button onClick={handleSave} style={{opacity: isSaveDisabled ? '0.2' : '1'}} disabled={isSaveDisabled}>Сохранить</button>
+                            <button onClick={handleSave} style={{pointerEvents: isSaveDisabled ? 'none' : 'auto', opacity: isSaveDisabled ? '0.2' : '1'}} disabled={isSaveDisabled}>Сохранить</button>
                         </div>
                     </form>
                 </div>

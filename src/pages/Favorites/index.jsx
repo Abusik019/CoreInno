@@ -19,12 +19,12 @@ export default function Favorites() {
                             <li>
                                 <div className={styles.taskContent}>
                                     <div>
-                                        <h3>Жанна Кондратьева</h3>
+                                        <a href="#">Жанна Кондратьева</a>
                                         <span>5.0</span>
                                     </div>
-                                    <h4>
+                                    <a href="#">
                                         Создать сайт для стоматологический клиники
-                                    </h4>
+                                    </a>
                                 </div>
                                 <button>
                                     <img
@@ -38,12 +38,12 @@ export default function Favorites() {
                             <li>
                                 <div className={styles.taskContent}>
                                     <div>
-                                        <h3>Жанна Кондратьева</h3>
+                                        <a href="#">Жанна Кондратьева</a>
                                         <span>5.0</span>
                                     </div>
-                                    <h4>
+                                    <a href="#">
                                         Создать сайт для стоматологический клиники
-                                    </h4>
+                                    </a>
                                 </div>
                                 <button>
                                     <img
@@ -57,12 +57,12 @@ export default function Favorites() {
                             <li>
                                 <div className={styles.taskContent}>
                                     <div>
-                                        <h3>Жанна Кондратьева</h3>
+                                        <a href="#">Жанна Кондратьева</a>
                                         <span>5.0</span>
                                     </div>
-                                    <h4>
+                                    <a href="#">
                                         Создать сайт для стоматологический клиники
-                                    </h4>
+                                    </a>
                                 </div>
                                 <button>
                                     <img
@@ -93,7 +93,7 @@ export default function Favorites() {
                                         />
                                         <div className={styles.freelancerName}>
                                             <div>
-                                                <h3>Жанна Кондратьева</h3>
+                                                <a href="#">Жанна Кондратьева</a>
                                                 <span>5.0</span>
                                                 <img
                                                     src={energyImg}
@@ -102,10 +102,10 @@ export default function Favorites() {
                                                     alt="energy"
                                                 />
                                             </div>
-                                            <h4>
+                                            <a href="#">
                                                 Маркетолог-эксперт со стажем 14 лет
                                                 практических работ
-                                            </h4>
+                                            </a>
                                             <h5>Регион</h5>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@ export default function Favorites() {
                                         />
                                         <div className={styles.freelancerName}>
                                             <div>
-                                                <h3>Жанна Кондратьева</h3>
+                                                <a href="#">Жанна Кондратьева</a>
                                                 <span>5.0</span>
                                                 <img
                                                     src={energyImg}
@@ -144,10 +144,10 @@ export default function Favorites() {
                                                     alt="energy"
                                                 />
                                             </div>
-                                            <h4>
+                                            <a href="#">
                                                 Маркетолог-эксперт со стажем 14 лет
                                                 практических работ
-                                            </h4>
+                                            </a>
                                             <h5>Регион</h5>
                                         </div>
                                     </div>
@@ -177,7 +177,7 @@ export default function Favorites() {
                                         />
                                         <div className={styles.freelancerName}>
                                             <div>
-                                                <h3>Жанна Кондратьева</h3>
+                                                <a href="#">Жанна Кондратьева</a>
                                                 <span>5.0</span>
                                                 <img
                                                     src={energyImg}
@@ -186,10 +186,10 @@ export default function Favorites() {
                                                     alt="energy"
                                                 />
                                             </div>
-                                            <h4>
+                                            <a href="#">
                                                 Маркетолог-эксперт со стажем 14 лет
                                                 практических работ
-                                            </h4>
+                                            </a>
                                             <h5>Регион</h5>
                                         </div>
                                     </div>
@@ -219,16 +219,10 @@ export default function Favorites() {
                         <ul className={styles.saveAnnouncementsList}>
                             <li>
                                 <div className={styles.announcementContent}>
-                                    <img
-                                        src={avatarImg}
-                                        width={80}
-                                        height={80}
-                                        alt="avatar"
-                                    />
                                     <div>
-                                        <h3>
+                                        <a href="#">
                                             Контекстная реклама любых видов под ключ
-                                        </h3>
+                                        </a>
                                         <h4>от 1000₽</h4>
                                         <h5>Срок выполнения: от 48 часов</h5>
                                     </div>
@@ -244,16 +238,10 @@ export default function Favorites() {
                             </li>
                             <li>
                                 <div className={styles.announcementContent}>
-                                    <img
-                                        src={avatarImg}
-                                        width={80}
-                                        height={80}
-                                        alt="avatar"
-                                    />
                                     <div>
-                                        <h3>
+                                        <a href="#">
                                             Контекстная реклама любых видов под ключ
-                                        </h3>
+                                        </a>
                                         <h4>от 1000₽</h4>
                                         <h5>Срок выполнения: от 48 часов</h5>
                                     </div>
@@ -269,16 +257,10 @@ export default function Favorites() {
                             </li>
                             <li>
                                 <div className={styles.announcementContent}>
-                                    <img
-                                        src={avatarImg}
-                                        width={80}
-                                        height={80}
-                                        alt="avatar"
-                                    />
                                     <div>
-                                        <h3>
+                                        <a href="#">
                                             Контекстная реклама любых видов под ключ
-                                        </h3>
+                                        </a>
                                         <h4>от 1000₽</h4>
                                         <h5>Срок выполнения: от 48 часов</h5>
                                     </div>
@@ -306,7 +288,7 @@ export default function Favorites() {
                                 menuItem === "all"
                                     ? "#EAEAEA80"
                                     : "transparent",
-                            opacity: menuItem === "all" ? "1" : "0.6",
+                            opacity: menuItem === "all" ? "0.9" : "0.6",
                         }}
                     >
                         Все категории

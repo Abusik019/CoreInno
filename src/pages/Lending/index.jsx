@@ -521,13 +521,14 @@ export default function Lending() {
                     ))}
                 </ul>
             </motion.section>
+            
             <motion.section
                 className={styles.course}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={sectionVariants}
-            >
+            >   
                 <h2>Курс по искусственному интелекту</h2>
                 <p>Наш курс по искусственному интеллекту (ИИ) создан специально для фрилансеров, которые хотят зарабатывать больше и автоматизировать рутинные задачи.</p>
                 <button>Перейти к курсу</button>
