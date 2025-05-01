@@ -66,7 +66,7 @@ export default function CreateProfilePageOne({ setPage, setUser, user }) {
                     <img src={avatarImg} width={78} height={78} alt="avatar"/>
                 </div>
             </div>
-            <CreateTaskLoad prev={0} next={2} setPage={setPage} maxPage={8} nextText={file ? 'Продолжить' : 'Продолжить без резюме'} onNext={
+            <CreateTaskLoad prev={0} next={2} setPage={setPage} maxPage={8} nextText={file ? 'Продолжить' : 'Пропустить'} onNext={
                 () => {
                     setUser((prev) => ({
                         ...prev,

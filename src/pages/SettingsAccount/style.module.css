@@ -1,44 +1,80 @@
 .rod{
-    width: 219px;
-    height: 291px;
+    width: 280px;
+    box-sizing: border-box;
+    height: fit-content;
     border: 1px solid #0000001A;
-    padding: 25px 30px 15px 30px;
+    padding: 25px 30px 30px 30px;
     border-radius: 12px;
 }
 .rod h1{
-    font-size: 42px;
-    margin-bottom: 25px;
+    font-size: 28px;
+    margin-bottom: 35px;
+    letter-spacing: 0;
+    font-style: normal;
     font-weight: 400;
+    line-height: 110%; /* 30.8px */
 }
 .categor{
     display: flex;
     width: 219px;
     height: 20px;
     gap: 10px;
-    margin-bottom: 30px;
     align-items: center;
     /* color: gray; */
+
+    opacity: 0.5;
+    transition: 200ms;
     
+    cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+.categors{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.open_categor{
+    opacity: 1 !important;
 }
 .categor img {
     width: 20px;
     height: 20px;
 }
 .categor p{
-    cursor: pointer;
     color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 16px */
+    letter-spacing: 0.5px;
 }
 
 .rod2{
+    width: calc(100% - 280px - 20px);
     text-align: start;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    > div {
+        width: 100%;
+    }
 }
 .rod2 > h2{
- 
     font-size: 28px;
-    padding: 20px;
+    padding: 25px;
     border: 1px solid #0000001A;
     border-radius: 12px;
     font-weight: 400;
+    letter-spacing: 0;
+    line-height: 110%; /* 30.8px */;
+}
+.subs{
+    display: flex;
+    gap: 10px;
 }
 .info{
     width: 100%;
@@ -56,9 +92,18 @@
     padding: 25px 30px;
     box-sizing: border-box;
 
-    margin-top: 15px;
+    > div > div{
+        width: 840px;
+    }
+    > h4{
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        line-height: 100%; /* 16px */
+        font-style: normal;
+        opacity: 0.7;
+    }
 }
-
 .info >:first-child{
     display: flex;
     align-items: center;
@@ -68,13 +113,20 @@
         font-weight: 400;
         font-size: 22px;
         line-height: 26px;
-        letter-spacing: 0px;
+        letter-spacing: 0.5px;
     }
 
     >img{
         cursor: pointer;
+        opacity: 0.5;
+
+        transition: 200ms;
+        &:hover{
+            opacity: 0.8;
+        }
     }
 }
+
 .user{
     display: flex;
     align-items: center;
@@ -82,10 +134,11 @@
 }
 
 .user1 p:nth-child(2){
-    margin-top: 5px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    color: gray;
+    line-height: 100%; /* 16px */
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-weight: 300;
+    font-size: 16px;
 }
 .user1 p:nth-child(3){
     font-size: 14px;
@@ -96,24 +149,24 @@
         font-weight: 400;
         font-size: 18px;
         line-height: 20px;
-        letter-spacing: 0;
+        letter-spacing: 0.5px;
     }
 
     >h3{
-        font-weight: 400;
+        font-weight: 300;
         font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0;
+        letter-spacing: 0.5px;
 
         opacity: .7;
-        margin-top: 5px;
+        line-height: 100%; /* 16px */
+        margin-top: 10px;
     }
 
     >h4{
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
         line-height: 16px;
-        letter-spacing: 0;
+        letter-spacing: 0.5px;
 
         opacity: .7;
         margin-top: 10px;
@@ -136,26 +189,38 @@
 
     background-color: #EAEAEA;
     color: #000;
-
+    
     opacity: .7;
 
     padding: 8px 24px;
     box-sizing: border-box;
 
-    font-weight: 400 !important;
+    font-weight: 300 !important;
     font-size: 16px;
     line-height: 16px;
-    letter-spacing: 0;
+    letter-spacing: 0.5px;
 
     cursor: pointer;
 
     display: flex;
     align-items: center;
+
+    transition: 200ms;
+
+    &:hover{
+        opacity: 0.9 !important;
+    }
+
+    > img {
+        margin-left: 4px;
+        width: 16px;
+
+        transition: 200ms;
+    }
 }
 
 .info2{
     box-sizing: border-box;
-    margin-top: 30px;
     width: 921px;
     /* height: 156px; */
     border: 1px solid #0000001A;
@@ -164,50 +229,60 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 30px;
 }
 .info2 > h4{
-    size: 20px;
+    font-size: 22px;
+    font-weight: 400;
     gap: 15px;
-    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
 }
 .info2 p{
-    color: gray;
-    font-size: 14px;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 16px */
     margin-bottom: 25px;
+    opacity: 0.7;
 }
 .buttonII{
     color: #543BA7 ;
     background-color: transparent ;
+    margin-bottom: 0 !important;
+    opacity: 0.4 !important;
 }
-.button button:nth-child(1){
-    box-sizing: border-box;
-    width: 226px;
+.button > button {
     height: 36px;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 100%; /* 16px */
+    letter-spacing: 0.5px;
     padding: 10px 30px 10px 30px;
     gap: 14px;
-    margin-right: 20px;
-}
-.button button:nth-child(2){
-    box-sizing: border-box;
-    width: 203px;
-    height: 36px;
     border-radius: 10px;
+    opacity: 1;
+    transition: 200ms;
+
+    &:hover{
+        opacity: 0.9;
+    }
+}
+/* .button button:nth-child(1){
+    background-color: black;
+    color: white;
+    margin-right: 15px;
+} */
+.button button:nth-child(1){
     color: black;
     background-color: transparent;
     border: 1px solid black;
-    padding: 10px 30px 10px 30px;
-    gap: 14px;
-}
-.button button:nth-child(3){
-    background-color: transparent;
-    border: none;
-    color: #F63939;
-    padding: 10px 30px 10px 30px;
 
+    transition: 200ms;
+    &:hover{
+        border-color: #000000b4;
+    }
 }
 
 .button1 button:nth-child(1){
@@ -240,7 +315,13 @@
     border-radius: 16px;
     padding: 25px 30px 25px 30px;
     gap: 25px;
-    margin-top: 15px;
+    
+    > p {
+        font-weight: 400 !important;
+        font-size: 22px;
+        line-height: 26px;
+        letter-spacing: 0.5px;
+    }
 }
 .connect{
     box-sizing: border-box;
@@ -271,18 +352,40 @@
     margin-top: 25px;
 }
 .balance p{
-    font-size: 22px;
     margin-bottom: 25px;
 }
 .balance button{
     box-sizing: border-box;
-    width: 172px;
-    height: 36px;
     border-radius: 10px;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 100%; /* 16px */
+    letter-spacing: 0.5px;
+
     background-color: black;
     color: white;
-    padding: 10px 30px 10px 30px;
-    gap: 14px;
+
+    padding: 10px 28px 10px 28px;
+
+    transition: 200ms;
+
+    &:hover{
+        opacity: 0.9;
+    }
+
+    &:last-child{
+        background-color: transparent;
+        color: #000000;
+        border: 1px solid #000000;
+        margin-left: 15px;
+
+        &:hover{
+            opacity: 0.8;
+            border-color: #000000c4;
+        }
+    }
 }
 .paymentMethod{
     box-sizing: border-box;
@@ -291,30 +394,52 @@
     border-radius: 16px;
     padding: 25px 30px 25px 30px;
     gap: 25px;
-    margin-top: 15px;
 }
 .paymentMethod img{
     margin-top: 25px;
 }
 .method p:nth-child(1){
+    font-weight: 400 !important;
     font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.5px;
     /* margin-bottom: 5px */
 }
 .method p:nth-child(2){
-    color: gray;
-    font-size: 14px;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 100%; /* 16px */
+    margin-top: 10px;
+    opacity: 0.7;
     /* margin-bottom: 25px */
 }
-.methodButton button{
-    box-sizing: border-box;
-    width: 240px;
-    height: 36px;
+.methodButton{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: fit-content;
     border-radius: 10px;
     background-color: black;
     color: white;
-    padding: 12px 28px 12px 28px;
-    gap: 14px;
+    padding: 9px 28px 9px 28px;
     margin-top: 25px;
+    font-size: 16px;
+    cursor: pointer;
+
+    transition: 200ms;
+    &:hover{
+        opacity: 0.9;
+    }
+    > p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        line-height: 100%; /* 16px */
+    }
 }
 .balanceTime{
     display: flex;
@@ -325,15 +450,70 @@
 .operation{
     margin-top: 25px;
 }
-.operation p{
+.operation h4{
     font-size: 18px !important;
-    color: gray;
+    color: #000 !important;
+    opacity: 0.7 !important;
+    font-weight: 300 !important;
     margin-bottom: none !important;
+}
+.modalBalance{
+    width: 100%;
 
+    > .button4{
+        gap: 50px;
+    }
+}
+.input_sum{
+    width: 100%;
+    margin-top: 30px;
+    > p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 300;
+        margin-bottom: 10px;
+        line-height: 110%; /* 19.8px */
+    }
+    >input{
+        width: 100%;
+
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        font-weight: 300;
+
+        border-color: #00000079;
+
+        transition: 200ms;
+
+        &:focus{
+            border-color: #000000b4;
+        }
+    }
+}
+.methodPayment{
+    > p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 300;
+        margin-bottom: 10px;
+        line-height: 110%; /* 19.8px */
+    }
+    > input {
+        width: 100%;
+    }
 }
 .method button{
     background-color: transparent;
     margin-top: 25px;
+
+    font-size: 16px;
+    opacity: 0.8;
+    font-weight: 300;
+
+    transition: 200ms;
+    &:hover{
+        opacity: 1;
+    }
 }
 .taxInfo{
     box-sizing: border-box;
@@ -362,9 +542,6 @@
     border-radius: 16px;
     padding: 25px 30px 25px 30px;
     gap: 25px;
-    margin-top: 15px;
-    margin-bottom: 30px;
-
 }
 .method p img{
     margin-left: 15px;
@@ -376,26 +553,39 @@
     border-radius: 16px;
     padding: 25px 30px 25px 30px;
     gap: 25px;
-    margin-top: 15px;
     /* margin-bottom: 15px; */
 }
 .passwordOfAccount p:nth-child(1){
     font-size: 22px;
-    gap: 15px;
+    font-weight: 400 !important;
+    line-height: 26px;
+    letter-spacing: 0.5px;
 }
 .passwordOfAccount p:nth-child(2){
-    font-size: 14px;
-    color: gray;
-    margin-top: 5px;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 100%;
     margin-bottom: 25px;
+    margin-top: 10px;
+    opacity: 0.7;
 }
 .passwordOfAccount button{
-    width: 187px;
-    height: 36px;
     border-radius: 10px;
     border: 1px solid black;
-    padding: 10px 30px 10px 30px;
+    padding: 9px 30px;
     background-color: transparent;
+
+    font-weight: 300;
+    line-height: 100%; /* 16px */
+    font-size: 16px;
+    letter-spacing: 0.5px;
+
+    transition: 200ms;
+
+    &:hover{
+        opacity: 0.8;
+    }
 }
 .numberOfAccount{
     box-sizing: border-box;
@@ -404,26 +594,38 @@
     border-radius: 16px;
     padding: 25px 30px 25px 30px;
     gap: 25px;
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 .numberOfAccount p:nth-child(1){
     font-size: 22px;
-    gap: 15px;
+    font-weight: 400 !important;
+    line-height: 26px;
+    letter-spacing: 0.5px;
 }
 .numberOfAccount p:nth-child(2){
-    font-size: 14px;
-    color: gray;
-    margin-top: 5px;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 100%;
     margin-bottom: 25px;
+    margin-top: 10px;
+    opacity: 0.7;
 }
 .numberOfAccount button{
-    width: 187px;
-    height: 36px;
     border-radius: 10px;
     border: 1px solid black;
-    padding: 10px 30px 10px 30px;
+    padding: 9px 30px;
     background-color: transparent;
+
+    font-weight: 300;
+    line-height: 100%; /* 16px */
+    font-size: 16px;
+    letter-spacing: 0.5px;
+
+    transition: 200ms;
+
+    &:hover{
+        opacity: 0.8;
+    }
 }
 .partyServices{
     box-sizing: border-box;
@@ -432,39 +634,46 @@
     border-radius: 16px;
     padding: 25px 30px 25px 30px;
     gap: 25px;
-    margin-bottom: 15px;
 }
 .partyService{
     font-size: 22px;
-    gap: 15px;
+    font-weight: 400 !important;
+    line-height: 26px;
+    letter-spacing: 0.5px;
 
 }
 .entry{
     display: flex;
-    width: 861px;
+    width: 100%;
+    justify-content: space-between;
     margin-top: 25px;
+    align-items: center;
     /* justify-content: space-between; */
+
+    > div:first-child {
+        display: flex;
+        gap: 25px;
+    }
 }
 
-.entry  img{
+.entry img{
     width: 45px;
     height: 45px;
 }
 
-.entry1{
-    width: 315px;
-    gap: 5px;
-    margin-left: 25px;
-    margin-right: 304px;
-
-  
-}
 .entry1 p:nth-child(1){
     font-size: 18px;
+    letter-spacing: 0.5px;
+    line-height: 110%; /* 19.8px */
+    margin-bottom: 5px;
 }
 .entry1 p:nth-child(2){
-    font-size: 12px;
-    color: gray;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    line-height: 100%; /* 16px */
 }
 .button2{
     width: 172px;
@@ -478,21 +687,28 @@
    
 }
 .button3{
-    width: 149px;
-    height: 36px;
     border-radius: 10px;
     border: 1px solid black;
+    padding: 9px 30px;
     background-color: transparent;
-    padding: 10px 30px 10px 30px;
-    gap: 14px;
-    margin-left: 23px;
+
+    font-weight: 300;
+    line-height: 100%; /* 16px */
+    font-size: 16px;
+    letter-spacing: 0.5px;
+
+    transition: 200ms;
+    height: fit-content;
+    &:hover{
+        opacity: 0.8;
+    }
 }
 .switch {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 25px;
-    left: 120px;
+
   }
   
   .switch input {
@@ -641,19 +857,36 @@
     border: 1px solid #0000001A;
     border-radius: 16px;
     gap: 25px;
-    margin-bottom: 15px;
    
  }
  .computers button{
-    padding: 10px 30px 10px 30px;
+    padding: 9px 30px 9px 30px;
     border-radius: 10px;
     border: 1px solid #000000;
     background-color: transparent; 
+
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 100%;
+
+    transition: 200ms;
+
+    &:hover{
+        opacity: 0.9;
+    }
  }
  .computer{
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+
+    > p {
+        font-weight: 400 !important;
+        font-size: 22px;
+        line-height: 26px;
+        letter-spacing: 0.5px;
+    }
  }
  .computer img{
     width: 26px;
@@ -678,15 +911,16 @@
     margin-bottom: 13px;
  }
  .neprochit{
-    font-size: 18px;
-    color: gray;
-    font-weight: 400;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    opacity: 0.7;
+    line-height: 110%; /* 19.8px */
     margin-bottom: 25px
- 
  }
 
 .modal{
-    width: 750px;
+    width: 100%;
     height: fit-content;
 
     border-radius: 10px;
@@ -713,6 +947,12 @@
 
     >img{
         opacity: .6;
+        cursor: pointer;
+        transition: 200ms;
+
+        &:hover{
+            opacity: 0.9;
+        }
     }
 }
 
@@ -729,12 +969,32 @@
         width: 50%;
 
         >p{
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 110%; /* 19.8px */
         }
 
         >input{
             width: 100%;
+
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 110%; /* 19.8px */
+
+            border-color: #0000007c;
+            transition: 200ms;
+
+            &:focus{
+                border-color: #000000c7;
+            }
         }
+
+        
     }
 }
 
@@ -749,10 +1009,11 @@
         width: 50%;
 
         >p{
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 20px;
-            letter-spacing: 0;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 110%; /* 19.8px */
         }
 
         >select{
@@ -761,8 +1022,8 @@
 
             background-color: transparent;
             color: #000;
-            border: 1px solid #000;
-
+            border: 1px solid #0000007c;
+            
             border-radius: 12px;
 
             margin-top: 5px;
@@ -772,10 +1033,12 @@
 
             cursor: pointer;
 
-            font-weight: 400;
+            
             font-size: 16px;
-            line-height: 20px;
-            letter-spacing: 0;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 110%; /* 19.8px */
 
             background-image: url('../../assets/icons/selectArrow.svg');
             background-position: 97%;
@@ -786,6 +1049,12 @@
             -webkit-appearance: none; /* Для Safari и Chrome */
             -moz-appearance: none;    /* Для Firefox */
             appearance: none;
+
+            transition: 200ms;
+
+            &:focus{
+                border-color: #000000c7;
+            }
         }
     }
     
@@ -798,11 +1067,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    gap: 200px;
     margin-top: 60px;
 
     >button{
-        width: 258px;
+        width: 50%;
 
         border-radius: 10px;
         
@@ -813,15 +1082,22 @@
         padding: 10px 0;
         box-sizing: border-box;
 
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
         line-height: 16px;
-        letter-spacing: 0;
+        letter-spacing: 0.5px;
+
+        transition: 200ms;
+        &:hover{
+            opacity: 0.8;
+        }
     }
 
     >:last-child{
         background-color: #000;
         color: #fff;
+
+        
     }
 }
 
@@ -830,12 +1106,12 @@
     min-height: 100vh;
     height: fit-content;
 
-    padding: 120px;
+    padding: 120px 120px 40px 120px;
     box-sizing: border-box;
-
+}
+.content_inner{
     display: flex;
     align-items: flex-start;
-    justify-content: center;
     gap: 20px;
 }
 
@@ -1003,7 +1279,7 @@
         width: 100%;
 
         display: flex;
-        align-items: center;
+        align-items: start;
         justify-content: space-between;
 
         >div{
@@ -1016,8 +1292,9 @@
 
             >p{
                 font-weight: 400;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 20px;
+                letter-spacing: 0.5px;
 
                 opacity: .7;
                 margin-top: 10px;
@@ -1026,6 +1303,12 @@
 
         >img{
             opacity: .6;
+            transition: 200ms;
+            cursor: pointer;
+
+            &:hover{
+                opacity: 0.9;
+            }
         }
     }
 }
@@ -1042,15 +1325,28 @@
   .subCategoryTag  {
     font-size: 14px;
     display: flex;
-    color: #000000 ;
-    background-color: transparent ;
+    color: #000000;
+    background-color: transparent;
     border: 1px solid #000000;
-    margin-top: 5px;
+
     border-radius: 8px;
-    padding: 0px 24px;
-    height: 36px;
-    font-size: 18px;
+    padding: 4px 24px;
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0.7;
     align-items: center;
+
+    transition: 200ms;
+
+    &:hover{
+        opacity: 1;
+    }
+    > img {
+        margin-left: 4px;
+        width: 16px;
+
+        transition: 200ms;
+    }
   }
   .subCategoryContainer{
     display: flex;

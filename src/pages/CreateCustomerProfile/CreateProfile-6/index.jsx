@@ -124,7 +124,7 @@ export default function CreateProfilePageSix({ setPage, setUser, user }) {
                     </div>
                 }
             </div>
-            <CreateTaskLoad prev={5} next={7} setPage={setPage} maxPage={8} disabled={isSaveDisabled} onNext={
+            <CreateTaskLoad prev={5} next={7} setPage={setPage} maxPage={8} disabled={!isSaveDisabled} onNext={
                 () => {
                     setUser((prev) => ({
                         ...prev,

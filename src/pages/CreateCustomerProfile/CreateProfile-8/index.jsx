@@ -119,7 +119,7 @@ export default function CreateProfilePageEight({ setPage, user }) {
                             {user.userExperience.map((item, index) => (
                                 <li key={index}>
                                     <div>
-                                        <h2>{item.name}</h2>
+                                        <h2>{item.name}{"Название"}</h2>
                                         <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3>
                                         <p>{item.description}</p>
                                     </div>
@@ -147,7 +147,7 @@ export default function CreateProfilePageEight({ setPage, user }) {
                             {user.userEducation.map((item, index) => (
                                 <li key={index}>
                                     <div>
-                                        <h2>{item.speciality}</h2>
+                                        <h2>{item.speciality}{"Название"}</h2>
                                         <h3>{item.start_month}.{item.start_year} - {item.end_month}.{item.end_year}</h3>
                                         <p>Lorem ipsum dolor sit amet consectetur. Massa et id faucibus id fermentum. Sed netus id gravida dui tellus facilisis nullam interdum montes.</p>
                                     </div>
