@@ -13,7 +13,7 @@ import showPasswordImgRed from "../../../assets/icons/redShowPassword.svg";
 import vkImg from "../../../assets/icons/vk.svg";
 import jobifyImg from "../../../assets/icons/logoJobify.svg";
 
-function MainReg() {
+function MainReg({ setPage }) {
     const [hidePassword, setHidePassword] = useState(true);
     const [nameVaildate, setNameVaildate] = useState(true);
     const [surnameVaildate, setSurnameVaildate] = useState(true);
@@ -64,6 +64,7 @@ function MainReg() {
             // Если запрос успешен, устанавливаем локальный флаг
             if (result) {
                 setLocalRegistrationSuccess(true);
+                setPage(2)
             }
         } catch (error) {
             // Ошибка уже обрабатывается в authSlice

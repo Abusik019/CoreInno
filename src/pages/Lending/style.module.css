@@ -35,6 +35,8 @@
         >p{
             font-size: 18px;
             line-height: 20px;
+            letter-spacing: 0.5px;
+            font-weight: 300 !important;
     
             margin-top: 15px;
             opacity: .7;
@@ -58,8 +60,9 @@
                 
                 border-radius: 12px;
                 
-                font-weight: 400;
+                font-weight: 300;
                 font-size: 16px;
+                letter-spacing: 0.5px;
                 line-height: 16px;
 
                 transition: 200ms;
@@ -107,7 +110,10 @@
             border: 1px solid var(--33, #EAEAEA);
 
             background-color: #fff;
-
+            transition: 1200ms;
+            &:hover{
+                transform: translateY(-5px);
+            }
             >h2{
                 font-weight: 400;
                 font-size: 42px;
@@ -149,7 +155,11 @@
         >:nth-child(3){
             background: linear-gradient(180deg, #000000E5 70%, rgba(255, 255, 255, 0.4) 250%);
             pointer-events: none;
-
+            
+            transition: 1200ms;
+            &:hover{
+                transform: translateY(-5px);
+            }
             >h2{
                 color: #fff;
             }
@@ -212,7 +222,7 @@
             >h2{
                 font-weight: 400;
                 font-size: 60px;
-                letter-spacing: -1.8px;
+                letter-spacing: -1.2.6px;
                 line-height: 60px;
 
                 color: #fff;
@@ -348,8 +358,8 @@
 
             border: 1px solid #000;
             border-radius: 10px;
-
-            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-weight: 300;
             font-size: 16px;
             line-height: 16px;    
             
@@ -715,7 +725,7 @@
         max-width: 80%;
     }
 
-    >button{
+    >a{
         width: 430px;
 
         padding: 17px 0;
@@ -728,9 +738,10 @@
 
         text-align: center;
 
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
         line-height: 16px; 
+        letter-spacing: 0.5px;
         border: 1px solid #fff;
 
         margin-top: 50px;
@@ -764,6 +775,7 @@
         text-align: center;
 
         >span{
+            letter-spacing: -1.26px;
             background: linear-gradient(180deg, #32216C 0%, #6D4ED2 100%);
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
@@ -817,8 +829,9 @@
 
         text-align: center;
 
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
+        letter-spacing: 0.5px;
         line-height: 20px;
 
         margin-top: 18px;

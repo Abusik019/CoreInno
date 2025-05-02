@@ -60,8 +60,8 @@ export default function CourseLending() {
                                 </div>
                             </div>
                             <div className={styles.info_title__price}>
-                                <h4>1290 ₽</h4>
-                                <p>1890 ₽</p>
+                                <h4>5 390 ₽</h4>
+                                <p>12 890 ₽</p>
                             </div>
                         </div>
                         <div className={styles.img_block}></div>
@@ -108,26 +108,26 @@ export default function CourseLending() {
 
                 <div className={styles.second_block}>
                     <div className={styles.buttons}>
-                        <button disabled>Скоро в продаже</button>
+                        <button disabled style={{opacity: 0.3}}>Скоро в продаже</button>
                         <button>Узнать больше</button>
                     </div>
                     <div className={styles.what_include}>
                         <h2>Что входит в курс?</h2>
                         <div>
-                            <p>10 модулей</p>
-                            <p>4 часа видео</p>
-                            <p>32 домашних работы</p>
+                            <p>10 уроков</p>
+                            <p>2 часа видео</p>
+                            <p>20 тестов</p>
                         </div>
                     </div>
                     <div className={styles.platforms}>
                         <h2>Мы на платформах</h2>
                         <div className={styles.platforms_list}>
-                            <a href="#"><img src={stepik} alt="stepik" /></a>
+                            <a href="https://stepik.org/a/227990"><img src={stepik} alt="stepik" /></a>
                             <a href="#"><img src={vkontakte} alt="getCourse" /></a>
                             <a href="#"><img src={telegram} alt="telegram" /></a>
                         </div>
                     </div>
-                    <p>Последнее обновление 31.01.2025</p>
+                    <p>Последнее обновление 28.04.2025</p>
                 </div>
             </div>
         </div>

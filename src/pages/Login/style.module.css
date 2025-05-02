@@ -51,8 +51,9 @@
 }
 
 .forgotPassword{
-    font-weight: 400;
+    font-weight: 300;
     font-size: 16px;
+    letter-spacing: 0.5px;
     line-height: 16px;
 
     opacity: 0.7;
@@ -71,9 +72,10 @@
 }
 
 .regForm label{
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.5px;
     line-height: 140%; /* 19.6px */
 
     margin-bottom: 5px;
@@ -117,7 +119,8 @@
     
         font-size: 16px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 300;
+        letter-spacing: 0.5px;
         line-height: normal;
     
         color: #000;
@@ -168,7 +171,8 @@
 
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-weight: 300;
     line-height: normal;
 
     transition: 200ms;
@@ -267,7 +271,8 @@
 
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.5px;
     line-height: normal;
 
     display: flex;
@@ -308,7 +313,8 @@
 .haveAccount > a{
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.5px;
     line-height: normal;
 
     text-decoration: none;

@@ -43,7 +43,9 @@ function SettingsAccount() {
 
     const   [editDataModal, setEditDataModal] = useState(false),
             [skillsModal, setSkillsModal] = useState(false),
-            [balanceModal, setBalanceModal] = useState(false);
+            [balanceModal, setBalanceModal] = useState(false),
+            [withdrawalModal, setWithdrawalModal] = useState(false),
+            [paymentMethodModal, setPaymentMethodModal] = useState(false);
 
     const category = useSelector((state) => state.category.category);
     const subCategory = useSelector((state) => state.category.subCategory);
@@ -449,7 +451,7 @@ function SettingsAccount() {
                         <div className={styles.balance}>
                             <p>Баланс: 112620₽</p>
                             <button onClick={() => setBalanceModal(true)}>Пополнить счет</button>
-                            <button>Вывод средств</button>
+                            <button onClick={() => setWithdrawalModal(true)}>Вывод средств</button>
                         </div>
 
                         <div className={styles.paymentMethod}>
@@ -458,7 +460,7 @@ function SettingsAccount() {
                                 <p>Привязанные способы оплаты</p>
                             </div>
                             <img src={paymentMethod} alt="" />
-                            <div className={styles.methodButton}>
+                            <div className={styles.methodButton} onClick={() => setPaymentMethodModal(true)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9 3C9.41421 3 9.75 3.33579 9.75 3.75V8.25L14.25 8.25C14.6642 8.25 15 8.58579 15 9C15 9.41421 14.6642 9.75 14.25 9.75L9.75 9.75L9.75 14.25C9.75 14.6642 9.41421 15 9 15C8.58579 15 8.25 14.6642 8.25 14.25L8.25 9.75H3.75C3.33579 9.75 3 9.41421 3 9C3 8.58579 3.33579 8.25 3.75 8.25H8.25V3.75C8.25 3.33579 8.58579 3 9 3Z" fill="white"/>
                                 </svg>
@@ -511,6 +513,62 @@ function SettingsAccount() {
                                     <div className={styles.button4}>
                                         <button onClick={() => setBalanceModal(false)}>Отмена</button>
                                         <button onClick={() => setBalanceModal(false)}>Пополнить</button>
+                                    </div>
+                                </div>
+                        </Modal>
+                        <Modal isOpen={withdrawalModal} onClose={() => setWithdrawalModal(false)} showClose={false} className={styles.spec_modal}>
+                                <div className={styles.modalBalance}>
+                                    <div className={styles.redactir}>
+                                        <h2>Вывод средств</h2>
+                                        <img onClick={() => setWithdrawalModal(false)}
+                                            src={close}
+                                            width={30}
+                                            height={30}
+                                            alt="close"
+                                        /> 
+                                    </div>
+                                    <div className={styles.input_sum}>
+                                        <p>Укажите сумму, ₽</p>
+                                        <input placeholder="Например, 1000₽" type="text"/>
+                                    </div>
+                                    <div className={styles.methodPayment} style={{ marginTop: "0" }}>
+                                        <img
+                                            style={{
+                                                position: "relative",
+                                                top: "65px",
+                                                left: "10px",
+                                            }}
+                                            src={logosMastercard}
+                                            alt=""
+                                        />
+                                        <p>Укажите счёт</p>
+                                        <input placeholder="5889-XXXX-XXXX-4023" type="text"/>
+                                        <img src={InputIcon} alt=""/>
+                                    </div>
+                                    <div className={styles.button4}>
+                                        <button onClick={() => setWithdrawalModal(false)}>Отмена</button>
+                                        <button onClick={() => setWithdrawalModal(false)}>Продолжить</button>
+                                    </div>
+                                </div>
+                        </Modal>
+                        <Modal isOpen={paymentMethodModal} onClose={() => setPaymentMethodModal(false)} showClose={false} className={styles.spec_modal}>
+                                <div className={styles.modalBalance}>
+                                    <div className={styles.redactir}>
+                                        <h2>Способ оплаты</h2>
+                                        <img onClick={() => setPaymentMethodModal(false)}
+                                            src={close}
+                                            width={30}
+                                            height={30}
+                                            alt="close"
+                                        /> 
+                                    </div>
+                                    <div className={styles.input_sum}>
+                                        <p>Выберите способ оплаты</p>
+                                        <input placeholder="Например, 1000₽" type="text"/>
+                                    </div>
+                                    <div className={styles.button4}>
+                                        <button onClick={() => setPaymentMethodModal(false)}>Отмена</button>
+                                        <button onClick={() => setPaymentMethodModal(false)}>Продолжить</button>
                                     </div>
                                 </div>
                         </Modal>
@@ -782,6 +840,41 @@ function SettingsAccount() {
                                 Удалить аккаунт
                             </button>
                         </div>
+                        <Modal isOpen={balanceModal} onClose={() => setBalanceModal(false)} showClose={false} className={styles.spec_modal}>
+                                <div className={styles.modalBalance}>
+                                    <div className={styles.redactir}>
+                                        <h2>Пополнить баланс</h2>
+                                        <img onClick={() => setBalanceModal(false)}
+                                            src={close}
+                                            width={30}
+                                            height={30}
+                                            alt="close"
+                                        /> 
+                                    </div>
+                                    <div className={styles.input_sum}>
+                                        <p>Укажите сумму, ₽</p>
+                                        <input placeholder="Например, 1000₽" type="text"/>
+                                    </div>
+                                    <div className={styles.methodPayment} style={{ marginTop: "0" }}>
+                                        <img
+                                            style={{
+                                                position: "relative",
+                                                top: "65px",
+                                                left: "10px",
+                                            }}
+                                            src={logosMastercard}
+                                            alt=""
+                                        />
+                                        <p>Способ оплаты</p>
+                                        <input placeholder="5889-XXXX-XXXX-4023" type="text"/>
+                                        <img onClick={() => setMetodPayment(!methodPayment)} src={InputIcon} alt=""/>
+                                    </div>
+                                    <div className={styles.button4}>
+                                        <button onClick={() => setBalanceModal(false)}>Отмена</button>
+                                        <button onClick={() => setBalanceModal(false)}>Пополнить</button>
+                                    </div>
+                                </div>
+                        </Modal>
                         {modalNumber && (
                             <div className={styles.modal1}>
                                 <div className={styles.redactir1}>

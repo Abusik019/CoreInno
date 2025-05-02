@@ -55,10 +55,11 @@
 }
 
 .regForm label{
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 140%; /* 19.6px */
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 110%; /* 19.6px */
 
     margin-bottom: 5px;
 }
@@ -97,7 +98,8 @@ input[type="text"], input[type="password"]{
 
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.5px;
     line-height: normal;
 
     color: #000;
@@ -149,7 +151,8 @@ input[type="text"], input[type="password"]{
 
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.5px;
     line-height: normal;
 
     transition: 200ms;
@@ -169,7 +172,7 @@ input[type="text"], input[type="password"]{
 .agree{
     width: 450px;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 300;
     line-height: 140%; /* 19.6px */
@@ -195,9 +198,9 @@ input[type="text"], input[type="password"]{
 
     text-align: left;
 
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 16px;
 }
 
@@ -270,7 +273,8 @@ input[type="text"], input[type="password"]{
 
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.5px;
     line-height: normal;
 
     display: flex;
@@ -311,7 +315,8 @@ input[type="text"], input[type="password"]{
     >a{
         font-size: 16px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 300;
+        letter-spacing: 0.5px;
         line-height: normal;
 
         text-decoration: none;

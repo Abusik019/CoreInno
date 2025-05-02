@@ -17,8 +17,9 @@ export default function SuccesRegistration() {
                     alt="done" 
                 />
                 <h2>Отлично, ваш аккаунт был успешно создан!</h2>
-                <Link className={styles.numberConfirm} to="#"><GradientText text="Подтвердить номер"/></Link>
-                <Link className={styles.nextBtn} to="#">Продолжить</Link>
+                <p>Рекомендуем перезайти в аккаунт, чтоб изменения вступили в силу</p>
+                {/* <Link className={styles.numberConfirm} to="#"><GradientText text="Подтвердить номер"/></Link> */}
+                <Link className={styles.nextBtn} to="/">Продолжить</Link>
             </div>
         </div>
     );

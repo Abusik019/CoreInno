@@ -26,7 +26,7 @@ export default function SelectionRole({ setPage }) {
                     <div 
                         className={styles.select} 
                         onClick={() => setChoice('freelancer')}
-                        style={{opacity: choice === 'freelancer' ? '1' : '0.8'}}
+                        style={{opacity: choice === 'freelancer' ? '1' : '0.7'}}
                     >
                         <div>
                             <h2>Фрилансер</h2>
@@ -39,7 +39,7 @@ export default function SelectionRole({ setPage }) {
                     <div 
                         className={styles.select} 
                         onClick={() => setChoice('customer')}
-                        style={{opacity: choice === 'customer' ? '1' : '0.8'}}
+                        style={{opacity: choice === 'customer' ? '1' : '0.7'}}
                     >
                         <div>
                             <h2>Заказчик</h2>
