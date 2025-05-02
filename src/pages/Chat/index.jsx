@@ -7,6 +7,10 @@ import axios from "axios";
 import Frame from "../../assets/icons/Frame.svg";
 import Vector from "../../assets/icons/Vector.svg";
 import { Centrifuge } from "centrifuge";
+import edit from "../../assets/icons/edit1.svg";
+import close from "../../assets/icons/closeRed.svg";
+import copy from "../../assets/icons/copy.svg";
+import freelancer from "../../assets/images/freelancer.png";
 
 const useChatStore = create((set) => ({
   messages: {},
@@ -38,8 +42,13 @@ export default function Chat() {
 
   const [text, setText] = useState("");
   const [receiverId, setReceiverId] = useState(null);
+  const [editingMessage, setEditingMessage] = useState(null);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [menuPosition, setMenuPosition] = useState(null);
+
   const centrifugoRef = useRef(null);
   const channelRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const dispatch = useDispatch();
   const senderId = useSelector((state) => state.user.user?.id);
@@ -51,13 +60,80 @@ export default function Chat() {
     dispatch(fetchUsers());
   }, [dispatch]);
 
- 
- 
-  
+  const deleteMessage = async (createdAt) => {
+    try {
+      await axios.delete("https://jobify.api-coreinno.ru/api/chat/delete", {
+        headers: { Authorization: `Bearer ${token}` },
+        data: { receiverId, createdAt },
+      });
+      // Удаляем сообщение локально
+      setMessages(
+        receiverId,
+        (messages[receiverId] || []).filter(
+          (msg) => new Date(msg.time).toISOString() !== createdAt
+        )
+      );
+    } catch (err) {
+      console.error("Ошибка при удалении сообщения:", err);
+      setError("Ошибка при удалении сообщения");
+    }
+  };
 
- 
+  const editMessage = async () => {
+    if (!editingMessage || !text.trim()) return;
+
+    try {
+      await axios.put(
+        "https://jobify.api-coreinno.ru/api/chat/edit",
+        {
+          receiverId,
+          createdAt: new Date(editingMessage.time).toISOString(),
+          newText: text,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      // Очистим режим редактирования
+      setEditingMessage(null);
+      setText("");
+    } catch (err) {
+      console.error("Ошибка при редактировании сообщения:", err);
+      setError("Ошибка при редактировании сообщения");
+    }
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file || !receiverId) return;
+
+    const formData = new FormData();
+    formData.append("receiverId", receiverId);
+    formData.append("file", file);
+    formData.append("text", ""); // текст по желанию, сейчас пустой
+
+    try {
+      const response = await axios.post(
+        "https://jobify.api-coreinno.ru/api/chat/upload",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("✅ Файл загружен:", response.data);
+      // Файл придёт сам через Centrifugo, как и обычное сообщение
+    } catch (err) {
+      console.error("Ошибка при загрузке файла:", err);
+      setError("Не удалось загрузить файл");
+    }
+  };
+
   const connectToCentrifugo = async (receiverId) => {
-    
     try {
       const response = await axios.get(
         `https://jobify.api-coreinno.ru/api/chat/connect?receiverId=${receiverId}`,
@@ -83,7 +159,7 @@ export default function Chat() {
       }
 
       const centrifuge = new Centrifuge(
-        "ws://jobify.api-coreinno.ru:8000/connection/websocket",
+        "wss://centrifugo.api-coreinno.ru/connection/websocket",
         { token: centrifugoToken }
       );
 
@@ -97,18 +173,52 @@ export default function Chat() {
 
       const sub = centrifuge.newSubscription(channel);
 
-      
-
       sub.on("publication", (ctx) => {
+        console.log("📩 Centrifugo событие:", ctx.data);
         const data = ctx.data;
-        console.log("📩 Новое сообщение:", data);
+
+        if (data.type === "delete") {
+          const targetId =
+            data.senderId === senderId ? data.receiverId : data.senderId;
+
+          setMessages((prev) => {
+            const msgs = prev[targetId] || [];
+            return {
+              ...prev,
+              [targetId]: msgs.filter(
+                (msg) => new Date(msg.time).toISOString() !== data.createdAt
+              ),
+            };
+          });
+
+          return;
+        }
+
+        if (data.type === "edit") {
+          const targetId =
+            data.senderId === senderId ? data.receiverId : data.senderId;
+
+          setMessages((prev) => {
+            const msgs = prev[targetId] || [];
+            return {
+              ...prev,
+              [targetId]: msgs.map((msg) =>
+                new Date(msg.time).toISOString() === data.createdAt
+                  ? { ...msg, text: data.newText }
+                  : msg
+              ),
+            };
+          });
+
+          return;
+        }
 
         if (data.system) {
           setSystemMessage(data.system);
           if (data.messages) {
             setMessages(receiverId, data.messages);
           }
-        } else {
+        } else if (data.time) {
           addMessage(receiverId, data);
         }
       });
@@ -131,32 +241,42 @@ export default function Chat() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setMessages(receiverId, response.data.messages);
+      setMessages(receiverId,  response.data.messages.sort((a, b) => new Date(a.time) - new Date(b.time)));
     } catch (error) {
       console.error("Ошибка загрузки чата:", error);
     }
   };
 
-  const sendMessage = async () => {
-    if (!receiverId) {
-      setError("Выберите пользователя для чата!");
+  const sendMessage = async (e) => {
+    if (editingMessage) {
+      e.preventDefault();
+      await editMessage();
       return;
     }
+    if (text.length > 0) {
+      e.preventDefault();
+      if (!receiverId) {
+        setError("Выберите пользователя для чата!");
+        return;
+      }
 
-    try {
-      const response = await axios.post(
-        "https://jobify.api-coreinno.ru/api/chat/send",
-        { receiverId, text },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      try {
+        const response = await axios.post(
+          "https://jobify.api-coreinno.ru/api/chat/send",
+          { receiverId, text },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
-      console.log("📤 Сообщение отправлено:", response.data);
-      // Оно придёт само через Centrifugo, можно не дублировать вручную
-      setText("");
-    } catch (err) {
-      console.error("Ошибка отправки сообщения:", err);
+        console.log("📤 Сообщение отправлено:", response.data);
+        // Оно придёт само через Centrifugo, можно не дублировать вручную
+        setText("");
+      } catch (err) {
+        console.error("Ошибка отправки сообщения:", err);
+      }
+    } else {
+      e.preventDefault();
     }
   };
 
@@ -165,8 +285,17 @@ export default function Chat() {
     return receiver ? receiver.firstName : "Собеседник";
   };
 
+  const clickRight = (index, e) => {
+    e.preventDefault();
+    setOpenMenu(index);
+    setMenuPosition({
+      x: e.pageX,
+      y: e.pageY,
+    });
+  };
+
   return (
-    <div className={styles.rod}>
+    <div onClick={() => setOpenMenu(null)} className={styles.rod}>
       <div className={styles.users}>
         <h2>Пользователи:</h2>
         <ul className={styles.userList}>
@@ -180,7 +309,25 @@ export default function Chat() {
                 loadChatHistory(user.id);
               }}
             >
-              {user.firstName} {user.lastName}
+              <img width={48} height={48} src={freelancer} alt="" />
+
+              <div>
+                {user.firstName} {user.lastName}
+                <p>тема задания</p>
+                <p>
+                  {messages[user.id]?.slice(-1)[0]?.text || "Нет сообщений"}
+                  <span style={{ marginLeft: "15px" }}>
+                    {messages[user.id]?.slice(-1)[0]?.time &&
+                      new Date(
+                        messages[user.id].slice(-1)[0].time
+                      ).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                      })}
+                  </span>
+                </p>
+              </div>
             </li>
           ))}
         </ul>
@@ -188,7 +335,6 @@ export default function Chat() {
 
       <div className={styles.chatContainer}>
         <h1 className={styles.chatTitle}>Чат</h1>
-       
 
         {systemMessage && (
           <div className={styles.systemMessage}>{systemMessage}</div>
@@ -198,6 +344,7 @@ export default function Chat() {
         <div className={styles.chatBox}>
           {(messages[receiverId] || []).map((msg, index) => (
             <div
+              onContextMenu={(e) => clickRight(index, e)}
               key={index}
               className={
                 msg.senderId === senderId
@@ -222,36 +369,98 @@ export default function Chat() {
                 </div>
               )}
               <div className={styles.timestamp}>
-                {new Date(msg.time).toLocaleTimeString()}
+                {msg.time ? new Date(msg.time).toLocaleTimeString() : ""}
               </div>
+              {openMenu === index && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: menuPosition.y,
+                    left: menuPosition.x,
+                    // display: msg.senderId !== senderId && "none",
+                  }}
+                  className={styles.modalMenu}
+                >
+                  {msg.senderId === senderId && (
+                    <button
+                      className={styles.editButton}
+                      onClick={() => {
+                        setEditingMessage(msg);
+                        setText(msg.text);
+                      }}
+                    >
+                      <img width={24} height={24} src={edit} alt="" />{" "}
+                      Редактировать
+                    </button>
+                  )}
+                  <button
+                    className={styles.copyButton}
+                    onClick={() => {
+                      navigator.clipboard
+                        .writeText(msg.text)
+                        .then(() => {
+                          alert("Сообщение скопировано!");
+                        })
+                        .catch((err) => {
+                          console.error("Ошибка копирования:", err);
+                        });
+                    }}
+                  >
+                    <img width={24} height={24} src={copy} alt="" /> Копировать
+                  </button>
+                  {msg.senderId === senderId && (
+                    <button
+                      className={styles.deleteButton}
+                      onClick={() =>
+                        deleteMessage(new Date(msg.time).toISOString())
+                      }
+                    >
+                      <img width={24} height={24} src={close} alt="" /> Удалить
+                      у всех
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
 
-        <div style={{ position: "relative", width: "720px", }}>
+        <form
+          onSubmit={sendMessage}
+          style={{ position: "relative", width: "720px" }}
+        >
+          <input
+            type="file"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+
           <img
             className={styles.vector}
             width={20}
             height={20}
             src={Vector}
+            onClick={() => fileInputRef.current && fileInputRef.current.click()}
             alt=""
           />
-            <img
-              className={styles.send}
-              width={40}
-              height={40}
-              onClick={sendMessage}
-              src={Frame}
-              alt=""
-            />
+          <img
+            className={styles.send}
+            width={40}
+            height={40}
+            onClick={sendMessage}
+            src={Frame}
+            alt=""
+          />
           <input
+            style={{ backgroundColor: "white" }}
             className={styles.inputField}
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Введите сообщение..."
             disabled={!receiverId}
           />
-        </div>
+        </form>
       </div>
     </div>
   );
